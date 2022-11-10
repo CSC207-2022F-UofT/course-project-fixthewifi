@@ -7,11 +7,4 @@ package entities;
  */
 public class User
 {
-    int id;
-    UserProfile userprofile;
-    String status;
-    List <Chat> chats
-    FriendsList friendsList
-
-+ addChat(Chat chat)
 }
