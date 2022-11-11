@@ -8,7 +8,6 @@ public class ChatList
 {
     private final List<Chat> chats;
 
-
     public ChatList()
     {
         this.chats = new ArrayList<Chat>();
@@ -23,8 +22,10 @@ public class ChatList
     public Chat getChatByChatUid(int uid)
     {
         Chat toReturn = null;
-        for (Chat chat : chats) {
-            if (chat.uid == uid) {
+        for (Chat chat : chats)
+        {
+            if (chat.getUid() == uid)
+            {
                 toReturn = chat;
             }
         }
@@ -38,7 +39,6 @@ public class ChatList
             throw new NoSuchElementException("Chat not found.");
         }
     }
-
 
     public void addChat(Chat chat)
     {

@@ -6,11 +6,10 @@ package entities;
  */
 public class CommonUser implements User
 {
-    private int uid;
-    private UserProfile userProfile;
-    private Status status;
-    private ChatList chats;
-    private FriendsList friendsList;
+    private final int uid;
+    private final UserProfile userProfile;
+    private final ChatList chats;
+    private final FriendsList friendsList;
 
     public CommonUser(int uid, String name, int status)
     {
@@ -24,15 +23,11 @@ public class CommonUser implements User
         return uid;
     }
 
-    public int getStatus()
+    public String getStatus()
     {
-        return status.getStatus();
+        return userProfile.getStatus();
     }
 
-    public String getStringStatus()
-    {
-        return status.toString();
-    }
 
     public Chat getChatByChatUid(int uid)
     {
