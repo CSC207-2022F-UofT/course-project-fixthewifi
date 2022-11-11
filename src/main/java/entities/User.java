@@ -7,6 +7,5 @@ public interface User
     public Chat getChatByChatUid(int uid);
 
     public CommonUser getFriendByUid(int uid);
-    
-    public boolean checkUserExistsByUid(int uid);
+
 }
