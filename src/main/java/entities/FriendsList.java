@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.Collections;
+import java.util.List;
+
 public class FriendsList
 {
     private List<CommonUser> friendlist;
