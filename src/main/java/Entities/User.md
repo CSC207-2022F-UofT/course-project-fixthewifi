@@ -5,6 +5,7 @@
 - profile?
 - message, chat?
 - int rating
+- String password
 
 method
 + checkIfUserExist()
