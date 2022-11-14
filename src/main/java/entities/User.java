@@ -1,10 +1,11 @@
 package entities;
 
-/** Represents a user.
- * @author Kevin Liu
- * @version 1.0
- * @since 1.0
- */
-public class User
+public interface User
 {
+    public int getUid();
+
+    public Chat getChatByChatUid(int uid);
+
+    public CommonUser getFriendByUid(int uid);
+
 }
