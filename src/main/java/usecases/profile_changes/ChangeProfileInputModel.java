@@ -8,7 +8,7 @@ public class ChangeProfileInputModel {
     private String name;
     private String description;
 
-    public ChangeProfileInputModel(int profileUID, ProfilePicture pic, String name, String description) {
+    public ChangeProfileInputModel(int profileUID,  String name, String description,ProfilePicture pic) {
         this.profileUID = profileUID;
         this.pic = pic;
         this.name = name;
@@ -43,6 +43,8 @@ public class ChangeProfileInputModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
 
 

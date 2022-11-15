@@ -3,10 +3,12 @@ package usecases.profile_changes;
 import entities.ProfilePicture;
 
 public interface ChangeProfileInputBoundary {
-    ChangeProfileOutputModel setPic(ChangeProfileInputModel inputModel);
-    ChangeProfileOutputModel delPic(ChangeProfileInputModel inputModel);
-    ChangeProfileOutputModel updateDescr(ChangeProfileInputModel inputModel);
-    ChangeProfileOutputModel updateName(ChangeProfileInputModel inputModel);
+    void setPic(ChangeProfileInputModel inputModel);
+    void delPic(ChangeProfileInputModel inputModel);
+    void updateDescr(ChangeProfileInputModel inputModel);
+    void updateName(ChangeProfileInputModel inputModel);
+
+
 }
 
 

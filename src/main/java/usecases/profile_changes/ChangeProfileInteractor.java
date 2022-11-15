@@ -1,24 +1,43 @@
 package usecases.profile_changes;
 
+import interface_adapters.ChangeProfileOutputAdapter;
+
 public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
-    @Override
-    public ChangeProfileOutputModel setPic(ChangeProfileInputModel inputModel) {
-        return null;
+    final ChangeProfileGateWayDB database;
+
+    final ChangeProfileOutputBoundary output;
+
+    public ChangeProfileInteractor(ChangeProfileGateWayDB profileGateWayDB, ChangeProfileOutputAdapter profileOutputAdapter) {
+        this.database = profileGateWayDB;
+        this.output = profileOutputAdapter;
     }
 
     @Override
-    public ChangeProfileOutputModel delPic(ChangeProfileInputModel inputModel) {
-        return null;
+    public void setPic(ChangeProfileInputModel inputModel) {
+
     }
 
     @Override
-    public ChangeProfileOutputModel updateDescr(ChangeProfileInputModel inputModel) {
-        return null;
+    public void delPic(ChangeProfileInputModel inputModel) {
+
     }
 
     @Override
-    public ChangeProfileOutputModel updateName(ChangeProfileInputModel inputModel) {
-        return null;
+    public void updateDescr(ChangeProfileInputModel inputModel) {
+       if(database.existsByUID(inputModel.getProfileUID())){
+           ChangeProfileDsInputModel dsInputModel= new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
+                   inputModel.getDescription(), inputModel.getPic());
+           database.storeUpdateDescr(dsInputModel);
+           ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(inputModel.getProfileUID(), inputModel.getName(),
+                   inputModel.getDescription(), inputModel.getPic());
+           output.updateDescr(outputModel);
+       }
+
+    }
+
+    @Override
+    public void updateName(ChangeProfileInputModel inputModel) {
+
     }
 }
 
