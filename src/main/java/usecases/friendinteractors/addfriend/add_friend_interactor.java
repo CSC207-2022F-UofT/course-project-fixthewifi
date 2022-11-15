@@ -20,7 +20,7 @@ public class add_friend_interactor implements add_friend_input_boundary{
             dataBase.addFriendbyID(model.friendid, model.requesterid);
             output.success();
         }
-        if (bool1){
+        if (bool2){
             dataBase.addFriendbyName(model.friendName, model.requesterName);
             output.success();
         }

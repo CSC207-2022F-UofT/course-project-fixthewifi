@@ -23,7 +23,7 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
             dataBase.deleteFriendbyID(model.friendid, model.requesterid);
             output.success();
         }
-        if (bool1){
+        if (bool2){
             dataBase.deleteFriendbyName(model.friendName, model.requesterName);
             output.success();
         }

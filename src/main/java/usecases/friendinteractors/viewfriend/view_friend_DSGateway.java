@@ -1,4 +1,10 @@
 package usecases.friendinteractors.viewfriend;
 
-public class view_friend_DSGateway {
+import entities.CommonUser;
+
+import java.util.HashMap;
+import java.util.List;
+
+public interface view_friend_DSGateway {
+    List<HashMap<String, Integer>> getFriendList();
 }
