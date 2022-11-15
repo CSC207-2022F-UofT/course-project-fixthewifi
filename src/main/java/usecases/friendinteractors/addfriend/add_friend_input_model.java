@@ -10,7 +10,7 @@ public class add_friend_input_model {
         this.friendid = friendid;
         this.requesterid = requesterid;
         this.friendName = "";
-        this.requesterName = "requesterName";
+        this.requesterName = "";
     }
 
     public add_friend_input_model(String friendName, String requesterName){
