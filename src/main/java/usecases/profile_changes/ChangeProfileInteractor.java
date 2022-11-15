@@ -1,6 +1,6 @@
 package usecases.profile_changes;
 
-import interface_adapters.ChangeProfileOutputAdapter;
+import interface_adapters.change_profile.ChangeProfileOutputAdapter;
 
 public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     final ChangeProfileGateWayDB database;
