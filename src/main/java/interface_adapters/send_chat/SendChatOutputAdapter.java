@@ -1,6 +1,6 @@
 package interface_adapters.send_chat;
 
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.send_chat.SendChatOutputBoundary;
 import usecases.send_chat.SendChatOutputModel;
 
