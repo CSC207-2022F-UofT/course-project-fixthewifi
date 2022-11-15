@@ -2,6 +2,9 @@ package usecases.send_chat;
 
 import entities.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SendChatInteractor implements SendChatInputBoundary
 {
     final SendChatDsGateway dataBase;
@@ -17,7 +20,10 @@ public class SendChatInteractor implements SendChatInputBoundary
     public void SendChat(SendChatInputModel inputModel)
     {
         dataBase.storeChat(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time);
-        SendChatOutputModel outputModel = new SendChatOutputModel(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time);
+
+        ArrayList<List<String>> chatMembersAddress = dataBase.fetchAllAddressByChatUid(inputModel.chatUid);
+        SendChatOutputModel outputModel = new SendChatOutputModel(chatMembersAddress, inputModel.senderUid, inputModel.content, inputModel.time);
+
         output.SendChat(outputModel);
     }
 

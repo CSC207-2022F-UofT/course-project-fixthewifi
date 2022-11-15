@@ -2,11 +2,11 @@ package usecases.send_chat;
 
 public class SendChatInputModel
 {
-    int senderUid;
-    int chatUid;
-    String content;
+    public int senderUid;
+    public int chatUid;
+    public String content;
 
-    String time;
+    public String time;
 
     public SendChatInputModel(int senderUid, int chatUid, String content, String time)
     {
