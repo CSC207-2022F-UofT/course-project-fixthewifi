@@ -34,7 +34,15 @@ public class CreateGCInteractor implements CreateGCInputBoundary {
      */
     @Override
     public void create(CreateGCInputData input_data) {
-        GroupChat gc = new GroupChat(this.database.getNewUID(), input_data.getAdmin(), input_data.getMembers());
+        User admin = database.getUserByUID(input_data.getAdmin());
+        ArrayList<User> members = new ArrayList<>();
+        members.add(database.getUserByUID(input_data.getAdmin()));
+        for (int i: input_data.getMembers()) {
+            if(database.getUserByUID(i) != null){
+                members.add(database.getUserByUID(i));
+            }
+        }
+        GroupChat gc = new GroupChat(this.database.getNewUID(), admin, members);
         database.addGC(gc);
         CreateGCOutputData output = new CreateGCOutputData(
                 input_data.getAdmin(), input_data.getMembers(), input_data.getTime());

@@ -1,6 +1,7 @@
 package usecases.create_gc;
 
 import entities.GroupChat;
+import entities.User;
 
 public interface CreateGCDBGateway {
 
@@ -15,6 +16,10 @@ public interface CreateGCDBGateway {
      * @param group_chat is the groupchat that will be added
      */
     void addGC(GroupChat group_chat);
+    /**
+     * returns the User object with the given UID
+     */
+    User getUserByUID(int UID);
 
 
 }

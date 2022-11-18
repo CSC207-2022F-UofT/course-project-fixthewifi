@@ -10,19 +10,19 @@ import java.util.ArrayList;
  */
 public class CreateGCInputData {
     /**
-     * User who will be the admin of the new GroupChat.
+     * The UID of the user who will be the admin of the new GroupChat.
      */
-    private final User admin;
+    private final int admin;
     /**
-     * A list of users who will be a part of the new GroupChat
+     * A list of the UIDs of the users who will be a part of the new GroupChat
      */
-    private ArrayList<User> members;
+    private final ArrayList<Integer> members;
     /**
      * Time of the request to make a new GroupChat
      */
     private final LocalDateTime time;
 
-    public CreateGCInputData(User admin, ArrayList<User> members, LocalDateTime time){
+    public CreateGCInputData(int admin, ArrayList<Integer> members, LocalDateTime time){
         this.admin = admin;
         this.members = members;
         this.time = time;
@@ -31,11 +31,11 @@ public class CreateGCInputData {
     /**
      * @return the admin of the InputData
      */
-    public User getAdmin(){return this.admin;}
+    public int getAdmin(){return this.admin;}
     /**
      * @return the members of the InputData
      */
-    public ArrayList<User> getMembers(){return this.members;}
+    public ArrayList<Integer> getMembers(){return this.members;}
     /**
      * @return the request time of the InputData
      */
