@@ -3,7 +3,7 @@ package entities;
 public class Rating {
     private double avgRating;
     private int numOfRatings;
-    private int totalRating;
+    private double totalRating;
     
     public double getAvgRating() {
         return avgRating;
@@ -20,7 +20,7 @@ public class Rating {
         this.numOfRatings = numOfRatings;
     }
 
-    public int getTotalRating() {
+    public double getTotalRating() {
         return totalRating;
     }
 
@@ -28,7 +28,7 @@ public class Rating {
         this.totalRating = totalRating;
     }
 
-    public double calculateAvgRating(int submittedRating) {
+    public double calculateAvgRating(double submittedRating) {
         totalRating += submittedRating;
         numOfRatings++;
         avgRating = totalRating / numOfRatings;
