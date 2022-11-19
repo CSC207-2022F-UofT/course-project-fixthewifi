@@ -1,4 +1,4 @@
-package usecases.Login;
+package usecases.login;
 
 public interface LoginInputBoundary
 {

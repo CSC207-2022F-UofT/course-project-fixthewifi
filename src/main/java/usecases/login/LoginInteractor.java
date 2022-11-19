@@ -1,4 +1,4 @@
-package usecases.Login;
+package usecases.login;
 import entities.User;
 
 public class LoginInteractor implements LoginInputBoundary{
