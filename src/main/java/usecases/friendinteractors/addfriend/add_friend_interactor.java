@@ -15,9 +15,9 @@ public class add_friend_interactor implements add_friend_input_boundary{
     {
         if (model.getRejectinfo() != -1){
             dataBase.addFriendbyID(model.getRequesterid(), model.getFriendid());
-            output.success();
+            output.success(model.getRequesterid());
         }
         dataBase.failToAddFriend(model.getRequesterid(), model.getFriendid());
-        output.fail();
+        output.fail(model.getRequesterid());
     }
 }

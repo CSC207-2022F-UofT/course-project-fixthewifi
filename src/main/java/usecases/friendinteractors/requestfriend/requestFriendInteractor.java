@@ -9,6 +9,10 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
         this.output = output;
     }
 
+    /**
+     * In interactor, request friend from based on id or name and report if success or failure
+     * @param model
+     */
     @Override
     public void RequestFriend(requestFriendInputModel model){
         boolean b1 = dataBase.findUserByUID(model.getFriendid());
@@ -16,12 +20,12 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
 
         if (b1){
             dataBase.requestFriendbyID(model.getRequesterid(), model.getFriendid());
-            output.success();
+            output.success(model.getFriendid());
         }
         if (b2){
             dataBase.requestFriendbyName(model.getRequesterName(), model.getFriendName());
-            output.success();
+            output.success(model.getFriendid());
         }
-        output.fail();
+        output.fail(model.getFriendid());
     }
 }

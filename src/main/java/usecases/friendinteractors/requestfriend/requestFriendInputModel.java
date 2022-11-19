@@ -6,6 +6,11 @@ public class requestFriendInputModel {
     final private String requesterName;
     final  private String friendName;
 
+    /**
+     * Delete friend input model based on id
+     * @param friendid
+     * @param requesterid
+     */
     public requestFriendInputModel(int friendid, int requesterid){
         this.friendid = friendid;
         this.requesterid = requesterid;
@@ -13,6 +18,11 @@ public class requestFriendInputModel {
         this.requesterName = "requesterName";
     }
 
+    /**
+     * Delete friend input model based on name
+     * @param friendName
+     * @param requesterName
+     */
     public requestFriendInputModel(String friendName, String requesterName){
         this.friendid = -1;
         this.requesterid = -1;

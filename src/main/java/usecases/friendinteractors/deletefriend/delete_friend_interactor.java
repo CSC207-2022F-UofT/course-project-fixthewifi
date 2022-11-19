@@ -13,6 +13,10 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
         this.output = output;
     }
 
+    /**
+     * In interactor, delete friend from based on id or name and report if success or failure
+     * @param model
+     */
     @Override
     public void DeleteFriend(delete_friend_input_model model)
     {
@@ -21,13 +25,13 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
 
         if (bool1){
             dataBase.deleteFriendbyID(model.friendid, model.requesterid);
-            output.success();
+            output.success(model.requesterid);
         }
         if (bool2){
             dataBase.deleteFriendbyName(model.friendName, model.requesterName);
-            output.success();
+            output.success(model.requesterid);
         }
-        output.fail();
+        output.fail(model.requesterid);
     }
 
 
