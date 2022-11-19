@@ -23,10 +23,10 @@ public class RetrieveFriendsListOutputData {
     /**
      * the List of usernames of users in requester's FriendsList
      */
-    private ArrayList<Integer> usernames;
+    private ArrayList<String> usernames;
 
     public RetrieveFriendsListOutputData(
-            int requester, ArrayList<Integer> UIDs, ArrayList<Integer> usernames){
+            int requester, ArrayList<Integer> UIDs, ArrayList<String> usernames){
         this.requester = requester;
         this.UIDs = UIDs;
         this.usernames = usernames;
@@ -48,10 +48,10 @@ public class RetrieveFriendsListOutputData {
         return this.UIDs;
     }
 
-    public void setUsernames(ArrayList<Integer> usernames) {
+    public void setUsernames(ArrayList<String> usernames) {
         this.usernames = usernames;
     }
-    public ArrayList<Integer> getUsernames(){
+    public ArrayList<String> getUsernames(){
         return this.usernames;
     }
 }
