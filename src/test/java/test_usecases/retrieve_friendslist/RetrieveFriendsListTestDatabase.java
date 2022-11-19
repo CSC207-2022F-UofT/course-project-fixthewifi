@@ -1,0 +1,6 @@
+package test_usecases.retrieve_friendslist;
+
+import usecases.retrieve_friendslist.RetrieveFriendsListDBGateway;
+
+public class RetrieveFriendsListTestDatabase implements RetrieveFriendsListDBGateway {
+}
