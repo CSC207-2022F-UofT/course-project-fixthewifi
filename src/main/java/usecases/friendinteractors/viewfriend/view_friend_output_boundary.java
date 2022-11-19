@@ -1,10 +1,8 @@
 package usecases.friendinteractors.viewfriend;
 
 import entities.CommonUser;
-
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface view_friend_output_boundary {
-    void pushFriendList(List<HashMap<String, Integer>> list);
+    void pushFriendList(ArrayList<CommonUser> arraylist);
 }

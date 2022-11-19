@@ -1,10 +1,8 @@
 package usecases.friendinteractors.viewfriend;
 
 import entities.CommonUser;
-import usecases.friendinteractors.addfriend.add_friend_input_model;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
 
 public class view_friend_interactor implements view_friend_input_boundary {
     final view_friend_output_boundary output;
@@ -17,7 +15,8 @@ public class view_friend_interactor implements view_friend_input_boundary {
 
     @Override
     public void ViewFriend(view_friend_input_model model) {
-        List<HashMap<String, Integer>> list = dataBase.getFriendList();
-        output.pushFriendList(list);
+        ArrayList<CommonUser> arraylist = new ArrayList<CommonUser> ();
+        arraylist = dataBase.getFriendList();
+        output.pushFriendList(arraylist);
     }
 }
