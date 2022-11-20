@@ -35,6 +35,6 @@ public class ChangeProfileDB implements ChangeProfileGateWayDB {
 
     @Override
     public void storeUpdateDescr(ChangeProfileDsInputModel dbModel) {
-
+//todo implementation of storing in db
     }
 }

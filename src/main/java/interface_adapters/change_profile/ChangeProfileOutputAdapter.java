@@ -15,26 +15,34 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
     }
 
     @Override
-    public void setPic(ChangeProfileOutputModel inputModel) {
+    public void setPic(ChangeProfileOutputModel outputModel) {
+    //todo write a implementation for a presenter
+    }
+
+    @Override
+    public void delPic(ChangeProfileOutputModel outputModel) {
+//todo write a implementation for a presenter
+    }
+
+    @Override
+    public void updateDescr(ChangeProfileOutputModel outputModel) {
+        String content = outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+
+
+        //send to commanager a meesage to myself
+        //comManager.
+        //todo write a implementation for a presenter
 
     }
 
     @Override
-    public void delPic(ChangeProfileOutputModel inputModel) {
+    public void updateName(ChangeProfileOutputModel outputModel) {
 
+        //todo write a implementation for a presenter
     }
 
     @Override
-    public void updateDescr(ChangeProfileOutputModel inputModel) {
-        String content = inputModel.getProfileUID()+inputModel.getName() + inputModel.getDescription() + inputModel.getPic();
-//        for(List<String> AddressPair : inputModel.chatMembersAddress)
-//        {
-//            comManager.send(AddressPair.get(0), Integer.parseInt(AddressPair.get(1)), content);
-//        }
-    }
-
-    @Override
-    public void updateName(ChangeProfileOutputModel inputModel) {
+    public void errorChangingProfile() {
 
     }
 }

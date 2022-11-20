@@ -2,11 +2,12 @@ package usecases.profile_changes;
 
 public interface ChangeProfileOutputBoundary {
 
-    void setPic(ChangeProfileOutputModel inputModel);
-    void delPic(ChangeProfileOutputModel inputModel);
-    void updateDescr(ChangeProfileOutputModel inputModel);
-    void updateName(ChangeProfileOutputModel inputModel);
+    void setPic(ChangeProfileOutputModel outputModel);
+    void delPic(ChangeProfileOutputModel outputModel);
+    void updateDescr(ChangeProfileOutputModel outputModel);
+    void updateName(ChangeProfileOutputModel outputModel);
 
+    void errorChangingProfile();
 }
 
 
