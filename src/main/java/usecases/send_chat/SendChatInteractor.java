@@ -31,7 +31,7 @@ public class SendChatInteractor implements SendChatInputBoundary
         dataBase.storeChatMsg(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time);
 
         ArrayList<List<String>> chatMembersAddress = dataBase.fetchAllAddressByChatUid(inputModel.chatUid);
-        SendChatOutputModel outputModel = new SendChatOutputModel(chatMembersAddress, inputModel.senderUid, inputModel.content, inputModel.time);
+        SendChatOutputModel outputModel = new SendChatOutputModel(chatMembersAddress, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time);
 
         output.sendChat(outputModel);
     }
