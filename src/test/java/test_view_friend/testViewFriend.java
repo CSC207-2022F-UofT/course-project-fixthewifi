@@ -25,14 +25,14 @@ public class testViewFriend {
     CommonUser user2 = new CommonUser(200000, "b", 2);
     CommonUser user3 = new CommonUser(300000, "c", 3);
 
-    @Test
-    public void testViewFriendInteractor(){
-        ArrayList<CommonUser> friendlist = dataBase.getFriendList(123456);
-        ArrayList<CommonUser> friendlistFinale = new ArrayList<>();
-        friendlistFinale.add(user1);
-        friendlistFinale.add(user2);
-        friendlistFinale.add(user3);
-
-
-    }
+//    @Test
+//    public void testViewFriendInteractor(){
+//        ArrayList<CommonUser> friendlist = dataBase.getFriendList(123456);
+//        ArrayList<CommonUser> friendlistFinale = new ArrayList<>();
+//        friendlistFinale.add(user1);
+//        friendlistFinale.add(user2);
+//        friendlistFinale.add(user3);
+//
+//
+//    }
 }
