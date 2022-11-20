@@ -1,5 +1,8 @@
 package usecases.register;
 
 public interface RegisterOutputBoundary {
-    void success(int uid);
+    /**
+     redirects the user to the login page
+     */
+    void successRedirect(int uid);
 }
