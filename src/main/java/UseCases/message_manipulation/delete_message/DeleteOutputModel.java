@@ -1,4 +1,4 @@
-package usecases.message_manipulation.delete_message;
+package UseCases.message_manipulation.delete_message;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package usecases.message_manipulation.delete_message;
+package UseCases.message_manipulation.delete_message;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -8,11 +8,20 @@ public class DeleteInteractor implements DeleteInputBoundary {
     final DeleteOutputBoundary output;
     final DeleteDSGateway dataBase;
 
+    /**
+     * Creates Delete Message use case object
+     * @param dataBase database of the messages
+     * @param output output adapter that converts the output data to the appropriate format
+     */
     public DeleteInteractor(DeleteDSGateway dataBase, DeleteOutputBoundary output) {
         this.dataBase = dataBase;
         this.output = output;
     }
 
+    /**
+     * Use case of Delete Message
+     * @param inputModel input model
+     */
     @Override
     public void deleteMessage(DeleteInputModel inputModel) {
 

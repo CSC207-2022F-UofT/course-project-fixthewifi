@@ -1,8 +1,9 @@
-package usecases.message_manipulation.delete_message;
+package UseCases.message_manipulation.delete_message;
 
 
 public class DeleteInputModel
 {
+
     int currentUserUid;
     int senderUid;
     int chatUid;

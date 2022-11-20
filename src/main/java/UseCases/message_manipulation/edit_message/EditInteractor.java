@@ -1,7 +1,4 @@
-package usecases.message_manipulation.edit_message;
-
-import usecases.message_manipulation.delete_message.DeleteDSGateway;
-import usecases.message_manipulation.delete_message.DeleteOutputModel;
+package UseCases.message_manipulation.edit_message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +8,20 @@ public class EditInteractor implements EditInputBoundary{
     final EditOutputBoundary output;
     final EditDSGateway dataBase;
 
+    /**
+     * Creates Edit Message use case object
+     * @param dataBase database of the messages
+     * @param output output adapter that converts the output data to the appropriate format
+     */
     public EditInteractor(EditDSGateway dataBase, EditOutputBoundary output){
         this.dataBase = dataBase;
         this.output = output;
     }
 
-
+    /**
+     * Use case of Edit Message
+     * @param inputModel input model of edit message
+     */
     @Override
     public void editMessage(EditInputModel inputModel) {
 

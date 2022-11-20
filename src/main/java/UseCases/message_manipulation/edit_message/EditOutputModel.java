@@ -1,4 +1,4 @@
-package usecases.message_manipulation.edit_message;
+package UseCases.message_manipulation.edit_message;
 
 import java.util.List;
 
