@@ -3,7 +3,11 @@ package interface_adapters.change_profile;
 import entities.ProfilePicture;
 import usecases.profile_changes.ChangeProfileInputBoundary;
 import usecases.profile_changes.ChangeProfileInputModel;
-
+/**
+ * This class is a Controller layer for Changing profile usecase.
+ * It is called from Inputsorter class.
+ *
+ */
 public class ChangeProfileController {
 
     final ChangeProfileInputBoundary inputModelBoundary;

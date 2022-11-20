@@ -1,7 +1,11 @@
 package usecases.profile_changes;
 
-import entities.UserProfile;
-
+/**
+ * This class is an interface for ChangeProfileDB class.
+ * It is used in ChangeProfileInteractor class to make connection
+ * to the ChangeProfileDB.
+ *
+ */
 public interface ChangeProfileGateWayDB {
     boolean existsByUID(int identifier);
 

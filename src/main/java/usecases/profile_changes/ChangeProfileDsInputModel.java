@@ -1,7 +1,10 @@
 package usecases.profile_changes;
 
 import entities.ProfilePicture;
-
+/**
+ * This class is a data structure for DB interaction.
+ *
+ */
 
 public class ChangeProfileDsInputModel {
     private final int UID;

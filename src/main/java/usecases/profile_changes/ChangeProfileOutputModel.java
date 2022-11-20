@@ -1,11 +1,16 @@
 package usecases.profile_changes;
 
 import entities.ProfilePicture;
-
+/**
+ * This class is a data structure of out data for Changing Profile usecase.
+ *
+ */
 public class ChangeProfileOutputModel {
+    private String useraddress;
+    private int userport;
     private final int profileUID;
 
-    private String changeStatusMessage;
+    private final String changeStatusMessage;
 //    private String name;
 //    private String description;
 //    private ProfilePicture pic;
@@ -16,9 +21,20 @@ public class ChangeProfileOutputModel {
 //        this.description = description;
 //    }
 
-    public ChangeProfileOutputModel(int profileUID, String changeStatusMessage) {
+    public ChangeProfileOutputModel(String useraddress, int userport, int profileUID, String changeStatusMessage) {
+
+        this.useraddress= useraddress;
+        this.userport=userport;
         this.profileUID = profileUID;
         this.changeStatusMessage=changeStatusMessage;
+    }
+
+    public String getUseraddress() {
+        return useraddress;
+    }
+
+    public int getUserport() {
+        return userport;
     }
 
     public int getProfileUID() {

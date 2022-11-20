@@ -5,7 +5,11 @@ import usecases.profile_changes.ChangeProfileOutputBoundary;
 import usecases.profile_changes.ChangeProfileOutputModel;
 
 import java.util.List;
-
+/**
+ * This class is a OutputAdapter layer for Changing profile usecase.
+ * It is called from Interactor class and pass the information to the comManager.
+ *
+ */
 public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     private IfComManager comManager;
@@ -28,6 +32,10 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
     public void updateDescr(ChangeProfileOutputModel outputModel) {
         String content = outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
 
+       // adress and port from db
+        String adress = ""; //from db!!
+        int port = 0; //from db!!
+        comManager.send(adress,port,content);
 
         //send to commanager a meesage to myself
         //comManager.

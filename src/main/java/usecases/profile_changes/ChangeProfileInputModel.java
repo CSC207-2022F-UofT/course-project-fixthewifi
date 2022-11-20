@@ -1,12 +1,15 @@
 package usecases.profile_changes;
 
 import entities.ProfilePicture;
-
+/**
+ * This class is a data structure of input data for Changing Profile usecase.
+ *
+ */
 public class ChangeProfileInputModel {
     private final int profileUID;
-    private ProfilePicture pic;
-    private String name;
-    private String description;
+    private final ProfilePicture pic;
+    private final String name;
+    private final String description;
 
     public ChangeProfileInputModel(int profileUID,  String name, String description,ProfilePicture pic) {
         this.profileUID = profileUID;
