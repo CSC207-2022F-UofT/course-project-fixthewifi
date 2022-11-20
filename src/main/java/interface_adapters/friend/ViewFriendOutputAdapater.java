@@ -11,4 +11,9 @@ public class ViewFriendOutputAdapater implements view_friend_output_boundary {
     public void pushFriendList(ArrayList<CommonUser> arraylist){
         //comManager.send(arraylist)
     }
+
+    @Override
+    public ArrayList<CommonUser> pushFriendList_test(ArrayList<CommonUser> arraylist){
+        return arraylist;
+    }
 }

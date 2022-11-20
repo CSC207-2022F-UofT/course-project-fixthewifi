@@ -9,5 +9,5 @@ public interface view_friend_DSGateway {
      * Request a list of friend from database
      * @return
      */
-    ArrayList<CommonUser> getFriendList();
+    ArrayList<CommonUser> getFriendList(int requestor);
 }

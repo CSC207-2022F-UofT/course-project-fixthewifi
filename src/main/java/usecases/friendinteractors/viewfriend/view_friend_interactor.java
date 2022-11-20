@@ -20,7 +20,8 @@ public class view_friend_interactor implements view_friend_input_boundary {
     @Override
     public void ViewFriend(view_friend_input_model model) {
         ArrayList<CommonUser> arraylist = new ArrayList<CommonUser> ();
-        arraylist = dataBase.getFriendList();
+        arraylist = dataBase.getFriendList(model.requesterid);
         output.pushFriendList(arraylist);
+        output.pushFriendList_test(arraylist);
     }
 }
