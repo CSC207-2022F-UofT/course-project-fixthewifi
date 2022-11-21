@@ -1,4 +1,4 @@
-package frameworks_and_drivers.comManager;
+package frameworks_and_drivers.communication_manager;
 
 public interface IfComManager
 {
