@@ -4,12 +4,10 @@ public class Rating {
     private double avgRating;
     private int numOfRatings;
     private double totalRating;
+    // Possible feature would be to create an array to store individual ratings. But not neccessary
     
     public double getAvgRating() {
         return avgRating;
-    }
-    public void setAvgRating(float avgRating) {
-        this.avgRating = avgRating;
     }
 
     public int getNumOfRatings() {

@@ -1,6 +1,5 @@
 package usecases.rating_changes;
 
-import entities.*;
 
 public class SendRatingInteractor implements SendRatingInputBoundary{
     final SendRatingDsGateway dataBase;
