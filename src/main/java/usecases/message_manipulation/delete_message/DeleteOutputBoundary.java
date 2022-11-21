@@ -1,4 +1,4 @@
-package UseCases.message_manipulation.delete_message;
+package usecases.message_manipulation.delete_message;
 
 public interface DeleteOutputBoundary
 {

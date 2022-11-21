@@ -1,4 +1,4 @@
-package UseCases.message_manipulation.edit_message;
+package usecases.message_manipulation.edit_message;
 
 public interface EditInputBoundary {
     /**
