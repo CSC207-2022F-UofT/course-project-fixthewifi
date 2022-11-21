@@ -1,9 +1,9 @@
-package UseCases.message_manipulation.edit_message;
+package usecases.edit_message;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditInteractor implements EditInputBoundary{
+public class EditInteractor implements EditInputBoundary {
 
     final EditOutputBoundary output;
     final EditDSGateway dataBase;

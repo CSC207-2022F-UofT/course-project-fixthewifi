@@ -1,17 +1,16 @@
-package UseCases.message_manipulation.delete_message;
+package usecases.edit_message;
 
 import java.util.List;
 
-public class DeleteOutputModel
-{
+public class EditOutputModel {
+
     public List<List<String>> membersAddress;
     public int senderUid;
     public int chatUid;
     public String content;
     public String time;
 
-
-    public DeleteOutputModel(List<List<String>> membersAddress, int senderUid, int chatUid, String content, String time){
+    public EditOutputModel(List<List<String>> membersAddress, int senderUid, int chatUid, String content, String time){
 
         this.membersAddress = membersAddress;
         this.senderUid = senderUid;

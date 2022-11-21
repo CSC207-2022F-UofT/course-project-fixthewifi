@@ -1,7 +1,7 @@
-package UseCases.message_manipulation.delete_message;
+package usecases.delete_message;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 public interface DeleteDSGateway {
     /**
      * delete the message from the database.
