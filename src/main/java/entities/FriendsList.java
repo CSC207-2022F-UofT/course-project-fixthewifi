@@ -1,26 +1,24 @@
 package entities;
-
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 
 public class FriendsList
 {
-    private List<CommonUser> friendlist;
+    private ArrayList<CommonUser> friendlist;
     public CommonUser getFriendByUid;
     
     public FriendsList(){
-        friendlist = Collections.emptyList();
+        this.friendlist = new ArrayList<>();
     }
 
     public void addFriend(CommonUser user){
-        friendlist.add(user);
+        this.friendlist.add(user);
     }
 
     public void deleteFriend(CommonUser user){
-        friendlist.remove(user);
+        this.friendlist.remove(user);
     }
 
-    public List<CommonUser> viewFriends(){
+    public ArrayList<CommonUser> viewFriends(){
         return friendlist;
     }
     
