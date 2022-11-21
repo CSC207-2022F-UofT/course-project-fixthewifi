@@ -4,11 +4,16 @@ import entities.CommonUser;
 
 import java.util.ArrayList;
 
+import interface_adapters.friend.ViewFriendOutputAdapater;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pseudoDSAccess.ViewFriendDSAccess;
 import usecases.friendinteractors.viewfriend.view_friend_DSGateway;
 import usecases.friendinteractors.viewfriend.view_friend_input_boundary;
-import usecases.friendinteractors.viewfriend.view_friend_output_boundary;
+import usecases.friendinteractors.viewfriend.view_friend_input_model;
+import usecases.friendinteractors.viewfriend.view_friend_interactor;
+
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * @author Zhuo Zhang
@@ -18,21 +23,17 @@ public class testViewFriend {
     /**
      * Test view friend feature by getting friend list of user of requestoerid
      */
-    private view_friend_DSGateway dataBase;
-    private view_friend_input_boundary input;
-    private final int requesterid = 123456;
-    CommonUser user1 = new CommonUser(100000, "a", 1);
-    CommonUser user2 = new CommonUser(200000, "b", 2);
-    CommonUser user3 = new CommonUser(300000, "c", 3);
-
-//    @Test
-//    public void testViewFriendInteractor(){
-//        ArrayList<CommonUser> friendlist = dataBase.getFriendList(123456);
-//        ArrayList<CommonUser> friendlistFinale = new ArrayList<>();
-//        friendlistFinale.add(user1);
-//        friendlistFinale.add(user2);
-//        friendlistFinale.add(user3);
-//
-//
-//    }
+    final int requestor = 123456;
+    @Test
+    public void test_ViewFriend(){
+        //create interactor
+        ViewFriendDSAccess dataBase = new ViewFriendDSAccess();
+        ViewFriendOutputAdapater outputAdapater = new ViewFriendOutputAdapater();
+        view_friend_interactor interactor = new view_friend_interactor(dataBase, outputAdapater);
+        view_friend_input_model input_model = new view_friend_input_model(123456);
+        //create test data
+        ArrayList<Integer> output = interactor.ViewFriend_test(input_model);
+        //make assertion
+        Assertions.assertNotNull(output);
+    }
 }

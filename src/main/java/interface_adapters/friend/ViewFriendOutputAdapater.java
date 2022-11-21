@@ -13,7 +13,7 @@ public class ViewFriendOutputAdapater implements view_friend_output_boundary {
     }
 
     @Override
-    public ArrayList<CommonUser> pushFriendList_test(ArrayList<CommonUser> arraylist){
+    public ArrayList<Integer> pushFriendList_test(ArrayList<Integer> arraylist) {
         return arraylist;
     }
 }
