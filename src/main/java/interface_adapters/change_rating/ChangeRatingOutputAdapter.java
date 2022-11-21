@@ -1,6 +1,6 @@
 package interface_adapters.change_rating;
 
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.rating_changes.SendRatingOutputBoundary;
 import usecases.rating_changes.SendRatingOutputModel;
 
@@ -17,9 +17,9 @@ public class ChangeRatingOutputAdapter implements SendRatingOutputBoundary
     public void sendRating(SendRatingOutputModel model)
     {
         // TO-DO need to get address and port
-        // Write getter and setters (for address and port) in the Interactor -- OutputBoundary calls these getters and setters
+        // Write getter and setters (for address and port) in the Interactor -- Interactor send this over to OutputBoundary using sendChat
         // and update the output model
-
+        
         // From Kotya
         // getPort and getAddress in Interactor ... to be continued
         String content = "" + model.getAvgRating() + "," + model.getReceiverUid();
