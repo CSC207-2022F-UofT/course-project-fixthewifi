@@ -33,6 +33,7 @@ Brief explanation of project and what the TA's can currently do
 * UserFactory <I>
 * UserProfile
 
+
 ## Usecases
 1. usecases.create_gc.CreateGCInteractor
    * usecases.create_gc.CreateGCInteractor(CreateGCDBGateway database, CreateGCOutputBoundary output_adapter)
@@ -64,3 +65,4 @@ Brief explanation of project and what the TA's can currently do
     * returns the Unique IDs (UIDs) and usernames of all the user's friends
 14. usecases.send_chat.SendChatInteractor
     * usecases.send_chat.SendChatInteractor()
+
