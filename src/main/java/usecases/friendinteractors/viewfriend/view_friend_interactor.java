@@ -23,11 +23,11 @@ public class view_friend_interactor implements view_friend_input_boundary {
         arraylist = dataBase.getFriendList(model.requesterid);
         output.pushFriendList(arraylist);
     }
-
-    @Override
-    public ArrayList<Integer> ViewFriend_test(view_friend_input_model model) {
-        ArrayList<Integer> arraylist = new ArrayList<Integer> ();
-        arraylist = dataBase.getFriendList_test(model.requesterid);
-        return arraylist;
-    }
+//
+//    @Override
+//    public ArrayList<Integer> ViewFriend_test(view_friend_input_model model) {
+//        ArrayList<Integer> arraylist = new ArrayList<Integer> ();
+//        arraylist = dataBase.getFriendList_test(model.requesterid);
+//        return arraylist;
+//    }
 }

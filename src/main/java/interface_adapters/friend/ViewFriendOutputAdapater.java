@@ -12,8 +12,8 @@ public class ViewFriendOutputAdapater implements view_friend_output_boundary {
         //comManager.send(arraylist)
     }
 
-    @Override
-    public ArrayList<Integer> pushFriendList_test(ArrayList<Integer> arraylist) {
-        return arraylist;
-    }
+//    @Override
+//    public ArrayList<Integer> pushFriendList_test(ArrayList<Integer> arraylist) {
+//        return arraylist;
+//    }
 }

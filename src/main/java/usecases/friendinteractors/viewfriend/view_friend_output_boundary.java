@@ -10,5 +10,5 @@ public interface view_friend_output_boundary {
      * @param arraylist
      */
     void pushFriendList(ArrayList<CommonUser> arraylist);
-    ArrayList<Integer> pushFriendList_test(ArrayList<Integer> arraylist);
+//    ArrayList<Integer> pushFriendList_test(ArrayList<Integer> arraylist);
 }

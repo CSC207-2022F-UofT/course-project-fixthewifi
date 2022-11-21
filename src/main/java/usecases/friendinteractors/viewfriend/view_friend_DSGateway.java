@@ -10,6 +10,6 @@ public interface view_friend_DSGateway {
      * @return
      */
     ArrayList<CommonUser> getFriendList(int requestor);
-    ArrayList<Integer> getFriendList_test(int requestor);
+//    ArrayList<Integer> getFriendList_test(int requestor);
 
 }
