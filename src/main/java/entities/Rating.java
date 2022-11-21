@@ -1,5 +1,6 @@
 package entities;
 
+
 public class Rating {
     private double avgRating;
     private int numOfRatings;
@@ -34,5 +35,6 @@ public class Rating {
         avgRating = totalRating / numOfRatings;
         return avgRating; 
     }
+
 
 }
