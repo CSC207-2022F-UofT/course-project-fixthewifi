@@ -1,4 +1,4 @@
-package pseudoDSAccess;
-
-public class RequestFriendDSAccess {
-}
+//package pseudoDSAccess;
+//
+//public class RequestFriendDSAccess {
+//}
