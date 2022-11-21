@@ -23,6 +23,10 @@ public class GroupChat implements Chat {
         this.messages = new ArrayList<Message>();
         this.admin = admin;
         this.members = members;
+        while(this.members.contains(admin)){
+            this.members.remove(admin);
+        }
+        this.members.add(0, admin);
 
     }
     @Override
