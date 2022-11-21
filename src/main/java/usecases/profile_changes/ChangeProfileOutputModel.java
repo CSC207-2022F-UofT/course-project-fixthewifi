@@ -6,8 +6,8 @@ import entities.ProfilePicture;
  *
  */
 public class ChangeProfileOutputModel {
-    private String useraddress;
-    private int userport;
+    private final String useraddress;
+    private final int userport;
     private final int profileUID;
 
     private final String changeStatusMessage;

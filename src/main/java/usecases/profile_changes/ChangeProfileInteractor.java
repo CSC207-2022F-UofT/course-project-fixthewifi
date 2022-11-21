@@ -19,6 +19,8 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
         this.database = profileGateWayDB;
         this.output = profileOutputAdapter;
     }
+
+
     /**
      * void for setting new pic
      */
@@ -31,8 +33,8 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
 
 
             String succssesmessage = "Picture set successfully!";
-            String address="";//from db
-            int port = 0;//from db
+            String address=database.userAdress(inputModel.getProfileUID());
+            int port =database.userPort(inputModel.getProfileUID());
             ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
             output.setPic(outputModel);
 
