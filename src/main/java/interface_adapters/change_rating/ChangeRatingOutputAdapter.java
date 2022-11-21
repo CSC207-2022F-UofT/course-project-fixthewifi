@@ -17,7 +17,7 @@ public class ChangeRatingOutputAdapter implements SendRatingOutputBoundary
     public void sendRating(SendRatingOutputModel model)
     {
         // TO-DO need to get address and port
-        // Write getter and setters in the interactor -- output boundary calls these getters and setters
+        // Write getter and setters (for address and port) in the Interactor -- OutputBoundary calls these getters and setters
         // and update the output model
 
         // From Kotya
