@@ -1,22 +1,10 @@
 package usecases.friendinteractors.addfriend;
 
-/** Add friend database gateway
- *
- */
+import entities.CommonUser;
 
 public interface add_friend_DSGateway {
-
-    /** User of friendid adds user of requesterid to save it to the database.
-     *
-     * @param requesterid
-     * @param friendid
-     */
-    void addFriendbyID(int requesterid, int friendid);
-
-    /** User of friendid fails to add user of requesterid and return the info back through database and save it.
-     *
-     * @param requesterid
-     * @param friendid
-     */
-    void failToAddFriend(int requesterid, int friendid);
+    void addFriendbyID(int user1, int user2);
+    void addFriendbyName(String user1, String user2);
+    boolean findUserByUID(int uid);
+    boolean findUserByName(String name);
 }

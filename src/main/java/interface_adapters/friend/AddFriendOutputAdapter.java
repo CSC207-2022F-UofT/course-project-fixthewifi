@@ -5,14 +5,13 @@ import usecases.friendinteractors.addfriend.add_friend_output_boundary;
 public class AddFriendOutputAdapter implements add_friend_output_boundary
 {
     @Override
-    public void success(int requestorid)
+    public void success()
     {
-        //comManager.send("successfully add friend UID - requestorid")
+        //comManager.send("success")
     }
 
     @Override
-    public void fail(int requestorid)
-    {
-        //comManager.send("failed to add friend UID - requestorid")
+    public void fail() {
+        //comManager.send("fail")
     }
 }

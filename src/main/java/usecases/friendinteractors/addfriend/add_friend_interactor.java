@@ -13,11 +13,17 @@ public class add_friend_interactor implements add_friend_input_boundary{
     @Override
     public void AddFriend(add_friend_input_model model)
     {
-        if (model.getRejectinfo() != -1){
-            dataBase.addFriendbyID(model.getRequesterid(), model.getFriendid());
-            output.success(model.getRequesterid());
+        boolean bool1 = dataBase.findUserByUID(model.friendid);
+        boolean bool2 = dataBase.findUserByName(model.friendName);
+
+        if (bool1){
+            dataBase.addFriendbyID(model.friendid, model.requesterid);
+            output.success();
         }
-        dataBase.failToAddFriend(model.getRequesterid(), model.getFriendid());
-        output.fail(model.getRequesterid());
+        if (bool2){
+            dataBase.addFriendbyName(model.friendName, model.requesterName);
+            output.success();
+        }
+        output.fail();
     }
 }

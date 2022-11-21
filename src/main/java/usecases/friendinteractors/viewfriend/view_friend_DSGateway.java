@@ -1,15 +1,10 @@
 package usecases.friendinteractors.viewfriend;
 
 import entities.CommonUser;
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.List;
 
 public interface view_friend_DSGateway {
-
-    /**
-     * Request a list of friend from database
-     * @return
-     */
-    ArrayList<CommonUser> getFriendList(int requestor);
-//    ArrayList<Integer> getFriendList_test(int requestor);
-
+    List<HashMap<String, Integer>> getFriendList();
 }
