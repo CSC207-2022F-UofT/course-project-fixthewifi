@@ -23,7 +23,7 @@ public class ChangeRatingOutputAdapter implements SendRatingOutputBoundary
         // From Kotya
         // getPort and getAddress in Interactor ... to be continued
         String content = "" + model.getAvgRating() + "," + model.getReceiverUid();
-        comManager.send(model.receiverAddress, model.receiverPort, content);
+        //comManager.send(model.receiverAddress, model.receiverPort, content);
     }
 }
     
