@@ -14,9 +14,13 @@ import java.util.ArrayList;
  * @author Brenden McFarlane
  */
 public class CreateGCInteractor implements CreateGCInputBoundary {
-
+    /**
+     * the Database access class that CreateGCInteractor will use to gather required information
+     */
     private final CreateGCDBGateway database;
-
+    /**
+     * the output boundary that CreateGCInteractor will access when finished making the new GroupChat.
+     */
     private final CreateGCOutputBoundary output_adapter;
 
     public CreateGCInteractor(CreateGCDBGateway database, CreateGCOutputBoundary output_adapter){

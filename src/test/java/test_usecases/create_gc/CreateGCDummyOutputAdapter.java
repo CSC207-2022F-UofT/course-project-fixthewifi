@@ -6,11 +6,14 @@ import usecases.create_gc.CreateGCOutputBoundary;
 import usecases.create_gc.CreateGCOutputData;
 
 /**
- * This is a dummy implementation of CreateGCOutputBoundary for testing CreateGCInteractor
+ * This is an implementation of CreateGCOutputBoundary for testing CreateGCInteractor
  * independent of InterfaceAdapters layer.
  * @author Brenden McFarlane
  */
 public class CreateGCDummyOutputAdapter implements CreateGCOutputBoundary {
+    /**
+     * this field will store the CreateGCOutputData that the CreateGCInteractor creates
+     */
     private CreateGCOutputData output;
 
     @Override

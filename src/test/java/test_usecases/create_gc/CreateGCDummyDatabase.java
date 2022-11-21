@@ -8,7 +8,7 @@ import usecases.create_gc.CreateGCDBGateway;
 import java.util.HashMap;
 
 /**
- * This is a dummy implementation of CreateDBGateway in order to tes CreateGCInteractor
+ * This is an implementation of CreateDBGateway in order to test CreateGCInteractor
  * independently of the database layer.
  * @author Brenden McFarlane
  */

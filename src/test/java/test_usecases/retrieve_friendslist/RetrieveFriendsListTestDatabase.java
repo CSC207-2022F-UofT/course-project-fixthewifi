@@ -7,6 +7,10 @@ import usecases.retrieve_friendslist.RetrieveFriendsListDBGateway;
 
 import java.util.ArrayList;
 
+/**
+ * this is an implementation of RetrieveFriendsListDBGateway that is used for testing
+ * RetrieveFriendsListInteractor.
+ */
 public class RetrieveFriendsListTestDatabase implements RetrieveFriendsListDBGateway {
     /**
      * this is the UID that the interactor used as an arguement on this database.

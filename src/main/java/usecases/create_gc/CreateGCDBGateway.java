@@ -3,6 +3,9 @@ package usecases.create_gc;
 import entities.GroupChat;
 import entities.User;
 
+/**
+ * Database access interface for the CreateGCInteractor.
+ */
 public interface CreateGCDBGateway {
 
     /**
@@ -18,6 +21,7 @@ public interface CreateGCDBGateway {
     void addGC(GroupChat group_chat);
     /**
      * returns the User object with the given UID
+     * @param UID the UID of the user
      */
     User getUserByUID(int UID);
 

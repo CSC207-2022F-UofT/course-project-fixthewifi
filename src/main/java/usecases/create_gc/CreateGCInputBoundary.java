@@ -1,5 +1,8 @@
 package usecases.create_gc;
 
+/**
+ * InputBoundary that CreateGCInteractor implements.
+ */
 public interface CreateGCInputBoundary {
     /**
      * Creates a new GroupChat using the data provided in input_data,
