@@ -17,15 +17,16 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
     public void RequestFriend(requestFriendInputModel model){
         boolean b1 = dataBase.findUserByUID(model.getFriendid());
         boolean b2 = dataBase.findUserByName(model.getFriendName());
-
+        int peerPort = dataBase.getPeerPort(model.getRequesterid());
+        String address = dataBase.getAddress(model.getRequesterid());
         if (b1){
             dataBase.requestFriendbyID(model.getRequesterid(), model.getFriendid());
-            output.success(model.getFriendid());
+            output.success(model.getFriendid(), address, peerPort);
         }
         if (b2){
             dataBase.requestFriendbyName(model.getRequesterName(), model.getFriendName());
-            output.success(model.getFriendid());
+            output.success(model.getFriendid(), address, peerPort);
         }
-        output.fail(model.getFriendid());
+        output.fail(model.getFriendid(), address, peerPort);
     }
 }

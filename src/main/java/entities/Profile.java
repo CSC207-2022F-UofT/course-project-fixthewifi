@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package entities;
 
 public interface Profile {
@@ -14,20 +13,3 @@ public interface Profile {
     public  ProfilePicture getProfilePicture();
     public void setProfilePicture(ProfilePicture pic);
 }
-=======
-package entities;
-
-public interface Profile {
-
-    public int getUID();
-
-    public  String getName();
-    public void setName(String name);
-
-    public String getDescription();
-    public void setDescription(String description);
-
-    public  ProfilePicture getProfilePicture();
-    public void setProfilePicture(ProfilePicture pic);
-}
->>>>>>> origin/main

@@ -6,5 +6,5 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface view_friend_output_boundary {
-    void pushFriendList(List<HashMap<String, Integer>> list);
+    void pushFriendList(List<String> list, String address, int peerPort);
 }
