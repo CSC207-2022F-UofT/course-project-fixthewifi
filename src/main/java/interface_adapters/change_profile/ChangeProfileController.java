@@ -12,6 +12,14 @@ public class ChangeProfileController {
 
     final ChangeProfileInputBoundary inputModelBoundary;
 
+    final String SEPARATOR ="$";
+    String parse(String input){
+
+
+
+
+        return null;
+    }
     public ChangeProfileController(ChangeProfileInputBoundary accountGateway) {
         this.inputModelBoundary = accountGateway;
     }

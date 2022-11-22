@@ -1,6 +1,6 @@
 package interface_adapters.change_profile;
 
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.profile_changes.ChangeProfileOutputBoundary;
 import usecases.profile_changes.ChangeProfileOutputModel;
 
@@ -33,9 +33,9 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
         String content = outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
 
        // adress and port from db
-        String adress = ""; //from db!!
-        int port = 0; //from db!!
-        comManager.send(adress,port,content);
+        String adress = outputModel.getUseraddress(); //from db!!
+        int port = outputModel.getUserport(); //from db!!
+       comManager.send(adress,port,content);
 
         //send to commanager a meesage to myself
         //comManager.
