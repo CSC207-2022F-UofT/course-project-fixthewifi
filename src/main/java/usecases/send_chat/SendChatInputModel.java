@@ -10,9 +10,9 @@ public class SendChatInputModel
 
     public SendChatInputModel(int senderUid, int chatUid, String content, String time)
     {
+        this.content = content;
         this.senderUid = senderUid;
         this.chatUid = chatUid;
-        this.content = content;
         this.time = time;
     }
 }

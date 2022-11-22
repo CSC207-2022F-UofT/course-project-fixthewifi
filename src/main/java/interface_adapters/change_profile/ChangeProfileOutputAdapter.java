@@ -1,6 +1,6 @@
 package interface_adapters.change_profile;
 
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.profile_changes.ChangeProfileOutputBoundary;
 import usecases.profile_changes.ChangeProfileOutputModel;
 

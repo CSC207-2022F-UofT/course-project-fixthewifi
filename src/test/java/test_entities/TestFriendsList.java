@@ -5,9 +5,11 @@ import entities.FriendsList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class TestFriendsList {
+public class TestFriendsList
+{
     @Test
-    public void testViewFriendsEmptyList(){
+    public void testViewFriendsEmptyList()
+    {
         FriendsList friends = new FriendsList();
         Assertions.assertTrue(friends.viewFriends().isEmpty());
     }

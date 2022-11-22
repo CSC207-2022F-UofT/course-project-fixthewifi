@@ -3,8 +3,8 @@ package usecases.profile_changes;
 import entities.CommonUserFactory;
 import entities.UserFactory;
 import frameworks_and_drivers.ChangeProfileDB;
-import frameworks_and_drivers.comManager.ComManagerUser;
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.ComManagerUser;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import interface_adapters.change_profile.ChangeProfileOutputAdapter;
 import org.junit.jupiter.api.Test;
 
