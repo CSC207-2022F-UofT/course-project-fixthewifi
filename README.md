@@ -1,36 +1,36 @@
 # Chat messenger
 
-Brief explanation of project and what the TA's can currently do
+Welcome to our messenging app!(name still in progress) 
+This application will allow users to send messages to their friends, create profiles and rate each other
+based on how good of a texter they are. Right now our application does not have an operational UI or database.
+Never fear! With the power of Clean Architecture we know that the code we have written does work!
 
-## A User Can: (once we write the UI)
+## A User Can: (once we write the UI and database)
 * create account
   * requires username and password
   * confirms account creation
 * log in
   * requires username and password
-  * 
-
 * Make a GroupChat
-  * Uses 2 usecases: retrieve_friendslist and create_gc
-
-
-## Notes
+  * first requests the user to select users from their friends list
+  * then creates a group chat with those friends and the user
+  * returns to chats page and where new chat is visible
 
 
 ## Entities
-* Chat <I>
+* Chat \<I>
 * ChatList
 * CommonUser
 * CommonUserFactory
 * FriendsList
 * GroupChat
 * GroupProfile
-* Message <I>
+* Message \<I>
 * PrivateChat
-* Profile <I>
+* Profile \<I>
 * Rating
-* User <I>
-* UserFactory <I>
+* User \<I>
+* UserFactory \<I>
 * UserProfile
 
 
