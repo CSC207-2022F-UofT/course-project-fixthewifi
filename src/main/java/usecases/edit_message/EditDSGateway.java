@@ -6,7 +6,7 @@ import java.util.List;
 public interface EditDSGateway {
     /**
      * edit the message from the database
-     * @param chatUid uuid of the message
+     * @param chatUid uid of the message
      */
 
     void editMessage(int chatUid);

@@ -26,9 +26,8 @@ public class DeleteInteractor implements DeleteInputBoundary {
     public void deleteMessage(DeleteInputModel inputModel) {
 
         if (inputModel.senderUid == inputModel.currentUserUid){
-            dataBase.deleteMessage(inputModel.chatUid);
             ArrayList<List<String>> chatMemberAddress = dataBase.fetchMembersAddress(inputModel.chatUid);
-            DeleteOutputModel outputModel = new DeleteOutputModel(chatMemberAddress, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time);
+            DeleteOutputModel outputModel = new DeleteOutputModel(chatMemberAddress, inputModel.senderUid, inputModel.chatUid, inputModel.time);
 
             output.DeleteMessage(outputModel);
         }

@@ -7,7 +7,7 @@ import usecases.profile_changes.ChangeProfileInputModel;
 
 //here i will use ChangeProfileDsInputModel and have access to txt files
 
-public class ChangeProfileDB implements ChangeProfileGateWayDB {
+public class    ChangeProfileDB implements ChangeProfileGateWayDB {
     @Override
     public boolean existsByUID(int identifier) {
         return false;

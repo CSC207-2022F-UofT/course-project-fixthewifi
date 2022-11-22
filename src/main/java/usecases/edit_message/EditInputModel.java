@@ -5,16 +5,16 @@ public class EditInputModel {
     int currentUserUid;
     int senderUid;
     int chatUid;
-    String content;
+    String edited_content;
     String time;
 
-    public EditInputModel(int senderUid, int chatUid, String content, String time, int currentUserUid)
+    public EditInputModel(int senderUid, int chatUid, String edited_content, String time, int currentUserUid)
     {
         this.senderUid = senderUid;
         this.currentUserUid =currentUserUid;
         this.chatUid = chatUid;
         this.time = time;
-        this.content = content;
+        this.edited_content = edited_content;
     }
 
 }
