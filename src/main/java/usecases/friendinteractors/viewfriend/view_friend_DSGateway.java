@@ -6,5 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface view_friend_DSGateway {
-    List<HashMap<String, Integer>> getFriendList();
+    List<String> getFriendList(int requestorid);
+    String getAddress(int requestorid);
+    int getPeerPort(int requestorid);
 }

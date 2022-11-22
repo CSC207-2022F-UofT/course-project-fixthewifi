@@ -1,10 +1,11 @@
 package usecases.friendinteractors.addfriend;
 
 public class add_friend_input_model {
-    public int friendid;
-    public int requesterid;
-    public String friendName;
-    public String requesterName;
+    private final int friendid;
+    private final int requesterid;
+    private final String friendName;
+    private final String requesterName;
+
 
     public add_friend_input_model(int friendid, int requesterid){
         this.friendid = friendid;
@@ -18,5 +19,21 @@ public class add_friend_input_model {
         this.requesterid = -1;
         this.friendName = friendName;
         this.requesterName = requesterName;
+    }
+
+    public int getFriendid() {
+        return friendid;
+    }
+
+    public int getRequesterid() {
+        return requesterid;
+    }
+
+    public String getFriendName() {
+        return friendName;
+    }
+
+    public String getRequesterName() {
+        return requesterName;
     }
 }

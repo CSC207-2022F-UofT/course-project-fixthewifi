@@ -1,10 +1,10 @@
 package usecases.friendinteractors.deletefriend;
 
 public class delete_friend_input_model {
-    public int friendid;
-    public int requesterid;
-    public String friendName;
-    public String requesterName;
+    final private int friendid;
+    final private int requesterid;
+    final private String friendName;
+    final private String requesterName;
 
     public delete_friend_input_model(int friendid, int requesterid){
         this.friendid = friendid;
@@ -18,5 +18,21 @@ public class delete_friend_input_model {
         this.requesterid = -1;
         this.friendName = friendName;
         this.requesterName = requesterName;
+    }
+
+    public int getFriendid() {
+        return friendid;
+    }
+
+    public int getRequesterid() {
+        return requesterid;
+    }
+
+    public String getFriendName() {
+        return friendName;
+    }
+
+    public String getRequesterName() {
+        return requesterName;
     }
 }
