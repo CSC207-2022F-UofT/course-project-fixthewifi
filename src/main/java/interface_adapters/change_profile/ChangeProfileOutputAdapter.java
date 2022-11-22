@@ -1,5 +1,6 @@
 package interface_adapters.change_profile;
 
+import frameworks_and_drivers.Constants;
 import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.profile_changes.ChangeProfileOutputBoundary;
 import usecases.profile_changes.ChangeProfileOutputModel;
@@ -13,6 +14,8 @@ import java.util.List;
 public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     private final IfComManager comManager;
+    String SEPARATOR = "#";
+
     public ChangeProfileOutputAdapter(IfComManager comManager)
     {
         this.comManager = comManager;
@@ -21,27 +24,24 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
     /**
      * Codeconstants are for coding the command
      */
-    final int CODEDEL = 0;
-    final int CODESET = 0;
-    final int CODENAME = 0;
-    final int CODEDESC = 0;
+
     @Override
     public void setPic(ChangeProfileOutputModel outputModel) {
-        String content = CODESET+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        String content = Constants.SET_PIC+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 
     @Override
     public void delPic(ChangeProfileOutputModel outputModel) {
-        String content = CODEDEL+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        String content = Constants.DEL_PIC+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 
     @Override
     public void updateDescr(ChangeProfileOutputModel outputModel) {
-        String content = CODEDESC+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        String content = Constants.UPDATE_DESC+ SEPARATOR+outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
 
@@ -49,15 +49,15 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     @Override
     public void updateName(ChangeProfileOutputModel outputModel) {
-        String content = CODENAME+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        String content = Constants.UPDATE_NAME+ SEPARATOR+outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
      }
 
     @Override
-    public void errorChangingProfile(ChangeProfileOutputModel outputModel) {
-        String content = "Updating fails!";
-        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
+    public void errorChangingProfile(ChangeProfileOutputModel outputModel, int code) {
+        String content = "changinh fails!";
+        comManager.send(code+SEPARATOR+outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 }

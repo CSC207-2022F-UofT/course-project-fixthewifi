@@ -1,5 +1,6 @@
 package usecases.profile_changes;
 
+import frameworks_and_drivers.Constants;
 import interface_adapters.change_profile.ChangeProfileOutputAdapter;
 
 /**
@@ -41,7 +42,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
             output.setPic(createOutputModel(inputModel,succssesmessage));
         }
         else{
-            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage), Constants.SET_PIC);
 
         }
     }
@@ -58,7 +59,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
 
         }
         else{
-            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage), Constants.DEL_PIC);
         }
     }
     /**
@@ -73,7 +74,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
 
        }
        else {
-           output.errorChangingProfile(createOutputModel(inputModel, failmessage));
+           output.errorChangingProfile(createOutputModel(inputModel, failmessage), Constants.UPDATE_DESC);
        }
 
     }
@@ -90,7 +91,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
 
         }
         else{
-            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage),Constants.UPDATE_NAME);
 
         }
     }

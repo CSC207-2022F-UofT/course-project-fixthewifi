@@ -43,33 +43,7 @@ public class ChangeProfileInteractorTest {
 
             }
         };
-        ChangeProfileGateWayDB profileGateWayDB = new ChangeProfileDB();
-        ChangeProfileOutputBoundary outputAdapter = new ChangeProfileOutputBoundary() {
-            @Override
-            public void setPic(ChangeProfileOutputModel outputModel) {
 
-            }
-
-            @Override
-            public void delPic(ChangeProfileOutputModel outputModel) {
-
-            }
-
-            @Override
-            public void updateDescr(ChangeProfileOutputModel outputModel) {
-
-            }
-
-            @Override
-            public void updateName(ChangeProfileOutputModel outputModel) {
-
-            }
-
-            @Override
-            public void errorChangingProfile(ChangeProfileOutputModel outputModel) {
-
-            }
-        };
 
     }
 }

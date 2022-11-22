@@ -30,19 +30,19 @@ public class ChangeProfileController {
         this.inputModelBoundary = inputBoundary;
     }
 
-    void setPic(String input){
+    public void setPic(String input){
         ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.setPic(inputModel);
     }
-    void delPic(String input){
+    public void delPic(String input){
         ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.delPic(inputModel);
     }
-    void updateDescr(String input){
+    public void updateDescr(String input){
         ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.updateDescr(inputModel);
     }
-    void updateName(String input){
+    public void updateName(String input){
         ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.updateName(inputModel);
     }
