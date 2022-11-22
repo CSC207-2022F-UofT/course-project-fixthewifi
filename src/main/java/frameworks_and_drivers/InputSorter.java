@@ -9,6 +9,10 @@ public class InputSorter implements ComManagerUser
         //TODO: pass all of the controllers into here
     }
 
+    /**
+     * When a message is received, onMsg will be triggered by comManager.
+     @param msg The received message.
+     */
     @Override
     public void onMsg(String msg)
     {
