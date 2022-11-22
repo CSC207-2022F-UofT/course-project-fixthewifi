@@ -1,6 +1,5 @@
 package usecases.send_chat;
 
-import entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
