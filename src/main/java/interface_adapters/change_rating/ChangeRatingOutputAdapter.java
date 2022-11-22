@@ -1,6 +1,6 @@
 package interface_adapters.change_rating;
 
-import frameworks_and_drivers.comManager.IfComManager;
+import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.rating_changes.SendRatingOutputBoundary;
 import usecases.rating_changes.SendRatingOutputModel;
 
