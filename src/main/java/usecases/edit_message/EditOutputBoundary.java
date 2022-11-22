@@ -1,4 +1,4 @@
-package UseCases.message_manipulation.edit_message;
+package usecases.edit_message;
 
 public interface EditOutputBoundary
 {

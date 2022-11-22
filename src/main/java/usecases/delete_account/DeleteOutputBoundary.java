@@ -1,4 +1,4 @@
-package usecases.delete;
+package usecases.delete_account;
 
 public interface DeleteOutputBoundary {
     /*
