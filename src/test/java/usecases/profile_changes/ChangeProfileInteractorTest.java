@@ -63,7 +63,7 @@ public class ChangeProfileInteractorTest {
             }
 
             @Override
-            public void errorChangingProfile() {
+            public void errorChangingProfile(ChangeProfileOutputModel outputModel) {
 
             }
         };

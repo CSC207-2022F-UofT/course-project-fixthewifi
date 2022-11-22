@@ -12,45 +12,52 @@ import java.util.List;
  */
 public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
-    private IfComManager comManager;
+    private final IfComManager comManager;
     public ChangeProfileOutputAdapter(IfComManager comManager)
     {
         this.comManager = comManager;
     }
 
+    /**
+     * Codeconstants are for coding the command
+     */
+    final int CODEDEL = 0;
+    final int CODESET = 0;
+    final int CODENAME = 0;
+    final int CODEDESC = 0;
     @Override
     public void setPic(ChangeProfileOutputModel outputModel) {
-    //todo write a implementation for a presenter
+        String content = CODESET+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
+
     }
 
     @Override
     public void delPic(ChangeProfileOutputModel outputModel) {
-//todo write a implementation for a presenter
+        String content = CODEDEL+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
+
     }
 
     @Override
     public void updateDescr(ChangeProfileOutputModel outputModel) {
-        String content = outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        String content = CODEDESC+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
-       // adress and port from db
-        String adress = outputModel.getUseraddress(); //from db!!
-        int port = outputModel.getUserport(); //from db!!
-       comManager.send(adress,port,content);
-
-        //send to commanager a meesage to myself
-        //comManager.
-        //todo write a implementation for a presenter
 
     }
 
     @Override
     public void updateName(ChangeProfileOutputModel outputModel) {
+        String content = CODENAME+ outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
-        //todo write a implementation for a presenter
-    }
+     }
 
     @Override
-    public void errorChangingProfile() {
+    public void errorChangingProfile(ChangeProfileOutputModel outputModel) {
+        String content = "Updating fails!";
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 }

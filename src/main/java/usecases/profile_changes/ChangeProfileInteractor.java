@@ -12,35 +12,37 @@ import interface_adapters.change_profile.ChangeProfileOutputAdapter;
  */
 public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     final ChangeProfileGateWayDB database;
-
     final ChangeProfileOutputBoundary output;
-
+    final String  failmessage = "fail";
     public ChangeProfileInteractor(ChangeProfileGateWayDB profileGateWayDB, ChangeProfileOutputAdapter profileOutputAdapter) {
         this.database = profileGateWayDB;
         this.output = profileOutputAdapter;
     }
 
+    ChangeProfileDsInputModel createDsModel(ChangeProfileInputModel inputModel){
+        return new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
+                inputModel.getDescription(), inputModel.getPic());
+    }
 
+    ChangeProfileOutputModel createOutputModel(ChangeProfileInputModel inputModel, String succssesmessage){
+        String address = database.userAdress(inputModel.getProfileUID());
+        int port =database.userPort(inputModel.getProfileUID());
+
+        return new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
+    }
     /**
      * void for setting new pic
      */
     @Override
     public void setPic(ChangeProfileInputModel inputModel) {
         if(database.existsByUID(inputModel.getProfileUID())){
-            ChangeProfileDsInputModel dsInputModel= new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
-                    inputModel.getDescription(), inputModel.getPic());
-            database.storeSetPic(dsInputModel);
-
-
             String succssesmessage = "Picture set successfully!";
-            String address=database.userAdress(inputModel.getProfileUID());
-            int port =database.userPort(inputModel.getProfileUID());
-            ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
-            output.setPic(outputModel);
-
+            database.storeSetPic(createDsModel(inputModel));
+            output.setPic(createOutputModel(inputModel,succssesmessage));
         }
         else{
-            output.errorChangingProfile();//todo what to do if error
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
+
         }
     }
     /**
@@ -49,20 +51,14 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     @Override
     public void delPic(ChangeProfileInputModel inputModel) {
         if(database.existsByUID(inputModel.getProfileUID())){
-            ChangeProfileDsInputModel dsInputModel= new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
-                    inputModel.getDescription(), inputModel.getPic());
-            database.storeDelPic(dsInputModel);
 
-            String succssesmessage = "Picture set successfully!";
-            String address=database.userAdress(inputModel.getProfileUID());
-            int port = database.userPort(inputModel.getProfileUID());
-
-            ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
-            output.delPic(outputModel);
+            database.storeDelPic(createDsModel(inputModel));
+            String succssesmessage = "Picture deleted successfully!";
+            output.delPic(createOutputModel(inputModel,succssesmessage));
 
         }
         else{
-            output.errorChangingProfile();//todo what to do if error
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
         }
     }
     /**
@@ -71,19 +67,13 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     @Override
     public void updateDescr(ChangeProfileInputModel inputModel) {
        if(database.existsByUID(inputModel.getProfileUID())){
-           ChangeProfileDsInputModel dsInputModel= new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
-                   inputModel.getDescription(), inputModel.getPic());
-           database.storeUpdateDescr(dsInputModel);
-
-           String succssesmessage = "Picture set successfully!";
-           String address="";//from db
-           int port = 0;//from db
-           ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
-           output.updateDescr(outputModel);
+           database.storeUpdateDescr(createDsModel(inputModel));
+           String succssesmessage = "Description updated successfully!";
+           output.updateDescr(createOutputModel(inputModel,succssesmessage));
 
        }
-       else{
-           output.errorChangingProfile();//todo what to do if error
+       else {
+           output.errorChangingProfile(createOutputModel(inputModel, failmessage));
        }
 
     }
@@ -93,20 +83,15 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     @Override
     public void updateName(ChangeProfileInputModel inputModel) {
         if(database.existsByUID(inputModel.getProfileUID())){
-            ChangeProfileDsInputModel dsInputModel= new ChangeProfileDsInputModel(inputModel.getProfileUID(), inputModel.getName(),
-                    inputModel.getDescription(), inputModel.getPic());
-            database.storeUpdateName(dsInputModel);
 
-            String succssesmessage = "Picture set successfully!";
-            String address="";//from db
-            int port = 0;//from db
-            ChangeProfileOutputModel outputModel = new ChangeProfileOutputModel(address,port,inputModel.getProfileUID(), succssesmessage);
-            output.updateName(outputModel);
+            database.storeUpdateName(createDsModel(inputModel));
+            String succssesmessage = "Name updated successfully!";
+            output.updateName(createOutputModel(inputModel,succssesmessage));
 
         }
         else{
-            output.errorChangingProfile();
-            //todo what to do if error
+            output.errorChangingProfile(createOutputModel(inputModel,failmessage));
+
         }
     }
 }
