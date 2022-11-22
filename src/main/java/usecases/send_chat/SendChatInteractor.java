@@ -28,10 +28,11 @@ public class SendChatInteractor implements SendChatInputBoundary
     @Override
     public void SendChat(SendChatInputModel inputModel)
     {
-        dataBase.storeChatMsg(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time);
+        int uid = dataBase.createNewMsgUid();
+        dataBase.storeChatMsg(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time, uid);
 
         ArrayList<List<String>> chatMembersAddress = dataBase.fetchAllAddressByChatUid(inputModel.chatUid);
-        SendChatOutputModel outputModel = new SendChatOutputModel(chatMembersAddress, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time);
+        SendChatOutputModel outputModel = new SendChatOutputModel(chatMembersAddress, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time, uid);
 
         output.sendChat(outputModel);
     }

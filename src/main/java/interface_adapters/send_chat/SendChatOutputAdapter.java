@@ -18,7 +18,7 @@ public class SendChatOutputAdapter implements SendChatOutputBoundary
     @Override
     public void sendChat(SendChatOutputModel model)
     {
-        String content = String.join(String.valueOf(Constants.CONTENT_SPR), String.valueOf(model.senderUid), String.valueOf(model.chatUid), model.content, model.time);
+        String content = String.join(String.valueOf(Constants.CONTENT_SPR), String.valueOf(model.senderUid), String.valueOf(model.chatUid), model.content, model.time, String.valueOf(model.uid));
         for(List<String> AddressPair : model.chatMembersAddress)
         {
             comManager.send(AddressPair.get(0), Integer.parseInt(AddressPair.get(1)), content);

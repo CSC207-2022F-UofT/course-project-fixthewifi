@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Assertions;
 public class TestFriendsList
 {
     @Test
-    public void testViewFriendsEmptyList()
-    {
+    public void testViewFriendsEmptyList(){
         FriendsList friends = new FriendsList();
         Assertions.assertTrue(friends.viewFriends().isEmpty());
     }

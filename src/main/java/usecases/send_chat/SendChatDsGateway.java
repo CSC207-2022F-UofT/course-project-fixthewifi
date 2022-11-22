@@ -12,8 +12,9 @@ public interface SendChatDsGateway
      * @param senderUid The uid of the sender.
      * @param content The content of the chat.
      * @param time The time at which the chat is sent.
+     * @param uid The messageUid.
      */
-    void storeChatMsg(int chatUid, int senderUid, String content, String time);
+    void storeChatMsg(int chatUid, int senderUid, String content, String time, int uid);
 
     /**
      * Returns the port number and ip address all users in a chat as a list of tuples of length 2.
@@ -21,4 +22,6 @@ public interface SendChatDsGateway
      * @return A list of tuple of the port number and ip address of all users in the chat.
      */
     ArrayList<List<String>> fetchAllAddressByChatUid(int chatUid);
+
+    int createNewMsgUid();
 }
