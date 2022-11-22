@@ -4,6 +4,11 @@ import frameworks_and_drivers.communication_manager.ComManagerUser;
 
 public class InputSorter implements ComManagerUser
 {
+    public InputSorter()
+    {
+        //TODO: pass all of the controllers into here
+    }
+
     @Override
     public void onMsg(String msg)
     {
@@ -12,6 +17,7 @@ public class InputSorter implements ComManagerUser
         String content = splitMsg[1];
         switch (useCaseConstant)
         {
+            //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case Constants.SEND_CHAT:
                 break;
             case Constants.CHANGE_PROFILE:
