@@ -1,13 +1,13 @@
 package interface_adapters.friend;
 
-import usecases.friendinteractors.addfriend.add_friend_output_boundary;
 import frameworks_and_drivers.communication_manager.IfComManager;
+import usecases.friendinteractors.acceptfriend.acceptFriendOutputBoundary;
 
 
-public class AddFriendOutputAdapter implements add_friend_output_boundary
+public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
 {
     private IfComManager comManager;
-    public AddFriendOutputAdapter(IfComManager comManager)
+    public AcceptFriendOutputAdapter(IfComManager comManager)
     {
         this.comManager = comManager;
     }
@@ -15,14 +15,14 @@ public class AddFriendOutputAdapter implements add_friend_output_boundary
     public void success(int requestor, String address, int peerPort)
     {
         //comManager.send("success")
-        String content = requestor + ": successfully add friend.";
+        String content = requestor + ": successfully accept friend.";
         comManager.send(address, peerPort, content);
     }
 
     @Override
     public void fail(int requestor, String address, int peerPort) {
         //comManager.send("fail")
-        String content = requestor + ": failed to add friend. UID or userName may be wrong";
+        String content = requestor + ": failed to accept friend. UID or userName may be wrong";
         comManager.send(address, peerPort, content);
     }
 }

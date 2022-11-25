@@ -1,14 +1,14 @@
 package interface_adapters.friend.input;
 
 import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.friendinteractors.addfriend.AddFriendInputBoundary;
-import usecases.friendinteractors.addfriend.add_friend_input_model;
+import usecases.friendinteractors.acceptfriend.acceptFriendInputBoundary;
+import usecases.friendinteractors.acceptfriend.acceptFriendInputModel;
 
-public class AddFriendController {
+public class AcceptFriendController {
     private IfComManager comManager;
-    private AddFriendInputBoundary usecase;
+    private final acceptFriendInputBoundary usecase;
 
-    public AddFriendController(IfComManager comManager, AddFriendInputBoundary usecase)
+    public AcceptFriendController(IfComManager comManager, acceptFriendInputBoundary usecase)
     {
         this.usecase = usecase;
         this.comManager = comManager;
@@ -19,7 +19,7 @@ public class AddFriendController {
      * String one.
      * @param content
      */
-    public void addFriend(String content)
+    public void acceptFriend(String content)
     {
         String[] arr = content.split(" ");
         String friend = arr[0];
@@ -27,11 +27,11 @@ public class AddFriendController {
         try {
             int f =  Integer.parseInt(friend);
             int r = Integer.parseInt(requestor);
-            add_friend_input_model model = new add_friend_input_model(f, r);
-            usecase.AddFriend(model);
+            acceptFriendInputModel model = new acceptFriendInputModel(f, r);
+            usecase.acceptFriend(model);
         }catch (Exception e){
-            add_friend_input_model model = new add_friend_input_model(friend, requestor);
-            usecase.AddFriend(model);
+            acceptFriendInputModel model = new acceptFriendInputModel(friend, requestor);
+            usecase.acceptFriend(model);
         }
     }
 }

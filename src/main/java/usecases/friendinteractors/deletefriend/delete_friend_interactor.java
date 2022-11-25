@@ -1,8 +1,6 @@
 package usecases.friendinteractors.deletefriend;
 
 
-import usecases.friendinteractors.addfriend.add_friend_input_model;
-
 public class delete_friend_interactor implements delete_friend_input_boundary {
     final delete_friend_output_boundary output;
     final delete_friend_DSGateway dataBase;
