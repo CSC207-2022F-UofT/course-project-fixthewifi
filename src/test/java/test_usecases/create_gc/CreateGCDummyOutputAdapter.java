@@ -1,9 +1,7 @@
 package test_usecases.create_gc;
 
-import entities.GroupChat;
-
-import usecases.create_gc.CreateGCOutputBoundary;
-import usecases.create_gc.CreateGCOutputData;
+import server.usecases.create_gc.CreateGCOutputBoundary;
+import server.usecases.create_gc.CreateGCOutputData;
 
 /**
  * This is an implementation of CreateGCOutputBoundary for testing CreateGCInteractor

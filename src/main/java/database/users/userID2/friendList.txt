@@ -1,2 +1,0 @@
-userID1
-userID2

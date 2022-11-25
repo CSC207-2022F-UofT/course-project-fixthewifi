@@ -1,17 +1,17 @@
 //package test_view_friend;
 //
-//import entities.CommonUser;
+//import server.entities.CommonUser;
 //
 //import java.util.ArrayList;
 //
-//import interface_adapters.friend.ViewFriendOutputAdapater;
+//import server.friend.interface_adapters.ViewFriendOutputAdapater;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.Test;
 //import pseudoDSAccess.ViewFriendDSAccess;
-//import usecases.friendinteractors.viewfriend.view_friend_DSGateway;
-//import usecases.friendinteractors.viewfriend.view_friend_input_boundary;
-//import usecases.friendinteractors.viewfriend.view_friend_input_model;
-//import usecases.friendinteractors.viewfriend.view_friend_interactor;
+//import server.viewfriend.friendinteractors.usecases.view_friend_DSGateway;
+//import server.viewfriend.friendinteractors.usecases.view_friend_input_boundary;
+//import server.viewfriend.friendinteractors.usecases.view_friend_input_model;
+//import server.viewfriend.friendinteractors.usecases.view_friend_interactor;
 //
 //import static org.junit.Assert.assertArrayEquals;
 //

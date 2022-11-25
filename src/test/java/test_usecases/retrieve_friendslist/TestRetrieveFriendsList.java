@@ -1,10 +1,9 @@
 package test_usecases.retrieve_friendslist;
-import entities.CommonUser;
+import server.entities.CommonUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import usecases.retrieve_friendslist.RetrieveFriendsListInputData;
-import usecases.retrieve_friendslist.RetrieveFriendsListInteractor;
-import usecases.retrieve_friendslist.RetrieveFriendsListOutputBoundary;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListInputData;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListInteractor;
 
 
 public class TestRetrieveFriendsList {

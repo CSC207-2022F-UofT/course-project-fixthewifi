@@ -1,11 +1,11 @@
 //package test_view_friend;
 //
-//import interface_adapters.friend.DeleteFriendOutputAdapter;
+//import server.friend.interface_adapters.DeleteFriendOutputAdapter;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.Test;
 //import pseudoDSAccess.DeleteFriendDSAccess;
-//import usecases.friendinteractors.deletefriend.delete_friend_input_model;
-//import usecases.friendinteractors.deletefriend.delete_friend_interactor;
+//import server.deletefriend.friendinteractors.usecases.delete_friend_input_model;
+//import server.deletefriend.friendinteractors.usecases.delete_friend_interactor;
 //
 //import java.util.ArrayList;
 //

@@ -1,12 +1,12 @@
 package usecases.profile_changes;
 
-import entities.CommonUserFactory;
-import entities.UserFactory;
-import frameworks_and_drivers.ChangeProfileDB;
-import frameworks_and_drivers.communication_manager.ComManagerUser;
-import frameworks_and_drivers.communication_manager.IfComManager;
-import interface_adapters.change_profile.ChangeProfileOutputAdapter;
+import server.frameworks_and_drivers.ChangeProfileDB;
+import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
 import org.junit.jupiter.api.Test;
+import server.usecases.profile_changes.ChangeProfileGateWayDB;
+import server.usecases.profile_changes.ChangeProfileOutputBoundary;
+import server.usecases.profile_changes.ChangeProfileOutputModel;
 
 public class ChangeProfileInteractorTest {
     @Test
