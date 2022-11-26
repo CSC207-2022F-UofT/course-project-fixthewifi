@@ -1,6 +1,5 @@
 package client.entities;
 
-import server.entities.Message;
 
 public interface Chat
 {

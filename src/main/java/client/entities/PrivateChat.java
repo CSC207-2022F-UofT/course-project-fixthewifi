@@ -9,11 +9,15 @@ import java.util.List;
 public class PrivateChat implements Chat
 {
     private final int uid;
+    private final Self self;
+    private final Friend friend;
     private final List<server.entities.Message> messages;
 
-    public PrivateChat(int uid)
+    public PrivateChat(int uid, Self self, Friend friend)
     {
         this.uid = uid;
+        this.self = self;
+        this.friend = friend;
         this.messages = new ArrayList<server.entities.Message>();
     }
 

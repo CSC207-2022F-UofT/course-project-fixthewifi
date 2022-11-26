@@ -1,7 +1,7 @@
 package client.entities;
 
-import server.entities.ProfilePicture;
-import server.entities.Rating;
+import client.entities.ProfilePicture;
+import client.entities.Rating;
 
 /**
  * Represents the profile of a user.
@@ -11,11 +11,12 @@ public class UserProfile
     private int UID;
     private String name;
     private String description;
-    private server.entities.Rating rating;
+    private Rating rating;
     private boolean online;
     private ProfilePicture profilePic;
 
-    public UserProfile(int UID, String name) {
+    public UserProfile(int UID, String name)
+    {
         this.UID = UID;
         this.name = name;
         this.description = "";
@@ -23,7 +24,8 @@ public class UserProfile
         this.online = false;
         this.profilePic = null;
     }
-    public UserProfile(int UID, String name, String description, server.entities.Rating rating, boolean online, ProfilePicture profilePic) {
+    public UserProfile(int UID, String name, String description, Rating rating, boolean online, ProfilePicture profilePic)
+    {
         this.UID = UID;
         this.name = name;
         this.description = description;
@@ -58,7 +60,7 @@ public class UserProfile
         this.description = description;
     }
 
-    public server.entities.Rating getRating() {
+    public Rating getRating() {
         return rating;
     }
 

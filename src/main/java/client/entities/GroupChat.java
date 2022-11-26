@@ -6,6 +6,7 @@ import server.entities.Message;
 import server.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class representing a Groupchat.
@@ -16,16 +17,16 @@ public class GroupChat implements Chat {
      * Representation invariants:
      * admin is always in members.
      */
-    private final int UID;
-    private ArrayList<server.entities.Message> messages;
-    private final server.entities.User admin;
-    private ArrayList<server.entities.User> members;
-
+    private final int chatUid;
     private final GroupProfile profile;
+    private final List<Message> messages;
+    private final User admin;
+    private final List<User> members;
 
 
-    public GroupChat(int UID, User admin, ArrayList<User> members, GroupProfile profile){
-        this.UID = UID;
+
+    public GroupChat(int chatUid, User admin, ArrayList<User> members, GroupProfile profile){
+        this.chatUid = chatUid;
         this.profile = profile;
         this.messages = new ArrayList<server.entities.Message>();
         this.admin = admin;
@@ -34,10 +35,10 @@ public class GroupChat implements Chat {
     }
     @Override
     public int getUid() {
-        return this.UID;
+        return this.chatUid;
     }
 
-    public ArrayList<server.entities.Message> getMessages(){
+    public List<Message> getMessages(){
         return this.messages;
     }
 
@@ -56,7 +57,7 @@ public class GroupChat implements Chat {
     }
 
 
-    public ArrayList<server.entities.User> getMembers(){
+    public List<User> getMembers(){
         return this.members;
     }
 

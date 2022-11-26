@@ -1,6 +1,5 @@
 package server.usecases.send_chat;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,4 +20,6 @@ public interface SendChatDsGateway
      * @return A list of tuple of the port number and ip address of all users in the chat.
      */
     ArrayList<List<String>> fetchAllAddressByChatUid(int chatUid);
+
+    int generateMsgUid(int chatUid);
 }

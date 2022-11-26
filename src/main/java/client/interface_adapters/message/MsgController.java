@@ -22,6 +22,6 @@ public class MsgController implements MsgControllerInputBoundary
     public void receiveMsg(String toDissect)
     {
         String[] content = toDissect.split(String.valueOf(Constants.SPR));
-        interactor.receiveMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[2], content[3]);
+        interactor.receiveMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), Integer.parseInt(content[2]), content[3], content[4]);
     }
 }
