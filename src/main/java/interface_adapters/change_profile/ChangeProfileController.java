@@ -3,6 +3,13 @@ package interface_adapters.change_profile;
 import entities.ProfilePicture;
 import usecases.profile_changes.ChangeProfileInputBoundary;
 import usecases.profile_changes.ChangeProfileInputModel;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Base64;
+
 /**
  * This class is a Controller layer for Changing profile usecase.
  * It is called from Inputsorter class.
@@ -23,8 +30,9 @@ public class ChangeProfileController {
     }
 
     private ProfilePicture stringToProfPic(String picst){
-        //todo realization of converting string to profile picture object
-        return null;
+        byte[] imageBytes;
+        imageBytes = Base64.getDecoder().decode(picst);
+        return new ProfilePicture(imageBytes);
     }
     public ChangeProfileController(ChangeProfileInputBoundary inputBoundary) {
         this.inputModelBoundary = inputBoundary;

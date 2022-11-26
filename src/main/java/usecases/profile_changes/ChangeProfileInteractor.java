@@ -3,6 +3,8 @@ package usecases.profile_changes;
 import frameworks_and_drivers.Constants;
 import interface_adapters.change_profile.ChangeProfileOutputAdapter;
 
+import java.util.Arrays;
+
 /**
  * This class implements ChangeProfileInputBoundary interface
  * and do the implementation for Changing profile features
@@ -15,7 +17,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     final ChangeProfileGateWayDB database;
     final ChangeProfileOutputBoundary output;
     final String  failmessage = "fail";
-    public ChangeProfileInteractor(ChangeProfileGateWayDB profileGateWayDB, ChangeProfileOutputAdapter profileOutputAdapter) {
+    public ChangeProfileInteractor(ChangeProfileGateWayDB profileGateWayDB, ChangeProfileOutputBoundary profileOutputAdapter) {
         this.database = profileGateWayDB;
         this.output = profileOutputAdapter;
     }
@@ -33,11 +35,12 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     }
     /**
      * void for setting new pic
+     * send a pic bytes in string to a user
      */
     @Override
     public void setPic(ChangeProfileInputModel inputModel) {
         if(database.existsByUID(inputModel.getProfileUID())){
-            String succssesmessage = "Picture set successfully!";
+            String succssesmessage = Arrays.toString(inputModel.getPic().getImageBytes());
             database.storeSetPic(createDsModel(inputModel));
             output.setPic(createOutputModel(inputModel,succssesmessage));
         }
@@ -48,6 +51,7 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     }
     /**
      * void for deleting pic
+     * send a Picture deleted successfully! to a user
      */
     @Override
     public void delPic(ChangeProfileInputModel inputModel) {
@@ -64,12 +68,13 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     }
     /**
      * void for updating description
+     * send a string of new descriprion to a user
      */
     @Override
     public void updateDescr(ChangeProfileInputModel inputModel) {
        if(database.existsByUID(inputModel.getProfileUID())){
            database.storeUpdateDescr(createDsModel(inputModel));
-           String succssesmessage = "Description updated successfully!";
+           String succssesmessage = inputModel.getDescription();
            output.updateDescr(createOutputModel(inputModel,succssesmessage));
 
        }
@@ -80,13 +85,15 @@ public class ChangeProfileInteractor implements ChangeProfileInputBoundary{
     }
     /**
      * void for updating name
+     *  send a string of new name to a user
+     *
      */
     @Override
     public void updateName(ChangeProfileInputModel inputModel) {
         if(database.existsByUID(inputModel.getProfileUID())){
 
             database.storeUpdateName(createDsModel(inputModel));
-            String succssesmessage = "Name updated successfully!";
+            String succssesmessage = inputModel.getName();
             output.updateName(createOutputModel(inputModel,succssesmessage));
 
         }
