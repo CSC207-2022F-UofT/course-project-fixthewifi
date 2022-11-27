@@ -1,8 +1,19 @@
 package usecases.friendinteractors.acceptfriend;
 
 public interface acceptFriendDSGateway {
-    void acceptFriendbyID(int user1, int user2);
-    void refuseFriendbyID(int user1, int user2);
+    /**
+     * save this change to database
+     * @param friendid
+     * @param requesterid
+     */
+    void acceptFriendbyID(int friendid, int requesterid);
+
+    /**
+     * save this change to database
+     * @param friendid
+     * @param requesterid
+     */
+    void refuseFriendbyID(int friendid, int requesterid);
     String getAddress(int userid);
     int getPeerPort(int userid);
 }
