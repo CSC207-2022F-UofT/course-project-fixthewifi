@@ -16,11 +16,11 @@ public class DeleteMessageOutputAdapter implements DeleteOutputBoundary{
 
         char separator = 30;
 
-        String msgContent = String.join(String.valueOf(separator), String.valueOf(delete_model.senderUid),
-                String.valueOf(delete_model.chatUid), delete_model.time);
+        String msgInfo = String.join(String.valueOf(separator), String.valueOf(delete_model.msgUid), String.valueOf(delete_model.senderUid),
+                String.valueOf(delete_model.chatUid), delete_model.content, delete_model.time);
 
         for (List<String> addressPair : delete_model.membersAddress){
-            comManager.send(addressPair.get(0), Integer.parseInt(addressPair.get(1)), msgContent);
+            comManager.send(addressPair.get(0), Integer.parseInt(addressPair.get(1)), msgInfo);
         }
 
 

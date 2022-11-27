@@ -5,11 +5,12 @@ import java.util.List;
 
 public interface EditDSGateway {
     /**
-     * edit the message from the database
-     * @param chatUid uid of the message
+     *
+     * @param msgUid Uid of the message
      */
+    void editMsg(int msgUid);
 
-    void editMessage(int chatUid);
+    EditOutputModel fetchMsgInfo(int msgUid);
 
     /**
      * Returns the port number and ip address of all uses in the chat

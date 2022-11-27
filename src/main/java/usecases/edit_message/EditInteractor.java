@@ -25,8 +25,10 @@ public class EditInteractor implements EditInputBoundary {
     @Override
     public void editMessage(EditInputModel inputModel) {
         if(inputModel.senderUid == inputModel.currentUserUid){
+            dataBase.editMsg(inputModel.msgUid);
+            EditOutputModel msgInfo = dataBase.fetchMsgInfo(inputModel.msgUid);
             ArrayList<List<String>> chatMemberAddress = dataBase.fetchMembersAddress(inputModel.chatUid);
-            EditOutputModel outputModel = new EditOutputModel(chatMemberAddress, inputModel.senderUid, inputModel.chatUid, inputModel.edited_content, inputModel.time);
+            EditOutputModel outputModel = new EditOutputModel(chatMemberAddress, msgInfo.msgUid, msgInfo.senderUid, msgInfo.chatUid, msgInfo.edited_content, msgInfo.time);
 
             output.EditMessage(outputModel);;
         }
