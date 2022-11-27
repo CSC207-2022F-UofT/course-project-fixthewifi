@@ -7,4 +7,6 @@ public interface delete_friend_DSGateway {
     boolean findUserByName(String name);
     String getAddress(int userid);
     int getPeerPort(int userid);
+
+    String getUserName(int uid);
 }

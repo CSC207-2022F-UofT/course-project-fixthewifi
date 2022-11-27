@@ -3,15 +3,14 @@ package usecases.friendinteractors.acceptfriend;
 public class acceptFriendInputModel {
     private final int friendid;
     private final int requesterid;
-    private final String friendName;
-    private final String requesterName;
+    private final String ifAccept;
 
 
-    public acceptFriendInputModel(int friendid, int requesterid){
+
+    public acceptFriendInputModel(int friendid, int requesterid, String ifAccept){
         this.friendid = friendid;
         this.requesterid = requesterid;
-        this.friendName = "";
-        this.requesterName = "";
+        this.ifAccept = ifAccept;
     }
 
     public int getFriendid() {
@@ -22,11 +21,7 @@ public class acceptFriendInputModel {
         return requesterid;
     }
 
-    public String getFriendName() {
-        return friendName;
-    }
-
-    public String getRequesterName() {
-        return requesterName;
+    public String getIfAccept() {
+        return ifAccept;
     }
 }

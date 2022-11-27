@@ -24,10 +24,11 @@ public class AcceptFriendController {
         String[] arr = content.split(" ");
         String friend = arr[0];
         String requestor = arr[1];
+        String ifAccept = arr[2];
 
         int f =  Integer.parseInt(friend);
         int r = Integer.parseInt(requestor);
-        acceptFriendInputModel model = new acceptFriendInputModel(f, r);
+        acceptFriendInputModel model = new acceptFriendInputModel(f, r, ifAccept);
         usecase.acceptFriend(model);
     }
 }

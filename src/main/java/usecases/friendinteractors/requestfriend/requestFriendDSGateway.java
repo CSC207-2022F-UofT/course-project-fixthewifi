@@ -29,6 +29,9 @@ public interface requestFriendDSGateway {
      */
     void requestFriendbyName(String requester, String friend);
 
+    String getUserName(int uid);
+    int getUserid(String userName);
+
     String getAddress(int userid);
     int getPeerPort(int userid);
 }

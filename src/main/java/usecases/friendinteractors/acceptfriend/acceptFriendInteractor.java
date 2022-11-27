@@ -1,5 +1,7 @@
 package usecases.friendinteractors.acceptfriend;
 
+import java.util.Objects;
+
 public class acceptFriendInteractor implements acceptFriendInputBoundary {
     final acceptFriendOutputBoundary output;
     final acceptFriendDSGateway dataBase;
@@ -18,15 +20,19 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
     public void acceptFriend(acceptFriendInputModel model) {
         int friendid = model.getFriendid();
         int requesterid = model.getRequesterid();
-        String friendName = model.getFriendName();
+        String friendName = dataBase.getuserName(friendid);
         int requesterPeerPort = dataBase.getPeerPort(requesterid);
         String requesterAddress = dataBase.getAddress(requesterid);
         int friendPeerPort = dataBase.getPeerPort(friendid);
         String friendAddress = dataBase.getAddress(friendid);
-
-        dataBase.acceptFriendbyID(friendid, requesterid);
-        dataBase.refuseFriendbyID(friendid, requesterid);
-        output.success(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
-        output.refuse(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
+        String ifAccept = model.getIfAccept();
+        if(Objects.equals(ifAccept, "True")){
+            dataBase.acceptFriendbyID(friendid, requesterid);
+            output.success(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
+        }
+        else{
+            dataBase.refuseFriendbyID(friendid, requesterid);
+            output.refuse(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
+        }
     }
 }
