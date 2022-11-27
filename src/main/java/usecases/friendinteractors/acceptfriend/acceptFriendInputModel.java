@@ -14,13 +14,6 @@ public class acceptFriendInputModel {
         this.requesterName = "";
     }
 
-    public acceptFriendInputModel(String friendName, String requesterName){
-        this.friendid = -1;
-        this.requesterid = -1;
-        this.friendName = friendName;
-        this.requesterName = requesterName;
-    }
-
     public int getFriendid() {
         return friendid;
     }

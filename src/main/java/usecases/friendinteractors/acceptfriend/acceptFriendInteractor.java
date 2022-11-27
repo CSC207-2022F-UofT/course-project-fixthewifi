@@ -10,21 +10,23 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
         this.output = output;
     }
 
+    /**
+     * the whole accept friend should be re-designed because it is a click from friend not a search from requester
+     * @param model
+     */
     @Override
     public void acceptFriend(acceptFriendInputModel model) {
-        boolean bool1 = dataBase.findUserByUID(model.getFriendid());
-        boolean bool2 = dataBase.findUserByName(model.getFriendName());
-        int peerPort = dataBase.getPeerPort(model.getRequesterid());
-        String address = dataBase.getAddress(model.getRequesterid());
+        int friendid = model.getFriendid();
+        int requesterid = model.getRequesterid();
+        String friendName = model.getFriendName();
+        int requesterPeerPort = dataBase.getPeerPort(requesterid);
+        String requesterAddress = dataBase.getAddress(requesterid);
+        int friendPeerPort = dataBase.getPeerPort(friendid);
+        String friendAddress = dataBase.getAddress(friendid);
 
-        if (bool1){
-            dataBase.acceptFriendbyID(model.getFriendid(), model.getRequesterid());
-            output.success(model.getRequesterid(), address, peerPort);
-        }
-        if (bool2){
-            dataBase.acceptFriendbyName(model.getFriendName(), model.getRequesterName());
-            output.success(model.getRequesterid(), address, peerPort);
-        }
-        output.fail(model.getRequesterid(), address, peerPort);
+        dataBase.acceptFriendbyID(friendid, requesterid);
+        dataBase.refuseFriendbyID(friendid, requesterid);
+        output.success(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
+        output.refuse(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
     }
 }

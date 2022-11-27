@@ -12,17 +12,15 @@ public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
         this.comManager = comManager;
     }
     @Override
-    public void success(int requestor, String address, int peerPort)
+    public void success(int requestor, int friendid, String friendName, String address, int peerPort)
     {
-        //comManager.send("success")
-        String content = requestor + ": successfully accept friend.";
+        String content = requestor + ": " + friendName + "(" + friendid + ") accepted your friend request";
         comManager.send(address, peerPort, content);
     }
 
     @Override
-    public void fail(int requestor, String address, int peerPort) {
-        //comManager.send("fail")
-        String content = requestor + ": failed to accept friend. UID or userName may be wrong";
+    public void refuse(int requestor, int friendid, String friendName, String address, int peerPort) {
+        String content = requestor + ": " + friendName + "(" + friendid + ") refused to add you as friend";
         comManager.send(address, peerPort, content);
     }
 }

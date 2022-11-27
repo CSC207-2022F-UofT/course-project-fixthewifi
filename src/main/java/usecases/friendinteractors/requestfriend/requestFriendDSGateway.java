@@ -16,19 +16,19 @@ public interface requestFriendDSGateway {
     boolean findUserByName(String name);
 
     /**
-     * Request friend by userid.
+     * Request friend by userid. Save this request to database
      * @param requester
      * @param friend
      */
     void requestFriendbyID(int requester, int friend);
 
     /**
-     * Request friend by username.
+     * Request friend by username. Save this request to database
      * @param requester
      * @param friend
      */
     void requestFriendbyName(String requester, String friend);
 
-    String getAddress(int requestorid);
-    int getPeerPort(int requestorid);
+    String getAddress(int userid);
+    int getPeerPort(int userid);
 }
