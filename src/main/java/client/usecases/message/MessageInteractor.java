@@ -30,7 +30,7 @@ public class MessageInteractor implements MessageInputBoundary
     }
 
     @Override
-    public void receiveMsg(int senderUid, int chatUid, String content, String time)
+    public void receiveMsg(int msgUid, int senderUid, int chatUid, String content, String time)
     {
         model.storeChatMsg(chatUid, senderUid, content, time);
     }

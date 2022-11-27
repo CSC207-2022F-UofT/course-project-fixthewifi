@@ -1,0 +1,6 @@
+package client.frameworks_and_drivers.view.console_view;
+
+public interface InstructionSet
+{
+     String VIEW_CHAT = "$vc";
+}

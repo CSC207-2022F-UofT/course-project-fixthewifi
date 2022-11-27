@@ -19,9 +19,10 @@ public class GroupChat implements Chat {
      */
     private final int chatUid;
     private final GroupProfile profile;
-    private final List<Message> messages;
     private final User admin;
     private final List<User> members;
+    private final List<Message> messages;
+
 
 
 
