@@ -1,7 +1,4 @@
-package client.entities;
-
-import client.entities.ProfilePicture;
-import client.entities.Rating;
+package client.interface_adapters.model.model_entities;
 
 /**
  * Represents the profile of a user.

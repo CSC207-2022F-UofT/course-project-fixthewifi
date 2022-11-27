@@ -1,8 +1,6 @@
-package client.entities;
+package client.interface_adapters.model.model_entities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Self implements User
 {

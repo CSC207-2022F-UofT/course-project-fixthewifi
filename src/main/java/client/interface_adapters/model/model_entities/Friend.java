@@ -1,4 +1,4 @@
-package client.entities;
+package client.interface_adapters.model.model_entities;
 
 public class Friend implements User
 {
