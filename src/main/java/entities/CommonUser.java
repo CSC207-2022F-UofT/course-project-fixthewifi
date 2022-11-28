@@ -14,7 +14,7 @@ public class CommonUser implements User
     public CommonUser(int uid, String name, int status)
     {
         this.uid = uid;
-        userProfile = new UserProfile(uid,name);
+        userProfile = new UserProfile();
         chats = new ChatList();
         friendsList = new FriendsList();
     }
