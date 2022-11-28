@@ -1,7 +1,4 @@
 package interface_adapters.delete_account;
-import usecases.*;
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.delete_account.*;
 import usecases.delete_account.DeleteInputBoundary;
 
 
