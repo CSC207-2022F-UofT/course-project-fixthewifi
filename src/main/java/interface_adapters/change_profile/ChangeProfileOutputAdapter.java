@@ -56,7 +56,7 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     @Override
     public void errorChangingProfile(ChangeProfileOutputModel outputModel, int code) {
-        String content = "changinh fails!";
+        String content = "changing fails!";
         comManager.send(code+SEPARATOR+outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
