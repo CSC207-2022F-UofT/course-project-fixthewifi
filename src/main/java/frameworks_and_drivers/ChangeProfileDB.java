@@ -4,8 +4,10 @@ import usecases.profile_changes.ChangeProfileDsInputModel;
 import usecases.profile_changes.ChangeProfileGateWayDB;
 
 //here i will use ChangeProfileDsInputModel and have access to txt files
-//todo implementation of storing in db
-public class ChangeProfileDB implements ChangeProfileGateWayDB {
+
+
+public class    ChangeProfileDB implements ChangeProfileGateWayDB {
+
     @Override
     public String userAdress(int identifier) {
         return null;

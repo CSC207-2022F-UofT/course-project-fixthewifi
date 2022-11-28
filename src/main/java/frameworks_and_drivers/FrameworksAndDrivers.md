@@ -1,3 +1,3 @@
 This folder will contain the following classes:
--ComManager implements ComManager
--implementations of the DBGateways for you usecase
+-ComManager implements IfComManager
+-implementations of the DBGateways for your use case
