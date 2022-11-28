@@ -1,7 +1,6 @@
 package server.interface_adapters.logout;
-import usecases.*;
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.logout.*;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.logout.*;
 
 public class LogoutController {
     final LogoutInputBoundary inbound;

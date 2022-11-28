@@ -23,18 +23,18 @@ public class FriendController implements FriendControllerInputBoundary
     {
         int selfUid = model.getSelfUid();
         String toSend = Constants.REQUEST_FRIEND + "#" + friendUid + " " + selfUid;
-        comManager.send(serverIp, 4444, toSend);
+        comManager.send(serverIp, 4396, toSend);
     }
 
     public void accept(int peerUid)
     {
         String toSend = Constants.ACCEPT_FRIEND + "#" + model.getSelfUid() + " " + peerUid + " True";
-        comManager.send(serverIp, 4444, toSend);
+        comManager.send(serverIp, 4396, toSend);
     }
 
     public void refuse(int peerUid)
     {
         String toSend = Constants.ACCEPT_FRIEND + "#" + model.getSelfUid() + " " + peerUid + " False";
-        comManager.send(serverIp, 4444, toSend);
+        comManager.send(serverIp, 4396, toSend);
     }
 }

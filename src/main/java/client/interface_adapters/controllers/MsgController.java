@@ -23,6 +23,6 @@ public class MsgController implements MsgControllerInputBoundary
         String date = new java.util.Date().toString();
         int senderUid = model.getSelfUid();
         String toSend = 0+"#"+String.join(String.valueOf(Constants.SPR), String.valueOf(senderUid), String.valueOf(chatUid), content, date);
-        comManager.send(serverIp,4444, toSend);
+        comManager.send(serverIp,4396, toSend);
     }
 }

@@ -8,17 +8,17 @@ import server.interface_adapters.send_message.SendMsgController;
 
 public class InputSorter implements ComManagerUser
 {
-    private final SendMsgController sendMsgController;
-    private final LoginController loginController;
+//    private final SendMsgController sendMsgController;
+//    private final LoginController loginController;
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
 
-    public InputSorter(SendMsgController sendMsgController, LoginController loginController, RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
+    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
     {
         //TODO: pass all of the controllers into here
-        this.sendMsgController = sendMsgController;
-        this.loginController = loginController;
+//        this.sendMsgController = sendMsgController;
+//        this.loginController = loginController;
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
@@ -38,7 +38,7 @@ public class InputSorter implements ComManagerUser
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case Constants.SEND_MSG:
-                sendMsgController.sendChat(content);
+//                sendMsgController.sendChat(content);
                 break;
             case Constants.CHANGE_PROFILE:
                 break;

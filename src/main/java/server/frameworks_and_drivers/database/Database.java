@@ -21,12 +21,12 @@ public class Database
     {
     }
 
-    public void newUser(int uid, String name, String description, List<Integer> friends)
+    public void newUser(int uid, String name, String description, String ip, String password)
     {
         try {
             CSVWriter userWriter = new CSVWriter(new FileWriter("User.csv", true));
-            String str = friends.stream().map(Object::toString).collect(Collectors.joining("-"));
-            String[] content = {Integer.toString(uid), name, description, str};
+//            String str = friends.stream().map(Object::toString).collect(Collectors.joining("-"));
+            String[] content = {Integer.toString(uid), name, description,"","","","", ip, password};
             userWriter.writeNext(content);
             userWriter.flush();
 
@@ -35,7 +35,7 @@ public class Database
         }
     }
 
-    private void updateUser(int Uid, int parameter, String newContent)
+    public void updateUser(int Uid, int parameter, String newContent)
     {
         List<String[]> csvBody;
         try
@@ -53,7 +53,7 @@ public class Database
         }
     }
 
-    private String readUser(int Uid, int parameter)
+    public String readUser(int Uid, int parameter)
     {
         List<String[]> csvBody;
         try

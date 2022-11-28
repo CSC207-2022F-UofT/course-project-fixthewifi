@@ -13,17 +13,14 @@ import java.util.Objects;
 public class ConsoleView
 {
     private final Model model;
-    private final MsgControllerInputBoundary msgController;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
 
     public ConsoleView(Model model,
-                       MsgControllerInputBoundary msgController,
                        LoginControllerInputBoundary loginController,
                        FriendControllerInputBoundary friendController)
     {
         this.model = model;
-        this.msgController = msgController;
         this.loginController = loginController;
         this.friendController = friendController;
     }
@@ -38,8 +35,8 @@ public class ConsoleView
             while (true)
             {
                 // Reading data using readLine
-                String[] content = new String[0];
-                content = reader.readLine().split(" ", 2);
+                String input = reader.readLine();
+                String[] content = input.split(" ", 2);
 
                 if (Objects.equals(model.pageState, "LOGIN_PAGE"))
                 {

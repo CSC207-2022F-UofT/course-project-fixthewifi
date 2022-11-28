@@ -1,22 +1,16 @@
 package client.frameworks_and_drivers.communication_manager;
 
-import client.frameworks_and_drivers.communication_manager.ComManagerUser;
-import client.frameworks_and_drivers.communication_manager.Constants;
-import client.frameworks_and_drivers.communication_manager.IfComManager;
-import client.frameworks_and_drivers.communication_manager.Receiver;
-import client.frameworks_and_drivers.communication_manager.Tools;
-
 import java.io.IOException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-public class comManager implements IfComManager
+public class ClientComManager implements IfComManager
 {
     int port;
     ComManagerUser user;
     public static DatagramSocket socket;
 
-    public comManager()
+    public ClientComManager()
     {
     }
 
@@ -60,8 +54,8 @@ public class comManager implements IfComManager
         }
         int sliceLen = 0;
         byte[] data = msg.getBytes(StandardCharsets.UTF_8);
-        int totalSlices = (int) Math.ceil((double) data.length / server.frameworks_and_drivers.communication_manager.Constants.PACKET_LEN);
-        String msgId = String.valueOf(server.frameworks_and_drivers.communication_manager.Tools.generateID());
+        int totalSlices = (int) Math.ceil((double) data.length / Constants.PACKET_LEN);
+        String msgId = String.valueOf(Tools.generateID());
 
         for(int j=0; j<totalSlices; j++)
         {
@@ -78,13 +72,16 @@ public class comManager implements IfComManager
 
             byte[] a = Tools.getBytes(data, j* Constants.PACKET_LEN, sliceLen);
 
-            String toByte  = Constants.SEPARATOR + server.frameworks_and_drivers.communication_manager.Constants.SLICE_PACKET + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + msgId + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + totalSlices + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR+ j + Constants.SEPARATOR;
+            String toByte  = Constants.SEPARATOR + Constants.SLICE_PACKET + Constants.SEPARATOR + msgId + Constants.SEPARATOR + totalSlices + Constants.SEPARATOR+ j + Constants.SEPARATOR;
+
+//            System.out.println(new String(a, StandardCharsets.UTF_8));
 
             byte[] b = toByte.getBytes(StandardCharsets.UTF_8);
 
             byte[] c = new byte[a.length + b.length];
             System.arraycopy(a, 0, c, 0, a.length);
             System.arraycopy(b, 0, c, a.length, b.length);
+            System.out.println(new String(c, StandardCharsets.UTF_8));
 
             DatagramPacket packet = new DatagramPacket(c,0,c.length, peerAddr, peerPort);
             try {

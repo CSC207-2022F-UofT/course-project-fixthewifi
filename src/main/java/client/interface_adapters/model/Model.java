@@ -6,14 +6,13 @@ import client.interface_adapters.model.model_entities.Self;
 public class Model
 {
     private final Self self;
-    private final ConsoleView view;
     public String pageState;
     public int friendRequester;
 
-    public Model(ConsoleView view)
+    public Model()
     {
-        this.view = view;
         this.self = new Self();
+        pageState = "LOGIN_PAGE";
     }
 
     public void setSelfUid(int uid)

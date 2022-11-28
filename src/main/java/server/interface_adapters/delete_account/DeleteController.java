@@ -1,8 +1,7 @@
 package server.interface_adapters.delete_account;
-import usecases.*;
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.delete_account.*;
-import usecases.delete_account.DeleteInputBoundary;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.delete_account.*;
+import server.usecases.delete_account.DeleteInputBoundary;
 
 
 public class DeleteController {

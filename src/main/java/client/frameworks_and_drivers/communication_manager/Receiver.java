@@ -1,10 +1,5 @@
 package client.frameworks_and_drivers.communication_manager;
 
-import client.frameworks_and_drivers.communication_manager.ComManagerUser;
-import client.frameworks_and_drivers.communication_manager.Constants;
-import client.frameworks_and_drivers.communication_manager.Slice;
-import client.frameworks_and_drivers.communication_manager.comManager;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.nio.charset.StandardCharsets;
@@ -47,7 +42,7 @@ public class Receiver extends Thread
                 DatagramPacket slicePacket  = new DatagramPacket(buffer,0,buffer.length);
 
                 //receive packet
-                comManager.socket.receive(slicePacket);
+                ClientComManager.socket.receive(slicePacket);
                 port = slicePacket.getPort();
                 ip = slicePacket.getAddress().getHostAddress();
                 dataStr = new String(slicePacket.getData(), StandardCharsets.UTF_8);

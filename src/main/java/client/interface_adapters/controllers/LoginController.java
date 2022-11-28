@@ -23,7 +23,8 @@ public class LoginController implements LoginControllerInputBoundary
     {
 
         String toSend = Constants.REGISTER + "#" + userName + CONTENT_SPR + password;
-        comManager.send(serverIp, 4444, toSend);
+        comManager.send(serverIp, 4396, toSend);
+        System.out.println("register: " + toSend);
     }
 
 }

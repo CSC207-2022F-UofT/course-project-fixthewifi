@@ -5,13 +5,11 @@ import server.usecases.friendinteractors.acceptfriend.acceptFriendInputBoundary;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInputModel;
 
 public class AcceptFriendController {
-    private IfComManager comManager;
     private final acceptFriendInputBoundary usecase;
 
-    public AcceptFriendController(IfComManager comManager, acceptFriendInputBoundary usecase)
+    public AcceptFriendController(acceptFriendInputBoundary usecase)
     {
         this.usecase = usecase;
-        this.comManager = comManager;
     }
 
     /**

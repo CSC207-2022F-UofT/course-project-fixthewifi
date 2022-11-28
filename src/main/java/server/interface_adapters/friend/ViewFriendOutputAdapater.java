@@ -1,5 +1,7 @@
 package server.interface_adapters.friend;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import server.frameworks_and_drivers.communication_manager.IfComManager;

@@ -5,13 +5,11 @@ import server.usecases.friendinteractors.requestfriend.requestFriendInputBoundar
 import server.usecases.friendinteractors.requestfriend.requestFriendInputModel;
 
 public class RequestFriendController {
-    private IfComManager comManager;
     private final requestFriendInputBoundary usecase;
 
-    public RequestFriendController(IfComManager comManager, requestFriendInputBoundary usecase)
+    public RequestFriendController(requestFriendInputBoundary usecase)
     {
         this.usecase = usecase;
-        this.comManager = comManager;
     }
 
     /**

@@ -21,8 +21,8 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
             int requesterid = model.getRequesterid();
             int friendid = model.getFriendid();
             String requesterName = dataBase.getUserName(requesterid);
-            String requesterAddress = dataBase.getAddress(requesterid);
-            int requesterPeerPort = dataBase.getPeerPort(requesterid);
+//            String requesterAddress = dataBase.getAddress(requesterid);
+//            int requesterPeerPort = dataBase.getPeerPort(requesterid);
             String friendAddress = dataBase.getAddress(friendid);
             int friendPeerPort = dataBase.getPeerPort(friendid);
 
