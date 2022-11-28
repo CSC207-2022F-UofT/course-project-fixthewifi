@@ -3,6 +3,7 @@ package entities;
 /**
  * Represents a user.
  * @author Kevin Liu
+ * --
  */
 public class CommonUser implements User
 {
