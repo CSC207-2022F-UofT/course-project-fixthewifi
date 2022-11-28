@@ -1,7 +1,9 @@
-package server.usecases.friendinteractors.viewfriend;
+package usecases.friendinteractors.viewfriend;
 
-import java.util.List;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface view_friend_output_boundary {
-    void pushFriendList(List<String> list, String address, int peerPort);
+    void pushFriendList(ArrayList<HashMap<String, Integer>> list, String address, int peerPort);
 }

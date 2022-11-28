@@ -1,4 +1,4 @@
-package server.usecases.friendinteractors.deletefriend;
+package usecases.friendinteractors.deletefriend;
 
 
 public class delete_friend_interactor implements delete_friend_input_boundary {
@@ -11,21 +11,35 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
         this.output = output;
     }
 
+    /**
+     * find user by id name to delete friend. report success when input is found in database and fail when not found
+     * @param model
+     */
+
     @Override
     public void DeleteFriend(delete_friend_input_model model)
     {
         boolean bool1 = dataBase.findUserByUID(model.getFriendid());
         boolean bool2 = dataBase.findUserByName(model.getFriendName());
-        int peerPort = dataBase.getPeerPort(model.getRequesterid());
-        String address = dataBase.getAddress(model.getRequesterid());
+        int requesterPeerPort = dataBase.getPeerPort(model.getRequesterid());
+        String requesterAddress = dataBase.getAddress(model.getRequesterid());
+        int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
+        String friendAddress = dataBase.getAddress(model.getFriendid());
+        int friendid = model.getFriendid();
+        String friendName = dataBase.getUserName(friendid);
+        int requesterid = model.getRequesterid();
+        String requesterName = dataBase.getUserName(requesterid);
+
         if (bool1){
-            dataBase.deleteFriendbyID(model.getFriendid(), model.getRequesterid());
-            output.success(model.getRequesterid(), address, peerPort);
+            dataBase.deleteFriendbyID(friendid, requesterid);
+            output.success(requesterid, requesterAddress, requesterPeerPort);
+            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
         }
         if (bool2){
-            dataBase.deleteFriendbyName(model.getFriendName(), model.getRequesterName());
-            output.success(model.getRequesterid(), address, peerPort);
+            dataBase.deleteFriendbyName(friendName, requesterName);
+            output.success(requesterid, requesterAddress, requesterPeerPort);
+            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
         }
-        output.fail(model.getRequesterid(), address, peerPort);
+        output.fail(requesterid, requesterAddress, requesterPeerPort);
     }
 }

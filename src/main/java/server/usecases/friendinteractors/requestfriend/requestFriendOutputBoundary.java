@@ -1,4 +1,4 @@
-package server.usecases.friendinteractors.requestfriend;
+package usecases.friendinteractors.requestfriend;
 
 public interface requestFriendOutputBoundary {
 
@@ -7,6 +7,8 @@ public interface requestFriendOutputBoundary {
      * @param requesterid
      */
     void success(int requesterid, String address, int peerPort);
+
+    void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort);
 
     /**
      * Report failure to request friend to database and requester based on requesterid
