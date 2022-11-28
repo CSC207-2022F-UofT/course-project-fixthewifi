@@ -1,4 +1,6 @@
-package server.usecases.login;
+package usecases.login;
+import java.util.*;
+import entities.User;
 
 public class LoginInteractor implements LoginInputBoundary{
     final LoginDBGateWay db;
@@ -10,13 +12,18 @@ public class LoginInteractor implements LoginInputBoundary{
     }
 
     @Override
-    public void login(int UID, String password){
-        boolean k = db.check(UID, password);
-        if (k){
-
+    public void login(int uid, String password){
+        String address = db.userAddress(uid);
+        int userPort = db.userPort(uid);
+        boolean success = db.check(uid, password);
+        if (success){
+            String userProfile = db.getUserProfile(uid);
+            String chatList = db.getChats(uid);
+            String friendList = db.getFriends(uid);
+            outputBoundary.ifSuccess(uid, userProfile, chatList, friendList, address, userPort);
         }
         else{
-            outputBoundary.error("Username or Password do not match");
+            outputBoundary.error("Username or Password do not match", address, userPort);
         }
     }
 

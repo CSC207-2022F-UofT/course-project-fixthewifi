@@ -1,8 +1,9 @@
 package server.usecases.register;
 
+
 public interface RegisterOutputBoundary {
     /**
-     redirects the user to the login page
+     tells the user their UID and tells them that their register is successful
      */
-    void successRedirect(int uid);
+    void successRedirect(int uid, String address, int peerPort);
 }
