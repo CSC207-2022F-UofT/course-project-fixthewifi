@@ -23,6 +23,8 @@ public class RegisterInteractor implements RegisterInputBoundary {
     @Override
     public void register(String username, String password){
         int uid = db.RegisterAndReturnUID(username, password);
-        outbound.successRedirect(uid);
+        String address = db.userAddress(uid);
+        int peerPort = db.userPort(uid);
+        outbound.successRedirect(uid, address, peerPort);
     }
 }

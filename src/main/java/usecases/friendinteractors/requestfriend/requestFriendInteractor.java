@@ -14,19 +14,39 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
      * @param model
      */
     @Override
-    public void RequestFriend(requestFriendInputModel model){
+    public void RequestFriend(requestFriendInputModel model) {
         boolean b1 = dataBase.findUserByUID(model.getFriendid());
         boolean b2 = dataBase.findUserByName(model.getFriendName());
-        int peerPort = dataBase.getPeerPort(model.getRequesterid());
-        String address = dataBase.getAddress(model.getRequesterid());
-        if (b1){
-            dataBase.requestFriendbyID(model.getRequesterid(), model.getFriendid());
-            output.success(model.getFriendid(), address, peerPort);
+        if(b1){
+            int requesterid = model.getRequesterid();
+            int friendid = model.getFriendid();
+            String requesterName = dataBase.getUserName(requesterid);
+            String requesterAddress = dataBase.getAddress(requesterid);
+            int requesterPeerPort = dataBase.getPeerPort(requesterid);
+            String friendAddress = dataBase.getAddress(friendid);
+            int friendPeerPort = dataBase.getPeerPort(friendid);
+
+            output.success(requesterid, requesterAddress, requesterPeerPort);
+            output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
         }
-        if (b2){
-            dataBase.requestFriendbyName(model.getRequesterName(), model.getFriendName());
-            output.success(model.getFriendid(), address, peerPort);
+        if(b2){
+            String requesterName = model.getRequesterName();
+            String friendName = model.getFriendName();
+            int friendid = dataBase.getUserid(friendName);
+            int requesterid = dataBase.getUserid(requesterName);
+            String requesterAddress = dataBase.getAddress(requesterid);
+            int requesterPeerPort = dataBase.getPeerPort(requesterid);
+            String friendAddress = dataBase.getAddress(friendid);
+            int friendPeerPort = dataBase.getPeerPort(friendid);
+
+            output.success(requesterid, requesterAddress, requesterPeerPort);
+            output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
         }
-        output.fail(model.getFriendid(), address, peerPort);
+        // input not found in database
+        int requesterid = model.getRequesterid();
+        String requesterAddress = dataBase.getAddress(requesterid);
+        int requesterPeerPort = dataBase.getPeerPort(requesterid);
+
+        output.fail(requesterid, requesterAddress, requesterPeerPort);
     }
 }
