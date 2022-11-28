@@ -9,5 +9,5 @@ public interface Constants
     int RATING = 4;
     int EDIT_MSG = 5;
     int FRIEND = 6;
-
+    int SEND_RATING = 7;
 }

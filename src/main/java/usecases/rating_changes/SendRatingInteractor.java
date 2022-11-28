@@ -14,8 +14,10 @@ public class SendRatingInteractor implements SendRatingInputBoundary{
     @Override
     public void sendRating(SendRatingInputModel model)
     {
+        String address = dataBase.userAddress(model.senderUid);
+        int userPort = dataBase.userPort(model.senderUid);
         dataBase.storeRating(model.receiverUid, model.avgRating);
-        SendRatingOutputModel outputModel = new SendRatingOutputModel(model.receiverUid, model.avgRating);
+        SendRatingOutputModel outputModel = new SendRatingOutputModel(address, userPort, model.senderUid, model.receiverUid, model.avgRating);
         output.sendRating(outputModel);
     }
 }
