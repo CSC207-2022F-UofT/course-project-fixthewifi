@@ -1,6 +1,4 @@
 package interface_adapters.logout;
-import usecases.*;
-import frameworks_and_drivers.communication_manager.IfComManager;
 import usecases.logout.*;
 
 public class LogoutController {
