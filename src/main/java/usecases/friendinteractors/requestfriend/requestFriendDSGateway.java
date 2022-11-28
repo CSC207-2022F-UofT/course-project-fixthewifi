@@ -1,6 +1,8 @@
 package usecases.friendinteractors.requestfriend;
 
-public interface requestFriendDSGateway {
+import usecases.friendinteractors.friendCommonsDSGateway;
+
+public interface requestFriendDSGateway extends friendCommonsDSGateway {
     /**
      * Find the user by userid.
      * @param uid
@@ -28,10 +30,4 @@ public interface requestFriendDSGateway {
      * @param friend
      */
     void requestFriendbyName(String requester, String friend);
-
-    String getUserName(int uid);
-    int getUserid(String userName);
-
-    String getAddress(int userid);
-    int getPeerPort(int userid);
 }
