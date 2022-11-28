@@ -1,4 +1,4 @@
-package usecases.friendinteractors.requestfriend;
+package server.usecases.friendinteractors.requestfriend;
 
 public interface requestFriendOutputBoundary {
 

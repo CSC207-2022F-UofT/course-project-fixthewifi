@@ -8,11 +8,17 @@ public class Model
     private final Self self;
     private final ConsoleView view;
     public String pageState;
+    public int friendRequester;
 
     public Model(ConsoleView view)
     {
         this.view = view;
         this.self = new Self();
+    }
+
+    public void setSelfUid(int uid)
+    {
+        self.setUid(uid);
     }
 
     public int getSelfUid() 
@@ -21,6 +27,24 @@ public class Model
     }
 
     public void storeChatMsg(int parseInt, int parseInt1, String s, String s1) {
+    }
+
+
+    public String getDescription(int userUid)
+    {
+        if (userUid == getSelfUid())
+        {
+            return self.userProfile.getDescription();
+        }
+        return self.friendList.get(userUid).profile.getDescription();
+    }
+
+    public void setPageState(String state)
+    {
+        pageState = state;
+    }
+
+    public void setSelfStatus(boolean b) {
     }
 }
 

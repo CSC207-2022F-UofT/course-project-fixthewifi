@@ -1,10 +1,10 @@
 package client.frameworks_and_drivers.communication_manager;
 
-import server.frameworks_and_drivers.communication_manager.ComManagerUser;
-import server.frameworks_and_drivers.communication_manager.Constants;
-import server.frameworks_and_drivers.communication_manager.IfComManager;
-import server.frameworks_and_drivers.communication_manager.Receiver;
-import server.frameworks_and_drivers.communication_manager.Tools;
+import client.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.frameworks_and_drivers.communication_manager.Constants;
+import client.frameworks_and_drivers.communication_manager.IfComManager;
+import client.frameworks_and_drivers.communication_manager.Receiver;
+import client.frameworks_and_drivers.communication_manager.Tools;
 
 import java.io.IOException;
 import java.net.*;
@@ -40,7 +40,7 @@ public class comManager implements IfComManager
 
         this.port = port;
         this.user = user;
-        server.frameworks_and_drivers.communication_manager.Receiver receiver = new Receiver(user);
+        Receiver receiver = new Receiver(user);
         receiver.start();
     }
 
@@ -68,17 +68,17 @@ public class comManager implements IfComManager
             if(j+1<totalSlices)
             {
                 //  setting slice length to 128
-                sliceLen = server.frameworks_and_drivers.communication_manager.Constants.PACKET_LEN;
+                sliceLen = Constants.PACKET_LEN;
             }
             else
             {
                 //  packet data length for the remaining portion
-                sliceLen = data.length - (j)* server.frameworks_and_drivers.communication_manager.Constants.PACKET_LEN;
+                sliceLen = data.length - (j)* Constants.PACKET_LEN;
             }
 
-            byte[] a = Tools.getBytes(data, j* server.frameworks_and_drivers.communication_manager.Constants.PACKET_LEN, sliceLen);
+            byte[] a = Tools.getBytes(data, j* Constants.PACKET_LEN, sliceLen);
 
-            String toByte  = server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + server.frameworks_and_drivers.communication_manager.Constants.SLICE_PACKET + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + msgId + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + totalSlices + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR+ j + Constants.SEPARATOR;
+            String toByte  = Constants.SEPARATOR + server.frameworks_and_drivers.communication_manager.Constants.SLICE_PACKET + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + msgId + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR + totalSlices + server.frameworks_and_drivers.communication_manager.Constants.SEPARATOR+ j + Constants.SEPARATOR;
 
             byte[] b = toByte.getBytes(StandardCharsets.UTF_8);
 

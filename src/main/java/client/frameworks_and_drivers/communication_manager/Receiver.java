@@ -1,9 +1,9 @@
 package client.frameworks_and_drivers.communication_manager;
 
-import server.frameworks_and_drivers.communication_manager.ComManagerUser;
-import server.frameworks_and_drivers.communication_manager.Constants;
-import server.frameworks_and_drivers.communication_manager.Slice;
-import server.frameworks_and_drivers.communication_manager.comManager;
+import client.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.frameworks_and_drivers.communication_manager.Constants;
+import client.frameworks_and_drivers.communication_manager.Slice;
+import client.frameworks_and_drivers.communication_manager.comManager;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -15,14 +15,14 @@ import java.util.HashMap;
 public class Receiver extends Thread
 {
 
-    HashMap<Integer, ArrayList<server.frameworks_and_drivers.communication_manager.Slice>> sliceMatrix;
+    HashMap<Integer, ArrayList<Slice>> sliceMatrix;
     int count = 0;
     ComManagerUser user;
 
     public Receiver(ComManagerUser user)
     {
         this.user = user;
-        sliceMatrix = new HashMap<Integer, ArrayList<server.frameworks_and_drivers.communication_manager.Slice>>();
+        sliceMatrix = new HashMap<Integer, ArrayList<Slice>>();
     }
 
     public void run()
@@ -107,7 +107,7 @@ public class Receiver extends Thread
     public void handleSlice(String[] strArr, String ip, int port)
     {
 //        System.out.println(Arrays.toString(strArr));
-        server.frameworks_and_drivers.communication_manager.Slice slice = new server.frameworks_and_drivers.communication_manager.Slice();
+        Slice slice = new Slice();
         slice.ip = ip;
         slice.port = port;
         slice.sliceData = strArr[0];
@@ -120,22 +120,23 @@ public class Receiver extends Thread
             if (sliceMatrix.containsKey(slice.msgId))
             {
 //                System.out.println(1);
-                ArrayList<server.frameworks_and_drivers.communication_manager.Slice> msgList = sliceMatrix.get(slice.msgId);
+                ArrayList<Slice> msgList = sliceMatrix.get(slice.msgId);
                 msgList.add(slice);
                 if (msgList.size() == slice.totalSlices)
                 {
-                    msgList.sort(new Comparator<server.frameworks_and_drivers.communication_manager.Slice>()
+                    msgList.sort(new Comparator<Slice>()
                     {
                         @Override
-                        public int compare(server.frameworks_and_drivers.communication_manager.Slice o1, server.frameworks_and_drivers.communication_manager.Slice o2) {
+                        public int compare(Slice o1, Slice o2) {
                             return Integer.compare(o1.sliceIndex, o2.sliceIndex);
                         }
                     });
                     StringBuilder builder = new StringBuilder();
-                    for (server.frameworks_and_drivers.communication_manager.Slice object: msgList)
+                    for (Slice object: msgList)
                     {
                         builder.append(object.sliceData);
                     }
+                    System.out.println("comManager: " + builder);
                     user.onMsg(builder.toString());
                     sliceMatrix.remove(slice.msgId);
                 }
@@ -149,6 +150,7 @@ public class Receiver extends Thread
 
                 if (list.size() == slice.totalSlices)
                 {
+                    System.out.println("comManager: " + slice.sliceData);
                     user.onMsg(slice.sliceData);
                 }
                 System.out.println(sliceMatrix);

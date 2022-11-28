@@ -1,12 +1,17 @@
 package client.frameworks_and_drivers;
-import server.frameworks_and_drivers.Constants;
-import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.interface_adapters.presenters.FriendPresenter;
+import client.interface_adapters.presenters.LoginPresenter;
 
 public class InputSorter implements ComManagerUser
 {
-    public InputSorter()
+    private final FriendPresenter friendPresenter;
+    private final LoginPresenter loginPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter)
     {
         //TODO: pass all of the controllers into here
+        this.friendPresenter = friendPresenter;
+        this.loginPresenter = loginPresenter;
     }
 
     /**
@@ -16,21 +21,24 @@ public class InputSorter implements ComManagerUser
     @Override
     public void onMsg(String msg)
     {
-        String[] splitMsg = msg.split("\\.", 2);
+        String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
         String content = splitMsg[1];
         switch (useCaseConstant)
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
-            case server.frameworks_and_drivers.Constants.SEND_CHAT:
+            case Constants.SEND_MSG:
                 break;
-            case server.frameworks_and_drivers.Constants.CHANGE_PROFILE:
+            case Constants.CHANGE_PROFILE:
                 break;
-            case server.frameworks_and_drivers.Constants.GROUP_CHAT:
+            case Constants.ACCEPT_FRIEND:
+                friendPresenter.receiveConfirmation(content);
+            case Constants.REQUEST_FRIEND:
+                friendPresenter.receiveRequest(content);
                 break;
-            case Constants.LOGIN:
+            case Constants.REGISTER:
+                loginPresenter.receiveConfirmation(content);
                 break;
-
         }
     }
 

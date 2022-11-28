@@ -1,5 +1,8 @@
 package client.frameworks_and_drivers.view.console_view;
 
+import client.interface_adapters.controllers.FriendControllerInputBoundary;
+import client.interface_adapters.controllers.LoginControllerInputBoundary;
+import client.interface_adapters.controllers.MsgControllerInputBoundary;
 import client.interface_adapters.model.Model;
 
 import java.io.BufferedReader;
@@ -9,10 +12,20 @@ import java.util.Objects;
 
 public class ConsoleView
 {
-    Model model;
+    private final Model model;
+    private final MsgControllerInputBoundary msgController;
+    private final LoginControllerInputBoundary loginController;
+    private final FriendControllerInputBoundary friendController;
 
-    public ConsoleView()
+    public ConsoleView(Model model,
+                       MsgControllerInputBoundary msgController,
+                       LoginControllerInputBoundary loginController,
+                       FriendControllerInputBoundary friendController)
     {
+        this.model = model;
+        this.msgController = msgController;
+        this.loginController = loginController;
+        this.friendController = friendController;
     }
 
     public void init()
@@ -31,8 +44,7 @@ public class ConsoleView
                 if (Objects.equals(model.pageState, "LOGIN_PAGE"))
                 {
                     sortLogin(content[0], content[1]);
-                }
-                else
+                } else
                 {
                     sort(content[0], content[1]);
                 }
@@ -46,22 +58,77 @@ public class ConsoleView
 
     public void sort(String operation, String operand)
     {
+        if (model.pageState.startsWith("CHAT"))
+        {
+
+        }
+        else
+        {
+            switch (operation)
+            {
+                case(InstructionSet.VIEW_CHAT):
+                    displayChat(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.VIEW_FRIENDS):
+                    displayFriends();
+                    break;
+
+                case(InstructionSet.REQUEST_FRIEND):
+                    friendController.request(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.ACCEPT_FRIEND):
+                    friendController.accept(model.friendRequester);
+                    break;
+
+            }
+        }
+    }
+
+    private void displayFriends() 
+    {
     }
 
     public void sortLogin(String operation, String operand)
     {
+        if (operation.equals(InstructionSet.REGISTER))
+        {
+            String[] content = operand.split(" ");
+            loginController.register(content[0], content[1]);
+        }
     }
     public void displayLoginPage()
     {
         System.out.println("please enter username: ");
     }
 
-    public void disPlayUserProfile(int uid, String name, String description)
+    public void displayUserProfile(int userUid)
     {
         System.out.println("===========Profile===========");
-        System.out.println("uid: " + uid);
-        System.out.println("name: " + name);
-        System.out.println("description: " + description);
+        System.out.println("uid: " + userUid);
+        System.out.println("name: " + userUid);
+        System.out.println("description: " + model.getDescription(userUid));
     }
 
+    public void displayChat(int chatUid)
+    {
+        model.setPageState(Integer.toString(chatUid));
+    }
+
+    public void displayNewRequest(int parseInt, String s) {
+    }
+
+    public void displayConfirmation(int parseInt, String s) {
+    }
+
+    public void displayLoginSuccess()
+    {
+        System.out.println("Login successful.");
+    }
+
+    public void displayLoginFail()
+    {
+        System.out.println("Login failed.");
+    }
 }

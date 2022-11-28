@@ -1,7 +1,8 @@
-package interface_adapters.friend;
+package server.interface_adapters.friend;
 
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.friendinteractors.acceptfriend.acceptFriendOutputBoundary;
+import server.frameworks_and_drivers.Constants;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.friendinteractors.acceptfriend.acceptFriendOutputBoundary;
 
 
 public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
@@ -11,16 +12,18 @@ public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
     {
         this.comManager = comManager;
     }
+
     @Override
     public void success(int requestor, int friendid, String friendName, String address, int peerPort)
     {
-        String content = requestor + ": " + friendName + "(" + friendid + ") accepted your friend request";
+        String content = Constants.ACCEPT_FRIEND + "#" + friendid + " " + friendName + " True";
         comManager.send(address, peerPort, content);
     }
 
     @Override
-    public void refuse(int requestor, int friendid, String friendName, String address, int peerPort) {
-        String content = requestor + ": " + friendName + "(" + friendid + ") refused to add you as friend";
+    public void refuse(int requestor, int friendid, String friendName, String address, int peerPort)
+    {
+        String content = Constants.ACCEPT_FRIEND + "#" + friendid + " " + friendName + " True";
         comManager.send(address, peerPort, content);
     }
 }

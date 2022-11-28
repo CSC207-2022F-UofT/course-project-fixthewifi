@@ -6,5 +6,7 @@ public interface RegisterInputBoundary {
      * @param username is the username of the user
      * @param password is the password of the user
      */
-    public void register(String username, String password);
+    //public void register(String username, String password);
+
+    void register(String username, String password, String ipAddress);
 }

@@ -5,8 +5,6 @@ import client.frameworks_and_drivers.view.console_view.ConsoleView;
 public class HelloWorld {
 
     public static void main(String[] args) {
-        ConsoleView view = new ConsoleView();
-        view.init();
     }
 
     public static String convert(int decide) {

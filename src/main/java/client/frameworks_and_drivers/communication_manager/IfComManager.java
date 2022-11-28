@@ -1,6 +1,6 @@
 package client.frameworks_and_drivers.communication_manager;
 
-import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 
 public interface IfComManager
 {

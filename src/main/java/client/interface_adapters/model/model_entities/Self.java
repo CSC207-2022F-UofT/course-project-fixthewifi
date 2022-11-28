@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 public class Self implements User
 {
-    private final int uid;
-    private final UserProfile userProfile;
-    private final HashMap<Integer ,Chat> chatList;
-    private final HashMap<Integer, Friend> friendList;
+    private int uid;
+    public final UserProfile userProfile;
+    public final HashMap<Integer ,Chat> chatList;
+    public final HashMap<Integer, Friend> friendList;
 
     public Self()
     {
-        this.uid = 4396;
+        uid = 4396;
         userProfile = new UserProfile();
         chatList = new HashMap<>();
         friendList = new HashMap<>();
@@ -38,4 +38,9 @@ public class Self implements User
         return friendList.get(uid);
     }
 
+
+    public void setUid(int uid)
+    {
+        this.uid = uid;
+    }
 }

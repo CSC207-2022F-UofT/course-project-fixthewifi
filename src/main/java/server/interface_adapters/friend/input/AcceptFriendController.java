@@ -1,8 +1,8 @@
-package interface_adapters.friend.input;
+package server.interface_adapters.friend.input;
 
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.friendinteractors.acceptfriend.acceptFriendInputBoundary;
-import usecases.friendinteractors.acceptfriend.acceptFriendInputModel;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.friendinteractors.acceptfriend.acceptFriendInputBoundary;
+import server.usecases.friendinteractors.acceptfriend.acceptFriendInputModel;
 
 public class AcceptFriendController {
     private IfComManager comManager;

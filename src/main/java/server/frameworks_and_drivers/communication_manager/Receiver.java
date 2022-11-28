@@ -126,12 +126,14 @@ public class Receiver extends Thread
                             return Integer.compare(o1.sliceIndex, o2.sliceIndex);
                         }
                     });
+
                     StringBuilder builder = new StringBuilder();
                     for (Slice object: msgList)
                     {
                         builder.append(object.sliceData);
                     }
-                    user.onMsg(builder.toString());
+                    System.out.println("comManager: " + builder);
+                    user.onMsg(builder.toString(), slice.ip);
                     sliceMatrix.remove(slice.msgId);
                 }
             }
@@ -144,7 +146,9 @@ public class Receiver extends Thread
 
                 if (list.size() == slice.totalSlices)
                 {
-                    user.onMsg(slice.sliceData);
+                    System.out.println("comManager: " + slice.sliceData);
+
+                    user.onMsg(slice.sliceData, slice.ip);
                 }
                 System.out.println(sliceMatrix);
             }

@@ -12,9 +12,9 @@ public class MsgPresenter implements MsgPresenterInputBoundary
         this.model = model;
     }
 
-    public void receiveMsg(String toDissect)
+    public void receiveMsg(String data)
     {
-        String[] content = toDissect.split(String.valueOf(Constants.SPR));
+        String[] content = data.split(String.valueOf(Constants.SPR));
         model.storeChatMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[3], content[4]);
     }
 }

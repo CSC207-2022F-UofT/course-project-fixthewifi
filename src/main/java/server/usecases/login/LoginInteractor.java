@@ -1,6 +1,5 @@
-package usecases.login;
+package server.usecases.login;
 import java.util.*;
-import entities.User;
 
 public class LoginInteractor implements LoginInputBoundary{
     final LoginDBGateWay db;

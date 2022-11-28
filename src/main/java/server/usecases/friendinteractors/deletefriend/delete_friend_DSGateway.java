@@ -1,4 +1,4 @@
-package usecases.friendinteractors.deletefriend;
+package server.usecases.friendinteractors.deletefriend;
 
 public interface delete_friend_DSGateway {
     void deleteFriendbyID(int user1, int user2);

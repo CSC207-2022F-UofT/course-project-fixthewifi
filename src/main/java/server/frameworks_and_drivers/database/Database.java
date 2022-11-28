@@ -37,7 +37,7 @@ public class Database
 
     private void updateUser(int Uid, int parameter, String newContent)
     {
-        List<String[]> csvBody = null;
+        List<String[]> csvBody;
         try
         {
             CSVReader userReader = new CSVReader(new FileReader("User.csv"));
@@ -47,6 +47,20 @@ public class Database
             CSVWriter userWriter = new CSVWriter(new FileWriter("User.csv", false));
             userWriter.writeAll(csvBody);
             userWriter.flush();
+        } catch (IOException | CsvException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String readUser(int Uid, int parameter)
+    {
+        List<String[]> csvBody;
+        try
+        {
+            CSVReader userReader = new CSVReader(new FileReader("User.csv"));
+            csvBody = userReader.readAll();
+            return csvBody.get(Uid)[parameter];
         } catch (IOException | CsvException e)
         {
             throw new RuntimeException(e);

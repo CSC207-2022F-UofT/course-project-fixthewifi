@@ -1,5 +1,6 @@
 package server.interface_adapters.friend;
 
+import server.frameworks_and_drivers.Constants;
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.friendinteractors.requestfriend.requestFriendOutputBoundary;
 
@@ -9,6 +10,7 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
     {
         this.comManager = comManager;
     }
+
     @Override
     public void success(int requesterid, String address, int peerPort)
     {
@@ -18,7 +20,8 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
 
     @Override
     public void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort) {
-        String content = requesterid + ": there is a friend request from " + requesterName + "(" + requesterid + ")";
+        char spr = 30;
+        String content = Constants.REQUEST_FRIEND+"#"+String.join(String.valueOf(spr), String.valueOf(requesterid), requesterName);
         comManager.send(address, peerPort, content);
     }
 
