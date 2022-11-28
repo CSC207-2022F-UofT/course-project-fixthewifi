@@ -8,6 +8,8 @@ public interface requestFriendOutputBoundary {
      */
     void success(int requesterid, String address, int peerPort);
 
+    void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort);
+
     /**
      * Report failure to request friend to database and requester based on requesterid
      * @param requesterid
