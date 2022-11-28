@@ -43,14 +43,14 @@ public class TestFriendsList {
 //
 //        Assertions.assertTrue(friends.viewFriends().isEmpty());
 //    }
-    @Test
-    public void testAdd2FriendsRemove1Friend(){
-        CommonUser user1 = new CommonUser(111111, "1user", 1);
-        FriendsList friends = new FriendsList();
-
-        friends.addFriend(user1);
-        friends.deleteFriend(user1);
-
-        Assertions.assertTrue(friends.viewFriends().isEmpty());
-    }
+//    @Test
+//    public void testAdd2FriendsRemove1Friend(){
+//        CommonUser user1 = new CommonUser(111111, "1user", 1);
+//        FriendsList friends = new FriendsList();
+//
+//        friends.addFriend(user1);
+//        friends.deleteFriend(user1);
+//
+//        Assertions.assertTrue(friends.viewFriends().isEmpty());
+//    }
 }
