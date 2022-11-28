@@ -33,9 +33,9 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
         String content = outputModel.getProfileUID()+outputModel.getChangeStatusMessage();
 
        // adress and port from db
-        String adress = ""; //from db!!
-        int port = 0; //from db!!
-        comManager.send(adress,port,content);
+        String adress = outputModel.getUseraddress(); //from db!!
+        int port = outputModel.getUserport(); //from db!!
+       comManager.send(adress,port,content);
 
         //send to commanager a meesage to myself
         //comManager.

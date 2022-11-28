@@ -16,19 +16,18 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
     @Override
     public void DeleteFriend(delete_friend_input_model model)
     {
-        boolean bool1 = dataBase.findUserByUID(model.friendid);
-        boolean bool2 = dataBase.findUserByName(model.friendName);
-
+        boolean bool1 = dataBase.findUserByUID(model.getFriendid());
+        boolean bool2 = dataBase.findUserByName(model.getFriendName());
+        int peerPort = dataBase.getPeerPort(model.getRequesterid());
+        String address = dataBase.getAddress(model.getRequesterid());
         if (bool1){
-            dataBase.deleteFriendbyID(model.friendid, model.requesterid);
-            output.success();
+            dataBase.deleteFriendbyID(model.getFriendid(), model.getRequesterid());
+            output.success(model.getRequesterid(), address, peerPort);
         }
         if (bool2){
-            dataBase.deleteFriendbyName(model.friendName, model.requesterName);
-            output.success();
+            dataBase.deleteFriendbyName(model.getFriendName(), model.getRequesterName());
+            output.success(model.getRequesterid(), address, peerPort);
         }
-        output.fail();
+        output.fail(model.getRequesterid(), address, peerPort);
     }
-
-
 }

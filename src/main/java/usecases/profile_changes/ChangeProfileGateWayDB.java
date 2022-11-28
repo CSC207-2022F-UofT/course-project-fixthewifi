@@ -7,6 +7,8 @@ package usecases.profile_changes;
  *
  */
 public interface ChangeProfileGateWayDB {
+    String userAdress(int identifier);
+    int userPort(int identifier);
     boolean existsByUID(int identifier);
 
     ChangeProfileDsInputModel getByID(int id);

@@ -9,6 +9,16 @@ import usecases.profile_changes.ChangeProfileInputModel;
 
 public class ChangeProfileDB implements ChangeProfileGateWayDB {
     @Override
+    public String userAdress(int identifier) {
+        return null;
+    }
+
+    @Override
+    public int userPort(int identifier) {
+        return 0;
+    }
+
+    @Override
     public boolean existsByUID(int identifier) {
         return false;
     }
