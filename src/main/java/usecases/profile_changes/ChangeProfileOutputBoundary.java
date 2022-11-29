@@ -16,7 +16,7 @@ public interface ChangeProfileOutputBoundary {
     /**
      * This method is for failing changes in Changing profile.
      */
-    void errorChangingProfile();
+    void errorChangingProfile(ChangeProfileOutputModel outputModel, int code);
 }
 
 
