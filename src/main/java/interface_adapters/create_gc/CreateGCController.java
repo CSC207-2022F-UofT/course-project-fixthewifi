@@ -37,7 +37,7 @@ public class CreateGCController {
         LocalDateTime time = LocalDateTime.parse((String)parsed_input.remove(0), formatter);
         ArrayList<Integer> UIDs = new ArrayList<>();
         for(Object s: parsed_input){UIDs.add(Integer.parseInt((String) s));}
-        CreateGCInputData input_data = new CreateGCInputData(admin, UIDs, time);
+        CreateGCInputData input_data = new CreateGCInputData(admin, UIDs);
         interactor.create(input_data);
 
     }

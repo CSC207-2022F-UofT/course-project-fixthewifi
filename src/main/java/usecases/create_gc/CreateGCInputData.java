@@ -17,15 +17,11 @@ public class CreateGCInputData {
      * A list of the UIDs of the users who will be a part of the new GroupChat
      */
     private final ArrayList<Integer> members;
-    /**
-     * Time of the request to make a new GroupChat
-     */
-    private final LocalDateTime time;
 
-    public CreateGCInputData(int admin, ArrayList<Integer> members, LocalDateTime time){
+
+    public CreateGCInputData(int admin, ArrayList<Integer> members){
         this.admin = admin;
         this.members = members;
-        this.time = time;
     }
 
     /**

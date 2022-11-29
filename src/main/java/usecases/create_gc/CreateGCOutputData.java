@@ -18,21 +18,21 @@ public class CreateGCOutputData {
      * The UIDs of the users who are a part of the newly made GroupChat.
      */
     private final ArrayList<Integer> members;
+    private final String peerID;
+    private final int peerPort;
 
 
-    public CreateGCOutputData(int admin, ArrayList<Integer> members){
+    public CreateGCOutputData(int admin, ArrayList<Integer> members, String peerID, int peerPort){
         this.admin = admin;
         this.members = members;
+        this.peerID = peerID;
+        this.peerPort = peerPort;
     }
 
-    /**
-     * @return the admin of the OutputData.
-     */
     public int getAdmin(){return this.admin;}
 
-    /**
-     * @return the members of the OutputData.
-     */
     public ArrayList<Integer> getMembers(){return this.members;}
 
+    public int getPeerPort() {return this.peerPort;}
+    public String getPeerID() {return this.peerID;}
 }
