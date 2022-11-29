@@ -16,9 +16,26 @@ public class ViewFriendOutputAdapater
     {
         this.comManager = comManager;
     }
-    public void pushFriendList(List<String> list, String address, int peerPort)
+
+    /**
+     * divide list in to a list of name and a list of int and send them to comManager instead of HashMap
+     * @param list
+     * @param address
+     * @param peerPort
+     */
+    public void pushFriendList(ArrayList<HashMap<String, Integer>> list, String address, int peerPort)
     {
-        String content = list.toString();
-        comManager.send(address, peerPort, content);
+        ArrayList<String> namelist = new ArrayList<>();
+        ArrayList<Integer> idlist = new ArrayList<>();
+        for (HashMap<String, Integer> map : list){
+            for (String key : map.keySet()){
+                namelist.add(key);
+                idlist.add(map.get(key));
+            }
+        }
+        String content_names = namelist.toString();
+        String content_ids = idlist.toString();
+        comManager.send(address, peerPort, content_names);
+        comManager.send(address, peerPort, content_ids);
     }
 }
