@@ -36,8 +36,5 @@ public class CreateGCInputData {
      * @return the members of the InputData
      */
     public ArrayList<Integer> getMembers(){return this.members;}
-    /**
-     * @return the request time of the InputData
-     */
-    public LocalDateTime getTime(){return this.time;}
+
 }

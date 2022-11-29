@@ -33,12 +33,11 @@ public class TestCreateGroupChat {
         members.add(user1.getUid());
         members.add(user2.getUid());
         members.add(user3.getUid());
-        LocalDateTime time = LocalDateTime.now();
         db.addUser(user1.getUid(), user1);
         db.addUser(user2.getUid(), user2);
         db.addUser(user3.getUid(), user3);
 
-        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
+        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members);
         interactor.create(input);
 
         Assertions.assertNotNull(db.getUploaded_chat());
@@ -67,7 +66,7 @@ public class TestCreateGroupChat {
         db.addUser(user2.getUid(), user2);
         db.addUser(user3.getUid(), user3);
 
-        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
+        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members);
         interactor.create(input);
 
         Assertions.assertEquals(db.getNewUID(), db.getUploaded_chat().getUid(), "Incorrect UID added");
@@ -97,13 +96,11 @@ public class TestCreateGroupChat {
         db.addUser(user2.getUid(), user2);
         db.addUser(user3.getUid(), user3);
 
-        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
+        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members);
         interactor.create(input);
 
         Assertions.assertEquals(input.getAdmin(), output_adapter.getOutput().getAdmin(),
                 "Incorrect admin added");
-        Assertions.assertEquals(input.getTime(), output_adapter.getOutput().getTime(),
-                "Incorrect time added");
         for(int x : input.getMembers()){
             Assertions.assertNotNull(db.getUserByUID(x), "Member "+ x + " not added");
         }

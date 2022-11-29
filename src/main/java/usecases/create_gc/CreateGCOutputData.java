@@ -18,15 +18,11 @@ public class CreateGCOutputData {
      * The UIDs of the users who are a part of the newly made GroupChat.
      */
     private final ArrayList<Integer> members;
-    /**
-     * Initial request time for making the newly made GroupChat.
-     */
-    private final LocalDateTime time;
 
-    public CreateGCOutputData(int admin, ArrayList<Integer> members, LocalDateTime time){
+
+    public CreateGCOutputData(int admin, ArrayList<Integer> members){
         this.admin = admin;
         this.members = members;
-        this.time = time;
     }
 
     /**
@@ -39,8 +35,4 @@ public class CreateGCOutputData {
      */
     public ArrayList<Integer> getMembers(){return this.members;}
 
-    /**
-     * @return the request time of the OutputData.
-     */
-    public LocalDateTime getTime(){return this.time;}
 }

@@ -49,7 +49,7 @@ public class CreateGCInteractor implements CreateGCInputBoundary {
         GroupChat gc = new GroupChat(this.database.getNewUID(), admin, members);
         database.addGC(gc);
         CreateGCOutputData output = new CreateGCOutputData(
-                input_data.getAdmin(), input_data.getMembers(), input_data.getTime());
+                input_data.getAdmin(), input_data.getMembers());
         output_adapter.prepareSuccessView(output);
     }
 }
