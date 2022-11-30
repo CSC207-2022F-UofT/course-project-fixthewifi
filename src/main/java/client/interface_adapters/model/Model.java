@@ -1,7 +1,7 @@
 package client.interface_adapters.model;
 
-import client.frameworks_and_drivers.view.console_view.ConsoleView;
 import client.interface_adapters.model.model_entities.Self;
+import client.interface_adapters.model.model_entities.UserFactory;
 
 public class Model
 {
@@ -11,18 +11,18 @@ public class Model
 
     public Model()
     {
-        this.self = new Self();
+        this.self = UserFactory.newSelf();
         pageState = "LOGIN_PAGE";
     }
 
     public void setSelfUid(int uid)
     {
-        self.setUid(uid);
+        self.uid = uid;
     }
 
     public int getSelfUid() 
     {
-        return self.getUid();
+        return self.uid;
     }
 
     public void storeChatMsg(int parseInt, int parseInt1, String s, String s1) {
@@ -33,9 +33,9 @@ public class Model
     {
         if (userUid == getSelfUid())
         {
-            return self.userProfile.getDescription();
+            return self.profile.getDescription();
         }
-        return self.friendList.get(userUid).profile.getDescription();
+        return self.friendList.get(userUid).userProfile.getDescription();
     }
 
     public void setPageState(String state)

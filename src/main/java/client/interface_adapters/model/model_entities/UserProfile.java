@@ -5,25 +5,14 @@ package client.interface_adapters.model.model_entities;
  */
 public class UserProfile
 {
-    private int UID;
     private String name;
     private String description;
     private Rating rating;
     private boolean online;
     private ProfilePicture profilePic;
 
-    public UserProfile(int UID, String name)
+    public UserProfile(String name, String description, Rating rating, boolean online, ProfilePicture profilePic)
     {
-        this.UID = UID;
-        this.name = name;
-        this.description = "";
-        this.rating = null;
-        this.online = false;
-        this.profilePic = null;
-    }
-    public UserProfile(int UID, String name, String description, Rating rating, boolean online, ProfilePicture profilePic)
-    {
-        this.UID = UID;
         this.name = name;
         this.description = description;
         this.rating = rating;
@@ -31,15 +20,6 @@ public class UserProfile
         this.profilePic = profilePic;
     }
 
-    public UserProfile()
-    {
-
-    }
-
-
-    public int getUID() {
-        return UID;
-    }
 
     public String getName() {
         return name;

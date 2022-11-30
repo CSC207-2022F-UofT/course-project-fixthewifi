@@ -1,10 +1,7 @@
 package client.interface_adapters.model.model_entities;
 
-import server.entities.ProfilePicture;
-
 public interface Profile {
 
-    public int getUID();
 
     public  String getName();
     public void setName(String name);

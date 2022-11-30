@@ -26,14 +26,14 @@ public class GroupChat implements Chat {
 
 
 
-    public GroupChat(int chatUid, User admin, ArrayList<User> members, GroupProfile profile){
+    public GroupChat(int chatUid, GroupProfile profile, User admin, List<User> members, List<Message> messages){
         this.chatUid = chatUid;
         this.profile = profile;
-        this.messages = new ArrayList<server.entities.Message>();
         this.admin = admin;
         this.members = members;
-
+        this.messages = messages;
     }
+
     @Override
     public int getUid() {
         return this.chatUid;

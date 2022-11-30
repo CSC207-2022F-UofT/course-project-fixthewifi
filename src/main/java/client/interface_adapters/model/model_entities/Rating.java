@@ -5,7 +5,13 @@ public class Rating {
     private int numOfRatings;
     private double totalRating;
     // Possible feature would be to create an array to store individual ratings. But not neccessary
-    
+
+    public Rating(double avgRating, int numOfRatings, double totalRating)
+    {
+        this.avgRating = avgRating;
+        this.numOfRatings = numOfRatings;
+        this.totalRating = totalRating;
+    }
     public double getAvgRating() {
         return avgRating;
     }
