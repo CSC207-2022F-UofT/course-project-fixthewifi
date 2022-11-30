@@ -97,7 +97,7 @@ public class ConsoleView
     }
     public void displayLoginPage()
     {
-        System.out.println("please enter username: ");
+        System.out.println("please enter $reg <name> <password>: ");
     }
 
     public void displayUserProfile(int userUid)

@@ -10,8 +10,11 @@ public class comManager implements IfComManager
     ComManagerUser user;
     public static DatagramSocket socket;
 
-    public comManager()
+    private final boolean debug;
+
+    public comManager(boolean debug)
     {
+        this.debug = debug;
     }
 
     /**
@@ -34,7 +37,7 @@ public class comManager implements IfComManager
 
         this.port = port;
         this.user = user;
-        Receiver receiver = new Receiver(user);
+        Receiver receiver = new Receiver(user, debug);
         receiver.start();
     }
 
@@ -83,6 +86,10 @@ public class comManager implements IfComManager
             DatagramPacket packet = new DatagramPacket(c,0,c.length, peerAddr, peerPort);
             try {
                 socket.send(packet);
+                if (debug)
+                {
+                    System.out.println("Server comManager - Sent Message: " + msg);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

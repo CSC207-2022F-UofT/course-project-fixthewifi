@@ -6,7 +6,7 @@ public interface InstructionSet
      String HELP = "$help";
      String SEND_CHAT = "";
      String LOGIN = "$lgn";
-     String REGISTER = "reg";
+     String REGISTER = "$reg";
      String REQUEST_FRIEND = "$ref";
      String VIEW_FRIENDS = "$vwf";
     String ACCEPT_FRIEND = "$acp";

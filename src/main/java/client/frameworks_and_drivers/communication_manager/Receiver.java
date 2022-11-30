@@ -13,10 +13,12 @@ public class Receiver extends Thread
     HashMap<Integer, ArrayList<Slice>> sliceMatrix;
     int count = 0;
     ComManagerUser user;
+    private final boolean debugMode;
 
-    public Receiver(ComManagerUser user)
+    public Receiver(ComManagerUser user, boolean debugMode)
     {
         this.user = user;
+        this.debugMode = debugMode;
         sliceMatrix = new HashMap<Integer, ArrayList<Slice>>();
     }
 
@@ -131,7 +133,11 @@ public class Receiver extends Thread
                     {
                         builder.append(object.sliceData);
                     }
-                    System.out.println("comManager: " + builder);
+                    if (debugMode)
+                    {
+                        System.out.println("Client comManager - Received message: " + builder);
+
+                    }
                     user.onMsg(builder.toString());
                     sliceMatrix.remove(slice.msgId);
                 }
@@ -145,10 +151,13 @@ public class Receiver extends Thread
 
                 if (list.size() == slice.totalSlices)
                 {
-                    System.out.println("comManager: " + slice.sliceData);
+                    if (debugMode)
+                    {
+                        System.out.println("Client comManager - Received message: " + slice.sliceData);
+
+                    }
                     user.onMsg(slice.sliceData);
                 }
-                System.out.println(sliceMatrix);
             }
         }
 

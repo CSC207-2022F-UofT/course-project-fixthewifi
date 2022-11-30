@@ -36,7 +36,7 @@ public class HelloWorld {
         Database database = new Database();
         DataAccess access = new DataAccess(database);
 
-        comManager comManager = new comManager();
+        comManager comManager = new comManager(true);
 
         RequestFriendOutputAdapter requestFriendOutputAdapter = new RequestFriendOutputAdapter(comManager);
         requestFriendInteractor requestFriendInteractor = new requestFriendInteractor(requestFriendOutputAdapter, access);
@@ -58,11 +58,11 @@ public class HelloWorld {
 
     static void newClient()
     {
-        ClientComManager comManager = new ClientComManager();
+        ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
         FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
-        LoginController loginController = new LoginController(comManager, model, "127.0.01");
+        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 

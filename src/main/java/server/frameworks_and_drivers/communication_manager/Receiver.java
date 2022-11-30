@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -15,9 +14,12 @@ public class Receiver extends Thread
     int count = 0;
     ComManagerUser user;
 
-    public Receiver(ComManagerUser user)
+    private final boolean debug;
+
+    public Receiver(ComManagerUser user, boolean debug)
     {
         this.user = user;
+        this.debug = debug;
         sliceMatrix = new HashMap<Integer, ArrayList<Slice>>();
     }
 
@@ -133,7 +135,8 @@ public class Receiver extends Thread
                     {
                         builder.append(object.sliceData);
                     }
-                    System.out.println("comManager: " + builder);
+                    if (debug)
+                        System.out.println("Server comManager - Received message: " + builder);
                     user.onMsg(builder.toString(), slice.ip);
                     sliceMatrix.remove(slice.msgId);
                 }
@@ -147,11 +150,11 @@ public class Receiver extends Thread
 
                 if (list.size() == slice.totalSlices)
                 {
-                    System.out.println("comManager: " + slice.sliceData);
+                    if (debug)
+                        System.out.println("Server comManager - Received message: " + slice.sliceData);
 
                     user.onMsg(slice.sliceData, slice.ip);
                 }
-                System.out.println(sliceMatrix);
             }
         }
 
