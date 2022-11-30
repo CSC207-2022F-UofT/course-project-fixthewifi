@@ -1,6 +1,6 @@
 package test_entities;
-import entities.GroupProfile;
-import entities.ProfilePicture;
+import server.entities.GroupProfile;
+import server.entities.ProfilePicture;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

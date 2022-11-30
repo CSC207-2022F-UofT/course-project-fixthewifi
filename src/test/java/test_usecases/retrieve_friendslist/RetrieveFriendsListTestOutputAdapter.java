@@ -1,7 +1,7 @@
 package test_usecases.retrieve_friendslist;
 
-import usecases.retrieve_friendslist.RetrieveFriendsListOutputBoundary;
-import usecases.retrieve_friendslist.RetrieveFriendsListOutputData;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListOutputBoundary;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListOutputData;
 
 /**
  * This is an implementation of RetrieveFreindsListOutputBoundary for

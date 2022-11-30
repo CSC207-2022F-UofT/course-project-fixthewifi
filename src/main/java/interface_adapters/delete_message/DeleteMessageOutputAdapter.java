@@ -1,8 +1,8 @@
 package interface_adapters.delete_message;
 
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.delete_message.DeleteOutputBoundary;
-import usecases.delete_message.DeleteOutputModel;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.delete_message.DeleteOutputBoundary;
+import server.usecases.delete_message.DeleteOutputModel;
 import java.util.List;
 
 public class DeleteMessageOutputAdapter implements DeleteOutputBoundary{

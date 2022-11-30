@@ -1,8 +1,8 @@
 package interface_adapters.edit_message;
 
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.edit_message.EditOutputBoundary;
-import usecases.edit_message.EditOutputModel;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.edit_message.EditOutputBoundary;
+import server.usecases.edit_message.EditOutputModel;
 
 import java.util.List;
 

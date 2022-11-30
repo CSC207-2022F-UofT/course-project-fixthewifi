@@ -1,7 +1,7 @@
 //package pseudoDSAccess;
 //
-//import entities.CommonUser;
-//import usecases.friendinteractors.viewfriend.view_friend_DSGateway;
+//import server.entities.CommonUser;
+//import server.viewfriend.friendinteractors.usecases.view_friend_DSGateway;
 //
 //import java.util.ArrayList;
 //
