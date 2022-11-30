@@ -11,9 +11,6 @@ public interface ChangeProfileGateWayDB {
     int userPort(int identifier);
     boolean existsByUID(int identifier);
 
-    ChangeProfileDsInputModel getByID(int id);
-//    void save(ChangeProfileDsInputModel dbModel);
-
     void storeSetPic(ChangeProfileDsInputModel dbModel);
     void storeDelPic(ChangeProfileDsInputModel dbModel);
     void storeUpdateName(ChangeProfileDsInputModel dbModel);

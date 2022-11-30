@@ -3,6 +3,8 @@ package server.interface_adapters.change_profile;
 import server.entities.ProfilePicture;
 import server.usecases.profile_changes.ChangeProfileInputBoundary;
 import server.usecases.profile_changes.ChangeProfileInputModel;
+import java.util.Base64;
+
 /**
  * This class is a Controller layer for Changing profile usecase.
  * It is called from Inputsorter class.
@@ -13,31 +15,38 @@ public class ChangeProfileController {
     final ChangeProfileInputBoundary inputModelBoundary;
 
     final String SEPARATOR ="$";
-    String parse(String input){
-
-
-
-
-        return null;
-    }
-    public ChangeProfileController(ChangeProfileInputBoundary accountGateway) {
-        this.inputModelBoundary = accountGateway;
+    private ChangeProfileInputModel parse(String input){
+        String[] separated = input.split("\\$");
+        int profid = Integer.parseInt(separated[0]);
+        String name = separated[1];
+        String desc =separated[2];
+        ProfilePicture pic = stringToProfPic(separated[3]);
+        return new ChangeProfileInputModel(profid,name,desc,pic);
     }
 
-    void setPic(int profId, String name, String description, ProfilePicture pic){
-        ChangeProfileInputModel inputModel= new ChangeProfileInputModel(profId,name,description,pic);
+    private ProfilePicture stringToProfPic(String picst){
+        byte[] imageBytes;
+        imageBytes = Base64.getDecoder().decode(picst);
+        return new ProfilePicture(imageBytes);
+    }
+    public ChangeProfileController(ChangeProfileInputBoundary inputBoundary) {
+        this.inputModelBoundary = inputBoundary;
+    }
+
+    public void setPic(String input){
+        ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.setPic(inputModel);
     }
-    void delPic(int profId, String name, String description, ProfilePicture pic){
-        ChangeProfileInputModel inputModel= new ChangeProfileInputModel(profId,name,description,pic);
+    public void delPic(String input){
+        ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.delPic(inputModel);
     }
-    void updateDescr(int profId, String name, String description, ProfilePicture pic){
-        ChangeProfileInputModel inputModel= new ChangeProfileInputModel(profId,name,description,pic);
+    public void updateDescr(String input){
+        ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.updateDescr(inputModel);
     }
-    void updateName(int profId, String name, String description, ProfilePicture pic){
-        ChangeProfileInputModel inputModel= new ChangeProfileInputModel(profId,name,description,pic);
+    public void updateName(String input){
+        ChangeProfileInputModel inputModel= parse(input);
         inputModelBoundary.updateName(inputModel);
     }
 

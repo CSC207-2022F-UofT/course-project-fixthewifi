@@ -9,7 +9,7 @@ public class ChangeProfileOutputModel {
     private final int userport;
     private final int profileUID;
 
-    private final String changeStatusMessage;
+    private final String changedDataString;
 //    private String name;
 //    private String description;
 //    private ProfilePicture pic;
@@ -25,7 +25,7 @@ public class ChangeProfileOutputModel {
         this.useraddress= useraddress;
         this.userport=userport;
         this.profileUID = profileUID;
-        this.changeStatusMessage=changeStatusMessage;
+        this.changedDataString =changeStatusMessage;
     }
 
     public String getUseraddress() {
@@ -40,8 +40,8 @@ public class ChangeProfileOutputModel {
         return profileUID;
     }
 
-    public String getChangeStatusMessage() {
-        return changeStatusMessage;
+    public String getChangedDataString() {
+        return changedDataString;
     }
     //
 //    public ProfilePicture getPic() {
