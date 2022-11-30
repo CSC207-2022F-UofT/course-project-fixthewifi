@@ -26,6 +26,7 @@ public class HelloWorld {
     public static void main(String[] args)
     {
         newServer();
+        newClient();
         System.out.println("123456432");
 
     }

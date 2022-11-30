@@ -2,12 +2,12 @@ package client.frameworks_and_drivers.view.console_view;
 
 public interface InstructionSet
 {
-     String VIEW_CHAT = "$vc";
+     String VIEW_CHAT = "$cht";
      String HELP = "$help";
      String SEND_CHAT = "";
-     String LOGIN = "$lg";
-     String REGISTER = "$rg";
-     String REQUEST_FRIEND = "$fr";
-     String VIEW_FRIENDS = "$vf";
-    String ACCEPT_FRIEND = "$ac";
+     String LOGIN = "$lgn";
+     String REGISTER = "reg";
+     String REQUEST_FRIEND = "$ref";
+     String VIEW_FRIENDS = "$vwf";
+    String ACCEPT_FRIEND = "$acp";
 }

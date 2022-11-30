@@ -1,4 +1,4 @@
-package interface_adapters.delete_message;
+package server.interface_adapters.delete_message;
 
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.delete_message.DeleteOutputBoundary;

@@ -1,4 +1,4 @@
-package interface_adapters.edit_message;
+package server.interface_adapters.edit_message;
 
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.edit_message.EditOutputBoundary;
