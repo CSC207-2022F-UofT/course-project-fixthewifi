@@ -1,7 +1,7 @@
 //package pseudoDSAccess;
 //
-//import entities.CommonUser;
-//import usecases.friendinteractors.deletefriend.delete_friend_DSGateway;
+//import server.entities.CommonUser;
+//import server.deletefriend.friendinteractors.usecases.delete_friend_DSGateway;
 //
 //import java.util.ArrayList;
 //import java.util.Collections;

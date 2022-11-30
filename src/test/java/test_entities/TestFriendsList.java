@@ -1,7 +1,7 @@
 package test_entities;
 
-import entities.CommonUser;
-import entities.FriendsList;
+import server.entities.CommonUser;
+import server.entities.FriendsList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

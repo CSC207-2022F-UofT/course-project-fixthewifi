@@ -1,13 +1,11 @@
 package test_entities;
-import entities.CommonUser;
-import entities.GroupChat;
-import entities.Message;
-import entities.User;
+import server.entities.CommonUser;
+import server.entities.GroupChat;
+import server.entities.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TestGroupChat{
     @Test
