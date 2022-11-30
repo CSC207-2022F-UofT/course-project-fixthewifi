@@ -8,7 +8,6 @@ import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.interface_adapters.change_profile.ChangeProfileController;
 import server.interface_adapters.change_profile.ChangeProfileOutputAdapter;
 import org.junit.jupiter.api.Test;
-import usecases.profile_changes.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
