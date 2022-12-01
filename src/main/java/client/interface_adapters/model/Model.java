@@ -43,7 +43,9 @@ public class Model
         pageState = state;
     }
 
-    public void setSelfStatus(boolean b) {
+    public void setSelfStatus(boolean b)
+    {
+        self.profile.setOnline(b);
     }
 }
 

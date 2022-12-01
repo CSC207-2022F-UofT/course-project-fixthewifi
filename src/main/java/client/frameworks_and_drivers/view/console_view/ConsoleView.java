@@ -34,16 +34,23 @@ public class ConsoleView
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             while (true)
             {
-                // Reading data using readLine
-                String input = reader.readLine();
-                String[] content = input.split(" ", 2);
+                try
+                {
+                    // Reading data using readLine
+                    String input = reader.readLine();
+                    String[] content = input.split(" ", 2);
 
-                if (Objects.equals(model.pageState, "LOGIN_PAGE"))
+                    if (Objects.equals(model.pageState, "LOGIN_PAGE"))
+                    {
+                        sortLogin(content[0], content[1]);
+                    } else if (Objects.equals(model.pageState, "MAIN_PAGE"))
+                    {
+                        sort(content[0], content[1]);
+                    }
+                }
+                catch(ArrayIndexOutOfBoundsException exception)
                 {
-                    sortLogin(content[0], content[1]);
-                } else
-                {
-                    sort(content[0], content[1]);
+                    System.out.println("Are you sure about that, son?");
                 }
             }
         }

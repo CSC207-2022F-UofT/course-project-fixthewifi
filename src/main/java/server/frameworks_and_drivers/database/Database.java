@@ -8,43 +8,99 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Database
-{
-    private static int userUid = 0;
-    private static int chatUid = 0;
+public class Database {
+    private final CSVReader userReader;
+    private final CSVWriter userWriter;
+    private final CSVWriter chatWriter;
+    private final CSVReader chatReader;
+    private static int newUserUid = 0;
+    private static int newChatUid = 0;
     private static HashMap<Integer, Integer> msgUid;
+
+    private final int CHAT_LIST_NON_MSG_CELLS_LENGTH = 6;
+
     public Database()
     {
+        try
+        {
+            // Initialize all readers and writers
+            this.userReader = new CSVReader(new FileReader("User.csv"));
+            this.userWriter = new CSVWriter(new FileWriter("User.csv", true));
+
+            this.chatReader = new CSVReader(new FileReader("Chat.csv"));
+            this.chatWriter = new CSVWriter(new FileWriter("Chat.csv", true));
+
+            // Save the correct value to uid variables
+            List<String[]> userData = userReader.readAll();
+            newUserUid = userData.size();
+
+            List<String[]> chatData = chatReader.readAll();
+            for (String[] row : chatData)
+            {
+                msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH);
+                newChatUid = newChatUid + 1;
+            }
+        } catch (IOException | CsvException e)
+        {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    public void newUser(int uid, String name, String description, String ip, String password)
+    public void newUser(int userUid, String name, String description, String ip, String password)
     {
-        try {
-            CSVWriter userWriter = new CSVWriter(new FileWriter("User.csv", true));
-//            String str = friends.stream().map(Object::toString).collect(Collectors.joining("-"));
-            String[] content = {Integer.toString(uid), name, description,"","","","", ip, password};
+        try
+        {
+            String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password};
             userWriter.writeNext(content);
             userWriter.flush();
 
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void newChat(int chatUid, String name, String description, int adminUid, int[] memberUid)
+    {
+        try
+        {
+            String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
+            String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
+            userWriter.writeNext(content);
+            userWriter.flush();
+
+        }
+        catch (IOException e)
+        {
             throw new RuntimeException(e);
         }
     }
 
     public void updateUser(int Uid, int parameter, String newContent)
     {
+        updateHelper(Uid, parameter, newContent, userReader, userWriter);
+    }
+
+    public void updateChat(int Uid, int parameter, String newContent)
+    {
+        updateHelper(Uid, parameter, newContent, chatReader, chatWriter);
+    }
+
+
+    private void updateHelper(int Uid, int parameter, String newContent, CSVReader userReader, CSVWriter userWriter) {
         List<String[]> csvBody;
         try
         {
-            CSVReader userReader = new CSVReader(new FileReader("User.csv"));
             csvBody = userReader.readAll();
             csvBody.get(Uid)[parameter] = newContent;
 
-            CSVWriter userWriter = new CSVWriter(new FileWriter("User.csv", false));
             userWriter.writeAll(csvBody);
             userWriter.flush();
         } catch (IOException | CsvException e)
@@ -53,51 +109,43 @@ public class Database
         }
     }
 
-    public String readUser(int Uid, int parameter)
-    {
+    public String readUser(int Uid, int whichCell) {
         List<String[]> csvBody;
-        try
-        {
-            CSVReader userReader = new CSVReader(new FileReader("User.csv"));
+        try {
             csvBody = userReader.readAll();
-            return csvBody.get(Uid)[parameter];
-        } catch (IOException | CsvException e)
-        {
+            return csvBody.get(Uid)[whichCell];
+        } catch (IOException | CsvException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static int returnNewUserUid()
-    {
-        int oldValue = userUid;
-        userUid += 1;
+    public String readChat(int Uid, int whichCell) {
+        List<String[]> csvBody;
+        try {
+            csvBody = chatReader.readAll();
+            return csvBody.get(Uid)[whichCell];
+        } catch (IOException | CsvException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int returnNewUserUid() {
+        int oldValue = newUserUid;
+        newUserUid += 1;
         return oldValue;
     }
 
-    public static int returnNewChatUid()
-    {
-        int oldValue = chatUid;
+    public static int returnNewChatUid() {
+        int oldValue = newChatUid;
         msgUid.put(oldValue, 0);
-        chatUid += 1;
+        newChatUid += 1;
         return oldValue;
     }
 
-    public static int returnNewMsgUid(int chatUid)
-    {
+    public static int returnNewMsgUid(int chatUid) {
         int oldValue = msgUid.get(chatUid);
-        msgUid.put(chatUid, oldValue+1);
+        msgUid.put(chatUid, oldValue + 1);
         return oldValue;
 
     }
-
-//    public static void main(String[] args)
-//    {
-//        Database base = new Database();
-//        ArrayList<Integer> arl = new ArrayList<Integer>();
-//        arl.add(1);
-//        arl.add(2);
-//        arl.add(3);
-//        base.newUser(Database.returnNewUserUid(), "kevin", "a guy", arl);
-//        base.updateUser(0, 1, "dick");
-//    }
 }

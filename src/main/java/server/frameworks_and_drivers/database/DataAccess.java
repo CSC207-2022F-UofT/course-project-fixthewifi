@@ -76,7 +76,7 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
 
     @Override
     public int getNewUid(String username, String password) {
-        return 0;
+        return Database.returnNewUserUid();
     }
 
     @Override

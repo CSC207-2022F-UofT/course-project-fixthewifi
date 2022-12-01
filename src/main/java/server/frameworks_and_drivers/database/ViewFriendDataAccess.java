@@ -1,4 +1,4 @@
-package database;
+package server.frameworks_and_drivers.database;
 
 import usecases.friendinteractors.viewfriend.view_friend_DSGateway;
 
