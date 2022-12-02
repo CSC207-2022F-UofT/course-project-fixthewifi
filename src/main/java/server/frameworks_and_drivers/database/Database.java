@@ -38,11 +38,12 @@ public class Database {
     {
         try
         {
-            // Initialize all readers and writers
+            // Initialize all readers
             this.userReader = new CSVReader(new FileReader("User.csv"));
-            this.userWriter = new CSVWriter(new FileWriter("User.csv", true));
-
             this.chatReader = new CSVReader(new FileReader("Chat.csv"));
+
+            // Initialize all writers
+            this.userWriter = new CSVWriter(new FileWriter("User.csv", true));
             this.chatWriter = new CSVWriter(new FileWriter("Chat.csv", true));
 
             // Save the correct value to uid variables
@@ -57,53 +58,40 @@ public class Database {
                 msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH);
                 newChatUid = newChatUid + 1;
             }
+
         }
         catch (IOException | CsvException e)
         {
             throw new RuntimeException(e);
         }
-
     }
 
     public void newUser(int userUid, String name, String description, String ip, String password)
     {
-        try
-        {
             String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password};
-            userWriter.writeNext(content);
-            userWriter.flush();
-
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void newChat(int chatUid, String name, String description, int adminUid, int[] memberUid)
-    {
-        try
-        {
-            String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
-            String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
-            chatWriter.writeNext(content);
-            chatWriter.flush();
-
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
+        userUpdateHelper(userUid, content);
     }
 
     public void updateUser(int uid, String[] newContent)
     {
         userDatabase.remove(uid);
-        userDatabase.add(uid, newContent);
+        userUpdateHelper(uid, newContent);
+    }
+
+    private void userUpdateHelper(int userUid, String[] content)
+    {
+        userDatabase.add(userUid, content);
         userUpdateCount += 1;
 
         if (userUpdateCount == MAX_UPDATE)
         {
+            // clear the file
+            try {
+                new FileWriter("user.csv", false).close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
             userWriter.writeAll(userDatabase);
             try
             {
@@ -117,14 +105,32 @@ public class Database {
         }
     }
 
+    public void newChat(int chatUid, String name, String description, int adminUid, int[] memberUid)
+    {
+        String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
+        String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
+        chatUpdateHelper(chatUid, content);
+    }
+
     public void updateChat(int uid, String[] newContent)
     {
         chatDatabase.remove(uid);
-        chatDatabase.add(uid, newContent);
+        chatUpdateHelper(uid, newContent);
+    }
+
+    private void chatUpdateHelper(int chatUid, String[] content) {
+        chatDatabase.add(chatUid, content);
         chatUpdateCount += 1;
 
         if (chatUpdateCount == MAX_UPDATE)
         {
+            // clear the file
+            try {
+                new FileWriter("chat.csv", false).close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
             chatWriter.writeAll(chatDatabase);
             try
             {
@@ -137,6 +143,9 @@ public class Database {
             chatUpdateCount = 0;
         }
     }
+
+
+
 
 
 

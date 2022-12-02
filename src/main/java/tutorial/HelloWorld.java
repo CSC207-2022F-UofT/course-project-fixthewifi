@@ -9,7 +9,8 @@ import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.comManager;
-import server.frameworks_and_drivers.database.DataAccess;
+import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
+import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
@@ -25,6 +26,7 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
+        newServer();
         newClient();
         System.out.println("123456432");
 
@@ -33,20 +35,22 @@ public class HelloWorld {
     static void newServer()
     {
         Database database = new Database();
-        DataAccess access = new DataAccess(database);
 
         comManager comManager = new comManager(true);
 
+        FriendDataAccess friendAccess = new FriendDataAccess(database);
         RequestFriendOutputAdapter requestFriendOutputAdapter = new RequestFriendOutputAdapter(comManager);
-        requestFriendInteractor requestFriendInteractor = new requestFriendInteractor(requestFriendOutputAdapter, access);
+        requestFriendInteractor requestFriendInteractor = new requestFriendInteractor(requestFriendOutputAdapter, friendAccess);
         RequestFriendController requestFriendController = new RequestFriendController(requestFriendInteractor);
 
         AcceptFriendOutputAdapter acceptFriendOutputAdapter = new AcceptFriendOutputAdapter(comManager);
-        acceptFriendInteractor acceptFriendInteractor = new acceptFriendInteractor(access, acceptFriendOutputAdapter);
+        acceptFriendInteractor acceptFriendInteractor = new acceptFriendInteractor(friendAccess, acceptFriendOutputAdapter);
         AcceptFriendController acceptFriendController = new AcceptFriendController(acceptFriendInteractor);
 
+
+        LoginDataAccess loginAccess = new LoginDataAccess(database);
         RegisterOutputAdapter registerOutputAdapter = new RegisterOutputAdapter(comManager);
-        RegisterInteractor registerInteractor = new RegisterInteractor(access, registerOutputAdapter);
+        RegisterInteractor registerInteractor = new RegisterInteractor(loginAccess, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
 
@@ -60,8 +64,8 @@ public class HelloWorld {
         ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
-        FriendController friendController = new FriendController(comManager, model, "192.168.2.11.");
-        LoginController loginController = new LoginController(comManager, model, "192.168.2.11.");
+        FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
+        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 
