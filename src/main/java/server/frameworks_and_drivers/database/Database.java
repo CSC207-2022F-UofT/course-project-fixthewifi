@@ -87,7 +87,7 @@ public class Database {
         {
             // clear the file
             try {
-                new FileWriter("user.csv", false).close();
+                new FileWriter("User.csv", false).close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -126,7 +126,7 @@ public class Database {
         {
             // clear the file
             try {
-                new FileWriter("chat.csv", false).close();
+                new FileWriter("Chat.csv", false).close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
