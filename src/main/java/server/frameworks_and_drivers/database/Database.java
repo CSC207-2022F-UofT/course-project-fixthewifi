@@ -24,6 +24,16 @@ public class Database {
 
     private final int CHAT_LIST_NON_MSG_CELLS_LENGTH = 6;
 
+    private final int MAX_UPDATE = 1;
+
+    private int chatUpdateCount = 0;
+
+    private int userUpdateCount = 0;
+
+
+    private final List<String[]> chatDatabase;
+    private final List<String[]> userDatabase;
+
     public Database()
     {
         try
@@ -36,16 +46,19 @@ public class Database {
             this.chatWriter = new CSVWriter(new FileWriter("Chat.csv", true));
 
             // Save the correct value to uid variables
-            List<String[]> userData = userReader.readAll();
-            newUserUid = userData.size();
+            List<String[]> userDatabase = userReader.readAll();
+            this.userDatabase = userDatabase;
+            newUserUid = userDatabase.size();
 
-            List<String[]> chatData = chatReader.readAll();
-            for (String[] row : chatData)
+            List<String[]> chatDatabase = chatReader.readAll();
+            this.chatDatabase = chatDatabase;
+            for (String[] row : chatDatabase)
             {
                 msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH);
                 newChatUid = newChatUid + 1;
             }
-        } catch (IOException | CsvException e)
+        }
+        catch (IOException | CsvException e)
         {
             throw new RuntimeException(e);
         }
@@ -73,8 +86,8 @@ public class Database {
         {
             String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
             String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
-            userWriter.writeNext(content);
-            userWriter.flush();
+            chatWriter.writeNext(content);
+            chatWriter.flush();
 
         }
         catch (IOException e)
@@ -83,50 +96,58 @@ public class Database {
         }
     }
 
-    public void updateUser(int Uid, int parameter, String newContent)
+    public void updateUser(int uid, String[] newContent)
     {
-        updateHelper(Uid, parameter, newContent, userReader, userWriter);
+        userDatabase.remove(uid);
+        userDatabase.add(uid, newContent);
+        userUpdateCount += 1;
+
+        if (userUpdateCount == MAX_UPDATE)
+        {
+            userWriter.writeAll(userDatabase);
+            try
+            {
+                userWriter.flush();
+            }
+            catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+            userUpdateCount = 0;
+        }
     }
 
-    public void updateChat(int Uid, int parameter, String newContent)
+    public void updateChat(int uid, String[] newContent)
     {
-        updateHelper(Uid, parameter, newContent, chatReader, chatWriter);
-    }
+        chatDatabase.remove(uid);
+        chatDatabase.add(uid, newContent);
+        chatUpdateCount += 1;
 
-
-    private void updateHelper(int Uid, int parameter, String newContent, CSVReader userReader, CSVWriter userWriter) {
-        List<String[]> csvBody;
-        try
+        if (chatUpdateCount == MAX_UPDATE)
         {
-            csvBody = userReader.readAll();
-            csvBody.get(Uid)[parameter] = newContent;
-
-            userWriter.writeAll(csvBody);
-            userWriter.flush();
-        } catch (IOException | CsvException e)
-        {
-            throw new RuntimeException(e);
+            chatWriter.writeAll(chatDatabase);
+            try
+            {
+                chatWriter.flush();
+            }
+            catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+            chatUpdateCount = 0;
         }
     }
 
-    public String readUser(int Uid, int whichCell) {
-        List<String[]> csvBody;
-        try {
-            csvBody = userReader.readAll();
-            return csvBody.get(Uid)[whichCell];
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
+
+
+    public String[] readUser(int uid)
+    {
+        return userDatabase.get(uid);
     }
 
-    public String readChat(int Uid, int whichCell) {
-        List<String[]> csvBody;
-        try {
-            csvBody = chatReader.readAll();
-            return csvBody.get(Uid)[whichCell];
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
+    public String[] readChat(int uid)
+    {
+        return chatDatabase.get(uid);
     }
 
     public static int returnNewUserUid() {

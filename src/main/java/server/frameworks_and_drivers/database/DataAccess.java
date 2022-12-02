@@ -27,7 +27,7 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
     @Override
     public String getuserName(int userid)
     {
-        return database.readUser(userid, 1);
+        return database.readUser(userid)[1];
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
     @Override
     public String getUserName(int uid)
     {
-        return database.readUser(uid, 1);
+        return database.readUser(uid)[1];
     }
 
     @Override
@@ -65,7 +65,7 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
 
     @Override
     public String getAddress(int userid) {
-        return database.readUser(userid, 7);
+        return database.readUser(userid)[7];
     }
 
     @Override

@@ -25,7 +25,6 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
-        newServer();
         newClient();
         System.out.println("123456432");
 
@@ -61,8 +60,8 @@ public class HelloWorld {
         ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
-        FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
-        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
+        FriendController friendController = new FriendController(comManager, model, "192.168.2.11.");
+        LoginController loginController = new LoginController(comManager, model, "192.168.2.11.");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 
