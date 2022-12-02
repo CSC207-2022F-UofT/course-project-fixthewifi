@@ -4,6 +4,7 @@ import client.interface_adapters.controllers.FriendControllerInputBoundary;
 import client.interface_adapters.controllers.LoginControllerInputBoundary;
 import client.interface_adapters.controllers.MsgControllerInputBoundary;
 import client.interface_adapters.model.Model;
+import client.interface_adapters.model.userNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,10 +41,10 @@ public class ConsoleView
                     String input = reader.readLine();
                     String[] content = input.split(" ", 2);
 
-                    if (Objects.equals(model.pageState, "LOGIN_PAGE"))
+                    if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                     {
                         sortLogin(content[0], content[1]);
-                    } else if (Objects.equals(model.pageState, "MAIN_PAGE"))
+                    } else if (Objects.equals(model.getPageState(), "MAIN_PAGE"))
                     {
                         sort(content[0], content[1]);
                     }
@@ -60,9 +61,8 @@ public class ConsoleView
         }
     }
 
-    public void sort(String operation, String operand)
-    {
-        if (model.pageState.startsWith("CHAT"))
+    public void sort(String operation, String operand)  {
+        if (model.getPageState().startsWith("CHAT"))
         {
 
         }
@@ -83,7 +83,14 @@ public class ConsoleView
                     break;
 
                 case(InstructionSet.ACCEPT_FRIEND):
-                    friendController.accept(model.friendRequester);
+                    try
+                    {
+                        friendController.accept(model.getRequester(Integer.parseInt(operand)));
+                    }
+                    catch (userNotFoundException e)
+                    {
+                        System.out.println("This use has not sent you a friend request.");
+                    }
                     break;
 
             }
@@ -120,7 +127,9 @@ public class ConsoleView
         model.setPageState(Integer.toString(chatUid));
     }
 
-    public void displayNewRequest(int parseInt, String s) {
+    public void displayNewRequest(int parseInt, String s)
+    {
+        System.out.println("New friends request from " + s + " uid: " +  parseInt);
     }
 
     public void displayConfirmation(int parseInt, String s) {
