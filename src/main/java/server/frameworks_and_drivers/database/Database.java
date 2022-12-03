@@ -34,17 +34,21 @@ public class Database {
     private final List<String[]> chatDatabase;
     private final List<String[]> userDatabase;
 
-    public Database()
+    private final String userURL;
+    private final String chatURL;
+    public Database(String userURL, String chatURL)
     {
         try
         {
+            this.userURL = userURL;
+            this.chatURL = chatURL;
             // Initialize all readers
-            this.userReader = new CSVReader(new FileReader("User.csv"));
-            this.chatReader = new CSVReader(new FileReader("Chat.csv"));
+            this.userReader = new CSVReader(new FileReader(userURL));
+            this.chatReader = new CSVReader(new FileReader(chatURL));
 
             // Initialize all writers
-            this.userWriter = new CSVWriter(new FileWriter("User.csv", true));
-            this.chatWriter = new CSVWriter(new FileWriter("Chat.csv", true));
+            this.userWriter = new CSVWriter(new FileWriter(userURL, true));
+            this.chatWriter = new CSVWriter(new FileWriter(chatURL, true));
 
             // Save the correct value to uid variables
             List<String[]> userDatabase = userReader.readAll();
@@ -87,7 +91,7 @@ public class Database {
         {
             // clear the file
             try {
-                new FileWriter("User.csv", false).close();
+                new FileWriter(userURL, false).close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -126,7 +130,7 @@ public class Database {
         {
             // clear the file
             try {
-                new FileWriter("Chat.csv", false).close();
+                new FileWriter(chatURL, false).close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

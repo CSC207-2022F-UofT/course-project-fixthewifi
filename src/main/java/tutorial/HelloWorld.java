@@ -34,7 +34,7 @@ public class HelloWorld {
 
     static void newServer()
     {
-        Database database = new Database();
+        Database database = new Database("User.csv", "Chat.csv");
 
         comManager comManager = new comManager(true);
 
