@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Receiver extends Thread
 {
 
-    HashMap<Integer, ArrayList<Slice>> sliceMatrix;
+    final HashMap<Integer, ArrayList<Slice>> sliceMatrix;
     int count = 0;
     ComManagerUser user;
 
@@ -137,7 +137,7 @@ public class Receiver extends Thread
                     }
                     if (debug)
                         System.out.println("Server comManager - Received message: " + builder);
-                    user.onMsg(builder.toString(), slice.ip);
+                    user.onMsg(builder.toString(), slice.ip, slice.port);
                     sliceMatrix.remove(slice.msgId);
                 }
             }
@@ -153,7 +153,7 @@ public class Receiver extends Thread
                     if (debug)
                         System.out.println("Server comManager - Received message: " + slice.sliceData);
 
-                    user.onMsg(slice.sliceData, slice.ip);
+                    user.onMsg(slice.sliceData, slice.ip, slice.port);
                 }
             }
         }

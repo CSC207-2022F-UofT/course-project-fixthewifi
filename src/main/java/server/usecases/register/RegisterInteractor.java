@@ -19,10 +19,10 @@ public class RegisterInteractor implements RegisterInputBoundary {
      * @param password is the password of the user
      */
     @Override
-    public void register(String username, String password, String ipAddress)
+    public void register(String username, String password, String ipAddress, int port)
     {
         int uid = db.getNewUid(username, password);
-        db.registerUser(uid, username, password, ipAddress);
+        db.registerUser(uid, username, password, ipAddress, port);
         outbound.successRedirect(uid, ipAddress, 4444);
     }
 }

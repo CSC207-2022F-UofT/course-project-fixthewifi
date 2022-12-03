@@ -70,9 +70,9 @@ public class Database {
         }
     }
 
-    public void newUser(int userUid, String name, String description, String ip, String password)
+    public void newUser(int userUid, String name, String description, String ip, String password, int port)
     {
-            String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password, "", "lol"};
+            String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password, "", String.valueOf(port)};
         userUpdateHelper(userUid, content);
     }
 
