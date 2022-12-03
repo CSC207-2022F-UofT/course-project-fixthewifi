@@ -11,14 +11,19 @@ public class Model
 {
     private final Self self;
     private String pageState;
-    private final HashMap<Integer, String> friendRequester;
+    private final HashMap<Integer, String> requesterList;
 
     public Model()
     {
         this.self = UserFactory.newSelf();
         pageState = "LOGIN_PAGE";
-        friendRequester = new HashMap<Integer, String>();
+        requesterList = new HashMap<Integer, String>();
 
+    }
+
+    public void addRequester(int uid, String name)
+    {
+        requesterList.put(uid, name);
     }
 
     public String getPageState()
@@ -61,7 +66,7 @@ public class Model
     }
 
     public int getRequester(int uid) throws userNotFoundException {
-        if (friendRequester.containsKey(uid))
+        if (requesterList.containsKey(uid))
         {
             return uid;
         }

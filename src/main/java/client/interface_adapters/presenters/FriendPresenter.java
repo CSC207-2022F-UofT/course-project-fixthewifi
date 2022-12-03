@@ -24,7 +24,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
 
         if (Integer.parseInt(content[0]) == 1)
         {
-            System.out.println("Request successfull");
+            System.out.println("Requested successfully.");
         }
         else if (Integer.parseInt(content[0]) == 0)
         {
@@ -32,6 +32,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
         else
         {
+            model.addRequester(Integer.parseInt(content[1]), content[2]);
             view.displayNewRequest(Integer.parseInt(content[1]), content[2]);
         }
     }
