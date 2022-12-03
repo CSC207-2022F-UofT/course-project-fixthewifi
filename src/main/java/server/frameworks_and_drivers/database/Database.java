@@ -85,27 +85,22 @@ public class Database {
     private void userUpdateHelper(int userUid, String[] content)
     {
         userDatabase.add(userUid, content);
-        userUpdateCount += 1;
 
+        userUpdateCount += 1;
         if (userUpdateCount == MAX_UPDATE)
         {
             // clear the file
-            try {
-                new FileWriter(userURL, false).close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            userWriter.writeAll(userDatabase);
             try
             {
+                new FileWriter(userURL, false).close();
+                userWriter.writeAll(userDatabase);
                 userWriter.flush();
+                userUpdateCount = 0;
             }
             catch (IOException e)
             {
                 throw new RuntimeException(e);
             }
-            userUpdateCount = 0;
         }
     }
 
@@ -122,29 +117,24 @@ public class Database {
         chatUpdateHelper(uid, newContent);
     }
 
-    private void chatUpdateHelper(int chatUid, String[] content) {
+    private void chatUpdateHelper(int chatUid, String[] content)
+    {
         chatDatabase.add(chatUid, content);
-        chatUpdateCount += 1;
 
+        chatUpdateCount += 1;
         if (chatUpdateCount == MAX_UPDATE)
         {
             // clear the file
             try {
                 new FileWriter(chatURL, false).close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            chatWriter.writeAll(chatDatabase);
-            try
-            {
+                chatWriter.writeAll(chatDatabase);
                 chatWriter.flush();
+                chatUpdateCount = 0;
             }
             catch (IOException e)
             {
                 throw new RuntimeException(e);
             }
-            chatUpdateCount = 0;
         }
     }
 

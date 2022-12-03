@@ -25,34 +25,29 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         // Take out the row of information that belongs to friendid
         String[] friend = database.readUser(friendid);
 
-        // Take out friends
-        List<String> friendList = Arrays.asList(friend[6].split("-"));
+        // Take out friends, add new friend
+        List<String> friendList = new LinkedList<>(Arrays.asList(friend[6].split("-")));
         friendList.add(String.valueOf(requesterid));
 
-        // Take out requesters
-        List<String> requesterList = Arrays.asList(friend[8].split("-"));
+        // Take out requesters and remove the person that just became friend
+        List<String> requesterList = new LinkedList<>(Arrays.asList(friend[9].split("-")));
         requesterList.remove(String.valueOf(requesterid));
 
-        String[] newFriend = {friend[0], friend[1],
-                friend[2], friend[3],
-                friend[4], friend[5],
-                String.join("-", friendList.toArray(new String[0])),
-                friend[7],
-                String.join("-", requesterList.toArray(new String[0]))};
-        database.updateUser(friendid, newFriend);
+        //store back to database
+        friend[6] = String.join("-", friendList.toArray(new String[0]));
+        friend[9] = String.join("-", requesterList.toArray(new String[0]));
+        database.updateUser(friendid, friend);
 
-
+        // Take out the row of information that belongs to requesterid
         String[] requester = database.readUser(requesterid);
-        List<String> friendList1 = Arrays.asList(requester[6].split("-"));
+
+        // Take out friends, add new friend
+        List<String> friendList1 = new LinkedList<>(Arrays.asList(friend[6].split("-")));
         friendList1.add(String.valueOf(requesterid));
 
-        String[] newRequester = {requester[0], requester[1],
-                requester[2], requester[3],
-                requester[4], requester[5],
-                String.join("-", friendList1.toArray(new String[0])),
-                requester[7],
-                requester[8]};
-        database.updateUser(requesterid, newRequester);
+        //store back to database
+        requester[6] = String.join("-", friendList1.toArray(new String[0]));
+        database.updateUser(requesterid, requester);
     }
 
 
@@ -118,19 +113,13 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         // Take out the row of information that belongs to friendid
         String[] friend = database.readUser(friendid);
 
-        // Take out requesters
+        // Take out requesters, add the new requester
         List<String> requesterList = new LinkedList<>(Arrays.asList(friend[9].split("-")));
+        requesterList.add(String.valueOf(requesterid));
 
-        String toadd = String.valueOf(requesterid);
-        requesterList.add(toadd);
-        String[] newFriend = {friend[0], friend[1],
-                friend[2], friend[3],
-                friend[4], friend[5],
-                friend[6], friend[7], friend[8],
-                String.join("-", requesterList.toArray(new String[0])),
-                friend[10]};
-
-        database.updateUser(friendid, newFriend);
+        // Store back to database.
+        friend[9] = String.join("-", requesterList.toArray(new String[0]));
+        database.updateUser(friendid, friend);
     }
 
     @Override
