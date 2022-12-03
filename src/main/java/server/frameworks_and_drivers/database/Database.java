@@ -72,7 +72,7 @@ public class Database {
 
     public void newUser(int userUid, String name, String description, String ip, String password)
     {
-            String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password};
+            String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password, "", "lol"};
         userUpdateHelper(userUid, content);
     }
 

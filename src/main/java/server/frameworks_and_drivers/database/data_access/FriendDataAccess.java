@@ -6,6 +6,7 @@ import server.usecases.friendinteractors.deletefriend.delete_friend_DSGateway;
 import server.usecases.friendinteractors.requestfriend.requestFriendDSGateway;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSGateway, delete_friend_DSGateway
@@ -118,14 +119,16 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         String[] friend = database.readUser(friendid);
 
         // Take out requesters
-        List<String> requesterList = Arrays.asList(friend[8].split("-"));
-        requesterList.add(String.valueOf(requesterid));
+        List<String> requesterList = new LinkedList<>(Arrays.asList(friend[9].split("-")));
 
+        String toadd = String.valueOf(requesterid);
+        requesterList.add(toadd);
         String[] newFriend = {friend[0], friend[1],
                 friend[2], friend[3],
                 friend[4], friend[5],
-                friend[6], friend[7],
-                String.join("-", requesterList.toArray(new String[0]))};
+                friend[6], friend[7], friend[8],
+                String.join("-", requesterList.toArray(new String[0])),
+                friend[10]};
 
         database.updateUser(friendid, newFriend);
     }

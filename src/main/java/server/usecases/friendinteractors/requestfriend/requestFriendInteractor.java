@@ -49,6 +49,6 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
         String requesterAddress = dataBase.getAddress(requesterid);
         int requesterPeerPort = dataBase.getPeerPort(requesterid);
 
-        output.fail(requesterid, requesterAddress, requesterPeerPort);
+//        output.fail(requesterid, requesterAddress, requesterPeerPort);
     }
 }

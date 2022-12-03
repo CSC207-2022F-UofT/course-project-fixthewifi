@@ -20,13 +20,13 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     public void receiveRequest(String data)
     {
         model.setPageState("FRIEND_REQUEST");
-        String[] content = data.split(String.valueOf(Constants.SPR));
+        String[] content = data.split(" ");
 
-        if (Integer.parseInt(content[0]) == 0)
+        if (Integer.parseInt(content[0]) == 1)
         {
             System.out.println("Request successfull");
         }
-        else if (Integer.parseInt(content[0]) == 1)
+        else if (Integer.parseInt(content[0]) == 0)
         {
             System.out.println("Request failed.");
         }
