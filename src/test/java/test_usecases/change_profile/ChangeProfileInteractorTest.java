@@ -1,15 +1,13 @@
 package test_usecases.change_profile;
 
-import entities.CommonUserFactory;
-import entities.ProfilePicture;
-import entities.UserFactory;
-import frameworks_and_drivers.ChangeProfileDB;
-import frameworks_and_drivers.communication_manager.ComManagerUser;
-import frameworks_and_drivers.communication_manager.IfComManager;
-import interface_adapters.change_profile.ChangeProfileController;
-import interface_adapters.change_profile.ChangeProfileOutputAdapter;
+import server.entities.CommonUserFactory;
+import server.entities.ProfilePicture;
+import server.entities.UserFactory;
+import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.interface_adapters.change_profile.ChangeProfileController;
+import server.interface_adapters.change_profile.ChangeProfileOutputAdapter;
 import org.junit.jupiter.api.Test;
-import usecases.profile_changes.*;
 
 import java.io.IOException;
 import java.nio.file.Files;

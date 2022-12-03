@@ -1,12 +1,10 @@
 package test_usecases.create_gc;
 
-import entities.User;
-import entities.CommonUser;
+import server.entities.CommonUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import usecases.create_gc.CreateGCInputData;
-import usecases.create_gc.CreateGCInteractor;
-import usecases.create_gc.CreateGCOutputData;
+import server.usecases.create_gc.CreateGCInputData;
+import server.usecases.create_gc.CreateGCInteractor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

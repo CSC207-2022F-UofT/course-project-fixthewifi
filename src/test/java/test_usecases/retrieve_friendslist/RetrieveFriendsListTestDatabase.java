@@ -1,9 +1,8 @@
 package test_usecases.retrieve_friendslist;
 
-import entities.CommonUser;
-import entities.FriendsList;
-import entities.User;
-import usecases.retrieve_friendslist.RetrieveFriendsListDBGateway;
+import server.entities.CommonUser;
+import server.entities.User;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListDBGateway;
 
 import java.util.ArrayList;
 

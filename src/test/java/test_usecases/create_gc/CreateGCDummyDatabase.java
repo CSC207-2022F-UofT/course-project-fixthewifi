@@ -1,9 +1,8 @@
 package test_usecases.create_gc;
 
-import entities.GroupChat;
-import entities.GroupProfile;
-import entities.User;
-import usecases.create_gc.CreateGCDBGateway;
+import server.entities.GroupChat;
+import server.entities.User;
+import server.usecases.create_gc.CreateGCDBGateway;
 
 import java.util.HashMap;
 
