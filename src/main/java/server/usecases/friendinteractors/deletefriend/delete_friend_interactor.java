@@ -1,4 +1,4 @@
-package server.usecases.friendinteractors.deletefriend;
+package usecases.friendinteractors.deletefriend;
 
 
 public class delete_friend_interactor implements delete_friend_input_boundary {
@@ -19,8 +19,8 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
     @Override
     public void DeleteFriend(delete_friend_input_model model)
     {
-        boolean bool1 = dataBase.findUserByUID(model.getFriendid());
-        boolean bool2 = dataBase.findUserByName(model.getFriendName());
+        boolean bool1 = dataBase.ifexistsUID(model.getFriendid());
+        boolean bool2 = dataBase.ifexistsUserName(model.getFriendName());
         int requesterPeerPort = dataBase.getPeerPort(model.getRequesterid());
         String requesterAddress = dataBase.getAddress(model.getRequesterid());
         int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
