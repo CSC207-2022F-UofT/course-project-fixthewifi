@@ -22,7 +22,18 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         model.setPageState("FRIEND_REQUEST");
         String[] content = data.split(String.valueOf(Constants.SPR));
 
-        view.displayNewRequest(Integer.parseInt(content[0]), content[1]);
+        if (Integer.parseInt(content[0]) == 0)
+        {
+            System.out.println("Request successfull");
+        }
+        else if (Integer.parseInt(content[0]) == 1)
+        {
+            System.out.println("Request failed.");
+        }
+        else
+        {
+            view.displayNewRequest(Integer.parseInt(content[1]), content[2]);
+        }
     }
 
     @Override

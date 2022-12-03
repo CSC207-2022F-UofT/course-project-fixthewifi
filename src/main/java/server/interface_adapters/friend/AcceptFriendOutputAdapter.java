@@ -23,7 +23,7 @@ public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
     @Override
     public void refuse(int requestor, int friendid, String friendName, String address, int peerPort)
     {
-        String content = Constants.ACCEPT_FRIEND + "#" + friendid + " " + friendName + " True";
+        String content = Constants.ACCEPT_FRIEND + "#" + friendid + " " + friendName + " False";
         comManager.send(address, peerPort, content);
     }
 }

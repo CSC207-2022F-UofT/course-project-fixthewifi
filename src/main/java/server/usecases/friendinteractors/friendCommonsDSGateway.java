@@ -1,8 +1,8 @@
 package server.usecases.friendinteractors;
 
 public interface friendCommonsDSGateway {
-    int getUserNamebyUID(String userName);
-    String getUserName(int uid);
+    int getUIDbyUserName(String userName);
+    String getUserNamebyUID(int uid);
     String getAddress(int uid);
     int getPeerPort(int uid);
     boolean ifexistsUserName(String userName);

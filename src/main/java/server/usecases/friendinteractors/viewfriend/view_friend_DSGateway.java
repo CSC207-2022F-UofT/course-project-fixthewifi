@@ -1,4 +1,4 @@
-package usecases.friendinteractors.viewfriend;
+package server.usecases.friendinteractors.viewfriend;
 
 import server.usecases.friendinteractors.friendCommonsDSGateway;
 

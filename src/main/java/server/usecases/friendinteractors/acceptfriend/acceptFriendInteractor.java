@@ -18,7 +18,7 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
     public void acceptFriend(acceptFriendInputModel model) {
         int friendid = model.getFriendid();
         int requesterid = model.getRequesterid();
-        String friendName = dataBase.getUserName(friendid);
+        String friendName = dataBase.getUserNamebyUID(friendid);
         int requesterPeerPort = dataBase.getPeerPort(requesterid);
         String requesterAddress = dataBase.getAddress(requesterid);
 //        int friendPeerPort = dataBase.getPeerPort(friendid);

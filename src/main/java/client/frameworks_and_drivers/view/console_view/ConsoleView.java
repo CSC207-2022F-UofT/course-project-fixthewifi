@@ -89,7 +89,7 @@ public class ConsoleView
                     }
                     catch (userNotFoundException e)
                     {
-                        System.out.println("This use has not sent you a friend request.");
+                        System.out.println("This user has not sent you a friend request.");
                     }
                     break;
 

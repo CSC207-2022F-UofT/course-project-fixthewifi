@@ -72,23 +72,23 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public int getUserNamebyUID(String userName) {
+    public int getUIDbyUserName(String userName) {
         return 0;
     }
 
     @Override
-    public String getUserName(int uid) {
-        return null;
+    public String getUserNamebyUID(int uid) {
+        return database.readUser(uid)[1];
     }
 
     @Override
     public String getAddress(int uid) {
-        return null;
+        return database.readUser(uid)[7];
     }
 
     @Override
     public int getPeerPort(int uid) {
-        return 0;
+        return 4444;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
 
     @Override
     public boolean ifexistsUID(int uid) {
-        return false;
+        return true;
     }
 
     @Override

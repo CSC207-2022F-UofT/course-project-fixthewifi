@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class view_friend_interactor implements view_friend_input_boundary {
-    final usecases.friendinteractors.viewfriend.view_friend_output_boundary output;
-    final usecases.friendinteractors.viewfriend.view_friend_DSGateway dataBase;
+    final server.usecases.friendinteractors.viewfriend.view_friend_output_boundary output;
+    final server.usecases.friendinteractors.viewfriend.view_friend_DSGateway dataBase;
 
-    public view_friend_interactor(usecases.friendinteractors.viewfriend.view_friend_DSGateway dataBase, usecases.friendinteractors.viewfriend.view_friend_output_boundary output){
+    public view_friend_interactor(view_friend_DSGateway dataBase,
+                                  view_friend_output_boundary output){
         this.dataBase = dataBase;
         this.output = output;
     }

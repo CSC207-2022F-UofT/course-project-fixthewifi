@@ -26,9 +26,9 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
         int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
         String friendAddress = dataBase.getAddress(model.getFriendid());
         int friendid = model.getFriendid();
-        String friendName = dataBase.getUserName(friendid);
+        String friendName = dataBase.getUserNamebyUID(friendid);
         int requesterid = model.getRequesterid();
-        String requesterName = dataBase.getUserName(requesterid);
+        String requesterName = dataBase.getUserNamebyUID(requesterid);
 
         if (bool1){
             dataBase.deleteFriendbyID(friendid, requesterid);
