@@ -5,7 +5,6 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
     final acceptFriendOutputBoundary output;
     final acceptFriendDSGateway dataBase;
 
-
     public acceptFriendInteractor(acceptFriendDSGateway dataBase, acceptFriendOutputBoundary output) {
         this.dataBase = dataBase;
         this.output = output;

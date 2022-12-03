@@ -1,4 +1,4 @@
-package usecases.friendinteractors;
+package server.usecases.friendinteractors;
 
 public interface friendCommonsDSGateway {
     int getUserNamebyUID(String userName);

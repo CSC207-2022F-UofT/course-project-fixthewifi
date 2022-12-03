@@ -1,6 +1,6 @@
-package usecases.friendinteractors.requestfriend;
+package server.usecases.friendinteractors.requestfriend;
 
-import usecases.friendinteractors.friendCommonsDSGateway;
+import server.usecases.friendinteractors.friendCommonsDSGateway;
 
 public interface requestFriendDSGateway extends friendCommonsDSGateway {
     /**

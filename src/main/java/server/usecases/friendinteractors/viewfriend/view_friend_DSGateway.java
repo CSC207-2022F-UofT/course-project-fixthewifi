@@ -1,6 +1,6 @@
 package usecases.friendinteractors.viewfriend;
 
-import usecases.friendinteractors.friendCommonsDSGateway;
+import server.usecases.friendinteractors.friendCommonsDSGateway;
 
 import java.util.ArrayList;
 import java.util.HashMap;

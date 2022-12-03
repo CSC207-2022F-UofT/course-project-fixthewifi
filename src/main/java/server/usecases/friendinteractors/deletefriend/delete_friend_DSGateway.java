@@ -1,6 +1,6 @@
-package usecases.friendinteractors.deletefriend;
+package server.usecases.friendinteractors.deletefriend;
 
-import usecases.friendinteractors.friendCommonsDSGateway;
+import server.usecases.friendinteractors.friendCommonsDSGateway;
 
 public interface delete_friend_DSGateway extends friendCommonsDSGateway {
     void deleteFriendbyID(int user1, int user2);

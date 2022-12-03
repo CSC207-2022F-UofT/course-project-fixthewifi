@@ -2,9 +2,13 @@ package server.frameworks_and_drivers.database.data_access;
 
 import server.frameworks_and_drivers.database.Database;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendDSGateway;
+import server.usecases.friendinteractors.deletefriend.delete_friend_DSGateway;
 import server.usecases.friendinteractors.requestfriend.requestFriendDSGateway;
 
-public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSGateway
+import java.util.Arrays;
+import java.util.List;
+
+public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSGateway, delete_friend_DSGateway
 {
     Database database;
 
@@ -13,10 +17,44 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         this.database = database;
     }
 
-    @Override
-    public void acceptFriendbyID(int friendid, int requesterid) {
 
+    @Override
+    public void acceptFriendbyID(int friendid, int requesterid)
+    {
+        // Take out the row of information that belongs to friendid
+        String[] friend = database.readUser(friendid);
+
+        // Take out friends
+        List<String> friendList = Arrays.asList(friend[6].split("-"));
+        friendList.add(String.valueOf(requesterid));
+
+        // Take out requesters
+        List<String> requesterList = Arrays.asList(friend[8].split("-"));
+        requesterList.remove(String.valueOf(requesterid));
+
+        String[] newFriend = {friend[0], friend[1],
+                friend[2], friend[3],
+                friend[4], friend[5],
+                String.join("-", friendList.toArray(new String[0])),
+                friend[7],
+                String.join("-", requesterList.toArray(new String[0]))};
+        database.updateUser(friendid, newFriend);
+
+
+        String[] requester = database.readUser(requesterid);
+        List<String> friendList1 = Arrays.asList(requester[6].split("-"));
+        friendList1.add(String.valueOf(requesterid));
+
+        String[] newRequester = {requester[0], requester[1],
+                requester[2], requester[3],
+                requester[4], requester[5],
+                String.join("-", friendList1.toArray(new String[0])),
+                requester[7],
+                requester[8]};
+        database.updateUser(requesterid, newRequester);
     }
+
+
 
     @Override
     public void refuseFriendbyID(int friendid, int requesterid) {
@@ -24,8 +62,43 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public String getuserName(int userid) {
+    public void deleteFriendbyID(int user1, int user2) {
+
+    }
+
+    @Override
+    public void deleteFriendbyName(String user1, String user2) {
+
+    }
+
+    @Override
+    public int getUserNamebyUID(String userName) {
+        return 0;
+    }
+
+    @Override
+    public String getUserName(int uid) {
         return null;
+    }
+
+    @Override
+    public String getAddress(int uid) {
+        return null;
+    }
+
+    @Override
+    public int getPeerPort(int uid) {
+        return 0;
+    }
+
+    @Override
+    public boolean ifexistsUserName(String userName) {
+        return false;
+    }
+
+    @Override
+    public boolean ifexistsUID(int uid) {
+        return false;
     }
 
     @Override
@@ -39,32 +112,26 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public void requestFriendbyID(int requester, int friend) {
+    public void requestFriendbyID(int requesterid, int friendid)
+    {
+        // Take out the row of information that belongs to friendid
+        String[] friend = database.readUser(friendid);
 
+        // Take out requesters
+        List<String> requesterList = Arrays.asList(friend[8].split("-"));
+        requesterList.add(String.valueOf(requesterid));
+
+        String[] newFriend = {friend[0], friend[1],
+                friend[2], friend[3],
+                friend[4], friend[5],
+                friend[6], friend[7],
+                String.join("-", requesterList.toArray(new String[0]))};
+
+        database.updateUser(friendid, newFriend);
     }
 
     @Override
     public void requestFriendbyName(String requester, String friend) {
 
-    }
-
-    @Override
-    public String getUserName(int uid) {
-        return null;
-    }
-
-    @Override
-    public int getUserid(String userName) {
-        return 0;
-    }
-
-    @Override
-    public String getAddress(int userid) {
-        return null;
-    }
-
-    @Override
-    public int getPeerPort(int userid) {
-        return 0;
     }
 }
