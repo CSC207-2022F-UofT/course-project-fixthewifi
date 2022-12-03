@@ -117,7 +117,6 @@ public class Receiver extends Thread
         {
             if (sliceMatrix.containsKey(slice.msgId))
             {
-//                System.out.println(1);
                 ArrayList<Slice> msgList = sliceMatrix.get(slice.msgId);
                 msgList.add(slice);
                 if (msgList.size() == slice.totalSlices)
@@ -143,7 +142,6 @@ public class Receiver extends Thread
             }
             else
             {
-//                System.out.println(2);
                 ArrayList<Slice> list = new ArrayList<>();
                 list.add(slice);
                 sliceMatrix.put(slice.msgId, list);

@@ -4,6 +4,7 @@ public interface RegisterDBGateWay {
     int getNewUid(String username, String password);
 
     void registerUser(int uid, String username, String password, String ipAddress, int port);
+
     /**
      * Creates files and account for user in the database, returns uid of the user
      * @param username username of user

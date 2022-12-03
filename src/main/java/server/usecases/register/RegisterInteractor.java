@@ -23,6 +23,6 @@ public class RegisterInteractor implements RegisterInputBoundary {
     {
         int uid = db.getNewUid(username, password);
         db.registerUser(uid, username, password, ipAddress, port);
-        outbound.successRedirect(uid, ipAddress, 4444);
+        outbound.successRedirect(uid, ipAddress, port);
     }
 }

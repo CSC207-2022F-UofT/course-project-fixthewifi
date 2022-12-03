@@ -89,7 +89,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
 
     @Override
     public int getPeerPort(int uid) {
-        return 4444;
+        return Integer.parseInt(database.readUser(uid)[10]);
     }
 
     @Override
