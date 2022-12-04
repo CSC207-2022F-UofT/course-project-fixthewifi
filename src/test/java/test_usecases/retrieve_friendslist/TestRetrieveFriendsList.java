@@ -40,11 +40,9 @@ public class TestRetrieveFriendsList {
             String user_data = actual_users.get(i);
             int j = user_data.indexOf(Constants.SPR);
             int extracted_UID = Integer.parseInt(user_data.substring(0, j));
-            String extracted_username = user_data.substring(j + 1);
-            Assertions.assertEquals(expected_users.get(i).getUid(), extracted_UID, "Incorrect UID added");
             // TODO fix once username feature works
-
-
+            // String extracted_username = user_data.substring(j + 1);
+            Assertions.assertEquals(expected_users.get(i).getUid(), extracted_UID, "Incorrect UID added");
         }
     }
 
