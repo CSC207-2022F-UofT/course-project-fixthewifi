@@ -1,9 +1,9 @@
-package interface_adapters.change_rating;
+package server.interface_adapters.change_rating;
 
-import frameworks_and_drivers.communication_manager.IfComManager;
-import usecases.rating_changes.SendRatingOutputBoundary;
-import usecases.rating_changes.SendRatingOutputModel;
-import frameworks_and_drivers.Constants;
+import server.frameworks_and_drivers.communication_manager.IfComManager;
+import server.usecases.rating_changes.SendRatingOutputBoundary;
+import server.usecases.rating_changes.SendRatingOutputModel;
+import server.frameworks_and_drivers.Constants;
 
 
 public class SendRatingOutputAdapter implements SendRatingOutputBoundary
@@ -16,7 +16,7 @@ public class SendRatingOutputAdapter implements SendRatingOutputBoundary
     @Override
     public void sendRating(SendRatingOutputModel model)
     {
-        String content = "" + Constants.SEND_RATING + model.getReceiverUid() + model.getAvgRating();
+        String content = Constants.SEND_RATING + "#" + model.getAvgRating() + "#" + model.getReceiverUid();
         String address = model.getUserAddress();
         int port = model.getUserPort();
         comManager.send(address,port,content);

@@ -3,7 +3,9 @@ package client.frameworks_and_drivers.view.console_view;
 import client.interface_adapters.controllers.FriendControllerInputBoundary;
 import client.interface_adapters.controllers.LoginControllerInputBoundary;
 import client.interface_adapters.controllers.MsgControllerInputBoundary;
+import client.interface_adapters.controllers.RatingControllerInputBoundary;
 import client.interface_adapters.model.Model;
+import client.interface_adapters.model.model_entities.Profile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,14 +17,17 @@ public class ConsoleView
     private final Model model;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
+    private final RatingControllerInputBoundary ratingController;
 
     public ConsoleView(Model model,
                        LoginControllerInputBoundary loginController,
-                       FriendControllerInputBoundary friendController)
+                       FriendControllerInputBoundary friendController,
+                       RatingControllerInputBoundary ratingController)
     {
         this.model = model;
         this.loginController = loginController;
         this.friendController = friendController;
+        this.ratingController = ratingController;
     }
 
     public void init()
@@ -85,7 +90,10 @@ public class ConsoleView
                 case(InstructionSet.ACCEPT_FRIEND):
                     friendController.accept(model.friendRequester);
                     break;
-
+                case(InstructionSet.RATING):
+                    String[] content = operand.split(" ", 2);
+                    ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
+                    break;
             }
         }
     }
@@ -134,5 +142,25 @@ public class ConsoleView
     public void displayLoginFail()
     {
         System.out.println("Login failed.");
+    }
+
+    // Rating Stuff
+    public void displayRatingSuccess()
+    {
+        System.out.println("Rating successful.");
+    }
+
+    public void displayRatingFail()
+    {
+        System.out.println("Rating failed.");
+    }
+
+    public void displayRating(int userUid)
+    {
+        System.out.println("===========Rating===========");
+        System.out.println("uid: " + userUid);
+        System.out.println("name: " + userUid);
+        System.out.println("description: " + model.getDescription(userUid));
+        System.out.println("Rating: " + model.getRating(userUid));
     }
 }

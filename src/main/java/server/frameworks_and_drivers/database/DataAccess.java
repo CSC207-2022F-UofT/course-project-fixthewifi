@@ -2,9 +2,13 @@ package server.frameworks_and_drivers.database;
 
 import server.usecases.friendinteractors.acceptfriend.acceptFriendDSGateway;
 import server.usecases.friendinteractors.requestfriend.requestFriendDSGateway;
+import server.usecases.rating_changes.SendRatingDsGateway;
 import server.usecases.register.RegisterDBGateWay;
 
-public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, requestFriendDSGateway
+public class DataAccess implements RegisterDBGateWay, 
+                                    acceptFriendDSGateway, 
+                                    requestFriendDSGateway,
+                                    SendRatingDsGateway
 {
     Database database;
 
@@ -83,5 +87,26 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
     public void registerUser(int uid, String username, String password, String ipAddress)
     {
         database.newUser(uid, username, "", password, ipAddress);
+    }
+
+
+    @Override
+    public void storeRating(int receiverUid, double avgRating) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public String userAddress(int identifier) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public int userPort(int identifier) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

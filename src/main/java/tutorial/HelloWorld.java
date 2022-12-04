@@ -3,6 +3,7 @@ package tutorial;
 import client.frameworks_and_drivers.communication_manager.ClientComManager;
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
 import client.interface_adapters.controllers.LoginController;
+import client.interface_adapters.controllers.RatingController;
 import client.interface_adapters.model.Model;
 import client.interface_adapters.controllers.FriendController;
 import client.interface_adapters.presenters.FriendPresenter;
@@ -20,6 +21,15 @@ import server.interface_adapters.register.RegisterOutputAdapter;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.register.RegisterInteractor;
+import server.interface_adapters.change_rating.SendRatingOutputAdapter;
+import server.interface_adapters.change_rating.SendRatingController;
+import server.usecases.rating_changes.SendRatingInteractor;
+import server.interface_adapters.change_rating.SendRatingOutputAdapter;
+import server.interface_adapters.change_rating.SendRatingController;
+import client.interface_adapters.controllers.RatingController;
+import client.interface_adapters.presenters.RatingPresenter;
+
+
 
 public class HelloWorld {
 
@@ -50,9 +60,12 @@ public class HelloWorld {
         RegisterInteractor registerInteractor = new RegisterInteractor(access, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
+        SendRatingOutputAdapter sendRatingOutputAdapter = new SendRatingOutputAdapter(comManager);
+        SendRatingInteractor sendRatingInteractor = new SendRatingInteractor(access, sendRatingOutputAdapter);
+        SendRatingController sendRatingController = new SendRatingController(sendRatingInteractor);
 
 
-        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController);
+        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, sendRatingController);
         comManager.init(4396, inputSorter);
     }
 
@@ -63,15 +76,17 @@ public class HelloWorld {
 
         FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
         LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
+        RatingController ratingController = new RatingController(comManager, model, "127.0.0.1");
 
-        ConsoleView view = new ConsoleView(model, loginController, friendController);
+        ConsoleView view = new ConsoleView(model, loginController, friendController, ratingController);
 
 
 
         FriendPresenter friendPresenter = new FriendPresenter(model, view);
         LoginPresenter loginPresenter = new LoginPresenter(model, view);
+        RatingPresenter ratingPresenter = new RatingPresenter(model, view);
 
-        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter);
+        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter, ratingPresenter);
         comManager.init(4444, inputSorter);
         view.init();
 

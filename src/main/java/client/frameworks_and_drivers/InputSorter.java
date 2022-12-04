@@ -2,18 +2,20 @@ package client.frameworks_and_drivers;
 import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
+import client.interface_adapters.presenters.RatingPresenter;
 
 public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
     private final LoginPresenter loginPresenter;
-    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter)
+    private final RatingPresenter ratingPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, RatingPresenter ratingPresenter)
     {
-        //TODO: pass all of the controllers into here
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
+        this.ratingPresenter = ratingPresenter;
     }
-
+    
     /**
      * When a message is received, onMsg will be triggered by comManager.
      @param msg The received message.
@@ -38,6 +40,9 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.REGISTER:
                 loginPresenter.receiveConfirmation(content);
+                break;
+            case Constants.RATING:
+                ratingPresenter.receiveConfirmation(content);
                 break;
         }
     }

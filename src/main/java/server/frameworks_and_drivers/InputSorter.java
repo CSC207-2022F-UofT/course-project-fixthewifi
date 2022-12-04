@@ -5,6 +5,7 @@ import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.send_message.SendMsgController;
+import server.interface_adapters.change_rating.SendRatingController;
 
 public class InputSorter implements ComManagerUser
 {
@@ -13,15 +14,20 @@ public class InputSorter implements ComManagerUser
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
+    private final SendRatingController sendRatingController;
 
-    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
+    public InputSorter(RequestFriendController requestFriendController, 
+                        AcceptFriendController acceptFriendController, 
+                        RegisterController registerController,
+                        SendRatingController sendRatingController)
     {
         //TODO: pass all of the controllers into here
-//        this.sendMsgController = sendMsgController;
-//        this.loginController = loginController;
+        //this.sendMsgController = sendMsgController;
+        //this.loginController = loginController;
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
+        this.sendRatingController = sendRatingController;
     }
 
     /**
@@ -55,6 +61,11 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
+                break;
+            case Constants.SEND_RATING:
+                String[] splitContent = content.split(" ");
+                sendRatingController.sendRating(Integer.parseInt(splitContent[0]), Integer.parseInt(splitContent[1]),
+                        Integer.parseInt(splitContent[2]));
                 break;
 
 

@@ -10,4 +10,9 @@ public abstract class User
         this.uid = uid;
         this.profile = profile;
     }
+
+    public double getRating()
+    {
+        return profile.getRating();
+    }
 }

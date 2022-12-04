@@ -6,7 +6,7 @@ public interface Constants
     int CHANGE_PROFILE = 1;
     int GROUP_CHAT = 2;
     int LOGIN = 3;
-    int RATING = 4;
+    int SEND_RATING = 4;
     int EDIT_MSG = 5;
     int FRIEND = 6;
     int REGISTER = 7;

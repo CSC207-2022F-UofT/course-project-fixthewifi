@@ -1,7 +1,7 @@
-package interface_adapters.change_rating;
+package server.interface_adapters.change_rating;
 
-import usecases.rating_changes.SendRatingInputBoundary;
-import usecases.rating_changes.SendRatingInputModel;
+import server.usecases.rating_changes.SendRatingInputBoundary;
+import server.usecases.rating_changes.SendRatingInputModel;
 
 public class SendRatingController {
     final SendRatingInputBoundary inputModelBoundary;
@@ -10,7 +10,7 @@ public class SendRatingController {
         this.inputModelBoundary = accountGateway;
     }
 
-    void sendRating(int senderUid, int receiverUid, int rating) {
+    public void sendRating(int senderUid, int receiverUid, int rating) {
         SendRatingInputModel inputModel = new SendRatingInputModel(senderUid, receiverUid, rating);
         inputModelBoundary.sendRating(inputModel);
     }
