@@ -100,7 +100,8 @@ public class TestCreateGroupChat {
         for(int x : input.getMembers()){
             Assertions.assertNotNull(db.getUserByUID(x), "Member "+ x + " not added");
         }
-        Assertions.assertEquals(output_adapter.getOutput().getMembers().size(),
-                db.getUploaded_chat().getMembers().size(), "Incorrect number of members added");
+        // the list of members of a GroupChat includes the admin, however the output
+        Assertions.assertEquals(db.getUploaded_chat().getMembers().size() - 1,
+                output_adapter.getOutput().getMembers().size(), "Incorrect number of members added");
     }
 }

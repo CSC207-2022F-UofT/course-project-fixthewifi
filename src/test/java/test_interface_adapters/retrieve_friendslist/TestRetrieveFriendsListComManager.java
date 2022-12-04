@@ -1,13 +1,10 @@
-package test_interface_adapters.create_gc;
+package test_interface_adapters.retrieve_friendslist;
 
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 
-/**
- * An implementation of IfCommanager for the purposes of testing CreateGCOutputAdapter.
- */
-public class CreateGCComManager implements IfComManager {
-    String peerID;
+public class TestRetrieveFriendsListComManager implements IfComManager {
+    String address;
     int peerPort;
     String msg;
     @Override
@@ -17,7 +14,7 @@ public class CreateGCComManager implements IfComManager {
 
     @Override
     public void send(String address, int peerPort, String msg) {
-        this.peerID = address;
+        this.address = address;
         this.peerPort = peerPort;
         this.msg = msg;
     }

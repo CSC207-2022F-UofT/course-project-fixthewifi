@@ -1,7 +1,7 @@
-package interface_adapters.retrieve_friendslist;
+package server.interface_adapters.retrieve_friendslist;
 
-import usecases.retrieve_friendslist.RetrieveFriendsListInputBoundary;
-import usecases.retrieve_friendslist.RetrieveFriendsListInputData;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListInputBoundary;
+import server.usecases.retrieve_friendslist.RetrieveFriendsListInputData;
 
 public class RetrieveFriendsListController {
     private final RetrieveFriendsListInputBoundary interactor;

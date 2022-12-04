@@ -23,13 +23,8 @@ public class CreateGCInputData {
         this.members = members;
     }
 
-    /**
-     * @return the admin of the InputData
-     */
     public int getAdmin(){return this.admin;}
-    /**
-     * @return the members of the InputData
-     */
+
     public ArrayList<Integer> getMembers(){return this.members;}
 
 }

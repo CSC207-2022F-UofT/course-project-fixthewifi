@@ -1,11 +1,12 @@
 package test_interface_adapters.create_gc;
-import frameworks_and_drivers.Constants;
-import interface_adapters.create_gc.CreateGCOutputAdapter;
+import server.frameworks_and_drivers.Constants;
+import server.interface_adapters.create_gc.CreateGCOutputAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import usecases.create_gc.CreateGCOutputData;
+import server.frameworks_and_drivers.communication_manager.Constants.*;
+import server.usecases.create_gc.CreateGCOutputData;
 
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 
 public class TestCreateGCOutputAdapter {
@@ -28,9 +29,9 @@ public class TestCreateGCOutputAdapter {
         String msg = String.valueOf(Constants.GROUP_CHAT) + Constants.SPR + String.valueOf(admin) + Constants.SPR
                 + String.valueOf(111111) + Constants.SPR + String.valueOf(222222) + Constants.SPR
                 + String.valueOf(333333) + Constants.SPR + String.valueOf(444444);
-        Assertions.assertEquals(com_manager.peerPort, peerPort, "Incorrect peerport.");
-        Assertions.assertEquals(com_manager.peerID, peerID, "Incorreect peerID used.");
-        Assertions.assertEquals(com_manager.msg, msg, "Incorrect message sent");
+        Assertions.assertEquals(peerPort, com_manager.peerPort, "Incorrect peerport.");
+        Assertions.assertEquals(peerID, com_manager.peerID, "Incorreect peerID used.");
+        Assertions.assertEquals(msg, com_manager.msg, "Incorrect message sent");
     }
 
 }
