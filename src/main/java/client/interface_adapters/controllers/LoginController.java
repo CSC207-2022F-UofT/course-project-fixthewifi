@@ -26,4 +26,10 @@ public class LoginController implements LoginControllerInputBoundary
         comManager.send(serverIp, 4396, toSend);
     }
 
+    @Override
+    public void login(int uid, String password) {
+        String toSend = Constants.LOGIN + "#" + uid + CONTENT_SPR + password;
+        comManager.send(serverIp, 4396, toSend);
+    }
+
 }

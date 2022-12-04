@@ -4,7 +4,7 @@ public class ChatFactory
 {
     public static Chat getChat(int chatUid, String name, String description)
     {
-
-        return null;
+        GroupProfile profile = new GroupProfile()
+        return new GroupChat(chatUid, )
     }
 }

@@ -41,8 +41,8 @@ public class UserProfile
         return rating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setRating(double rating) {
+        this.rating.setRating(rating);
     }
 
     public boolean isOnline() {

@@ -12,4 +12,15 @@ public class Self extends User
         this.chatList = chatList;
         this.friendList = friendList;
     }
+
+    public void addFriend(int uid, String name, String description, double rating, boolean online)
+    {
+        Friend friend = UserFactory.getFriend(uid, name, description, online);
+        friend.profile.setRating(rating);
+        friendList.put(uid,friend);
+    }
+
+    public void addChat(int uid, String name, String description, String[] messages) {
+        Chat chat = ChatFactory.getChat(uid, name, description);
+    }
 }
