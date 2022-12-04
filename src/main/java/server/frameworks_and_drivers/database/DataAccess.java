@@ -99,7 +99,7 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
 
     @Override
     public boolean existsByUID(int identifier) {
-        return false;
+        return true;
     }
 
     @Override

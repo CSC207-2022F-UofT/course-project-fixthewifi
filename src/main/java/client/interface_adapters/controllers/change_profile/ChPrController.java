@@ -11,7 +11,7 @@ public class ChPrController implements ChPrControllerInputBoundary {
     private final Model model;
 
     char CONTENT_SPR = Constants.SPR;
-    char HASH ='#';
+    String HASH ="#";
     private final String serverIp;
 
     public ChPrController(IfComManager comManager, Model model, String serverIp)
@@ -26,8 +26,8 @@ public class ChPrController implements ChPrControllerInputBoundary {
         int selfUid = model.getSelfUid();
         String toSend = String.valueOf(server.frameworks_and_drivers.Constants.SET_PIC + HASH + selfUid
                 +
-                CONTENT_SPR+""
-                + CONTENT_SPR+""
+                CONTENT_SPR+"DONTCHANGE"
+                + CONTENT_SPR+"DONTCHANGE"
                 +CONTENT_SPR + content);
 
         comManager.send(serverIp, serverport, toSend);
@@ -38,8 +38,8 @@ public class ChPrController implements ChPrControllerInputBoundary {
         int selfUid = model.getSelfUid();
         String toSend = String.valueOf(server.frameworks_and_drivers.Constants.DEL_PIC + HASH + selfUid
                 +
-                CONTENT_SPR+""
-                + CONTENT_SPR+""
+                CONTENT_SPR+"DONTCHANGE"
+                + CONTENT_SPR+"DONTCHANGE"
                 +CONTENT_SPR + content);
 
         comManager.send(serverIp, serverport, toSend);
@@ -50,7 +50,7 @@ public class ChPrController implements ChPrControllerInputBoundary {
         int selfUid = model.getSelfUid();
         String toSend = String.valueOf(server.frameworks_and_drivers.Constants.UPDATE_NAME + HASH + selfUid
                 + CONTENT_SPR + content+
-                 CONTENT_SPR+""+ CONTENT_SPR+"");
+                 CONTENT_SPR+"DONTCHANGE"+ CONTENT_SPR+"DONTCHANGE");
         comManager.send(serverIp, serverport, toSend);
     }
 
@@ -59,8 +59,8 @@ public class ChPrController implements ChPrControllerInputBoundary {
         int selfUid = model.getSelfUid();
         String toSend = String.valueOf(server.frameworks_and_drivers.Constants.UPDATE_DESC + HASH + selfUid
                 +
-                CONTENT_SPR+""
-                +CONTENT_SPR + content+ CONTENT_SPR+"");
+                CONTENT_SPR+"DONTCHANGE"
+                +CONTENT_SPR + content+ CONTENT_SPR+"DONTCHANGE");
 
         comManager.send(serverIp, serverport, toSend);
     }
