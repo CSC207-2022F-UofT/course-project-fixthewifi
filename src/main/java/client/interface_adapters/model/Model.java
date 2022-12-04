@@ -1,29 +1,30 @@
 package client.interface_adapters.model;
 
-import client.interface_adapters.model.model_entities.Friend;
-import client.interface_adapters.model.model_entities.Self;
-import client.interface_adapters.model.model_entities.UserFactory;
+import client.interface_adapters.model.model_entities.*;
+
+import java.util.HashMap;
 
 public class Model
 {
     private final Self self;
-    public String pageState;
-    public int friendRequester;
+    private String pageState;
+    private final HashMap<Integer, String> friendRequests;
 
     public Model()
     {
         this.self = UserFactory.newSelf();
         pageState = "LOGIN_PAGE";
+        friendRequests = new HashMap<>();
     }
 
     public void setSelfUid(int uid)
     {
-        self.uid = uid;
+        self.setUid(uid);
     }
 
     public int getSelfUid() 
     {
-        return self.uid;
+        return self.getUid();
     }
 
     public void storeChatMsg(int parseInt, int parseInt1, String s, String s1) {
@@ -31,22 +32,30 @@ public class Model
 
     public void addFriend(int uid, String name, String description, double rating, boolean online)
     {
-        self.addFriend(uid, name, description, rating, online);
+        Friend friend = UserFactory.getFriend(uid, name, description, rating, online);
+        self.addFriend(friend);
     }
 
     public void addChat(int uid, String name, String description, String[] messages)
     {
-        self.addChat(uid, name, description, messages);
+        Chat chat = ChatFactory.getChat(uid, name, description);
+        self.addChat(chat);
     }
 
     public String getDescription(int userUid)
     {
         if (userUid == getSelfUid())
         {
-            return self.profile.getDescription();
+            return self.getDescription();
         }
-        return self.friendList.get(userUid).profile.getDescription();
+        return self.getFriend(userUid).getDescription();
     }
+
+    public String getPageState() {
+        return pageState;
+    }
+
+
 
     public void setPageState(String state)
     {

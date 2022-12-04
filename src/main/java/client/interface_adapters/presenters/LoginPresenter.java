@@ -36,7 +36,7 @@ public class LoginPresenter
         }
         else
         {
-            model.addChat();
+//            model.addChat();
         }
         model.setSelfStatus(true);
         view.displayLoginSuccess();

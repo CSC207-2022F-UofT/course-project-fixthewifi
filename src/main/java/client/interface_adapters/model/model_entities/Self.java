@@ -4,23 +4,42 @@ import java.util.HashMap;
 
 public class Self extends User
 {
-    public final HashMap<Integer ,Chat> chatList;
-    public final HashMap<Integer, Friend> friendList;
+    private final HashMap<Integer ,Chat> chatList;
+    private final HashMap<Integer, Friend> friendList;
 
-    public Self(int uid, UserProfile userProfile, HashMap<Integer, Chat> chatList, HashMap<Integer, Friend> friendList) {
+    public Self(int uid, UserProfile userProfile, HashMap<Integer, Chat> chatList, HashMap<Integer, Friend> friendList)
+    {
         super(uid, userProfile);
         this.chatList = chatList;
         this.friendList = friendList;
     }
 
-    public void addFriend(int uid, String name, String description, double rating, boolean online)
+    public Friend getFriend(int uid)
     {
-        Friend friend = UserFactory.getFriend(uid, name, description, online);
-        friend.profile.setRating(rating);
-        friendList.put(uid,friend);
+        return friendList.get(uid);
     }
 
-    public void addChat(int uid, String name, String description, String[] messages) {
-        Chat chat = ChatFactory.getChat(uid, name, description);
+    public void addFriend(Friend friend)
+    {
+        friendList.put(friend.getUid(), friend);
+    }
+
+    public void deleteFriend(int friendUid)
+    {
+        friendList.remove(friendUid);
+    }
+
+    public Chat getChat(int uid)
+    {
+        return chatList.get(uid);
+    }
+    public void addChat(Chat chat)
+    {
+        chatList.put(chat.getUid(), chat);
+    }
+
+    public void deleteChat(int chatUid)
+    {
+        chatList.remove(chatUid);
     }
 }

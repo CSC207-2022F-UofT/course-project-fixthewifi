@@ -38,7 +38,7 @@ public class ConsoleView
                 String input = reader.readLine();
                 String[] content = input.split(" ", 2);
 
-                if (Objects.equals(model.pageState, "LOGIN_PAGE"))
+                if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                 {
                     sortLogin(content[0], content[1]);
                 } else
@@ -55,7 +55,7 @@ public class ConsoleView
 
     public void sort(String operation, String operand)
     {
-        if (model.pageState.startsWith("CHAT"))
+        if (model.getPageState().startsWith("CHAT"))
         {
 
         }
@@ -76,7 +76,7 @@ public class ConsoleView
                     break;
 
                 case(InstructionSet.ACCEPT_FRIEND):
-                    friendController.accept(model.friendRequester);
+                    friendController.accept(Integer.parseInt(operand));
                     break;
 
             }
