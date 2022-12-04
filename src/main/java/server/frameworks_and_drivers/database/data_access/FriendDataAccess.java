@@ -4,10 +4,12 @@ import server.frameworks_and_drivers.database.Database;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendDSGateway;
 import server.usecases.friendinteractors.deletefriend.delete_friend_DSGateway;
 import server.usecases.friendinteractors.requestfriend.requestFriendDSGateway;
+import server.usecases.friendinteractors.viewfriend.view_friend_DSGateway;
 
 import java.util.*;
 
-public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSGateway, delete_friend_DSGateway
+public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSGateway, delete_friend_DSGateway,
+        view_friend_DSGateway
 {
     Database database;
 
@@ -152,5 +154,41 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         int requesterUID = getUIDbyUserName(requester);
         int friendUID = getUIDbyUserName(friend);
         requestFriendbyID(requesterUID, friendUID);
+    }
+
+    @Override
+    public boolean notfriendDuplicate(int requester, int friend) {
+        String[] requester_data = database.readUser(requester);
+        List<String> requesterList = new LinkedList<>(Arrays.asList(requester_data[9].split("-")));
+        return !requesterList.contains(String.valueOf(friend));
+    }
+
+    @Override
+    public void cleanRequesterListDuplicateUID(int requester) {
+        String[] requester_data = database.readUser(requester);
+        List<String> requesterList = new LinkedList<>(Arrays.asList(requester_data[9].split("-")));
+        List<String> result = new LinkedList<String>();
+        for (String item : requesterList){
+            if (!result.contains(item)){
+                result.add(item);
+            }
+        }
+        requester_data[9] = String.join("-", result.toArray(new String[0]));
+        database.updateUser(requester, requester_data);
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Integer>> getFriendList(int requestorid) {
+        ArrayList<HashMap<String, Integer>> result = new ArrayList<>();
+        String[] requester = database.readUser(requestorid);
+        List<String> requesterList = new LinkedList<>(Arrays.asList(requester[9].split("-")));
+        for(String id : requesterList){
+            int id_int = Integer.parseInt(id);
+            String name = getUserNamebyUID(id_int);
+            HashMap<String, Integer> map = new HashMap<>();
+            map.put(name, id_int);
+            result.add(map);
+        }
+        return result;
     }
 }

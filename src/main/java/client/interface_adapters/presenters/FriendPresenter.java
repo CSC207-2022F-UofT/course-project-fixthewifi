@@ -27,7 +27,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
         else if (Integer.parseInt(content[0]) == 0)
         {
-            System.out.println("Request failed.");
+            System.out.println("Request failed. UID is not found or already in your friend list.");
         }
         else
         {
