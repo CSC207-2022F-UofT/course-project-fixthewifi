@@ -42,11 +42,10 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         model.setPageState("FRIEND_ACCEPT");
         String[] content =data.split(" ");
         if (Integer.parseInt(content[0]) == 1){
-            view.displayConfirmation(Integer.parseInt(content[0]), content[1]);
-
+            view.displayConfirmation(Integer.parseInt(content[1]), content[2]);
         }
         else if (Integer.parseInt(content[0]) == 2){
-            System.out.println("Your friend request to " + content[1] + " was declined");
+            System.out.println("Your friend request to " + content[1] + content[2] + " was declined");
         }
     }
 
