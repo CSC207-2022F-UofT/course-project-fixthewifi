@@ -43,7 +43,8 @@ public class FriendController implements FriendControllerInputBoundary
         comManager.send(serverIp, 4396, toSend);
     }
 
-    public void viewFriend(){
+    @Override
+    public void viewFriend(int requesterid) {
         String toSend = Constants.VIEW_FRIEND + "#" + model.getSelfUid();
         comManager.send(serverIp, 4396, toSend);
     }

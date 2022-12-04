@@ -7,5 +7,5 @@ public interface FriendControllerInputBoundary
     public void refuseFriend(int peerUid);
 
     public void deleteFriend(int peerUid);
-    public void viewFriend();
+    public void viewFriend(int requesterid);
 }
