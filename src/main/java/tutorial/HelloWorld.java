@@ -76,10 +76,6 @@ public class HelloWorld {
         client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter);
         comManager.init(4444, inputSorter);
         view.init();
-
-
-
-
     }
 
     public static String convert(int decide) {

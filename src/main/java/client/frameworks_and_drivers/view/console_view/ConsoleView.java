@@ -82,13 +82,13 @@ public class ConsoleView
                     break;
 
                 case(InstructionSet.REQUEST_FRIEND):
-                    friendController.request(Integer.parseInt(operand));
+                    friendController.requestFriend(Integer.parseInt(operand));
                     break;
 
                 case(InstructionSet.ACCEPT_FRIEND):
                     try
                     {
-                        friendController.accept(model.getRequester(Integer.parseInt(operand)));
+                        friendController.acceptFriend(model.getRequester(Integer.parseInt(operand)));
                     }
                     catch (userNotFoundException e)
                     {

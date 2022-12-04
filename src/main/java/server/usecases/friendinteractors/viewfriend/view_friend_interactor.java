@@ -15,7 +15,7 @@ public class view_friend_interactor implements view_friend_input_boundary {
 
     @Override
     public void ViewFriend(view_friend_input_model model) {
-        ArrayList<HashMap<String, Integer>> list = dataBase.getFriendList(model.getRequesterid());
+        StringBuilder list = dataBase.getFriendList(model.getRequesterid());
         int peerPort = dataBase.getPeerPort(model.getRequesterid());
         String address = dataBase.getAddress(model.getRequesterid());
         output.pushFriendList(list, address, peerPort);

@@ -33,7 +33,6 @@ public class RequestFriendController {
 
             requestFriendInputModel model = new requestFriendInputModel(friend, requestor);
             usecase.RequestFriend(model);
-
         }
     }
 }

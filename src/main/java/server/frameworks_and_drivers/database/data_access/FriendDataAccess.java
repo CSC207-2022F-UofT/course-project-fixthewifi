@@ -178,16 +178,15 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public ArrayList<HashMap<String, Integer>> getFriendList(int requestorid) {
-        ArrayList<HashMap<String, Integer>> result = new ArrayList<>();
+    public StringBuilder getFriendList(int requestorid) {
+        StringBuilder result = new StringBuilder();
         String[] requester = database.readUser(requestorid);
         List<String> requesterList = new LinkedList<>(Arrays.asList(requester[9].split("-")));
-        for(String id : requesterList){
-            int id_int = Integer.parseInt(id);
-            String name = getUserNamebyUID(id_int);
-            HashMap<String, Integer> map = new HashMap<>();
-            map.put(name, id_int);
-            result.add(map);
+        for(String item : requesterList){
+            int id = Integer.parseInt(item);
+            result.append(item);
+            result.append(" ");
+            result.append(getUserNamebyUID(id));
         }
         return result;
     }

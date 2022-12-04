@@ -22,19 +22,9 @@ public class ViewFriendOutputAdapater
      * @param address
      * @param peerPort
      */
-    public void pushFriendList(ArrayList<HashMap<String, Integer>> list, String address, int peerPort)
+    public void pushFriendList(StringBuilder list, String address, int peerPort)
     {
-        ArrayList<String> namelist = new ArrayList<>();
-        ArrayList<Integer> idlist = new ArrayList<>();
-        for (HashMap<String, Integer> map : list){
-            for (String key : map.keySet()){
-                namelist.add(key);
-                idlist.add(map.get(key));
-            }
-        }
-        String content_names = Constants.VIEW_FRIEND + "#" + 2 + "names" + namelist.toString();
-        String content_ids = Constants.VIEW_FRIEND + "#" + 2 + "ids" + idlist.toString();
-        comManager.send(address, peerPort, content_names);
-        comManager.send(address, peerPort, content_ids);
+        String content = Constants.VIEW_FRIEND + "#" + list.toString();
+        comManager.send(address, peerPort, content);
     }
 }
