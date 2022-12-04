@@ -20,7 +20,7 @@ public class ChPrPresenter implements ChPrPresenterInputBoundary
     public void setPic(String url) {
         model.setPageState("SET_PIC");
         String[] content = url.split(String.valueOf(Constants.SPR));
-        model.setSelfSetPic(content[3]);
+        model.setSelfSetPic(content[1]);
         view.displayMyProfile();
 
     }
@@ -37,7 +37,7 @@ public class ChPrPresenter implements ChPrPresenterInputBoundary
     public void updateName(String newname) {
         model.setPageState("UPDATE_NAME");
         String[] content = newname.split(String.valueOf(Constants.SPR));
-        model.setSelfName(content[3]);
+        model.setSelfName(content[1]);
         view.displayMyProfile();
 
     }
@@ -46,7 +46,7 @@ public class ChPrPresenter implements ChPrPresenterInputBoundary
     public void updateDescr(String newdesc) {
         model.setPageState("UPDATE_DESC");
         String[] content = newdesc.split(String.valueOf(Constants.SPR));
-        model.setSelfDesc(content[3]);
+        model.setSelfDesc(content[1]);
         view.displayMyProfile();
     }
 }

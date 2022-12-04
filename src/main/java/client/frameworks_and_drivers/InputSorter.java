@@ -44,7 +44,16 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.UPDATE_NAME:
                 chPrPresenter.updateName(content);
-                break;
+//                break;
+            case Constants.UPDATE_DESC:
+                chPrPresenter.updateDescr(content);
+//                break;
+            case Constants.SET_PIC:
+                chPrPresenter.setPic(content);
+//                break;
+            case Constants.DEL_PIC:
+                chPrPresenter.delPic();
+//                break;
 
 
         }

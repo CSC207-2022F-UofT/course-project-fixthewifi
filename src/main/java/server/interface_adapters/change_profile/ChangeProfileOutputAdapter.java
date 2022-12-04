@@ -17,6 +17,7 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     private final IfComManager comManager;
     char SEPARATOR = 30;
+    String HASH = "#";
 
     public ChangeProfileOutputAdapter(IfComManager comManager)
     {
@@ -29,21 +30,21 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     @Override
     public void setPic(ChangeProfileOutputModel outputModel) {
-        String content = Constants.SET_PIC+ outputModel.getProfileUID()+outputModel.getChangedDataString();
+        String content = Constants.SET_PIC+HASH+ outputModel.getProfileUID()+SEPARATOR+outputModel.getChangedDataString();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 
     @Override
     public void delPic(ChangeProfileOutputModel outputModel) {
-        String content = Constants.DEL_PIC+ outputModel.getProfileUID()+outputModel.getChangedDataString();
+        String content = Constants.DEL_PIC+HASH+ outputModel.getProfileUID()+SEPARATOR+outputModel.getChangedDataString();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 
     @Override
     public void updateDescr(ChangeProfileOutputModel outputModel) {
-        String content = Constants.UPDATE_DESC+ SEPARATOR+outputModel.getProfileUID()+outputModel.getChangedDataString();
+        String content = Constants.UPDATE_DESC+ HASH+outputModel.getProfileUID()+SEPARATOR+outputModel.getChangedDataString();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
 
@@ -52,15 +53,15 @@ public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
     @Override
     public void updateName(ChangeProfileOutputModel outputModel) {
 
-        String content = Constants.UPDATE_NAME+ SEPARATOR+outputModel.getProfileUID()+outputModel.getChangedDataString();
+        String content = Constants.UPDATE_NAME+ HASH+outputModel.getProfileUID()+SEPARATOR+outputModel.getChangedDataString();
         comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
      }
 
     @Override
     public void errorChangingProfile(ChangeProfileOutputModel outputModel, int code) {
-        String content = "changing fails!";
-        comManager.send(code+SEPARATOR+outputModel.getUseraddress(),outputModel.getUserport(),content);
+        String content = code+HASH+"changing fails!";
+        comManager.send(outputModel.getUseraddress(),outputModel.getUserport(),content);
 
     }
 }

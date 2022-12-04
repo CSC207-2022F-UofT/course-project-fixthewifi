@@ -34,13 +34,13 @@ public class ChPrController implements ChPrControllerInputBoundary {
     }
 
     @Override
-    public void delPic(String content) {
+    public void delPic() {
         int selfUid = model.getSelfUid();
         String toSend = String.valueOf(server.frameworks_and_drivers.Constants.DEL_PIC + HASH + selfUid
                 +
                 CONTENT_SPR+"DONTCHANGE"
                 + CONTENT_SPR+"DONTCHANGE"
-                +CONTENT_SPR + content);
+                +CONTENT_SPR + "DELETED");
 
         comManager.send(serverIp, serverport, toSend);
     }

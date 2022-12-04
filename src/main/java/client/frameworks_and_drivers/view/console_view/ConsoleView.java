@@ -44,11 +44,19 @@ public class ConsoleView
                     String input = reader.readLine();
                     String[] content = input.split(" ", 2);
 
+                    System.out.println("spliting console view");
                     if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                     {
                         sortLogin(content[0], content[1]);
                     } else if (Objects.equals(model.getPageState(), "MAIN_PAGE"))
                     {
+
+                        System.out.println("sort i console view");
+                        sort(content[0], content[1]);
+                    }
+                    else{
+                        //todo change all pages stuff work
+                        System.out.println("sort i jyst addd console view");
                         sort(content[0], content[1]);
                     }
                 }
@@ -65,12 +73,16 @@ public class ConsoleView
     }
 
     public void sort(String operation, String operand)  {
+
+        System.out.println("sort start console view");
         if (model.getPageState().startsWith("CHAT"))
         {
 
         }
         else
         {
+
+            System.out.println("before swich console view");
             switch (operation)
             {
                 case(InstructionSet.VIEW_CHAT):
@@ -97,19 +109,28 @@ public class ConsoleView
                     break;
                 case(InstructionSet.VIEW_PROFILE):
                     displayMyProfile();
+                    System.out.println("VIEW_PROFILE console view");
                     break;
 
                 case(InstructionSet.CHANGE_NAME):
                     chPrController.updateName(operand);
+
+                    System.out.println("change name console view");
                     break;
                 case(InstructionSet.CHANGE_DESC):
                     chPrController.updateDescr(operand);
+
+                    System.out.println("change desc console view");
                     break;
                 case(InstructionSet.SET_PIC):
                     chPrController.setPic(operand);
+
+                    System.out.println("set pic console view");
                     break;
                 case(InstructionSet.DEL_PIC):
-                    chPrController.delPic(operand);
+                    chPrController.delPic();
+
+                    System.out.println("del pic console view");
                     break;
 
             }

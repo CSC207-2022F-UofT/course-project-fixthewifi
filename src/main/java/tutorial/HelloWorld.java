@@ -11,6 +11,7 @@ import client.interface_adapters.presenters.LoginPresenter;
 import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.comManager;
+import server.frameworks_and_drivers.database.data_access.ChPrAccess;
 import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
@@ -24,6 +25,7 @@ import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.register.RegisterOutputAdapter;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
+import server.usecases.profile_changes.ChangeProfileGateWayDB;
 import server.usecases.profile_changes.ChangeProfileInputBoundary;
 import server.usecases.profile_changes.ChangeProfileInteractor;
 import server.usecases.profile_changes.ChangeProfileOutputBoundary;
@@ -60,8 +62,9 @@ public class HelloWorld {
         RegisterInteractor registerInteractor = new RegisterInteractor(loginAccess, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
+        ChangeProfileGateWayDB changeProfileGateWayDB = new ChPrAccess(database);
         ChangeProfileOutputBoundary changeProfileOutput= new ChangeProfileOutputAdapter(comManager);
-        ChangeProfileInteractor changeProfileInteractor= new ChangeProfileInteractor( access ,changeProfileOutput);
+        ChangeProfileInteractor changeProfileInteractor= new ChangeProfileInteractor( changeProfileGateWayDB ,changeProfileOutput);
         ChangeProfileController changeProfileController = new ChangeProfileController(changeProfileInteractor);
 
 
