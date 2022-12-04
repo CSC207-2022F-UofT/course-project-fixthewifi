@@ -2,9 +2,11 @@ package server.frameworks_and_drivers.database;
 
 import server.usecases.friendinteractors.acceptfriend.acceptFriendDSGateway;
 import server.usecases.friendinteractors.requestfriend.requestFriendDSGateway;
+import server.usecases.profile_changes.ChangeProfileDsInputModel;
+import server.usecases.profile_changes.ChangeProfileGateWayDB;
 import server.usecases.register.RegisterDBGateWay;
 
-public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, requestFriendDSGateway
+public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, requestFriendDSGateway, ChangeProfileGateWayDB
 {
     Database database;
 
@@ -83,5 +85,40 @@ public class DataAccess implements RegisterDBGateWay, acceptFriendDSGateway, req
     public void registerUser(int uid, String username, String password, String ipAddress)
     {
         database.newUser(uid, username, "", password, ipAddress);
+    }
+
+    @Override
+    public String userAdress(int identifier) {
+        return getAddress(identifier);
+    }
+
+    @Override
+    public int userPort(int identifier) {
+        return 0;
+    }
+
+    @Override
+    public boolean existsByUID(int identifier) {
+        return false;
+    }
+
+    @Override
+    public void storeSetPic(ChangeProfileDsInputModel dbModel) {
+
+    }
+
+    @Override
+    public void storeDelPic(ChangeProfileDsInputModel dbModel) {
+
+    }
+
+    @Override
+    public void storeUpdateName(ChangeProfileDsInputModel dbModel) {
+
+    }
+
+    @Override
+    public void storeUpdateDescr(ChangeProfileDsInputModel dbModel) {
+
     }
 }

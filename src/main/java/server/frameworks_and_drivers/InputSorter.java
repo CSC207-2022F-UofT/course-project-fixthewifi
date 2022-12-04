@@ -1,5 +1,6 @@
 package server.frameworks_and_drivers;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.interface_adapters.change_profile.ChangeProfileController;
 import server.interface_adapters.friend.input.AcceptFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
@@ -14,7 +15,9 @@ public class InputSorter implements ComManagerUser
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
 
-    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
+    private final ChangeProfileController changeProfileController;
+    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController,
+    ChangeProfileController changeProfileController)
     {
         //TODO: pass all of the controllers into here
 //        this.sendMsgController = sendMsgController;
@@ -22,6 +25,7 @@ public class InputSorter implements ComManagerUser
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
+        this.changeProfileController=  changeProfileController;
     }
 
     /**
@@ -55,6 +59,19 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
+                break;
+
+            case Constants.UPDATE_NAME:
+                changeProfileController.updateName(content);
+                break;
+            case Constants.UPDATE_DESC:
+                changeProfileController.updateDescr(content);
+                break;
+            case Constants.SET_PIC:
+                changeProfileController.setPic(content);
+                break;
+            case Constants.DEL_PIC:
+                changeProfileController.delPic(content);
                 break;
 
 

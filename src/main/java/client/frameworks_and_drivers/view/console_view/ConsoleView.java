@@ -2,7 +2,7 @@ package client.frameworks_and_drivers.view.console_view;
 
 import client.interface_adapters.controllers.FriendControllerInputBoundary;
 import client.interface_adapters.controllers.LoginControllerInputBoundary;
-import client.interface_adapters.controllers.MsgControllerInputBoundary;
+import client.interface_adapters.controllers.change_profile.ChPrControllerInputBoundary;
 import client.interface_adapters.model.Model;
 
 import java.io.BufferedReader;
@@ -16,13 +16,16 @@ public class ConsoleView
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
 
+    private final ChPrControllerInputBoundary chPrController;
     public ConsoleView(Model model,
                        LoginControllerInputBoundary loginController,
-                       FriendControllerInputBoundary friendController)
+                       FriendControllerInputBoundary friendController,
+                       ChPrControllerInputBoundary chPrController)
     {
         this.model = model;
         this.loginController = loginController;
         this.friendController = friendController;
+        this.chPrController = chPrController;
     }
 
     public void init()
@@ -85,6 +88,22 @@ public class ConsoleView
                 case(InstructionSet.ACCEPT_FRIEND):
                     friendController.accept(model.friendRequester);
                     break;
+                case(InstructionSet.VIEW_PROFILE):
+                    displayMyProfile();
+                    break;
+
+                case(InstructionSet.CHANGE_NAME):
+                    chPrController.updateName(operand);
+                    break;
+                case(InstructionSet.CHANGE_DESC):
+                    chPrController.updateDescr(operand);
+                    break;
+                case(InstructionSet.SET_PIC):
+                    chPrController.setPic(operand);
+                    break;
+                case(InstructionSet.DEL_PIC):
+                    chPrController.delPic(operand);
+                    break;
 
             }
         }
@@ -129,6 +148,11 @@ public class ConsoleView
     public void displayLoginSuccess()
     {
         System.out.println("Login successful.");
+    }
+
+    public void displayMyProfile() {
+        System.out.println("My Profile");
+        System.out.println(model.getProfileInfo());
     }
 
     public void displayLoginFail()

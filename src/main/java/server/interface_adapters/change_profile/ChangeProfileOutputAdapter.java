@@ -16,7 +16,7 @@ import server.usecases.profile_changes.ChangeProfileOutputModel;
 public class ChangeProfileOutputAdapter implements ChangeProfileOutputBoundary {
 
     private final IfComManager comManager;
-    String SEPARATOR = "#";
+    char SEPARATOR = 30;
 
     public ChangeProfileOutputAdapter(IfComManager comManager)
     {

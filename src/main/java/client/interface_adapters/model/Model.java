@@ -37,6 +37,23 @@ public class Model
         }
         return self.friendList.get(userUid).userProfile.getDescription();
     }
+    public String getProfileInfo()
+    {
+            return self.profile.toString();
+    }
+    public void setSelfName(String name)
+    {
+        self.profile.setName(name);
+    }
+    public void setSelfDesc(String name)
+    {
+        self.profile.setDescription(name);
+    }
+
+    public void setSelfSetPic(String name)
+    {
+     //   self.profile.setProfilePic(name);
+    }
 
     public void setPageState(String state)
     {

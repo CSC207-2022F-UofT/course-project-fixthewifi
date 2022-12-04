@@ -53,6 +53,17 @@ public class UserProfile
         this.online = online;
     }
 
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rating=" + rating +
+                ", online=" + online +
+                ", profilePic=" + profilePic +
+                '}';
+    }
+
     public void setProfilePic(ProfilePicture profilePic) {
         this.profilePic = profilePic;
     }
