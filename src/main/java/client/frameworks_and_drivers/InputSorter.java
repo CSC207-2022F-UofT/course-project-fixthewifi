@@ -32,7 +32,7 @@ public class InputSorter implements ComManagerUser
             case Constants.CHANGE_PROFILE:
                 break;
             case Constants.ACCEPT_FRIEND:
-                friendPresenter.receiveConfirmation(content);
+                friendPresenter.receiveAccept(content);
             case Constants.REQUEST_FRIEND:
                 friendPresenter.receiveRequest(content);
                 break;

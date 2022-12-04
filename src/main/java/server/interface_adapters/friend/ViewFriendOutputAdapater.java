@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import server.frameworks_and_drivers.Constants;
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 
 
@@ -31,8 +32,8 @@ public class ViewFriendOutputAdapater
                 idlist.add(map.get(key));
             }
         }
-        String content_names = namelist.toString();
-        String content_ids = idlist.toString();
+        String content_names = Constants.VIEW_FRIEND + "#" + 2 + "names" + namelist.toString();
+        String content_ids = Constants.VIEW_FRIEND + "#" + 2 + "ids" + idlist.toString();
         comManager.send(address, peerPort, content_names);
         comManager.send(address, peerPort, content_ids);
     }

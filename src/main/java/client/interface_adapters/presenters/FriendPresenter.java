@@ -38,10 +38,28 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     }
 
     @Override
-    public void receiveConfirmation(String data)
+    public void receiveAccept(String data)
     {
-        String[] content = data.split(" ");
-        view.displayConfirmation(Integer.parseInt(content[0]), content[1]);
+        model.setPageState("FRIEND_ACCEPT");
+        String[] content =data.split(" ");
+        if (Integer.parseInt(content[0]) == 1){
+            view.displayConfirmation(Integer.parseInt(content[0]), content[1]);
+
+        }
+        else if (Integer.parseInt(content[0]) == 2){
+            System.out.println("Your friend request to " + content[1] + " was declined");
+        }
+        else {
+        }
+    }
+
+    @Override
+    public void receiveDelete(String data) {
+
+    }
+
+    @Override
+    public void receiveView(String data) {
 
     }
 }

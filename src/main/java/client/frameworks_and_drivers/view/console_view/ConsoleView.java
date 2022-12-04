@@ -132,7 +132,9 @@ public class ConsoleView
         System.out.println("New friends request from " + s + " uid: " +  parseInt);
     }
 
-    public void displayConfirmation(int parseInt, String s) {
+    public void displayConfirmation(int parseInt, String s)
+    {
+        System.out.println("The friend request to " + s + " uid: " +  parseInt + " is accepted.");
     }
 
     public void displayLoginSuccess()

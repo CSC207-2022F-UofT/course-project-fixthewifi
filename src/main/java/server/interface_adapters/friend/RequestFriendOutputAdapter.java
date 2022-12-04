@@ -11,6 +11,7 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
         this.comManager = comManager;
     }
 
+
     @Override
     public void success(int requesterid, String address, int peerPort)
     {

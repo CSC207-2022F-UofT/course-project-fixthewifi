@@ -18,4 +18,6 @@ public interface Constants
     int DEL_PIC = 9;
     int FAIL=10;
     int UPDATE_NAME = 30;
+    int VIEW_FRIEND = 64;
+    int DELETE_FRIEND = 69;
 }
