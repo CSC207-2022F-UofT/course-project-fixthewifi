@@ -41,8 +41,7 @@ public class ConsoleView
                     // Reading data using readLine
                     String input = reader.readLine();
                     String[] content = input.split(" ", 2);
-                    System.out.println(model.getPageState());
-                    System.out.println(Arrays.toString(content));
+
 
                     if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                     {
