@@ -16,14 +16,14 @@ public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
     @Override
     public void success(int requestor, int friendid, String friendName, String address, int peerPort)
     {
-        String content = Constants.ACCEPT_FRIEND + "#" + " 1 "+ friendid + " " + friendName;
+        String content = Constants.ACCEPT_FRIEND + "#" + "1 "+ friendid + " " + friendName;
         comManager.send(address, peerPort, content);
     }
 
     @Override
     public void refuse(int requestor, int friendid, String friendName, String address, int peerPort)
     {
-        String content = Constants.ACCEPT_FRIEND + "#" + " 0 " + friendid + " " + friendName;
+        String content = Constants.ACCEPT_FRIEND + "#" + "0 " + friendid + " " + friendName;
         comManager.send(address, peerPort, content);
     }
 }

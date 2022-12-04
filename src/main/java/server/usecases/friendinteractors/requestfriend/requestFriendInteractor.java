@@ -30,6 +30,7 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
             dataBase.requestFriendbyID(requesterid, friendid);
             output.success(requesterid, requesterAddress, requesterPeerPort);
             output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
+            return;
         }
         if(b2){
             String requesterName = model.getRequesterName();
@@ -44,6 +45,7 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
             dataBase.requestFriendbyName(requesterName, friendName);
             output.success(requesterid, requesterAddress, requesterPeerPort);
             output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
+            return;
         }
         // input not found in database
         int requesterid = model.getRequesterid();

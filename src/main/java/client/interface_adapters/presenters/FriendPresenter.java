@@ -19,7 +19,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     @Override
     public void receiveRequest(String data)
     {
-        model.setPageState("FRIEND_REQUEST");
         String[] content = data.split(" ");
 
         if (Integer.parseInt(content[0]) == 1)
@@ -48,8 +47,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
         else if (Integer.parseInt(content[0]) == 2){
             System.out.println("Your friend request to " + content[1] + " was declined");
-        }
-        else {
         }
     }
 

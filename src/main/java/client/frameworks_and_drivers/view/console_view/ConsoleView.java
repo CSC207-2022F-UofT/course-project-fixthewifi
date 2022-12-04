@@ -9,6 +9,7 @@ import client.interface_adapters.model.userNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ConsoleView
@@ -40,6 +41,8 @@ public class ConsoleView
                     // Reading data using readLine
                     String input = reader.readLine();
                     String[] content = input.split(" ", 2);
+                    System.out.println(model.getPageState());
+                    System.out.println(Arrays.toString(content));
 
                     if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                     {
@@ -62,10 +65,11 @@ public class ConsoleView
     }
 
     public void sort(String operation, String operand)  {
+
         if (model.getPageState().startsWith("CHAT"))
         {
-
         }
+
         else
         {
             switch (operation)
