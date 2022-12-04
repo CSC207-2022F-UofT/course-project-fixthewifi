@@ -21,7 +21,7 @@ public class RetrieveFriendsListInteractor implements RetrieveFriendsListInputBo
         ArrayList<String> users = new ArrayList<>();
         ArrayList<CommonUser> friendslist = database.getFriendsListByUID(input.getUID());
         for(CommonUser u : friendslist){
-            users.add(String.valueOf(u.getUid() + Constants.SPR));
+            users.add(String.valueOf(u.getUid()) + Constants.SPR);
             //TODO: usernames.add(u.getUsername());
         }
         String peerID = database.getPeerIDFromUID(UID);
