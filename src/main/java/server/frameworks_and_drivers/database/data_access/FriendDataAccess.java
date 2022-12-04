@@ -23,7 +23,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         // Take out the row of information that belongs to friendid
         String[] friend = database.readUser(friendid);
 
-        // Take out friends, add new friend
+        // Add each of them to each person`s friendlist
         List<String> friendList = new LinkedList<>(Arrays.asList(friend[6].split("-")));
         friendList.add(String.valueOf(requesterid));
 
@@ -40,8 +40,8 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         String[] requester = database.readUser(requesterid);
 
         // Take out friends, add new friend
-        List<String> friendList1 = new LinkedList<>(Arrays.asList(friend[6].split("-")));
-        friendList1.add(String.valueOf(requesterid));
+        List<String> friendList1 = new LinkedList<>(Arrays.asList(requester[6].split("-")));
+        friendList1.add(String.valueOf(friendid));
 
         //store back to database
         requester[6] = String.join("-", friendList1.toArray(new String[0]));
