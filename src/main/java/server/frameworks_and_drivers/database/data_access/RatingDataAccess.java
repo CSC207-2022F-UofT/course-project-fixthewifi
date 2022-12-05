@@ -22,7 +22,7 @@ public class RatingDataAccess implements SendRatingDsGateway
     @Override
     public String userAddress(int identifier) {
         // TODO Auto-generated method stub
-        return database.readUser(identifier)[7];
+        return database.readUser(identifier)[8];
     }
 
     @Override
