@@ -12,6 +12,7 @@ import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.comManager;
 import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
+import server.frameworks_and_drivers.database.data_access.RatingDataAccess;
 import server.frameworks_and_drivers.database.Database;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
@@ -63,8 +64,9 @@ public class HelloWorld {
         RegisterInteractor registerInteractor = new RegisterInteractor(loginAccess, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
+        RatingDataAccess ratingAccess = new RatingDataAccess(database);
         SendRatingOutputAdapter sendRatingOutputAdapter = new SendRatingOutputAdapter(comManager);
-        SendRatingInteractor sendRatingInteractor = new SendRatingInteractor(access, sendRatingOutputAdapter);
+        SendRatingInteractor sendRatingInteractor = new SendRatingInteractor(ratingAccess, sendRatingOutputAdapter);
         SendRatingController sendRatingController = new SendRatingController(sendRatingInteractor);
 
 
