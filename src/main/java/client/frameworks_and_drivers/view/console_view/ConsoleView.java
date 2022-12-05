@@ -116,7 +116,9 @@ public class ConsoleView
     public void displayNewRequest(int parseInt, String s) {
     }
 
-    public void displayConfirmation(int parseInt, String s) {
+    public void displayConfirmation(int parseInt, String s)
+    {
+        System.out.println("You have a new friend, uid: " + parseInt + ", name: " + s);
     }
 
     public void displayLoginSuccess()
