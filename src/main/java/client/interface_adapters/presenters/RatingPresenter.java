@@ -14,15 +14,11 @@ public class RatingPresenter {
     }
 
     public void receiveConfirmation(String data) {
-        try {
-            String[] content = data.split("#");
-            String avgRating = content[0];
-            int receiverUid = Integer.parseInt(content[1]);
-            model.setRating(avgRating);
-            view.displayRatingSuccess();
-            view.displayRating(receiverUid);
-        } catch (Exception e) {
-            view.displayRatingFail();
-        }
+        String[] content = data.split("#");
+        String avgRating = content[0];
+        int receiverUid = Integer.parseInt(content[1]);
+        model.setRating(avgRating);
+        view.displayRatingSuccess();
+        view.displayRating(receiverUid);
     }
 }

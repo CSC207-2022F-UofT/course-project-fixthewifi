@@ -168,7 +168,7 @@ public class ConsoleView
         System.out.println("===========Rating===========");
         System.out.println("uid: " + userUid);
         System.out.println("name: " + userUid);
-        System.out.println("description: " + model.getDescription(userUid));
-        System.out.println("Rating: " + model.getRating(userUid));
+//        System.out.println("description: " + model.getDescription(userUid));
+//        System.out.println("Rating: " + model.getRating(userUid));
     }
 }
