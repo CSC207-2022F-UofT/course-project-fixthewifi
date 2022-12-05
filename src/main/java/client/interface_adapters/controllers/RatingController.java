@@ -20,7 +20,7 @@ public class RatingController implements RatingControllerInputBoundary
 
     public void rate(int receiverUid, int rating)
     {
-        String toSend = Constants.SEND_RATING + "#" + receiverUid + CONTENT_SPR + rating;
+        String toSend = Constants.SEND_RATING + "#" + model.getSelfUid() + CONTENT_SPR + receiverUid + CONTENT_SPR + rating;
         // TO-DO: Change peerPort
         comManager.send(serverIp, 4396, toSend);
     }

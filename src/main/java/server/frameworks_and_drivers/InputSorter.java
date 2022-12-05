@@ -63,7 +63,8 @@ public class InputSorter implements ComManagerUser
                 acceptFriendController.acceptFriend(content);
                 break;
             case Constants.SEND_RATING:
-                String[] splitContent = content.split(" ");
+                char SEP = 30;
+                String[] splitContent = content.split(String.valueOf(SEP));
                 sendRatingController.sendRating(Integer.parseInt(splitContent[0]), Integer.parseInt(splitContent[1]),
                         Integer.parseInt(splitContent[2]));
                 break;
