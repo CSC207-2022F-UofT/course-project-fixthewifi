@@ -16,9 +16,9 @@ public class LoginInteractor implements LoginInputBoundary{
         int userPort = db.userPort(uid);
         boolean success = db.check(uid, password);
         if (success){
-            String userProfile = db.getUserProfile(uid);
-            String chatList = db.getChats(uid);
-            String friendList = db.getFriends(uid);
+            String[] userProfile = db.getUserProfile(uid);
+            ArrayList<String[]> chatList = db.getChats(uid);
+            ArrayList<String[]> friendList = db.getFriends(uid);
             outputBoundary.ifSuccess(uid, userProfile, chatList, friendList, address, userPort);
         }
         else{

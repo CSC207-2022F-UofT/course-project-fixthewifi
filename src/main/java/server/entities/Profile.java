@@ -10,6 +10,6 @@ public interface Profile {
     public String getDescription();
     public void setDescription(String description);
 
-    public  ProfilePicture getProfilePicture();
+    public ProfilePicture getProfilePicture();
     public void setProfilePicture(ProfilePicture pic);
 }

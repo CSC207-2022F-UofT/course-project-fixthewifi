@@ -1,58 +1,57 @@
 package client.interface_adapters.model;
 
-import client.interface_adapters.model.model_entities.Self;
-import client.interface_adapters.model.model_entities.UserFactory;
+import client.interface_adapters.model.model_entities.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Model
 {
     private final Self self;
     private String pageState;
-    private final HashMap<Integer, String> requesterList;
+    private final HashMap<Integer, String> friendRequests;
 
     public Model()
     {
         this.self = UserFactory.newSelf();
         pageState = "LOGIN_PAGE";
-        requesterList = new HashMap<Integer, String>();
-
+        friendRequests = new HashMap<>();
     }
 
-    public void addRequester(int uid, String name)
+    //TODO: If you want to store/get data into the model, create the corresponding setter/getter method
+    // by using the provided methods inside <self>.
+
+    public int getSelfUid()
     {
-        requesterList.put(uid, name);
+        return self.getUid();
     }
-
-    public String getPageState()
-    {
-        return pageState;
-    }
-
     public void setSelfUid(int uid)
     {
-        self.uid = uid;
+        self.setUid(uid);
     }
-
-    public int getSelfUid() 
-    {
-        return self.uid;
-    }
-
-    public void storeChatMsg(int parseInt, int parseInt1, String s, String s1)
-    {
-    }
-
 
     public String getDescription(int userUid)
     {
-        if (userUid == getSelfUid())
+        if (userUid == self.getUid())
         {
-            return self.profile.getDescription();
+            return self.getDescription();
         }
-        return self.friendList.get(userUid).userProfile.getDescription();
+        return self.getFriend(userUid).getDescription();
+    }
+
+    public void addFriend(int uid, String name, String description, double rating, boolean online)
+    {
+        Friend friend = UserFactory.newFriend(uid, name, description, rating, online);
+        self.addFriend(friend);
+    }
+
+    public void addChat(int uid, String name, String description)
+    {
+        Chat chat = ChatFactory.getChat(uid, name, description);
+        self.addChat(chat);
+    }
+
+    public String getPageState() {
+        return pageState;
     }
 
     public void setPageState(String state)
@@ -62,17 +61,17 @@ public class Model
 
     public void setSelfStatus(boolean b)
     {
-        self.profile.setOnline(b);
+
     }
 
-    public int getRequester(int uid) throws userNotFoundException {
-        if (requesterList.containsKey(uid))
-        {
-            return uid;
-        }
-        else
-        {
-            throw new userNotFoundException("The uid entered is not found.");
-        }
+    public void setSelfName(String s) {
     }
+
+    public void setSelfDescription(String s) {
+    }
+
+    public void setRating(double parseDouble) {
+    }
+
 }
+

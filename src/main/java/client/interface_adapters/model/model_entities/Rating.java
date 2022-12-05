@@ -39,4 +39,9 @@ public class Rating {
         return avgRating; 
     }
 
+    public void setRating(double rating)
+    {
+        this.avgRating = rating;
+    }
+
 }

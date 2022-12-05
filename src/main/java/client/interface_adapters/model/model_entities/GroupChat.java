@@ -1,78 +1,47 @@
 package client.interface_adapters.model.model_entities;
 
-import server.entities.Chat;
-import server.entities.GroupProfile;
-import server.entities.Message;
-import server.entities.User;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * A class representing a Groupchat.
  * @author Brenden McFarlane
  */
-public class GroupChat implements Chat {
+public class GroupChat extends Chat {
     /**
      * Representation invariants:
      * admin is always in members.
      */
-    private final int chatUid;
-    private final GroupProfile profile;
-    private final User admin;
-    private final List<User> members;
-    private final List<Message> messages;
+
+    private User admin;
+    private final HashMap<Integer, User> members;
 
 
-
-
-    public GroupChat(int chatUid, GroupProfile profile, User admin, List<User> members, List<Message> messages){
-        this.chatUid = chatUid;
-        this.profile = profile;
+    public GroupChat(int chatUid, ChatProfile profile, User admin, HashMap<Integer, User> members, List<Message> messages){
+        super(chatUid, profile, messages);
         this.admin = admin;
         this.members = members;
-        this.messages = messages;
     }
 
-    @Override
-    public int getUid() {
-        return this.chatUid;
-    }
-
-    public List<Message> getMessages(){
-        return this.messages;
-    }
-
-    @Override
-    public void addMsg(Message msg) {
-
-    }
-
-    @Override
-    public void deleteMsg() {
-
-    }
-
-    public server.entities.User getAdmin() {
+    public User getAdmin() {
         return this.admin;
     }
 
-
-    public List<User> getMembers(){
-        return this.members;
+    public void setAdmin(User admin) {
+        this.admin = admin;
     }
 
-    public void addUser(server.entities.User friend){
-        this.members.add(friend);
+    public void addMember(User user){
+        members.put(user.getUid(), user);
     }
 
-    public void removeUser(User member){
-        if(member != this.admin) {
-            this.members.remove(member);
-        }
-
+    public User getMember(int userUid)
+    {
+        return members.get(userUid);
     }
-
-
-
+    public void deleteMember(int userUid)
+    {
+        members.remove(userUid);
+    }
 }

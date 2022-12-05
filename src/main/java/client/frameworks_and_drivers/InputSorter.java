@@ -39,6 +39,7 @@ public class InputSorter implements ComManagerUser
             case Constants.REGISTER:
                 loginPresenter.receiveConfirmation(content);
                 break;
+
         }
     }
 
