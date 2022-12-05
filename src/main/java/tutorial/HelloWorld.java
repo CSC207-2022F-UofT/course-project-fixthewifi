@@ -26,9 +26,8 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
-      //  newServer();
+        newServer();
         newClient();
-        System.out.println("123456432");
 
     }
 
@@ -57,6 +56,8 @@ public class HelloWorld {
 
         InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController);
         comManager.init(4396, inputSorter);
+        System.out.println("Server initialized.");
+
     }
 
     static void newClient()
@@ -77,6 +78,7 @@ public class HelloWorld {
         client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter);
         comManager.init(4445, inputSorter);
         view.init();
+        System.out.println("Client initialized.");
     }
 
     public static String convert(int decide) {

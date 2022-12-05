@@ -16,4 +16,6 @@ public interface acceptFriendDSGateway extends friendCommonsDSGateway {
      * @param requesterid
      */
     void refuseFriendbyID(int friendid, int requesterid);
+
+    String[] readUser(int userUid);
 }

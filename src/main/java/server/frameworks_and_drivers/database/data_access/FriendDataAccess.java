@@ -61,6 +61,11 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
+    public String[] readUser(int userUid) {
+        return database.readUser(userUid);
+    }
+
+    @Override
     public void deleteFriendbyID(int user1, int user2) {
         //delete uid of user2 in user1`s friendlist
         deleteFriendbyID_helper(user1, user2);

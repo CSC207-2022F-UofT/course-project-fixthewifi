@@ -77,5 +77,10 @@ public class Model
     {
         friendRequests.put(uid, name);
     }
+
+    @Override
+    public String toString() {
+        return self.toString();
+    }
 }
 

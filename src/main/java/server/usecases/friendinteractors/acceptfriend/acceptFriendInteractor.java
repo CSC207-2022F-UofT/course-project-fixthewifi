@@ -1,4 +1,5 @@
 package server.usecases.friendinteractors.acceptfriend;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class acceptFriendInteractor implements acceptFriendInputBoundary {
@@ -28,7 +29,18 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
         dataBase.cleanRequesterListDuplicateUID(friendid);
         if(Objects.equals(ifAccept, "True")){
             dataBase.acceptFriendbyID(friendid, requesterid);
-            output.success(requesterid, friendid, friendName, requesterAddress, requesterPeerPort);
+
+            String[] requesterData = dataBase.readUser(requesterid);
+            String[] friendData = dataBase.readUser(friendid);
+
+            String[] toRequester = Arrays.copyOfRange(friendData, 0, 5);
+            toRequester[3] = toRequester[3].split("-")[0];
+
+            String[] toFriend = Arrays.copyOfRange(requesterData, 0, 5);
+            toFriend[3] = toFriend[3].split("-")[0];
+
+            output.success(toRequester, requesterData[7], Integer.parseInt(requesterData[10]));
+            output.success(toFriend, friendData[7], Integer.parseInt(friendData[10]));
         }
         else{
             dataBase.refuseFriendbyID(friendid, requesterid);
