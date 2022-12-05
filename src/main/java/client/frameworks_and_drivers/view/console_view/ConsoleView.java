@@ -72,11 +72,11 @@ public class ConsoleView
                     break;
 
                 case(InstructionSet.REQUEST_FRIEND):
-                    friendController.request(Integer.parseInt(operand));
+                    friendController.requestFriend(Integer.parseInt(operand));
                     break;
 
                 case(InstructionSet.ACCEPT_FRIEND):
-                    friendController.accept(Integer.parseInt(operand));
+                    friendController.acceptFriend(Integer.parseInt(operand));
                     break;
 
             }

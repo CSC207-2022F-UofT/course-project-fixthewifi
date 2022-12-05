@@ -73,5 +73,9 @@ public class Model
     public void setRating(double parseDouble) {
     }
 
+    public void addRequester(int uid, String name)
+    {
+        friendRequests.put(uid, name);
+    }
 }
 

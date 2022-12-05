@@ -157,10 +157,19 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public boolean notfriendDuplicate(int requester, int friend) {
+    public boolean notAlreadyFriend(int requester, int friend)
+    {
         String[] requester_data = database.readUser(requester);
-        List<String> requesterList = new LinkedList<>(Arrays.asList(requester_data[9].split("-")));
-        return !requesterList.contains(String.valueOf(friend));
+        List<String> FriendList = new LinkedList<>(Arrays.asList(requester_data[6].split("-")));
+        return !FriendList.contains(String.valueOf(friend));
+    }
+
+    @Override
+    public boolean notAlreadyRequested(int requester, int friend)
+    {
+        String[] friendData = database.readUser(friend);
+        List<String> requesterList = new LinkedList<>(Arrays.asList(friendData[9].split("-")));
+        return !requesterList.contains(String.valueOf(requester));
     }
 
     @Override

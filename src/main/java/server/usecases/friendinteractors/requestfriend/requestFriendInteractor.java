@@ -18,9 +18,10 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
     public void RequestFriend(requestFriendInputModel model) {
         boolean b1 = dataBase.ifexistsUID(model.getFriendid());
         boolean b2 = dataBase.ifexistsUserName(model.getFriendName());
-        boolean b3 = dataBase.notfriendDuplicate(model.getRequesterid(), model.getFriendid());
+        boolean b3 = dataBase.notAlreadyFriend(model.getRequesterid(), model.getFriendid());
+        boolean b4 = dataBase.notAlreadyRequested(model.getRequesterid(), model.getFriendid());
         dataBase.cleanRequesterListDuplicateUID(model.getRequesterid());
-        if(b1 && b3){
+        if(b1 && b3 && b4){
             int requesterid = model.getRequesterid();
             int friendid = model.getFriendid();
             String requesterName = dataBase.getUserNamebyUID(requesterid);
@@ -34,7 +35,7 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
             output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
             return;
         }
-        if(b2 && b3){
+        if(b2 && b3 && b4){
             String requesterName = model.getRequesterName();
             String friendName = model.getFriendName();
             int friendid = dataBase.getUIDbyUserName(friendName);

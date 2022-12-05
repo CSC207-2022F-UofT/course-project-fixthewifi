@@ -17,5 +17,8 @@ public interface requestFriendDSGateway extends friendCommonsDSGateway {
      * @param friend
      */
     void requestFriendbyName(String requester, String friend);
-    boolean notfriendDuplicate(int requester, int friend);
+
+    public boolean notAlreadyFriend(int requester, int friend);
+
+    public boolean notAlreadyRequested(int requester, int friend);
 }
