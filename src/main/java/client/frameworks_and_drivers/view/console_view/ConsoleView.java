@@ -4,7 +4,6 @@ import client.interface_adapters.controllers.FriendControllerInputBoundary;
 import client.interface_adapters.controllers.LoginControllerInputBoundary;
 import client.interface_adapters.controllers.MsgControllerInputBoundary;
 import client.interface_adapters.model.Model;
-import client.interface_adapters.model.userNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,23 +34,16 @@ public class ConsoleView
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             while (true)
             {
-                try
-                {
-                    // Reading data using readLine
-                    String input = reader.readLine();
-                    String[] content = input.split(" ", 2);
+                // Reading data using readLine
+                String input = reader.readLine();
+                String[] content = input.split(" ", 2);
 
-                    if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
-                    {
-                        sortLogin(content[0], content[1]);
-                    } else if (Objects.equals(model.getPageState(), "MAIN_PAGE"))
-                    {
-                        sort(content[0], content[1]);
-                    }
-                }
-                catch(ArrayIndexOutOfBoundsException exception)
+                if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                 {
-                    System.out.println("Are you sure about that, son?");
+                    sortLogin(content[0], content[1]);
+                } else
+                {
+                    sort(content[0], content[1]);
                 }
             }
         }
@@ -61,7 +53,8 @@ public class ConsoleView
         }
     }
 
-    public void sort(String operation, String operand)  {
+    public void sort(String operation, String operand)
+    {
         if (model.getPageState().startsWith("CHAT"))
         {
 
@@ -83,14 +76,7 @@ public class ConsoleView
                     break;
 
                 case(InstructionSet.ACCEPT_FRIEND):
-                    try
-                    {
-                        friendController.accept(model.getRequester(Integer.parseInt(operand)));
-                    }
-                    catch (userNotFoundException e)
-                    {
-                        System.out.println("This use has not sent you a friend request.");
-                    }
+                    friendController.accept(Integer.parseInt(operand));
                     break;
 
             }
@@ -127,9 +113,7 @@ public class ConsoleView
         model.setPageState(Integer.toString(chatUid));
     }
 
-    public void displayNewRequest(int parseInt, String s)
-    {
-        System.out.println("New friends request from " + s + " uid: " +  parseInt);
+    public void displayNewRequest(int parseInt, String s) {
     }
 
     public void displayConfirmation(int parseInt, String s) {

@@ -6,20 +6,18 @@ public class UserFactory
 {
     public static Self newSelf()
     {
-        ProfilePicture profilePicture = new ProfilePicture();
         Rating rating = new Rating(0, 0, 0);
-        UserProfile userProfile = new UserProfile( "", "", rating, false, profilePicture);
+        UserProfile userProfile = new UserProfile( "", "", rating, false);
 
         HashMap<Integer, Chat> chatList = new HashMap<>();
         HashMap<Integer, Friend> friendList = new HashMap<>();
-        return new Self(1234567890, userProfile, chatList, friendList);
+        return new Self(-1, userProfile, chatList, friendList);
     }
 
-    public static Friend getFriend(int uid, String name, String description, boolean online)
+    public static Friend newFriend(int uid, String name, String description, double avgRating, boolean online)
     {
-        ProfilePicture profilePicture = new ProfilePicture();
-        Rating rating = new Rating(0, 0, 0);
-        UserProfile userProfile = new UserProfile(name, description, rating, online, profilePicture);
+        Rating rating = new Rating(avgRating, 0, 0);
+        UserProfile userProfile = new UserProfile(name, description, rating, online);
 
         return new Friend(uid, userProfile);
 
