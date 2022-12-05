@@ -13,22 +13,28 @@ public class RatingDataAccess implements SendRatingDsGateway
     }
 
     @Override
-    public void storeRating(int receiverUid, double avgRating) {
-        // TODO Auto-generated method stub
-        
-        
+    public void storeRating(int receiverUid, double avgRating, double number, double total)
+    {
+        String content = avgRating + "-" + number + "-" + total;
+        database.updateUser(receiverUid, 3, content);
     }
 
     @Override
     public String userAddress(int identifier) {
         // TODO Auto-generated method stub
-        return database.readUser(identifier)[8];
+        return database.readUser(identifier)[7];
     }
 
     @Override
     public int userPort(int identifier) {
         // TODO Auto-generated method stub
         return 4444;
+    }
+
+    @Override
+    public double[] getAverageRating(int userUid) {
+        String[] ratingContent = database.readUser(userUid)[3].split("-");
+        return new double[]{Double.parseDouble(ratingContent[1]), Double.parseDouble((ratingContent[2]))};
     }
 }
     

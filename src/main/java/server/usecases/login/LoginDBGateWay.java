@@ -21,4 +21,6 @@ public interface LoginDBGateWay {
 
     String userAddress(int uid);
     int userPort(int uid);
+
+    String getRequesters(int uid);
 }
