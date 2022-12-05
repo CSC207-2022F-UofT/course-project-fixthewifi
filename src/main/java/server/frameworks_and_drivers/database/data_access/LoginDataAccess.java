@@ -16,12 +16,12 @@ public class LoginDataAccess implements RegisterDBGateWay
     @Override
     public int getNewUid(String username, String password)
     {
-        return Database.returnNewUserUid();
+        return database.returnNewUserUid();
     }
 
     @Override
     public void registerUser(int uid, String username, String password, String ipAddress)
     {
-        database.newUser(uid, username, "", ipAddress, password);
+        database.newUser(uid, username, "", ipAddress, password, 4444);
     }
 }
