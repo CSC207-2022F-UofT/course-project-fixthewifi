@@ -172,6 +172,8 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         return !requesterList.contains(String.valueOf(requester));
     }
 
+
+
     @Override
     public void cleanRequesterListDuplicateUID(int requester) {
         String[] requester_data = database.readUser(requester);
