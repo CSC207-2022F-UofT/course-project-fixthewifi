@@ -9,7 +9,8 @@ import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.comManager;
-import server.frameworks_and_drivers.database.DataAccess;
+import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
+import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
@@ -33,21 +34,23 @@ public class HelloWorld {
 
     static void newServer()
     {
-        Database database = new Database();
-        DataAccess access = new DataAccess(database);
+        Database database = new Database("User.csv", "Chat.csv");
 
         comManager comManager = new comManager(true);
 
+        FriendDataAccess friendAccess = new FriendDataAccess(database);
         RequestFriendOutputAdapter requestFriendOutputAdapter = new RequestFriendOutputAdapter(comManager);
-        requestFriendInteractor requestFriendInteractor = new requestFriendInteractor(requestFriendOutputAdapter, access);
+        requestFriendInteractor requestFriendInteractor = new requestFriendInteractor(requestFriendOutputAdapter, friendAccess);
         RequestFriendController requestFriendController = new RequestFriendController(requestFriendInteractor);
 
         AcceptFriendOutputAdapter acceptFriendOutputAdapter = new AcceptFriendOutputAdapter(comManager);
-        acceptFriendInteractor acceptFriendInteractor = new acceptFriendInteractor(access, acceptFriendOutputAdapter);
+        acceptFriendInteractor acceptFriendInteractor = new acceptFriendInteractor(friendAccess, acceptFriendOutputAdapter);
         AcceptFriendController acceptFriendController = new AcceptFriendController(acceptFriendInteractor);
 
+
+        LoginDataAccess loginAccess = new LoginDataAccess(database);
         RegisterOutputAdapter registerOutputAdapter = new RegisterOutputAdapter(comManager);
-        RegisterInteractor registerInteractor = new RegisterInteractor(access, registerOutputAdapter);
+        RegisterInteractor registerInteractor = new RegisterInteractor(loginAccess, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
 
