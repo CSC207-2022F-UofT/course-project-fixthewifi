@@ -32,11 +32,15 @@ public class GroupChat extends Chat {
         this.admin = admin;
     }
 
-    public void addUser(User user){
+    public void addMember(User user){
         members.put(user.getUid(), user);
     }
 
-    public void deleteUser(int userUid)
+    public User getMember(int userUid)
+    {
+        return members.get(userUid);
+    }
+    public void deleteMember(int userUid)
     {
         members.remove(userUid);
     }

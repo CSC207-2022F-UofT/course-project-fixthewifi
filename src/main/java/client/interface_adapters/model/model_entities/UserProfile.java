@@ -14,8 +14,8 @@ public class UserProfile extends Profile
         this.rating = rating;
         this.online = online;
     }
-    public Rating getRating() {
-        return rating;
+    public double getRating() {
+        return rating.getAvgRating();
     }
 
     public void setRating(double rating) {

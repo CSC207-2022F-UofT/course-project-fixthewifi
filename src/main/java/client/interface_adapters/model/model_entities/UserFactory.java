@@ -14,7 +14,7 @@ public class UserFactory
         return new Self(-1, userProfile, chatList, friendList);
     }
 
-    public static Friend getFriend(int uid, String name, String description, double avgRating, boolean online)
+    public static Friend newFriend(int uid, String name, String description, double avgRating, boolean online)
     {
         Rating rating = new Rating(avgRating, 0, 0);
         UserProfile userProfile = new UserProfile(name, description, rating, online);

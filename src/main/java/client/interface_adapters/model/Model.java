@@ -17,52 +17,51 @@ public class Model
         friendRequests = new HashMap<>();
     }
 
+    //TODO: If you want to store/get data into the model, create the corresponding setter/getter method
+    // by using the provided methods inside <self>.
+
+    public int getSelfUid()
+    {
+        return self.getUid();
+    }
     public void setSelfUid(int uid)
     {
         self.setUid(uid);
     }
 
-    public int getSelfUid() 
-    {
-        return self.getUid();
-    }
-
-    public void storeChatMsg(int parseInt, int parseInt1, String s, String s1) {
-    }
-
-    public void addFriend(int uid, String name, String description, double rating, boolean online)
-    {
-        Friend friend = UserFactory.getFriend(uid, name, description, rating, online);
-        self.addFriend(friend);
-    }
-
-    public void addChat(int uid, String name, String description, String[] messages)
-    {
-        Chat chat = ChatFactory.getChat(uid, name, description);
-        self.addChat(chat);
-    }
-
     public String getDescription(int userUid)
     {
-        if (userUid == getSelfUid())
+        if (userUid == self.getUid())
         {
             return self.getDescription();
         }
         return self.getFriend(userUid).getDescription();
     }
 
+    public void addFriend(int uid, String name, String description, double rating, boolean online)
+    {
+        Friend friend = UserFactory.newFriend(uid, name, description, rating, online);
+        self.addFriend(friend);
+    }
+
+    public void addChat(int uid, String name, String description)
+    {
+        Chat chat = ChatFactory.getChat(uid, name, description);
+        self.addChat(chat);
+    }
+
     public String getPageState() {
         return pageState;
     }
-
-
 
     public void setPageState(String state)
     {
         pageState = state;
     }
 
-    public void setSelfStatus(boolean b) {
+    public void setSelfStatus(boolean b)
+    {
+
     }
 
     public void setSelfName(String s) {

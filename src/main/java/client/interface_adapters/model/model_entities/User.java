@@ -40,4 +40,24 @@ public abstract class User
     }
 
     public void setProfilePicture(ProfilePicture pic) {profile.setProfilePicture(pic); }
+
+    public double getRating()
+    {
+        return profile.getRating();
+    }
+
+    public void setRating(double rating)
+    {
+        profile.setRating(rating);
+    }
+
+    public boolean getStatus()
+    {
+        return profile.isOnline();
+    }
+
+    public void setStatus(boolean online)
+    {
+        profile.setOnline(online);
+    }
 }
