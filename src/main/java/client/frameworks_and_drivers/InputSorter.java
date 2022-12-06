@@ -3,6 +3,8 @@ import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
+import java.util.Arrays;
+
 public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
@@ -24,6 +26,7 @@ public class InputSorter implements ComManagerUser
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
         String content = splitMsg[1];
+//        System.out.println("INSORT: " + Arrays.toString(splitMsg));
         switch (useCaseConstant)
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
@@ -33,6 +36,7 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.ACCEPT_FRIEND:
                 friendPresenter.receiveAccept(content);
+                break;
             case Constants.REQUEST_FRIEND:
                 friendPresenter.receiveRequest(content);
                 break;

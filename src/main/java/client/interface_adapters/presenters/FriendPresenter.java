@@ -22,6 +22,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     @Override
     public void receiveRequest(String data)
     {
+        System.out.println("RECEIVEREQUEST " + data);
         String[] content = data.split(" ");
 
         if (Integer.parseInt(content[0]) == 1)
@@ -50,7 +51,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
             boolean online = friendData[4].equals("T");
             model.addFriend(Integer.parseInt(friendData[0]), friendData[1], friendData[2], Double.parseDouble(friendData[3]), online);
             view.displayConfirmation(Integer.parseInt(friendData[0]), friendData[1]);
-            System.out.println(model);
         }
         else if (Integer.parseInt(content[0]) == 0){
             System.out.println("Your friend request to " + content[1] + content[2] + " was declined");
