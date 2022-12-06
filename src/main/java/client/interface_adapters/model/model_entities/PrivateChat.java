@@ -15,6 +15,6 @@ public class PrivateChat extends Chat
     @Override
     public String toString()
     {
-        return "Name: " + getName() + "Description: " + getDescription() + "Members: " +  user1 + user2;
+        return "Name: " + getName() + "Description: " + getDescription() + "Members: " ;
     }
 }
