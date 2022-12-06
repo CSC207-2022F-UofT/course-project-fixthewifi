@@ -42,7 +42,7 @@ public class InputSorter implements ComManagerUser
             case Constants.REGISTER:
                 loginPresenter.receiveConfirmation(content);
                 break;
-            case Constants.DELET_FRIEND:
+            case Constants.DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
         }
