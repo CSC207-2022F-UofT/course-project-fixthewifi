@@ -26,7 +26,6 @@ public class InputSorter implements ComManagerUser
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
         String content = splitMsg[1];
-//        System.out.println("INSORT: " + Arrays.toString(splitMsg));
         switch (useCaseConstant)
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.

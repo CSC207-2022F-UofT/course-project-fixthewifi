@@ -8,6 +8,7 @@ public interface InstructionSet
      String LOGIN = "$lgn";
      String REGISTER = "$reg";
      String REQUEST_FRIEND = "$ref";
-     String VIEW_FRIENDS = "$vwf";
+     String VIEW_FRIEND = "$vwf";
     String ACCEPT_FRIEND = "$acp";
+    String DELETE_FRIEND = "$dtf";
 }

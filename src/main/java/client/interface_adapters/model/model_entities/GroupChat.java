@@ -44,4 +44,9 @@ public class GroupChat extends Chat {
     {
         members.remove(userUid);
     }
+
+    @Override
+    public String toString() {
+        return "lol what";
+    }
 }

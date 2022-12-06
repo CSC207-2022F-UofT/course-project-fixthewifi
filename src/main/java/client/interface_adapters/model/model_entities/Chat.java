@@ -15,6 +15,9 @@ public abstract class Chat
         this.messages = messages;
     }
 
+    @Override
+    public abstract String toString();
+
     public int getUid()
     {
         return chatUid;

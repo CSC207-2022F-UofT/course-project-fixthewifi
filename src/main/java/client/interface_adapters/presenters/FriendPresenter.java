@@ -22,7 +22,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     @Override
     public void receiveRequest(String data)
     {
-        System.out.println("RECEIVEREQUEST " + data);
         String[] content = data.split(" ");
 
         if (Integer.parseInt(content[0]) == 1)

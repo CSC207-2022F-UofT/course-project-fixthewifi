@@ -35,7 +35,6 @@ public class AcceptFriendOutputAdapter implements acceptFriendOutputBoundary
     public void addUserToChat(String[] chatInfo, int otherMemberUid, String address, int port)
     {
         String content = Constants.ACCEPT_FRIEND + "#" + "2 " + String.join(String.valueOf(SPR), chatInfo) + SPR + otherMemberUid;
-        System.out.println(content + port + address);
         comManager.send(address, port, content);
     }
 }
