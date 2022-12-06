@@ -39,8 +39,12 @@ public class acceptFriendInteractor implements acceptFriendInputBoundary {
             String[] toFriend = Arrays.copyOfRange(requesterData, 0, 5);
             toFriend[3] = toFriend[3].split("-")[0];
 
+            int chatUid = dataBase.createPrivateChat(requesterid, friendid);
             output.success(toRequester, requesterData[7], Integer.parseInt(requesterData[10]));
             output.success(toFriend, friendData[7], Integer.parseInt(friendData[10]));
+            String[] chatInfo = dataBase.getChatInfo(chatUid);
+            output.addUserToChat(chatInfo, friendid, requesterData[7], Integer.parseInt(requesterData[10]));
+            output.addUserToChat(chatInfo, requesterid, friendData[7], Integer.parseInt(friendData[10]));
         }
         else{
             dataBase.refuseFriendbyID(friendid, requesterid);

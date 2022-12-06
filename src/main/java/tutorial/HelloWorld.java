@@ -70,8 +70,6 @@ public class HelloWorld {
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 
-
-
         FriendPresenter friendPresenter = new FriendPresenter(model, view);
         LoginPresenter loginPresenter = new LoginPresenter(model, view);
 

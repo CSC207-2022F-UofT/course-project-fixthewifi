@@ -66,6 +66,26 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
+    public int createPrivateChat(int requesterid, int friendid) {
+        int chatUID = database.returnNewChatUid();
+        String requesterName = database.readUser(requesterid)[1];
+        String friendName = database.readUser(requesterid)[1];
+        String chatName = "private chat between " + requesterName + " and " + friendName;
+        database.newChat(chatUID, chatName, "", -1, new int[]{requesterid, friendid});
+        return chatUID;
+    }
+
+    @Override
+    public String[] getChatInfo(int chatUid) {
+        String[] toReturn = new String[3];
+        toReturn[0] = String.valueOf(chatUid);
+        toReturn[1] = database.readChat(chatUid)[1];
+        toReturn[2] = database.readUser(chatUid)[2];
+
+        return toReturn;
+    }
+
+    @Override
     public void deleteFriendbyID(int user1, int user2) {
         //delete uid of user2 in user1`s friendlist
         deleteFriendbyID_helper(user1, user2);

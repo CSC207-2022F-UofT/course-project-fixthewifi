@@ -53,8 +53,14 @@ public class FriendPresenter implements FriendPresenterInputBoundary
             view.displayConfirmation(Integer.parseInt(friendData[0]), friendData[1]);
             System.out.println(model);
         }
-        else if (Integer.parseInt(content[0]) == 2){
+        else if (Integer.parseInt(content[0]) == 0){
             System.out.println("Your friend request to " + content[1] + content[2] + " was declined");
+        }
+        else if (Integer.parseInt(content[0]) == 2)
+        {
+            String[] chatData = content[1].split(String.valueOf(SPR));
+            model.addPrivateChat(Integer.parseInt(chatData[0]), chatData[1], chatData[2], Integer.parseInt(chatData[3]));
+            System.out.println(model);
         }
     }
 

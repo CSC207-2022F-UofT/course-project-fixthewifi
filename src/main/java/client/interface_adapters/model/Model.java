@@ -44,9 +44,10 @@ public class Model
         self.addFriend(friend);
     }
 
-    public void addChat(int uid, String name, String description)
+    public void addPrivateChat(int uid, String name, String description,int friendUid)
     {
-        Chat chat = ChatFactory.getChat(uid, name, description);
+        Friend friend = self.getFriend(friendUid);
+        Chat chat = ChatFactory.getPrivateChat(uid, name, description, self, friend);
         self.addChat(chat);
     }
 

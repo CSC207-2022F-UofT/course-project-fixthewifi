@@ -18,4 +18,7 @@ public interface acceptFriendDSGateway extends friendCommonsDSGateway {
     void refuseFriendbyID(int friendid, int requesterid);
 
     String[] readUser(int userUid);
+    int createPrivateChat(int requesterid, int friendid);
+
+    String[] getChatInfo(int chatUid);
 }

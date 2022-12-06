@@ -22,6 +22,7 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
         boolean b4 = dataBase.notAlreadyRequested(model.getRequesterid(), model.getFriendid());
         boolean b5 = model.getRequesterid() != model.getFriendid();
         dataBase.cleanRequesterListDuplicateUID(model.getRequesterid());
+
         if(b1 && b3 && b4 && b5){
             int requesterid = model.getRequesterid();
             int friendid = model.getFriendid();
