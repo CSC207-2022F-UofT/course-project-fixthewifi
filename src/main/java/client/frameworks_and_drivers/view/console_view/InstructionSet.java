@@ -10,5 +10,6 @@ public interface InstructionSet
      String REQUEST_FRIEND = "$ref";
      String VIEW_FRIEND = "$vwf";
     String ACCEPT_FRIEND = "$acp";
+    String REJECT_FRIEND = "$rej";
     String DELETE_FRIEND = "$dtf";
 }

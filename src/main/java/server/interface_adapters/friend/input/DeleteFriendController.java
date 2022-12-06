@@ -22,6 +22,7 @@ public class DeleteFriendController {
         String[] arr = content.split(" ");
         String friend = arr[0];
         String requestor = arr[1];
+        System.out.println("DeleteFriendController");
         try {
             int f =  Integer.parseInt(friend);
             int r = Integer.parseInt(requestor);

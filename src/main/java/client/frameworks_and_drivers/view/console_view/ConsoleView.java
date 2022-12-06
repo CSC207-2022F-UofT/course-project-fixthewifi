@@ -67,10 +67,6 @@ public class ConsoleView
                     displayChat(Integer.parseInt(operand));
                     break;
 
-                case(InstructionSet.VIEW_FRIEND):
-                    displayFriends();
-                    break;
-
                 case(InstructionSet.REQUEST_FRIEND):
                     friendController.requestFriend(Integer.parseInt(operand));
                     break;
@@ -79,8 +75,16 @@ public class ConsoleView
                     friendController.acceptFriend(Integer.parseInt(operand));
                     break;
 
+                case(InstructionSet.REJECT_FRIEND):
+                    friendController.refuseFriend(Integer.parseInt(operand));
+                    break;
+
                 case(InstructionSet.DELETE_FRIEND):
                     friendController.deleteFriend(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.VIEW_FRIEND):
+                    displayFriends();
                     break;
             }
         }
