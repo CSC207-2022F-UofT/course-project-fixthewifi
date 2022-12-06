@@ -123,9 +123,47 @@ public class ConsoleView
     public void displayNewRequest(int parseInt, String s) {
     }
 
-    public void displayConfirmation(int parseInt, String s)
+    public void displaySuccess_RequestFriend(){
+        System.out.println("Friend request has been sent successfully.");
+    }
+
+    public void displayFailure_RequestFriend(){
+        System.out.println("""
+                Friend request was failed.
+                UID is not found or already in your friend list or you requested the same person twice.
+                Please check it again.""");
+    }
+
+    public void displayConfirmation_AcceptFriend(int parseInt, String s)
     {
         System.out.println("You have a new friend, uid: " + parseInt + ", name: " + s);
+    }
+
+    public void displayRejection_AcceptFriend(String s1, String s2){
+        System.out.println("Your friend request had been rejected by: " + s1 + s2);
+    }
+
+    public void displaySuccess_DeleteFriend(String s){
+        System.out.println("You have successfully deleted friend:" + s);
+    }
+
+    public void displayFailure_DeleteFriend(){
+        System.out.println("Fail to delete friend.\nYou may entered a wrong uid.\nPlease check it again.");
+    }
+
+    public void displayDeletion_DeleteFriend(String requesterName, String requesterid){
+        System.out.println("Your friend" + requesterid + "-" +  requesterName + "has delete you as friend.");
+    }
+
+    public void displayViewFriend(String s){
+        String[] content = s.split( " ");
+        System.out.println("Your friend are: <Name>-<UID>\n");
+        int content_length = content.length;
+        int i = 0;
+        while (i != content_length - 1) {
+            System.out.println(content[i] + "-" + content[i + 1]);
+            i += 2;
+        }
     }
 
     public void displayLoginSuccess()

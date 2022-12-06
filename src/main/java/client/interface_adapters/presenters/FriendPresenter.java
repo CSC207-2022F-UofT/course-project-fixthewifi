@@ -27,11 +27,11 @@ public class FriendPresenter implements FriendPresenterInputBoundary
 
         if (Integer.parseInt(content[0]) == 1)
         {
-            System.out.println("Requested successfully.");
+            view.displaySuccess_RequestFriend();
         }
         else if (Integer.parseInt(content[0]) == 0)
         {
-            System.out.println("Request failed. UID is not found or already in your friend list or you requested the same person twice.");
+            view.displayFailure_RequestFriend();
         }
         else
         {
@@ -50,10 +50,10 @@ public class FriendPresenter implements FriendPresenterInputBoundary
             String[] friendData = content[1].split(String.valueOf(SPR));
             boolean online = friendData[4].equals("T");
             model.addFriend(Integer.parseInt(friendData[0]), friendData[1], friendData[2], Double.parseDouble(friendData[3]), online);
-            view.displayConfirmation(Integer.parseInt(friendData[0]), friendData[1]);
+            view.displayConfirmation_AcceptFriend(Integer.parseInt(friendData[0]), friendData[1]);
         }
         else if (Integer.parseInt(content[0]) == 0){
-            System.out.println("Your friend request to " + content[1] + content[2] + " was declined");
+            view.displayRejection_AcceptFriend(content[1], content[2]);
         }
         else if (Integer.parseInt(content[0]) == 2)
         {
@@ -67,25 +67,18 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     public void receiveDelete(String data) {
         String[] content = data.split( " ");
         if (Integer.parseInt(content[0]) == 1){
-            System.out.println("You have successfully deleted friend:" + content[1]);
+            view.displaySuccess_DeleteFriend(content[1]);
         }
         else if (Integer.parseInt(content[0]) == 3){
-            System.out.println("Fail to delete friend. You may entered a wrong uid.");
+            view.displayFailure_DeleteFriend();
         }
         else if (Integer.parseInt(content[0]) == 2){
-            System.out.println("Your friend request to " + content[1]+ " " + content[2] +" was successful.");
+            view.displayDeletion_DeleteFriend(content[1], content[2]);
         }
     }
 
     @Override
     public void receiveView(String data) {
-        String[] content = data.split( " ");
-        System.out.println("Your friend are: <Name>-<UID>\n");
-        int content_length = content.length;
-        int i = 0;
-        while (i != content_length - 1){
-            System.out.println(content[i] + "-" + content[i + 1]);
-            i += 2;
-        }
+        view.displayViewFriend(data);
     }
 }
