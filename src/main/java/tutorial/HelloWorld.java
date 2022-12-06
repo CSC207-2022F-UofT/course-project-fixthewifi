@@ -13,12 +13,15 @@ import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
+import server.interface_adapters.friend.DeleteFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
 import server.interface_adapters.friend.input.AcceptFriendController;
+import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.register.RegisterOutputAdapter;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
+import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.register.RegisterInteractor;
 
@@ -26,7 +29,7 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
-        //newServer();
+        newServer();
         newClient();
 
     }
@@ -46,6 +49,10 @@ public class HelloWorld {
         acceptFriendInteractor acceptFriendInteractor = new acceptFriendInteractor(friendAccess, acceptFriendOutputAdapter);
         AcceptFriendController acceptFriendController = new AcceptFriendController(acceptFriendInteractor);
 
+        DeleteFriendOutputAdapter deleteFriendOutputAdapter = new DeleteFriendOutputAdapter(comManager);
+        delete_friend_interactor delete_friend_interactor = new delete_friend_interactor(friendAccess, deleteFriendOutputAdapter);
+        DeleteFriendController deleteFriendController = new DeleteFriendController(delete_friend_interactor);
+
 
         LoginDataAccess loginAccess = new LoginDataAccess(database);
         RegisterOutputAdapter registerOutputAdapter = new RegisterOutputAdapter(comManager);
@@ -54,7 +61,7 @@ public class HelloWorld {
 
 
 
-        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController);
+        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController);
         comManager.init(4396, inputSorter);
         System.out.println("Server initialized.");
 
@@ -65,8 +72,8 @@ public class HelloWorld {
         ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
-        FriendController friendController = new FriendController(comManager, model, "100.70.2.51");
-        LoginController loginController = new LoginController(comManager, model, "100.70.2.51");
+        FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
+        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 

@@ -128,9 +128,9 @@ public class ConsoleView
     }
 
     public void displayFailure_RequestFriend(){
-        System.out.println("Friend request was failed.");
-        System.out.println("is not found or already in your friend list or you requested the same person twice.");
-        System.out.println("Please check it again.");
+        System.out.println("Friend request was failed.\n" +
+                "UID is not found or already in your friend list or you requested the same person twice.\n" +
+                "Please check it again.");
     }
 
     public void displayConfirmation_AcceptFriend(int parseInt, String s)
