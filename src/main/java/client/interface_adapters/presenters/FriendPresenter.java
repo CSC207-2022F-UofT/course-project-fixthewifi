@@ -11,9 +11,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
 {
     private final Model model;
     private final ConsoleView view;
-    public static final String ANSI_RESET = "\u001B[0m";
-
-    public static final String ANSI_YELLOW = "\u001B[33m";
 
 
     public FriendPresenter(Model model, ConsoleView view)
@@ -30,11 +27,11 @@ public class FriendPresenter implements FriendPresenterInputBoundary
 
         if (Integer.parseInt(content[0]) == 1)
         {
-            System.out.println(ANSI_RESET+"Requested successfully."+ANSI_YELLOW);
+            System.out.println("Requested successfully.");
         }
         else if (Integer.parseInt(content[0]) == 0)
         {
-            System.out.println(ANSI_RESET+"Request failed. UID is not found or already in your friend list or you requested the same person twice."+ANSI_YELLOW);
+            System.out.println("Request failed. UID is not found or already in your friend list or you requested the same person twice.");
         }
         else
         {
@@ -56,7 +53,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
             view.displayConfirmation(Integer.parseInt(friendData[0]), friendData[1]);
         }
         else if (Integer.parseInt(content[0]) == 0){
-            System.out.println(ANSI_RESET+"Your friend request to " + content[1] + content[2] + " was declined"+ANSI_YELLOW);
+            System.out.println("Your friend request to " + content[1] + content[2] + " was declined");
         }
         else if (Integer.parseInt(content[0]) == 2)
         {
@@ -70,24 +67,24 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     public void receiveDelete(String data) {
         String[] content = data.split( " ");
         if (Integer.parseInt(content[0]) == 1){
-            System.out.println(ANSI_RESET+"You have successfully deleted friend:" + content[1]+ANSI_YELLOW);
+            System.out.println("You have successfully deleted friend:" + content[1]);
         }
         else if (Integer.parseInt(content[0]) == 3){
-            System.out.println(ANSI_RESET+"Fail to delete friend. You may entered a wrong uid."+ANSI_YELLOW);
+            System.out.println("Fail to delete friend. You may entered a wrong uid.");
         }
         else if (Integer.parseInt(content[0]) == 2){
-            System.out.println(ANSI_RESET+"Your friend request to " + content[1]+ " " + content[2] +" was successful."+ANSI_YELLOW);
+            System.out.println("Your friend request to " + content[1]+ " " + content[2] +" was successful.");
         }
     }
 
     @Override
     public void receiveView(String data) {
         String[] content = data.split( " ");
-        System.out.println(ANSI_RESET+"Your friend are: <Name> <UID>"+ANSI_YELLOW);
+        System.out.println("Your friend are: <Name>-<UID>\n");
         int content_length = content.length;
         int i = 0;
         while (i != content_length - 1){
-            System.out.println(ANSI_RESET+content[i] + " " + content[i + 1]+ANSI_YELLOW);
+            System.out.println(content[i] + "-" + content[i + 1]);
             i += 2;
         }
     }
