@@ -29,7 +29,7 @@ public class InputSorter implements ComManagerUser
      @param msg The received message.
      */
     @Override
-    public void onMsg(String msg, String peerIp)
+    public void onMsg(String msg, String peerIp, int peerPort)
     {
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
@@ -48,7 +48,7 @@ public class InputSorter implements ComManagerUser
 //                loginController.login(content);
                 break;
             case Constants.REGISTER:
-                registerController.register(content, peerIp);
+                registerController.register(content, peerIp, peerPort);
                 break;
             case Constants.REQUEST_FRIEND:
                 requestFriendController.requestFriend(content);

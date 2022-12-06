@@ -1,5 +1,7 @@
 package client.frameworks_and_drivers.communication_manager;
 
+import java.util.Random;
+
 public class Tools
 {
 
@@ -39,10 +41,7 @@ public class Tools
     public static int id = 0;
     public static int generateID()
     {
-        if(id == Integer.MAX_VALUE) id = 0;
-        id++;
-
-        return id;
-
+        Random random = new Random();
+        return random.nextInt(1000000);
     }
 }

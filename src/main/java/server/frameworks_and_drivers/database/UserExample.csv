@@ -1,2 +1,2 @@
-int uid,String name,String description,double rating,bool Online,picture,friends,String ip,pass,friendrequest
-0,Kevin,Who is this?,4.5,F,,1-4-3-2-6,1.2.7.0.0.1,12345678,
+int uid,String name,String description,double rating,bool Online,picture,friends,String ip,pass,friendrequest,port
+0,Kevin,Who is this?,4-10-2,F,,1-4-3-2-6,1.2.7.0.0.1,12345678,1-2-3-4-5,4444

@@ -19,22 +19,33 @@ public class FriendController implements FriendControllerInputBoundary
     }
 
     @Override
-    public void request(int friendUid)
+    public void requestFriend(int friendUid)
     {
         int selfUid = model.getSelfUid();
         String toSend = Constants.REQUEST_FRIEND + "#" + friendUid + " " + selfUid;
         comManager.send(serverIp, 4396, toSend);
     }
 
-    public void accept(int peerUid)
+    public void acceptFriend(int peerUid)
     {
         String toSend = Constants.ACCEPT_FRIEND + "#" + model.getSelfUid() + " " + peerUid + " True";
         comManager.send(serverIp, 4396, toSend);
     }
 
-    public void refuse(int peerUid)
+    public void refuseFriend(int peerUid)
     {
         String toSend = Constants.ACCEPT_FRIEND + "#" + model.getSelfUid() + " " + peerUid + " False";
+        comManager.send(serverIp, 4396, toSend);
+    }
+
+    public void deleteFriend(int peerUid){
+        String toSend = Constants.DELETE_FRIEND + "#" + peerUid + " " + model.getSelfUid();
+        comManager.send(serverIp, 4396, toSend);
+    }
+
+    @Override
+    public void viewFriend(int requesterid) {
+        String toSend = Constants.VIEW_FRIEND + "#" + model.getSelfUid();
         comManager.send(serverIp, 4396, toSend);
     }
 }

@@ -1,5 +1,6 @@
 package server.usecases.friendinteractors.requestfriend;
 
+
 public class requestFriendInteractor implements requestFriendInputBoundary{
     final requestFriendOutputBoundary output;
     final requestFriendDSGateway dataBase;
@@ -15,41 +16,46 @@ public class requestFriendInteractor implements requestFriendInputBoundary{
      */
     @Override
     public void RequestFriend(requestFriendInputModel model) {
-        boolean b1 = dataBase.findUserByUID(model.getFriendid());
-        boolean b2 = dataBase.findUserByName(model.getFriendName());
-        if(b1){
+        boolean b1 = dataBase.ifexistsUID(model.getFriendid());
+        boolean b2 = dataBase.ifexistsUserName(model.getFriendName());
+        boolean b3 = dataBase.notAlreadyFriend(model.getRequesterid(), model.getFriendid());
+        boolean b4 = dataBase.notAlreadyRequested(model.getRequesterid(), model.getFriendid());
+        boolean b5 = model.getRequesterid() != model.getFriendid();
+        dataBase.cleanRequesterListDuplicateUID(model.getRequesterid());
+        if(b1 && b3 && b4 && b5){
             int requesterid = model.getRequesterid();
             int friendid = model.getFriendid();
-            String requesterName = dataBase.getUserName(requesterid);
-//            String requesterAddress = dataBase.getAddress(requesterid);
-//            int requesterPeerPort = dataBase.getPeerPort(requesterid);
+            String requesterName = dataBase.getUserNamebyUID(requesterid);
+            String requesterAddress = dataBase.getAddress(requesterid);
+            int requesterPeerPort = dataBase.getPeerPort(requesterid);
             String friendAddress = dataBase.getAddress(friendid);
             int friendPeerPort = dataBase.getPeerPort(friendid);
 
-            //output.success(requesterid, requesterAddress, requesterPeerPort);
+            dataBase.requestFriendbyID(requesterid, friendid);
+            output.success(requesterid, requesterAddress, requesterPeerPort);
             output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
+            return;
         }
-        else
-        {
-            // input not found in database
-//            int requesterid = model.getRequesterid();
-//            String requesterAddress = dataBase.getAddress(requesterid);
-//            int requesterPeerPort = dataBase.getPeerPort(requesterid);
-//            output.fail(requesterid, requesterAddress, requesterPeerPort);
-        }
-        if(b2){
-//            String requesterName = model.getRequesterName();
-//            String friendName = model.getFriendName();
-//            int friendid = dataBase.getUserid(friendName);
-//            int requesterid = dataBase.getUserid(requesterName);
-//            String requesterAddress = dataBase.getAddress(requesterid);
-//            int requesterPeerPort = dataBase.getPeerPort(requesterid);
-//            String friendAddress = dataBase.getAddress(friendid);
-//            int friendPeerPort = dataBase.getPeerPort(friendid);
-//
-//            output.success(requesterid, requesterAddress, requesterPeerPort);
-//            output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
-        }
+        if(b2 && b3 && b4 && b5){
+            String requesterName = model.getRequesterName();
+            String friendName = model.getFriendName();
+            int friendid = dataBase.getUIDbyUserName(friendName);
+            int requesterid = dataBase.getUIDbyUserName(requesterName);
+            String requesterAddress = dataBase.getAddress(requesterid);
+            int requesterPeerPort = dataBase.getPeerPort(requesterid);
+            String friendAddress = dataBase.getAddress(friendid);
+            int friendPeerPort = dataBase.getPeerPort(friendid);
 
+            dataBase.requestFriendbyName(requesterName, friendName);
+            output.success(requesterid, requesterAddress, requesterPeerPort);
+            output.reportToFriend(requesterid, requesterName, friendid, friendAddress, friendPeerPort);
+            return;
+        }
+        // input not found in database
+        int requesterid = model.getRequesterid();
+        String requesterAddress = dataBase.getAddress(requesterid);
+        int requesterPeerPort = dataBase.getPeerPort(requesterid);
+
+        output.fail(requesterid, requesterAddress, requesterPeerPort);
     }
 }

@@ -25,6 +25,7 @@ public class LoginPresenter
             view.displayLoginSuccess();
             model.setSelfUid(Integer.parseInt(content[1]));
             model.setPageState("MAIN_PAGE");
+            System.out.println(model);
         }
         else
         {

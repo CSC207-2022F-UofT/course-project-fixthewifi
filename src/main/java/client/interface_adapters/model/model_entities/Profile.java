@@ -35,4 +35,7 @@ public abstract class Profile
     }
 
     public void setProfilePicture(ProfilePicture pic) {this.pic = pic; }
+
+    @Override
+    public abstract String toString();
 }

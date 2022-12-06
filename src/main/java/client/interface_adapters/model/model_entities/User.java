@@ -3,7 +3,7 @@ package client.interface_adapters.model.model_entities;
 public abstract class User
 {
     private int uid;
-    private final UserProfile profile;
+    final UserProfile profile;
 
     public User(int uid, UserProfile profile)
     {
@@ -60,4 +60,7 @@ public abstract class User
     {
         profile.setOnline(online);
     }
+
+    @Override
+    public abstract String toString();
 }

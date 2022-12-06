@@ -21,9 +21,9 @@ public class LoginDataAccess implements RegisterDBGateWay, LogoutDBGateWay
     }
 
     @Override
-    public void registerUser(int uid, String username, String password, String ipAddress)
+    public void registerUser(int uid, String username, String password, String ipAddress, int port)
     {
-        database.newUser(uid, username, "", ipAddress, password, 4444);
+        database.newUser(uid, username, "", ipAddress, password, port);
     }
 
     @Override
