@@ -34,7 +34,6 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
         else
         {
-            model.addRequester(Integer.parseInt(content[1]), content[2]);
             view.displayNewRequest(Integer.parseInt(content[1]), content[2]);
         }
     }
@@ -44,7 +43,7 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     {
         char SPR = 30;
         model.setPageState("FRIEND_ACCEPT");
-        String[] content =data.split(" ");
+        String[] content =data.split(" ", 2);
         if (Integer.parseInt(content[0]) == 1)
         {
             String[] friendData = content[1].split(String.valueOf(SPR));

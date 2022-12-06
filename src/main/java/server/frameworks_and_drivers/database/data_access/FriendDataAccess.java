@@ -71,7 +71,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         String requesterName = database.readUser(requesterid)[1];
         String friendName = database.readUser(requesterid)[1];
         String chatName = "private chat between " + requesterName + " and " + friendName;
-        database.newChat(chatUID, chatName, "", -1, new int[]{requesterid, friendid});
+        database.newChat(chatUID, chatName, "N/A", -1, new int[]{requesterid, friendid});
         return chatUID;
     }
 

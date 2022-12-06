@@ -74,7 +74,7 @@ public class HelloWorld {
         LoginPresenter loginPresenter = new LoginPresenter(model, view);
 
         client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter);
-        comManager.init(4445, inputSorter);
+        comManager.init(4444, inputSorter);
         view.init();
         System.out.println("Client initialized.");
     }

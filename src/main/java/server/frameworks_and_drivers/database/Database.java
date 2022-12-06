@@ -40,6 +40,7 @@ public class Database {
     {
         try
         {
+            msgUid = new HashMap<>();
             this.userURL = userURL;
             this.chatURL = chatURL;
             // Initialize all readers
