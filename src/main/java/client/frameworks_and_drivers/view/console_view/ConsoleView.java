@@ -81,6 +81,7 @@ public class ConsoleView
 
                 case(InstructionSet.DELETE_FRIEND):
                     friendController.deleteFriend(Integer.parseInt(operand));
+                    break;
             }
         }
     }
