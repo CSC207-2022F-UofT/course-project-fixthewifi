@@ -39,7 +39,7 @@ public class FriendController implements FriendControllerInputBoundary
     }
 
     public void deleteFriend(int peerUid){
-        String toSend = Constants.DELETE_FRIEND + "#" + peerUid + " " + model.getSelfUid();
+        String toSend = Constants.DELETE_FRIEND + "#" + peerUid + " " + model.getSelfUid() + " " + model.findPrivateChat(peerUid);
         comManager.send(serverIp, 4396, toSend);
     }
 

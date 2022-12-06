@@ -62,7 +62,20 @@ public class Model
 
     public void setSelfStatus(boolean b)
     {
+    }
 
+    public int findPrivateChat(int friendUid)
+    {
+        for (int chatUid : self.getChatUidList())
+        {
+            Chat chat = self.getChat(chatUid);
+            if (chat instanceof PrivateChat)
+                if (((PrivateChat) chat).getFriendUid() == friendUid)
+                {
+                    return chat.getUid();
+                }
+        }
+        return -1;
     }
 
     public void setSelfName(String s) {
@@ -82,6 +95,24 @@ public class Model
     @Override
     public String toString() {
         return self.toString();
+    }
+
+    public void deleteFriend(int friendUid)
+    {
+        self.deleteFriend(friendUid);
+    }
+
+    public void deletePrivateChat(int friendUid)
+    {
+        for (int uid : self.getChatUidList())
+        {
+            Chat chat = self.getChat(uid);
+            if ( chat instanceof PrivateChat)
+                if (((PrivateChat) chat).getFriendUid() == friendUid)
+                {
+                    self.deleteChat(chat.getUid());
+                }
+        }
     }
 }
 

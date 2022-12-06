@@ -1,6 +1,8 @@
 package client.interface_adapters.model.model_entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Self extends User
@@ -74,4 +76,10 @@ public class Self extends User
                 showFriends() + "\n" +
                 showChats();
     }
+
+    public List<Integer> getChatUidList()
+    {
+        return new ArrayList<>(chatList.keySet());
+    }
+
 }
