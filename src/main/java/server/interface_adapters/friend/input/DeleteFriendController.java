@@ -3,15 +3,15 @@ package server.interface_adapters.friend.input;
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.friendinteractors.deletefriend.delete_friend_input_boundary;
 import server.usecases.friendinteractors.deletefriend.delete_friend_input_model;
+import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 
 public class DeleteFriendController {
     private IfComManager comManager;
     private delete_friend_input_boundary usecase;
 
-    public DeleteFriendController(IfComManager comManager, delete_friend_input_boundary usecase)
+    public DeleteFriendController(delete_friend_input_boundary usecase)
     {
         this.usecase = usecase;
-        this.comManager = comManager;
     }
 
     /**
