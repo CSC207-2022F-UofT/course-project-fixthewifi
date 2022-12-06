@@ -31,16 +31,20 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
         String friendName = dataBase.getUserNamebyUID(friendid);
         int requesterid = model.getRequesterid();
         String requesterName = dataBase.getUserNamebyUID(requesterid);
+        int chatUid = model.getChatUid();
 
         if (bool1){
             dataBase.deleteFriendbyID(friendid, requesterid);
-            output.success(requesterid, requesterAddress, requesterPeerPort);
-            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
+            dataBase.deleteChat(chatUid);
+            output.success(friendid, requesterAddress, requesterPeerPort);
+            output.success(requesterid, friendAddress, friendPeerPort);
+//            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
         }
         if (bool2){
             dataBase.deleteFriendbyName(friendName, requesterName);
-            output.success(requesterid, requesterAddress, requesterPeerPort);
-            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
+            output.success(friendid, requesterAddress, requesterPeerPort);
+            output.success(requesterid, friendAddress, friendPeerPort);
+            //output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
         }
         output.fail(requesterid, requesterAddress, requesterPeerPort);
     }

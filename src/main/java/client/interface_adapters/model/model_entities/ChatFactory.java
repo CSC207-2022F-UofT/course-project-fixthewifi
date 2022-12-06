@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 public class ChatFactory
 {
-    public static PrivateChat getPrivateChat(int chatUid, String name, String description, User user1, User user2)
+    public static PrivateChat getPrivateChat(int chatUid, String name, String description,Self self,  Friend friend)
     {
         ChatProfile profile = new ChatProfile(name, description);
         ArrayList<Message> messages = new ArrayList<>();
-        return new PrivateChat(chatUid, profile, user1, user2, messages);
+        return new PrivateChat(chatUid, profile, self, friend, messages);
     }
 }

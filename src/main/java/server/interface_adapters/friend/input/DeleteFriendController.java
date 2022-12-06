@@ -22,11 +22,13 @@ public class DeleteFriendController {
         String[] arr = content.split(" ");
         String friend = arr[0];
         String requestor = arr[1];
+        String chatUid = arr[2];
         System.out.println("DeleteFriendController");
         try {
             int f =  Integer.parseInt(friend);
             int r = Integer.parseInt(requestor);
-            delete_friend_input_model model = new delete_friend_input_model(f, r);
+            int c = Integer.parseInt(chatUid);
+            delete_friend_input_model model = new delete_friend_input_model(f, r, c);
             usecase.DeleteFriend(model);
         }catch (Exception e){
             delete_friend_input_model model = new delete_friend_input_model(friend, requestor);

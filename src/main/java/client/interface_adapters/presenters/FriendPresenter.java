@@ -68,12 +68,12 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         String[] content = data.split( " ");
         if (Integer.parseInt(content[0]) == 1){
             view.displaySuccess_DeleteFriend(content[1]);
+            model.deleteFriend(Integer.parseInt(content[1]));
+            model.deletePrivateChat(Integer.parseInt(content[1]));
+            System.out.println(model);
         }
         else if (Integer.parseInt(content[0]) == 3){
             view.displayFailure_DeleteFriend();
-        }
-        else if (Integer.parseInt(content[0]) == 2){
-            view.displayDeletion_DeleteFriend(content[1], content[2]);
         }
     }
 
