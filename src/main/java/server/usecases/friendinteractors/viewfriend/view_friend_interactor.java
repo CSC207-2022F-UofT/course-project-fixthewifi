@@ -1,8 +1,5 @@
 package server.usecases.friendinteractors.viewfriend;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class view_friend_interactor implements view_friend_input_boundary {
     final server.usecases.friendinteractors.viewfriend.view_friend_output_boundary output;
     final server.usecases.friendinteractors.viewfriend.view_friend_DSGateway dataBase;

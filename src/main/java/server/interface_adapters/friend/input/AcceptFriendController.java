@@ -1,6 +1,5 @@
 package server.interface_adapters.friend.input;
 
-import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInputBoundary;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInputModel;
 
