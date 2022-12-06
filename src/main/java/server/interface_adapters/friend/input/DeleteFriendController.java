@@ -5,6 +5,8 @@ import server.usecases.friendinteractors.deletefriend.delete_friend_input_bounda
 import server.usecases.friendinteractors.deletefriend.delete_friend_input_model;
 import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 
+import java.util.Arrays;
+
 public class DeleteFriendController {
     private IfComManager comManager;
     private delete_friend_input_boundary usecase;
@@ -20,6 +22,7 @@ public class DeleteFriendController {
      */
     public void deleteFriend(String content){
         String[] arr = content.split(" ");
+        System.out.println("hahaha " + Arrays.toString(arr));
         String friend = arr[0];
         String requestor = arr[1];
         String chatUid = arr[2];
