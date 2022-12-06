@@ -37,12 +37,12 @@ public class UserProfile
         this.description = description;
     }
 
-    public Rating getRating() {
-        return rating;
+    public double getRating() {
+        return rating.getAvgRating();
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setRating(double submittedRating) {
+        rating.calculateAvgRating(submittedRating);
     }
 
     public boolean isOnline() {
