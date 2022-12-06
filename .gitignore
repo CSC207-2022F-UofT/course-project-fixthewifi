@@ -118,3 +118,5 @@ replay_pid*
 /.idea/misc.xml
 /.idea/vcs.xml
 /gradlew
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
