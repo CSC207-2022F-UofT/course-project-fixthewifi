@@ -46,7 +46,7 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
         }
         else
         {
-            output.fail(requesterid, requesterAddress, requesterPeerPort);
+//            output.fail(requesterid, requesterAddress, requesterPeerPort);
         }
     }
 }
