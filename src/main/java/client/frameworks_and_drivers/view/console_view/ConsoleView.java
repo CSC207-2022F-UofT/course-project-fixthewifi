@@ -79,6 +79,10 @@ public class ConsoleView
                     friendController.accept(Integer.parseInt(operand));
                     break;
 
+                case(InstructionSet.LOGOUT):
+                    loginController.logout();
+                    break;
+
             }
         }
     }

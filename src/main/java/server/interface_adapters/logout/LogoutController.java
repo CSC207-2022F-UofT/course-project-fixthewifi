@@ -8,7 +8,8 @@ public class LogoutController {
     public LogoutController(LogoutInputBoundary bound){
         this.inbound = bound;
     }
-    void logout(int uid){
+    void logout(String msg){
+        int uid = Integer.valueOf(msg);
         inbound.logout(uid);
     }
 }
