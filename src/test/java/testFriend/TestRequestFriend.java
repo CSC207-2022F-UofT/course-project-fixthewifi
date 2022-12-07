@@ -156,6 +156,6 @@ public class TestRequestFriend {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertNotEquals("-0", database.readUser(1)[9]);
+        Assertions.assertNotEquals("", database.readUser(1)[9]);
     }
 }
