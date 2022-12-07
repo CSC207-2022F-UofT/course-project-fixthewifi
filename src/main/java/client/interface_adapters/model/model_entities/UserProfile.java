@@ -37,12 +37,12 @@ public class UserProfile
         this.description = description;
     }
 
-    public Rating getRating() {
-        return rating;
+    public double getRating() {
+        return rating.getAvgRating();
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setRating(double submittedRating) {
+        rating.calculateAvgRating(submittedRating);
     }
 
     public boolean isOnline() {
@@ -51,6 +51,17 @@ public class UserProfile
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rating=" + rating +
+                ", online=" + online +
+                ", profilePic=" + profilePic +
+                '}';
     }
 
     public void setProfilePic(ProfilePicture profilePic) {

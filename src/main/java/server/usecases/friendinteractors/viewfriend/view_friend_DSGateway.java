@@ -1,4 +1,4 @@
-package usecases.friendinteractors.viewfriend;
+package server.usecases.friendinteractors.viewfriend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
