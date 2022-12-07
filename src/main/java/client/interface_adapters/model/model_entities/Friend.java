@@ -8,4 +8,9 @@ public class Friend extends User
     {
         super(uid, userProfile);
     }
+
+    @Override
+    public String toString() {
+        return "uid: " + getUid() + "\n" + profile.toString();
+    }
 }

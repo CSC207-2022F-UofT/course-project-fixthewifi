@@ -11,4 +11,5 @@ public interface Constants {
     int REGISTER = 7;
     int REQUEST_FRIEND = 8;
     int ACCEPT_FRIEND = 9;
+    int DELETE_FRIEND = 69;
 }

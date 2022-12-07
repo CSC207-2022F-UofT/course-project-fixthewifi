@@ -28,6 +28,11 @@ public class GroupChat extends Chat {
         return this.admin;
     }
 
+    public int getAdminUid()
+    {
+        return admin.getUid();
+    }
+
     public void setAdmin(User admin) {
         this.admin = admin;
     }
@@ -43,5 +48,10 @@ public class GroupChat extends Chat {
     public void deleteMember(int userUid)
     {
         members.remove(userUid);
+    }
+
+    @Override
+    public String toString() {
+        return "lol what";
     }
 }

@@ -10,4 +10,12 @@ public class ChatProfile extends Profile
     {
         super(name, description);
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + getName() + "\n" +
+                "Description: " + getDescription() + "\n";
+    }
 }
+
+

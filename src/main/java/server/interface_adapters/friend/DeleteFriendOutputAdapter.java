@@ -1,6 +1,7 @@
 package server.interface_adapters.friend;
 
 
+import server.frameworks_and_drivers.Constants;
 import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.friendinteractors.deletefriend.delete_friend_output_boundary;
 
@@ -13,23 +14,20 @@ public class DeleteFriendOutputAdapter implements delete_friend_output_boundary 
     }
 
     @Override
-    public void success(int requesterid, String address, int peerPort)
+    public void success(int friendid, String address, int peerPort)
     {
         //comManager.send("success requesterid")
-        String content = requesterid + ": delete friend successfully";
+        //String content = requesterid +
+        String content = Constants.DELETE_FRIEND + "#" + 1 + " " + friendid;
         comManager.send(address, peerPort, content);
     }
 
-    @Override
-    public void reportSuccess(int friendid, int requesterid, String requesterName, String address, int peerPort) {
-        String content = friendid + ":" + requesterName + "(" + requesterid + ") has delete you as friend";
-        comManager.send(address, peerPort, content);
-    }
+
 
     @Override
     public void fail(int requesterid, String address, int peerPort) {
         //comManager.send("fail requesterid")
-        String content = requesterid + ": failed to delete friend. Wrong username or userid entered";
+        String content = Constants.DELETE_FRIEND + "#" + 3 + " " + requesterid;
         comManager.send(address, peerPort, content);
     }
 }

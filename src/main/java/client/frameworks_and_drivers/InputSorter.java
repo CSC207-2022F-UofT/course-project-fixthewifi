@@ -3,6 +3,8 @@ import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
+import java.util.Arrays;
+
 public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
@@ -32,14 +34,17 @@ public class InputSorter implements ComManagerUser
             case Constants.CHANGE_PROFILE:
                 break;
             case Constants.ACCEPT_FRIEND:
-                friendPresenter.receiveConfirmation(content);
+                friendPresenter.receiveAccept(content);
+                break;
             case Constants.REQUEST_FRIEND:
                 friendPresenter.receiveRequest(content);
                 break;
             case Constants.REGISTER:
                 loginPresenter.receiveConfirmation(content);
                 break;
-
+            case Constants.DELETE_FRIEND:
+                friendPresenter.receiveDelete(content);
+                break;
         }
     }
 

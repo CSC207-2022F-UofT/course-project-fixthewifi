@@ -10,9 +10,9 @@ public class RegisterController {
     public RegisterController(RegisterInputBoundary bound){
         this.inbound = bound;
     }
-    public void register(String msg, String peerIp)
+    public void register(String msg, String peerIp, int peerPort)
     {
         String[] content = msg.split(String.valueOf(CONTENT_SPR));
-        inbound.register(content[0], content[1], peerIp);
+        inbound.register(content[0], content[1], peerIp, peerPort);
     }
 }

@@ -1,19 +1,8 @@
 package server.usecases.friendinteractors.requestfriend;
 
-public interface requestFriendDSGateway {
-    /**
-     * Find the user by userid.
-     * @param uid
-     * @return
-     */
-    boolean findUserByUID(int uid);
+import server.usecases.friendinteractors.friendCommonsDSGateway;
 
-    /**
-     * Find the user by username.
-     * @param name
-     * @return
-     */
-    boolean findUserByName(String name);
+public interface requestFriendDSGateway extends friendCommonsDSGateway {
 
     /**
      * Request friend by userid. Save this request to database
@@ -29,9 +18,7 @@ public interface requestFriendDSGateway {
      */
     void requestFriendbyName(String requester, String friend);
 
-    String getUserName(int uid);
-    int getUserid(String userName);
+    public boolean notAlreadyFriend(int requester, int friend);
 
-    String getAddress(int userid);
-    int getPeerPort(int userid);
+    public boolean notAlreadyRequested(int requester, int friend);
 }

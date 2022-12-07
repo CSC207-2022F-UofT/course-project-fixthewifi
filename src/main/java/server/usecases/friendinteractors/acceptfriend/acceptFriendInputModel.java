@@ -1,5 +1,6 @@
 package server.usecases.friendinteractors.acceptfriend;
 
+
 public class acceptFriendInputModel {
     private final int friendid;
     private final int requesterid;
