@@ -13,6 +13,12 @@ public class DeleteFriendOutputAdapter implements delete_friend_output_boundary 
         this.comManager = comManager;
     }
 
+    /**
+     * Send to friend a deletion has been made to the friend
+     * @param friendid
+     * @param address
+     * @param peerPort
+     */
     @Override
     public void success(int friendid, String address, int peerPort)
     {
@@ -23,7 +29,12 @@ public class DeleteFriendOutputAdapter implements delete_friend_output_boundary 
     }
 
 
-
+    /**
+     * Send to requester a failure occurs in deleting friend
+     * @param requesterid
+     * @param address
+     * @param peerPort
+     */
     @Override
     public void fail(int requesterid, String address, int peerPort) {
         //comManager.send("fail requesterid")

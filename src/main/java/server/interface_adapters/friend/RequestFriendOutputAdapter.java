@@ -12,6 +12,12 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
     }
 
 
+    /**
+     * Send success info to requester if request is done
+     * @param requesterid
+     * @param address
+     * @param peerPort
+     */
     @Override
     public void success(int requesterid, String address, int peerPort)
     {
@@ -19,12 +25,26 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
         comManager.send(address, peerPort, content);
     }
 
+    /**
+     * Report a new request friend action to friend from requester
+     * @param requesterid
+     * @param requesterName
+     * @param friendid
+     * @param address
+     * @param peerPort
+     */
     @Override
     public void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort) {
         String content = Constants.REQUEST_FRIEND + "#" + 2 + " " + requesterid + " " + requesterName;
         comManager.send(address, peerPort, content);
     }
 
+    /**
+     * Report to requester a failure
+     * @param requesterid
+     * @param address
+     * @param peerPort
+     */
     @Override
     public void fail(int requesterid, String address, int peerPort)
     {

@@ -105,6 +105,10 @@ public class TestDeleteFriend {
 
         }
     }
+
+    /**This test is to test if data in friend list is deleted
+     *
+     */
     @Test
     public void testExecute(){
         ClientComManager comManager = new ClientComManager(false);

@@ -105,6 +105,7 @@ public class TestRejectFriend {
         }
     }
 
+
     @Test
     public void testAccept(){
         ClientComManager comManager = new ClientComManager(false);
@@ -125,6 +126,7 @@ public class TestRejectFriend {
 
         database.newUser(0, "A", "", "000", "000", 000);
         database.newUser(1, "B", "", "000", "000", 000);
+        friendController.requestFriend(0);
         friendController.refuseFriend(1);
         //func("$reg a 123")
 

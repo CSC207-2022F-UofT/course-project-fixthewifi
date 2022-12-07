@@ -1,5 +1,8 @@
 package server.usecases.friendinteractors;
 
+/**
+ * This is a common dataDSGateway for friend features
+ */
 public interface friendCommonsDSGateway {
     void cleanRequesterListDuplicateUID(int requester);
 

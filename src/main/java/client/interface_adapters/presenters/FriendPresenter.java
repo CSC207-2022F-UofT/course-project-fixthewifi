@@ -19,6 +19,10 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         this.view = view;
     }
 
+    /**
+     * Receive data of request friend from server by comManager and pass the data to view
+     * @param data
+     */
 
     @Override
     public void receiveRequest(String data)
@@ -39,6 +43,12 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
     }
 
+
+    /**
+     * Receive data of accept friend from server by comManager and pass the data to view
+     * It may accept friend or reject friend
+     * @param data
+     */
     @Override
     public void receiveAccept(String data)
     {
@@ -63,6 +73,11 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
     }
 
+    /**
+     * Receive data of delete friend from server by comManager and pass the data to view
+     * It may fail to delete or success to delete
+     * @param data
+     */
     @Override
     public void receiveDelete(String data) {
         String[] content = data.split( " ");
@@ -77,6 +92,11 @@ public class FriendPresenter implements FriendPresenterInputBoundary
         }
     }
 
+
+    /**
+     * Receive data of request friend from server by comManager and pass the data to view
+     * @param data
+     */
     @Override
     public void receiveView(String data) {
         view.displayViewFriend(data);

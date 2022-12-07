@@ -106,6 +106,9 @@ public class TestAcceptFriend {
         }
     }
 
+    /**
+     * Test is to test if a data is recorded to friend list if there is an acceptation
+     */
     @Test
     public void testAccept(){
         ClientComManager comManager = new ClientComManager(false);
@@ -126,6 +129,7 @@ public class TestAcceptFriend {
 
         database.newUser(0, "A", "", "000", "000", 000);
         database.newUser(1, "B", "", "000", "000", 000);
+        friendController.requestFriend(0);
         friendController.acceptFriend(1);
 
         Assertions.assertNotEquals("-0", database.readUser(1)[6]);
