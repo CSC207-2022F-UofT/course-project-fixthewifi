@@ -18,7 +18,6 @@ public interface InstructionSet
      String DEL_PIC = "$dlp";
 
 
-    String ACCEPT_FRIEND = "$acp";
     String RATING = "$rate";
 
 }
