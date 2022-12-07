@@ -124,6 +124,10 @@ public class TestRequestFriend {
 
         }
     }
+
+    /**
+     * Send a friend request to self and assert if data is recorded
+     */
     @Test
     public void testExecuteRequest(){
         ClientComManager comManager = new ClientComManager(false);
@@ -158,10 +162,12 @@ public class TestRequestFriend {
         }
         String item = database.readUser(1)[9];
 
-        Assertions.assertNotEquals(" ", item);
+        Assertions.assertEquals("-0", item);
 //
 //        friendController.acceptFriend(0);
 //        String friend = database.readUser(1)[6];
 //        System.out.println("friend:" + friend);
+//        friendController.acceptFriend(0);
+//        System.out.println(database.readUser(1)[6]);
     }
 }
