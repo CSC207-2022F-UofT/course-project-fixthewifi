@@ -1,6 +1,7 @@
 package server.frameworks_and_drivers;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
 import server.interface_adapters.friend.input.AcceptFriendController;
+import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
 import server.interface_adapters.register.RegisterController;
@@ -13,8 +14,12 @@ public class InputSorter implements ComManagerUser
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
+    private final DeleteFriendController deleteFriendController;
 
-    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
+    public InputSorter(RequestFriendController requestFriendController,
+                       AcceptFriendController acceptFriendController,
+                       RegisterController registerController,
+                       DeleteFriendController deleteFriendController)
     {
         //TODO: pass all of the controllers into here
 //        this.sendMsgController = sendMsgController;
@@ -22,6 +27,7 @@ public class InputSorter implements ComManagerUser
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
+        this.deleteFriendController = deleteFriendController;
     }
 
     /**
@@ -29,7 +35,7 @@ public class InputSorter implements ComManagerUser
      @param msg The received message.
      */
     @Override
-    public void onMsg(String msg, String peerIp)
+    public void onMsg(String msg, String peerIp, int peerPort)
     {
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
@@ -48,7 +54,7 @@ public class InputSorter implements ComManagerUser
 //                loginController.login(content);
                 break;
             case Constants.REGISTER:
-                registerController.register(content, peerIp);
+                registerController.register(content, peerIp, peerPort);
                 break;
             case Constants.REQUEST_FRIEND:
                 requestFriendController.requestFriend(content);
@@ -56,8 +62,8 @@ public class InputSorter implements ComManagerUser
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
                 break;
-
-
+            case Constants.DELETE_FRIEND:
+                deleteFriendController.deleteFriend(content);
         }
     }
 

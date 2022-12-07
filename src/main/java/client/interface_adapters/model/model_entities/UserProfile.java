@@ -29,4 +29,21 @@ public class UserProfile extends Profile
     public void setOnline(boolean online) {
         this.online = online;
     }
+
+    public String getOnline()
+    {
+        if (online)
+        {
+            return "T";
+        }
+        return "F";
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + getName() + "\n" +
+                "Description: " + getDescription() + "\n" +
+                "Rating: " + getRating() + "\n" +
+                "Online?: " + getOnline() + "\n";
+    }
 }

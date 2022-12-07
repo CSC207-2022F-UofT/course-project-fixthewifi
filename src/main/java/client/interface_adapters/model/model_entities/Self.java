@@ -1,6 +1,9 @@
 package client.interface_adapters.model.model_entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Self extends User
 {
@@ -42,4 +45,41 @@ public class Self extends User
     {
         chatList.remove(chatUid);
     }
+
+    public String showFriends()
+    {
+        StringBuilder out = new StringBuilder("===================Friends===================" + "\n");
+        for(Map.Entry<Integer, Friend> entry : friendList.entrySet())
+        {
+            Friend value = entry.getValue();
+            out.append(value.toString());
+        }
+        return out.toString();
+    }
+
+    public String showChats()
+    {
+        StringBuilder out = new StringBuilder("===================Chats===================" + "\n");
+        for(Map.Entry<Integer, Chat> entry : chatList.entrySet())
+        {
+            Chat value = entry.getValue();
+            out.append(value.toString());
+        }
+        return out.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "===================My Profile===================" + "\n" +
+                "Uid: " + getUid() + "\n" +
+                super.profile.toString() + "\n" +
+                showFriends() + "\n" +
+                showChats();
+    }
+
+    public List<Integer> getChatUidList()
+    {
+        return new ArrayList<>(chatList.keySet());
+    }
+
 }

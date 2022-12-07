@@ -15,7 +15,7 @@ public class requestFriendInputModel {
         this.friendid = friendid;
         this.requesterid = requesterid;
         this.friendName = "";
-        this.requesterName = "requesterName";
+        this.requesterName = "";
     }
 
     /**
