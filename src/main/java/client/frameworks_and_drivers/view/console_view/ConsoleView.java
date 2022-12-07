@@ -82,6 +82,9 @@ public class ConsoleView
                 case(InstructionSet.LOGOUT):
                     loginController.logout();
                     break;
+                case(InstructionSet.DELETE_ACCOUNT):
+                    loginController.delete();
+                    break;
 
             }
         }

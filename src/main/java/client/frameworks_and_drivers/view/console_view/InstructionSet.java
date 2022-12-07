@@ -11,4 +11,5 @@ public interface InstructionSet
      String VIEW_FRIENDS = "$vwf";
     String ACCEPT_FRIEND = "$acp";
     String LOGOUT = "$logout";
+    String DELETE_ACCOUNT = "$del_account";
 }

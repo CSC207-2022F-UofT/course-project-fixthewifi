@@ -3,8 +3,10 @@ import server.frameworks_and_drivers.communication_manager.ComManagerUser;
 import server.interface_adapters.friend.input.AcceptFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
+import server.interface_adapters.logout.LogoutController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.send_message.SendMsgController;
+import server.interface_adapters.delete_account.DeleteController;
 
 public class InputSorter implements ComManagerUser
 {
@@ -13,8 +15,14 @@ public class InputSorter implements ComManagerUser
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
+    private final LogoutController logoutController;
+    private final DeleteController deleteController;
 
-    public InputSorter(RequestFriendController requestFriendController, AcceptFriendController acceptFriendController, RegisterController registerController)
+    public InputSorter(RequestFriendController requestFriendController,
+                       AcceptFriendController acceptFriendController,
+                       RegisterController registerController,
+                       LogoutController logoutController,
+                       DeleteController deleteController)
     {
         //TODO: pass all of the controllers into here
 //        this.sendMsgController = sendMsgController;
@@ -22,6 +30,8 @@ public class InputSorter implements ComManagerUser
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
+        this.logoutController = logoutController;
+        this.deleteController = deleteController;
     }
 
     /**
@@ -55,6 +65,12 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
+                break;
+            case Constants.LOGOUT:
+                logoutController.logout(content);
+                break;
+            case Constants.DELETE_ACCOUNT:
+                deleteController.delete(content);
                 break;
 
 

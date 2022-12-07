@@ -10,7 +10,7 @@ public class DeleteController {
     public DeleteController(DeleteInputBoundary bound){
         this.inbound = bound;
     }
-    void logout(String msg){
+    public void delete(String msg){
         int uid = Integer.valueOf(msg);
         inbound.delete(uid);
     }
