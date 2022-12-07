@@ -20,7 +20,6 @@ public interface Constants
     int DEL_PIC = 113;
     int FAIL=114;
     int RETRIEVE_FREINDSLIST = 11;
-    int UPDATE_NAME = 30;
     char SPR =30; // separator character
     
 }
