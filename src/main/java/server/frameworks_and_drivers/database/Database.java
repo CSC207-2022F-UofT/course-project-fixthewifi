@@ -72,8 +72,14 @@ public class Database {
 
     public void newUser(int userUid, String name, String description, String ip, String password, int port)
     {
-        String[] content = {Integer.toString(userUid), name, description, "N/A", "T", "", "", ip, password, "", String.valueOf(port)};
-        userUpdateHelper(userUid, content);
+        String[] content = {Integer.toString(userUid), name, description, "0-0-0", "T", "", "", ip, password, "", String.valueOf(port)};
+        userWriter.writeNext(content);
+        try {
+            userWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        userDatabase.add(userUid, content);
     }
 
     public void updateUser(int uid, String[] newContent)
@@ -90,6 +96,7 @@ public class Database {
 
     private void userUpdateHelper(int userUid, String[] content)
     {
+        userDatabase.remove(userUid);
         userDatabase.add(userUid, content);
 
         userUpdateCount += 1;
@@ -114,7 +121,13 @@ public class Database {
     {
         String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
         String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
-        chatUpdateHelper(chatUid, content);
+        chatWriter.writeNext(content);
+        try {
+            chatWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        chatDatabase.add(chatUid, content);
     }
 
     public void updateChat(int uid, String[] newContent)
@@ -132,6 +145,7 @@ public class Database {
 
     private void chatUpdateHelper(int chatUid, String[] content)
     {
+        chatDatabase.remove(chatUid);
         chatDatabase.add(chatUid, content);
 
         chatUpdateCount += 1;

@@ -77,6 +77,21 @@ public class Model
         self.profile.setOnline(b);
     }
 
+    public double getRating(int userUid)
+    {
+        if (userUid == getSelfUid())
+        {
+            return self.profile.getRating();
+        }
+        return self.friendList.get(userUid).userProfile.getRating();
+    }
+
+    public void setRating(String rating)
+    {
+        self.profile.setRating(Double.parseDouble(rating));
+    }
+
+
     public int getRequester(int uid) throws userNotFoundException {
         if (friendRequester.containsKey(uid))
         {
