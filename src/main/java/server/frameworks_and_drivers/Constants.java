@@ -12,10 +12,12 @@ public interface Constants
     int REGISTER = 7;
     int REQUEST_FRIEND = 8;
     int ACCEPT_FRIEND = 9;
+
+    int UPDATE_DESC = 110;
+    int UPDATE_NAME = 111;
+    int SET_PIC = 112;
+    int DEL_PIC = 113;
+    int FAIL=114;
+
     
-    int UPDATE_DESC = 7;
-    int SET_PIC = 8;
-    int DEL_PIC = 9;
-    int FAIL=10;
-    int UPDATE_NAME = 30;
 }
