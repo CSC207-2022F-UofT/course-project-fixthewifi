@@ -10,4 +10,6 @@ public interface InstructionSet
      String REQUEST_FRIEND = "$ref";
      String VIEW_FRIENDS = "$vwf";
     String ACCEPT_FRIEND = "$acp";
+    String CREATE_GROUP_CHAT = "$cgc";
+    String SELECT_USERS = "$slu";
 }

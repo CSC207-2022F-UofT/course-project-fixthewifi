@@ -11,4 +11,6 @@ public interface Constants {
     int REGISTER = 7;
     int REQUEST_FRIEND = 8;
     int ACCEPT_FRIEND = 9;
+    int RETRIEVE_FRIENDS_LIST = 11;
+    char SPR = 30;
 }

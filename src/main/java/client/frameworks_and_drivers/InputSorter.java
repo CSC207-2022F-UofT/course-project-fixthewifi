@@ -1,5 +1,6 @@
 package client.frameworks_and_drivers;
 import client.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.interface_adapters.presenters.CreateGCPresenter;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
@@ -7,11 +8,13 @@ public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
     private final LoginPresenter loginPresenter;
-    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter)
+    private final CreateGCPresenter groupChatPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, CreateGCPresenter groupChatPresenter)
     {
         //TODO: pass all of the controllers into here
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
+        this.groupChatPresenter = groupChatPresenter;
     }
 
     /**
@@ -39,6 +42,11 @@ public class InputSorter implements ComManagerUser
             case Constants.REGISTER:
                 loginPresenter.receiveConfirmation(content);
                 break;
+            case Constants.RETRIEVE_FRIENDS_LIST:
+                groupChatPresenter.displayFriendsList(content);
+                break;
+            case Constants.GROUP_CHAT:
+                groupChatPresenter.createGC(content);
         }
     }
 

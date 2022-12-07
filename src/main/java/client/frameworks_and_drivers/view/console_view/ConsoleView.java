@@ -1,13 +1,13 @@
 package client.frameworks_and_drivers.view.console_view;
 
-import client.interface_adapters.controllers.FriendControllerInputBoundary;
-import client.interface_adapters.controllers.LoginControllerInputBoundary;
-import client.interface_adapters.controllers.MsgControllerInputBoundary;
+import client.interface_adapters.Constants;
+import client.interface_adapters.controllers.*;
 import client.interface_adapters.model.Model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ConsoleView
@@ -15,14 +15,18 @@ public class ConsoleView
     private final Model model;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
+    private final CreateGCControllerInputBoundary create_gc_controller;
+
 
     public ConsoleView(Model model,
                        LoginControllerInputBoundary loginController,
-                       FriendControllerInputBoundary friendController)
+                       FriendControllerInputBoundary friendController,
+                       CreateGCControllerInputBoundary create_gc_controller)
     {
         this.model = model;
         this.loginController = loginController;
         this.friendController = friendController;
+        this.create_gc_controller = create_gc_controller;
     }
 
     public void init()
@@ -86,6 +90,13 @@ public class ConsoleView
                     friendController.accept(model.friendRequester);
                     break;
 
+                case(InstructionSet.CREATE_GROUP_CHAT):
+                    create_gc_controller.getList();
+                    break;
+
+                case(InstructionSet.SELECT_USERS):
+                    create_gc_controller.create(operand);
+
             }
         }
     }
@@ -134,5 +145,27 @@ public class ConsoleView
     public void displayLoginFail()
     {
         System.out.println("Login failed.");
+    }
+
+    /**
+     * Lists the users friends in console for them to select from.
+     * @param users ArrayList where each String contains the users UID then
+     *              their username separated by Constants.SPR.
+     */
+    public void displayGCCreation(ArrayList<String> users) {
+        System.out.println("=====Select Users by UID to Add=====");
+        System.out.println("------------------------------------");
+        System.out.println("========username || UID=============");
+        for (String x : users){
+            String[] user = x.split(String.valueOf(Constants.SPR));
+            System.out.println(user[1] + "  ||  " + user[0]);
+        }
+    }
+
+    /**
+     * Prints a confirmation method to the admin of the GroupChat to confirm its confirmation.
+     */
+    public void displayGCConfirmation(){
+        System.out.println("Your GroupChat has been created.");
     }
 }
