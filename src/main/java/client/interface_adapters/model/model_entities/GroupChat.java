@@ -28,6 +28,11 @@ public class GroupChat extends Chat {
         return this.admin;
     }
 
+    public int getAdminUid()
+    {
+        return admin.getUid();
+    }
+
     public void setAdmin(User admin) {
         this.admin = admin;
     }
