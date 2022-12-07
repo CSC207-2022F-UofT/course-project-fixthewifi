@@ -13,6 +13,8 @@ import server.interface_adapters.friend.input.RequestFriendController;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.friendinteractors.requestfriend.requestFriendOutputBoundary;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestRequestFriend {
     static class DummyModel implements ModelInterface {
 
@@ -125,7 +127,13 @@ public class TestRequestFriend {
         database.newUser(0, "A", "", "000", "000", 000);
         database.newUser(1, "B", "", "000", "000", 000);
         friendController.requestFriend(1);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        String item = database.readUser(1)[9];
 
-        Assertions.assertNotEquals("", database.readUser(1)[9]);
+        Assertions.assertNotEquals("", item);
     }
 }

@@ -3,8 +3,8 @@ package testFriend;
 import client.frameworks_and_drivers.communication_manager.ClientComManager;
 import client.interface_adapters.controllers.FriendController;
 import client.interface_adapters.model.ModelInterface;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.ComManager;
 import server.frameworks_and_drivers.database.Database;
@@ -13,8 +13,7 @@ import server.interface_adapters.friend.input.AcceptFriendController;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendOutputBoundary;
 
-
-public class TestAcceptFriend {
+public class TestRejectFriend {
     private static class DummyModel implements ModelInterface {
 
         @Override
@@ -88,7 +87,7 @@ public class TestAcceptFriend {
         }
     }
 
-    static class output implements acceptFriendOutputBoundary {
+    private class output implements acceptFriendOutputBoundary {
 
         @Override
         public void success(String[] userProfileData, String address, int ip) {
@@ -116,7 +115,7 @@ public class TestAcceptFriend {
         ComManager comManager1 = new ComManager(false);
         Database database = new Database("testuser.csv", "testchat.csv");
         FriendDataAccess dataAccess = new FriendDataAccess(database);
-        output acceptFriendOutputBoundary = new TestAcceptFriend.output();
+        TestAcceptFriend.output acceptFriendOutputBoundary = new TestAcceptFriend.output();
         acceptFriendInteractor acceptFriendInteractor =
                 new acceptFriendInteractor(dataAccess, acceptFriendOutputBoundary);
         AcceptFriendController acceptFriendController = new AcceptFriendController(acceptFriendInteractor);
@@ -126,8 +125,9 @@ public class TestAcceptFriend {
 
         database.newUser(0, "A", "", "000", "000", 000);
         database.newUser(1, "B", "", "000", "000", 000);
-        friendController.acceptFriend(1);
+        friendController.refuseFriend(1);
+        //func("$reg a 123")
 
-        Assertions.assertNotEquals("-0", database.readUser(1)[6]);
+        Assertions.assertEquals("", database.readUser(1)[6]);
     }
 }
