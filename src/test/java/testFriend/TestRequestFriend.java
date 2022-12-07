@@ -156,6 +156,12 @@ public class TestRequestFriend {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertNotEquals("", database.readUser(1)[9]);
+        String item = database.readUser(1)[9];
+
+        Assertions.assertNotEquals(" ", item);
+//
+//        friendController.acceptFriend(0);
+//        String friend = database.readUser(1)[6];
+//        System.out.println("friend:" + friend);
     }
 }
