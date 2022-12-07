@@ -22,7 +22,7 @@ public class InputSorter implements ComManagerUser
     public InputSorter(RequestFriendController requestFriendController, 
                         AcceptFriendController acceptFriendController, 
                         RegisterController registerController,
-                        ChangeProfileController changeProfileController
+                        ChangeProfileController changeProfileController,
                         SendRatingController sendRatingController)
 
     {
