@@ -2,7 +2,12 @@ package client.frameworks_and_drivers.view.console_view;
 
 import client.interface_adapters.controllers.FriendControllerInputBoundary;
 import client.interface_adapters.controllers.LoginControllerInputBoundary;
+
+import client.interface_adapters.controllers.change_profile.ChPrControllerInputBoundary;
+
 import client.interface_adapters.controllers.MsgControllerInputBoundary;
+import client.interface_adapters.controllers.RatingControllerInputBoundary;
+
 import client.interface_adapters.model.Model;
 
 import java.io.BufferedReader;
@@ -15,14 +20,26 @@ public class ConsoleView
     private final Model model;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
+    private final RatingControllerInputBoundary ratingController;
 
+    private final ChPrControllerInputBoundary chPrController;
     public ConsoleView(Model model,
                        LoginControllerInputBoundary loginController,
-                       FriendControllerInputBoundary friendController)
+                       FriendControllerInputBoundary friendController,
+
+                       ChPrControllerInputBoundary chPrController,
+
+                       RatingControllerInputBoundary ratingController)
+
     {
         this.model = model;
         this.loginController = loginController;
         this.friendController = friendController;
+
+        this.chPrController = chPrController;
+
+        this.ratingController = ratingController;
+
     }
 
     public void init()
@@ -40,8 +57,7 @@ public class ConsoleView
 
                 if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                 {
-                    sortLogin(content[0], content[1]);
-                } else
+
                 {
                     sort(content[0], content[1]);
                 }
@@ -53,14 +69,15 @@ public class ConsoleView
         }
     }
 
-    public void sort(String operation, String operand)
-    {
+
         if (model.getPageState().startsWith("CHAT"))
         {
 
         }
         else
         {
+
+            System.out.println("before swich console view");
             switch (operation)
             {
                 case(InstructionSet.VIEW_CHAT):
@@ -77,6 +94,38 @@ public class ConsoleView
 
                 case(InstructionSet.ACCEPT_FRIEND):
                     friendController.accept(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.VIEW_PROFILE):
+                    displayMyProfile();
+                    System.out.println("VIEW_PROFILE console view");
+                    break;
+
+                case(InstructionSet.CHANGE_NAME):
+                    chPrController.updateName(operand);
+
+                    System.out.println("change name console view");
+                    break;
+                case(InstructionSet.CHANGE_DESC):
+                    chPrController.updateDescr(operand);
+
+                    System.out.println("change desc console view");
+                    break;
+                case(InstructionSet.SET_PIC):
+                    chPrController.setPic(operand);
+
+                    System.out.println("set pic console view");
+                    break;
+                case(InstructionSet.DEL_PIC):
+                    chPrController.delPic();
+
+                    System.out.println("del pic console view");
+                    break;
+
+
+                case(InstructionSet.RATING):
+                    String[] content = operand.split(" ", 2);
+                    ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
                     break;
 
             }
@@ -124,8 +173,33 @@ public class ConsoleView
         System.out.println("Login successful.");
     }
 
+    public void displayMyProfile() {
+        System.out.println("My Profile");
+        System.out.println(model.getProfileInfo());
+    }
+
     public void displayLoginFail()
     {
         System.out.println("Login failed.");
+    }
+
+    // Rating Stuff
+    public void displayRatingSuccess()
+    {
+        System.out.println("Rating successful.");
+    }
+
+    public void displayRatingFail()
+    {
+        System.out.println("Rating failed.");
+    }
+
+    public void displayRating(int userUid)
+    {
+        System.out.println("===========Rating===========");
+        System.out.println("uid: " + userUid);
+        System.out.println("name: " + userUid);
+//        System.out.println("description: " + model.getDescription(userUid));
+//        System.out.println("Rating: " + model.getRating(userUid));
     }
 }

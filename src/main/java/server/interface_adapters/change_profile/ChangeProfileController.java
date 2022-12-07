@@ -14,9 +14,9 @@ public class ChangeProfileController {
 
     final ChangeProfileInputBoundary inputModelBoundary;
 
-    final String SEPARATOR ="$";
+    final char SEPARATOR =30;
     private ChangeProfileInputModel parse(String input){
-        String[] separated = input.split("\\$");
+        String[] separated = input.split(String.valueOf(SEPARATOR));
         int profid = Integer.parseInt(separated[0]);
         String name = separated[1];
         String desc =separated[2];

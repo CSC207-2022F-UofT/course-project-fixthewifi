@@ -18,8 +18,7 @@ public class UserProfile extends Profile
         return rating.getAvgRating();
     }
 
-    public void setRating(double rating) {
-        this.rating.setRating(rating);
+
     }
 
     public boolean isOnline() {

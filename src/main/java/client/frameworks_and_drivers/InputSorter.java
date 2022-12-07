@@ -3,17 +3,30 @@ import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
+import client.interface_adapters.presenters.change_profile.ChPrPresenter;
+
+import client.interface_adapters.presenters.RatingPresenter;
+
+
 public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
     private final LoginPresenter loginPresenter;
-    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter)
+
+    private final ChPrPresenter chPrPresenter;
+    private final RatingPresenter ratingPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter, RatingPresenter ratingPresenter)
+
     {
-        //TODO: pass all of the controllers into here
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
-    }
 
+        this.chPrPresenter= chPrPresenter;
+
+        this.ratingPresenter = ratingPresenter;
+
+    }
+    
     /**
      * When a message is received, onMsg will be triggered by comManager.
      @param msg The received message.

@@ -17,19 +17,20 @@ public class RetrieveFriendsListOutputData {
      */
     private int requester;
     /**
-     * the List of UIDs of users in requester's FriendsList.
+     * the List of UIDs and usernames of users, connected by
+     * server.frameworks_and_drivers.Constants.SPR .
      */
-    private ArrayList<Integer> UIDs;
-    /**
-     * the List of usernames of users in requester's FriendsList
-     */
-    private ArrayList<String> usernames;
+    private ArrayList<String> users;
 
-    public RetrieveFriendsListOutputData(
-            int requester, ArrayList<Integer> UIDs, ArrayList<String> usernames){
+    private String peerID;
+    private int peer_port;
+
+    public RetrieveFriendsListOutputData(int requester, ArrayList<String> users,
+                                         int peer_port, String peerID){
         this.requester = requester;
-        this.UIDs = UIDs;
-        this.usernames = usernames;
+        this.users = users;
+        this.peer_port = peer_port;
+        this.peerID = peerID;
     }
 
     public void setRequester(int requester) {
@@ -40,18 +41,16 @@ public class RetrieveFriendsListOutputData {
         return this.requester;
     }
 
-    public void setUIDs(ArrayList<Integer> UIDs) {
-        this.UIDs = UIDs;
+    public void setusers(ArrayList<String> users) {
+        this.users = users;
     }
 
-    public ArrayList<Integer> getUIDs() {
-        return this.UIDs;
+    public ArrayList<String> getUsers() {
+        return this.users;
     }
 
-    public void setUsernames(ArrayList<String> usernames) {
-        this.usernames = usernames;
-    }
-    public ArrayList<String> getUsernames(){
-        return this.usernames;
-    }
+
+
+    public int getPeer_port() {return this.peer_port;}
+    public String getPeerID() { return this.peerID;}
 }
