@@ -115,6 +115,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         database.updateChat(chatUid, 5, "");
     }
 
+
     @Override
     public int getUIDbyUserName(String userName) {
         int uid = -1;

@@ -1,24 +1,131 @@
 package testFriend;
 
-import org.junit.Test;
+import client.frameworks_and_drivers.communication_manager.ClientComManager;
+import client.interface_adapters.controllers.FriendController;
+import client.interface_adapters.model.ModelInterface;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import server.frameworks_and_drivers.InputSorter;
+import server.frameworks_and_drivers.communication_manager.ComManager;
+import server.frameworks_and_drivers.database.Database;
+import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
+import server.interface_adapters.friend.input.RequestFriendController;
+import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
+import server.usecases.friendinteractors.requestfriend.requestFriendOutputBoundary;
 
 public class TestRequestFriend {
-    @Test
-    public void testExecute(){
-        //register two new users
+    private class DummyModel implements ModelInterface {
 
-        //send request from a to b, entering uid
+        @Override
+        public int getSelfUid() {
+            return 0;
+        }
 
-        //test if request data is added to the database: userfile[9] in each two users
-        //assert not empty
+        @Override
+        public void setSelfUid(int uid) {
+
+        }
+
+        @Override
+        public String getDescription(int userUid) {
+            return null;
+        }
+
+        @Override
+        public void addFriend(int uid, String name, String description, double rating, boolean online) {
+
+        }
+
+        @Override
+        public void addPrivateChat(int uid, String name, String description, int friendUid) {
+
+        }
+
+        @Override
+        public String getPageState() {
+            return null;
+        }
+
+        @Override
+        public void setPageState(String state) {
+
+        }
+
+        @Override
+        public int findPrivateChat(int friendUid) {
+            return 0;
+        }
+
+        @Override
+        public void setSelfName(String s) {
+
+        }
+
+        @Override
+        public void setSelfDescription(String s) {
+
+        }
+
+        @Override
+        public void setRating(double parseDouble) {
+
+        }
+
+        @Override
+        public void addRequester(int uid, String name) {
+
+        }
+
+        @Override
+        public void deleteFriend(int friendUid) {
+
+        }
+
+        @Override
+        public void deletePrivateChat(int friendUid) {
+
+        }
     }
 
+    private class output implements requestFriendOutputBoundary{
+
+        @Override
+        public void success(int requesterid, String address, int peerPort) {
+
+        }
+
+        @Override
+        public void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort) {
+
+        }
+
+        @Override
+        public void fail(int requesterid, String address, int peerPort) {
+
+        }
+    }
     @Test
-    public void testExecuteCaseFailure(){
-        //register two new users
+    public void testExecute(){
+        ClientComManager comManager = new ClientComManager(false);
+        ModelInterface dummyModel = new DummyModel();
+        FriendController friendController = new FriendController(comManager, dummyModel, "127.0.0.1");
+        comManager.init(4444, null);
 
-        //send request from a to b, but entering wrong uid
+        ComManager comManager1 = new ComManager(false);
+        Database database = new Database("testuser.csv", "testchat.csv");
+        FriendDataAccess dataAccess = new FriendDataAccess(database);
+        output requestFriendOutputBoundary = new output();
+        requestFriendInteractor requestFriendInteractor =
+                new requestFriendInteractor(requestFriendOutputBoundary, dataAccess);
+        RequestFriendController requestFriendController = new RequestFriendController(requestFriendInteractor);
+        InputSorter inputSorter = new InputSorter(requestFriendController, null,
+                null, null);
+        comManager1.init(4396, inputSorter);
 
-        //assert empty: userfile[9] in each two users
+        database.newUser(0, "A", "", "000", "000", 000);
+        database.newUser(1, "B", "", "000", "000", 000);
+        friendController.requestFriend(1);
+
+        Assertions.assertNotEquals("", database.readUser(1)[9]);
     }
 }

@@ -1,6 +1,7 @@
 package testFriend;
 
 public class TestDeleteFriend {
+
     public void testDeleteSuccess(){
         //register two new users
 

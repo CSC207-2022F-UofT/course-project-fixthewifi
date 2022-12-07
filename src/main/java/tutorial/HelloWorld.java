@@ -8,7 +8,7 @@ import client.interface_adapters.controllers.FriendController;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 import server.frameworks_and_drivers.InputSorter;
-import server.frameworks_and_drivers.communication_manager.comManager;
+import server.frameworks_and_drivers.communication_manager.ComManager;
 import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
@@ -29,7 +29,7 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
-        newServer();
+        //newServer();
         newClient();
 
     }
@@ -38,7 +38,7 @@ public class HelloWorld {
     {
         Database database = new Database("User.csv", "Chat.csv");
 
-        comManager comManager = new comManager(true);
+        ComManager comManager = new ComManager(true);
 
         FriendDataAccess friendAccess = new FriendDataAccess(database);
         RequestFriendOutputAdapter requestFriendOutputAdapter = new RequestFriendOutputAdapter(comManager);
@@ -72,8 +72,8 @@ public class HelloWorld {
         ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
-        FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
-        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
+        FriendController friendController = new FriendController(comManager, model, "100.70.2.51");
+        LoginController loginController = new LoginController(comManager, model, "100.70.2.51");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 
