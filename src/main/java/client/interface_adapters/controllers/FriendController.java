@@ -2,16 +2,17 @@ package client.interface_adapters.controllers;
 
 import client.frameworks_and_drivers.communication_manager.IfComManager;
 import client.interface_adapters.model.Model;
+import client.interface_adapters.model.ModelInterface;
 import server.frameworks_and_drivers.Constants;
 
 public class FriendController implements FriendControllerInputBoundary
 {
     private final IfComManager comManager;
-    private final Model model;
+    private final ModelInterface model;
 
     private final String serverIp;
 
-    public FriendController(IfComManager comManager, Model model, String serverIp)
+    public FriendController(IfComManager comManager, ModelInterface model, String serverIp)
     {
         this.comManager = comManager;
         this.model = model;

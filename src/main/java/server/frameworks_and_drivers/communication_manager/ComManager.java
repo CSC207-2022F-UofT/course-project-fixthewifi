@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-public class comManager implements IfComManager
+public class ComManager implements IfComManager
 {
     int port;
     ComManagerUser user;
@@ -12,7 +12,7 @@ public class comManager implements IfComManager
 
     private final boolean debug;
 
-    public comManager(boolean debug)
+    public ComManager(boolean debug)
     {
         this.debug = debug;
     }
