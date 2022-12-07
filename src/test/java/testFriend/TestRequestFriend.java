@@ -14,7 +14,7 @@ import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.friendinteractors.requestfriend.requestFriendOutputBoundary;
 
 public class TestRequestFriend {
-    private class DummyModel implements ModelInterface {
+    static class DummyModel implements ModelInterface {
 
         @Override
         public int getSelfUid() {
@@ -87,7 +87,7 @@ public class TestRequestFriend {
         }
     }
 
-    private class output implements requestFriendOutputBoundary{
+    static class output implements requestFriendOutputBoundary{
 
         @Override
         public void success(int requesterid, String address, int peerPort) {
