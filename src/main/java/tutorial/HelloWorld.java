@@ -51,7 +51,7 @@ public class HelloWorld {
     {
         int serverPort = 4396;
         int clientPort = 4444;
-        String serverIp = "127.0.0.1";
+        String serverIp = "100.70.7.134";
         newServer(serverPort, false);
         newClient(serverPort, serverIp, clientPort, false);
         System.out.println("123456432");
