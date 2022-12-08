@@ -18,31 +18,31 @@ Brief explanation of project and what the TA's can currently do
 If an instruction has no operands, put a space bar after the instruction.
 HELP = $help
 
-Message operations:
-SEND_CHAT = $send <content>
-DELETE_CHAT = $del
-EDIT_CHAT = $edt
-Sign in Sign out:
-LOGIN = $lgn <uid> <password>
-REGISTER = $reg <name> <password>
-LOGOUT = $logout
-DELETE_ACCOUNT = $del_account
+* Message operations:
+* SEND_CHAT = $send <content>
+* DELETE_CHAT = $del
+* EDIT_CHAT = $edt
+* Sign in Sign out:
+* LOGIN = $lgn <uid> <password>
+* REGISTER = $reg <name> <password>
+* LOGOUT = $logout
+* DELETE_ACCOUNT = $del_account
 
-Friends:
-REQUEST_FRIEND = $ref <friendUid>
-ACCEPT_FRIEND = $acp <uid>
-REJECT_FRIEND = $rej <uid>
-DELETE_FRIEND = $dtf <uid>
-View info:
-VIEW_CHAT = $cht <chatUid>
-VIEW_FRIENDS = $vwf
-VIEW_PROFILE = $vpr
-Change Profile:
-CHANGE_NAME = $chn
-CHANGE_DESC = $chd
-SET_PIC = $stp
-DEL_PIC = $dlp
-RATING = $rate <uid> <rating>
+* Friends:
+* REQUEST_FRIEND = $ref <friendUid>
+* ACCEPT_FRIEND = $acp <uid>
+* REJECT_FRIEND = $rej <uid>
+* DELETE_FRIEND = $dtf <uid>
+* View info:
+* VIEW_CHAT = $cht <chatUid>
+* VIEW_FRIENDS = $vwf
+* VIEW_PROFILE = $vpr
+* Change Profile:
+* CHANGE_NAME = $chn
+* CHANGE_DESC = $chd
+* SET_PIC = $stp
+* DEL_PIC = $dlp
+* RATING = $rate <uid> <rating>
  
 
 ## Notes
