@@ -157,6 +157,33 @@ public class Model
         ((GroupChat) self.getChat(chatUid)).addMember(user);
     }
 
+    public double getRating(int userUid)
+    {
+        if (userUid == getSelfUid())
+        {
+            return self.getRating();
+        }
+        return self.getFriend(userUid).getRating();
+    }
+
+    public void setRating(String rating)
+    {
+        self.setRating(Double.parseDouble(rating));
+    }
+
+
+    public int getRequester(int uid) throws userNotFoundException {
+        if (friendRequests.containsKey(uid))
+        {
+            return uid;
+        }
+        else
+        {
+            throw new userNotFoundException("The uid entered is not found.");
+        }
+    }
+
+
     public void deletePrivateChat(int friendUid)
     {
         for (int uid : self.getChatUidList())

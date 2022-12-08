@@ -24,7 +24,10 @@ public class RetrieveFriendsListInteractor implements RetrieveFriendsListInputBo
             UIDs.add(u.getUid());
             //TODO: usernames.add(u.getUsername());
         }
-        RetrieveFriendsListOutputData output = new RetrieveFriendsListOutputData(UID, UIDs, usernames);
-        output_adapter.prepareView(output);
+        String peerID = database.getPeerIDFromUID(UID);
+        int peer_port = database.getPeerPortFromUID(UID);
+//        RetrieveFriendsListOutputData output = new RetrieveFriendsListOutputData(
+//                UID, users, peer_port, peerID);
+//        output_adapter.prepareView(output);
     }
 }

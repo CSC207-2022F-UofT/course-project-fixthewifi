@@ -41,4 +41,14 @@ public class CreateGCDummyDatabase implements CreateGCDBGateway {
         }
            return null;
     }
+
+    @Override
+    public String getPeerIDFromUID(int UID) {
+        return null;
+    }
+
+    @Override
+    public int getPeerPortFromUID(int UID) {
+        return 0;
+    }
 }
