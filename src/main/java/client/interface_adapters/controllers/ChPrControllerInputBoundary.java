@@ -1,4 +1,4 @@
-package client.interface_adapters.controllers.change_profile;
+package client.interface_adapters.controllers;
 
 public interface ChPrControllerInputBoundary {
      void setPic(String content);

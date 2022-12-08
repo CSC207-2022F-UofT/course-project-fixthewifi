@@ -1,13 +1,14 @@
 package client.interface_adapters.presenters;
 
-import client.interface_adapters.Constants;
+import client.frameworks_and_drivers.Constants;
 import client.interface_adapters.model.Model;
+import client.interface_adapters.model.ModelInterface;
 
 public class MsgPresenter implements MsgPresenterInputBoundary
 {
-    private final Model model;
+    private final ModelInterface model;
 
-    public MsgPresenter(Model model)
+    public MsgPresenter(ModelInterface model)
     {
         this.model = model;
     }

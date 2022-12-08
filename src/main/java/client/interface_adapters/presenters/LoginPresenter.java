@@ -2,24 +2,56 @@ package client.interface_adapters.presenters;
 
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
 import client.interface_adapters.model.Model;
+import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.model_entities.UserFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPresenter
+public class LoginPresenter implements LoginPresenterInputBoundary
 {
-    private final Model model;
-    private final ConsoleView view;
+    private final ModelInterface model;
     char SPR = 30;
 
     private final int MSG_START_POS = 6;
 
 
-    public LoginPresenter(Model model, ConsoleView view)
+    public LoginPresenter(ModelInterface model)
     {
         this.model = model;
-        this.view = view;
+    }
+
+    public void receiveLoginConfirmation(String data1)
+    {
+        String[] content = data1.split(" ", 2);
+        if (Integer.parseInt(content[0]) == 0)
+        {
+            String[] data = content[1].split(String.valueOf(SPR));
+            addSelfProfile(data);
+            System.out.println(model);
+            model.setPageState("MAIN_PAGE");
+        }
+        else if (Integer.parseInt(content[0]) == 1)
+        {
+            String[] data = content[1].split(String.valueOf(SPR));
+            addFriendProfile(data);
+            System.out.println(model);
+            model.setPageState("MAIN_PAGE");
+        }
+        else if (Integer.parseInt(content[0]) == 2)
+        {
+            String[] data = content[1].split(String.valueOf(SPR));
+            addChatData(data);
+            System.out.println(model);
+            model.setPageState("MAIN_PAGE");
+        }
+        else if (Integer.parseInt(content[0]) == 3)
+        {
+            String[] data = content[1].split(String.valueOf(SPR));
+            addUserData(data);
+            System.out.println(model);
+            model.setPageState("MAIN_PAGE");
+        }
     }
 
     public void receiveRegisterConfirmation(String data)
@@ -28,14 +60,15 @@ public class LoginPresenter
         if (content[0].equals("success"))
         {
 //            model.setSelfStatus(true);
-            view.displayLoginSuccess();
+            model.notifyView("Successfully registered.");
             model.setSelfUid(Integer.parseInt(content[1]));
             model.setPageState("MAIN_PAGE");
             System.out.println(model);
         }
         else
         {
-            view.displayLoginFail();
+            model.notifyView("Register failed.");
+
         }
     }
 
@@ -92,38 +125,5 @@ public class LoginPresenter
     {
         boolean online = data[4].equals("T");
         model.addUserToChat(Integer.parseInt(data[0]), data[1], data[2], Double.parseDouble(data[3].split("-")[0]), online, Integer.parseInt(data[12]), Integer.parseInt(data[13]));
-    }
-
-    public void receiveLoginConfirmation(String data1)
-    {
-        String[] content = data1.split(" ", 2);
-        if (Integer.parseInt(content[0]) == 0)
-        {
-            String[] data = content[1].split(String.valueOf(SPR));
-            addSelfProfile(data);
-            System.out.println(model);
-            model.setPageState("MAIN_PAGE");
-        }
-        else if (Integer.parseInt(content[0]) == 1)
-        {
-            String[] data = content[1].split(String.valueOf(SPR));
-            addFriendProfile(data);
-            System.out.println(model);
-            model.setPageState("MAIN_PAGE");
-        }
-        else if (Integer.parseInt(content[0]) == 2)
-        {
-            String[] data = content[1].split(String.valueOf(SPR));
-            addChatData(data);
-            System.out.println(model);
-            model.setPageState("MAIN_PAGE");
-        }
-        else if (Integer.parseInt(content[0]) == 3)
-        {
-            String[] data = content[1].split(String.valueOf(SPR));
-            addUserData(data);
-            System.out.println(model);
-            model.setPageState("MAIN_PAGE");
-        }
     }
 }

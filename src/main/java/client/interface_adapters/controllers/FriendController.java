@@ -1,22 +1,26 @@
 package client.interface_adapters.controllers;
+import client.frameworks_and_drivers.Constants;
 
 import client.frameworks_and_drivers.communication_manager.IfComManager;
 import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
-import server.frameworks_and_drivers.Constants;
 
 public class FriendController implements FriendControllerInputBoundary
 {
+    int serverport;
+
     private final IfComManager comManager;
     private final ModelInterface model;
 
     private final String serverIp;
 
-    public FriendController(IfComManager comManager, ModelInterface model, String serverIp)
+    public FriendController(IfComManager comManager, ModelInterface model, String serverIp, int serverPort)
     {
         this.comManager = comManager;
         this.model = model;
         this.serverIp = serverIp;
+        this.serverport = serverPort;
+
     }
 
     @Override

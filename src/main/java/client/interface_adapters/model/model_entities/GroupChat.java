@@ -1,5 +1,7 @@
 package client.interface_adapters.model.model_entities;
 
+import client.interface_adapters.model.UserNotFoundException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +43,7 @@ public class GroupChat extends Chat {
         members.put(user.getUid(), user);
     }
 
-    public User getMember(int userUid)
+    public User getMember(int userUid) throws UserNotFoundException
     {
         return members.get(userUid);
     }
