@@ -24,4 +24,5 @@ public class TestRegister {
         interactor.register("Marcus", "123", "100", 4444);
         Assertions.assertEquals(outbound.peerPort, 4444);
     }
+
 }

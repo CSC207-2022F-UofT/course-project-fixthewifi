@@ -3,6 +3,7 @@ package client.interface_adapters.controllers;
 public interface FriendControllerInputBoundary
 {
     public void requestFriend(int friendUid);
+    public void requestFriend(String friendName);
     public void acceptFriend(int peerUid);
     public void refuseFriend(int peerUid);
 

@@ -1,4 +1,4 @@
-package client.interface_adapters.presenters.change_profile;
+package client.interface_adapters.presenters;
 
 public interface ChPrPresenterInputBoundary
 {

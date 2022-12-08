@@ -72,6 +72,20 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         String friendName = database.readUser(friendid)[1];
         String chatName = "private chat between " + requesterName + " and " + friendName;
         database.newChat(chatUID, chatName, "N/A", -1, new int[]{requesterid, friendid});
+
+        String[] oldList = database.readUser(requesterid)[11].split("-");
+        String[] toBase = new String[oldList.length+1];
+        System.arraycopy(oldList, 0 ,toBase, 0, oldList.length);
+        toBase[oldList.length] = String.valueOf(chatUID);
+        database.updateUser(requesterid, 11, String.join("-", toBase));
+
+        String[] oldList2 = database.readUser(friendid)[11].split("-");
+        String[] toBase2 = new String[oldList2.length+1];
+        System.arraycopy(oldList2, 0 ,toBase2, 0, oldList2.length);
+        toBase2[oldList2.length] = String.valueOf(chatUID);
+        database.updateUser(friendid, 11, String.join("-", toBase2));
+
+
         return chatUID;
     }
 
@@ -114,6 +128,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     {
         database.updateChat(chatUid, 5, "");
     }
+
 
     @Override
     public int getUIDbyUserName(String userName) {
@@ -198,6 +213,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     @Override
     public boolean notAlreadyRequested(int requester, int friend)
     {
+        System.out.println(requester + friend);
         String[] friendData = database.readUser(friend);
         List<String> requesterList = new LinkedList<>(Arrays.asList(friendData[9].split("-")));
         return !requesterList.contains(String.valueOf(requester));

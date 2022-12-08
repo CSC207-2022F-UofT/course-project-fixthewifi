@@ -41,17 +41,17 @@ public class Receiver extends Thread
         {
             try
             {
-                byte[] buffer =new byte[Constants.PACKET_LEN*2];
+                byte[] buffer =new byte[ServerComConstants.PACKET_LEN*2];
                 DatagramPacket slicePacket  = new DatagramPacket(buffer,0,buffer.length);
 
                 //receive packet
-                comManager.socket.receive(slicePacket);
+                ComManager.socket.receive(slicePacket);
                 port = slicePacket.getPort();
                 ip = slicePacket.getAddress().getHostAddress();
                 dataStr = new String(slicePacket.getData(), StandardCharsets.UTF_8);
-                String[] str = dataStr.split(Constants.SEPARATOR);
+                String[] str = dataStr.split(ServerComConstants.SEPARATOR);
 //                System.out.println(Arrays.toString(str));
-                if (Integer.parseInt(str[1]) == Constants.SLICE_ACK)
+                if (Integer.parseInt(str[1]) == ServerComConstants.SLICE_ACK)
                 {
 //                    handleAck(str, ip, port);
                 }

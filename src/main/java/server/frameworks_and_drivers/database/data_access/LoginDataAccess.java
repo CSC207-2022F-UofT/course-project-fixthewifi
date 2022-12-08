@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/*
+This class implements the database gateway classes of the login, logout, register, and delete account
+use cases and calls on database methods to do their work
+ */
+
 public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay, LogoutDBGateWay, DeleteDBGateWay
 {
     Database database;
@@ -75,12 +80,26 @@ public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay, Logou
 
     @Override
     public String userAddress(int uid) {
-        return database.readUser(uid)[7];
+        try
+        {
+            return database.readUser(uid)[7];
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return "-1";
+        }
     }
 
     @Override
     public int userPort(int uid) {
-        return Integer.parseInt(database.readUser(uid)[10]);
+        try
+        {
+            return Integer.parseInt(database.readUser(uid)[10]);
+        }
+        catch (NumberFormatException e)
+        {
+            return -1;
+        }
     }
 
     @Override

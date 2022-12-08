@@ -10,10 +10,25 @@ public class LoginInteractor implements LoginInputBoundary{
         this.outputBoundary = outputBoundary;
     }
 
+    /**
+     * Computes user login information and sends it to the user
+     * @param uid User uid
+     * @param password User password
+     */
     @Override
     public void login(int uid, String password){
         String address = db.userAddress(uid);
+        if (address.equals("-1"))
+        {
+            // This checks if the user is logging into an account that doesn't exist yet.
+            return;
+        }
         int userPort = db.userPort(uid);
+        if (userPort == -1)
+        {
+            //This checks if a user is logging into an deleted account.
+            return;
+        }
         boolean success = db.check(uid, password);
 
         if (success)

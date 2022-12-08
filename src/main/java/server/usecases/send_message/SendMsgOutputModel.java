@@ -4,21 +4,25 @@ import java.util.List;
 
 public class SendMsgOutputModel
 {
-    public List<List<String>> chatMembersAddress;
+    public String address;
     public int msgUid;
     public int senderUid;
     public int chatUid;
     public String content;
     public String time;
+    public int port;
+    public String name;
 
-    public SendMsgOutputModel(List<List<String>> chatMembersAddress, int msgUid, int senderUid, int chatUid, String content, String time)
+    public SendMsgOutputModel(String address, int port, int msgUid, int senderUid, int chatUid, String content, String time, String name)
     {
+        this.address = address;
         this.msgUid = msgUid;
         this.senderUid = senderUid;
         this.chatUid = chatUid;
-        this.chatMembersAddress = chatMembersAddress;
         this.content = content;
         this.time = time;
+        this.port = port;
+        this.name = name;
     }
 
 }

@@ -61,10 +61,9 @@ public class Database {
             this.userDatabase = userDatabase;
             for (String[] row : chatDatabase)
             {
-                msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH);
+                msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH - 1);
                 newChatUid = newChatUid + 1;
             }
-
         }
         catch (IOException | CsvException e)
         {
@@ -185,16 +184,19 @@ public class Database {
         chatUpdateHelper(uid, content);
     }
 
-    /**
-     *
-     * @param chatUid the uid of the that you wish to update, the user must exist in the database
-     * @param content the new content
-     */
-    private void chatUpdateHelper(int chatUid, String[] content)
+    public void updateChatMsg(int uid, int senderUid, String content, String time)
     {
-        String[] toUpdate = chatDatabase.get(chatUid);
-        System.arraycopy(content, 0, toUpdate, 0, toUpdate.length);
+        String[] oldContent = chatDatabase.get(uid);
+        String msg = senderUid + "-" + time + "-" + content;
+        ArrayList<String> newContent = new ArrayList<>(Arrays.asList(oldContent));
+        newContent.add(oldContent.length-1, msg);
+        chatDatabase.remove(uid);
+        chatDatabase.add(uid, newContent.toArray(new String[0]));
 
+        writeToChatHelper();
+    }
+
+    private void writeToChatHelper() {
         chatUpdateCount += 1;
         if (chatUpdateCount == MAX_UPDATE)
         {
@@ -210,6 +212,19 @@ public class Database {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    /**
+     *
+     * @param chatUid the uid of the that you wish to update, the user must exist in the database
+     * @param content the new content
+     */
+    private void chatUpdateHelper(int chatUid, String[] content)
+    {
+        String[] toUpdate = chatDatabase.get(chatUid);
+        System.arraycopy(content, 0, toUpdate, 0, toUpdate.length);
+
+        writeToChatHelper();
     }
 
     /**
