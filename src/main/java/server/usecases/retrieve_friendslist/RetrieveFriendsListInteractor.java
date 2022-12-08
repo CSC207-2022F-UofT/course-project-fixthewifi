@@ -1,7 +1,6 @@
 package server.usecases.retrieve_friendslist;
 
-import server.entities.CommonUser;
-import server.frameworks_and_drivers.Constants;
+import server.entities.User;
 
 import java.util.ArrayList;
 
@@ -18,16 +17,17 @@ public class RetrieveFriendsListInteractor implements RetrieveFriendsListInputBo
     @Override
     public void execute(RetrieveFriendsListInputData input) {
         int UID = input.getUID();
-        ArrayList<String> users = new ArrayList<>();
-        ArrayList<CommonUser> friendslist = database.getFriendsListByUID(input.getUID());
-        for(CommonUser u : friendslist){
-            users.add(String.valueOf(u.getUid()) + Constants.SPR);
+        ArrayList<Integer> UIDs = new ArrayList<>();
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<User> friendslist = database.getFriendsListByUID(input.getUID());
+        for(User u : friendslist){
+            UIDs.add(u.getUid());
             //TODO: usernames.add(u.getUsername());
         }
         String peerID = database.getPeerIDFromUID(UID);
         int peer_port = database.getPeerPortFromUID(UID);
-        RetrieveFriendsListOutputData output = new RetrieveFriendsListOutputData(
-                UID, users, peer_port, peerID);
-        output_adapter.prepareView(output);
+//        RetrieveFriendsListOutputData output = new RetrieveFriendsListOutputData(
+//                UID, users, peer_port, peerID);
+//        output_adapter.prepareView(output);
     }
 }

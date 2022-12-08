@@ -1,9 +1,12 @@
 package server.frameworks_and_drivers;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.interface_adapters.delete_account.DeleteController;
 import server.interface_adapters.change_profile.ChangeProfileController;
 import server.interface_adapters.friend.input.AcceptFriendController;
+import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
+import server.interface_adapters.logout.LogoutController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.send_message.SendMsgController;
 import server.interface_adapters.change_rating.SendRatingController;
@@ -15,15 +18,24 @@ public class InputSorter implements ComManagerUser
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
+    private final DeleteFriendController deleteFriendController;
     private final SendRatingController sendRatingController;
 
+    private final LoginController loginController;
+    private final LogoutController logoutController;
+    private final DeleteController deleteController;
     private final ChangeProfileController changeProfileController;
-  
-    public InputSorter(RequestFriendController requestFriendController, 
-                        AcceptFriendController acceptFriendController, 
-                        RegisterController registerController,
+
+    public InputSorter(RequestFriendController requestFriendController,
+                       AcceptFriendController acceptFriendController,
+                       RegisterController registerController,
+                       DeleteFriendController deleteFriendController,
+                       LoginController loginController,
+                       LogoutController logoutController,
+                       DeleteController deleteController,
                         ChangeProfileController changeProfileController,
-                        SendRatingController sendRatingController)
+                            SendRatingController sendRatingController)
+
 
     {
         //TODO: pass all of the controllers into here
@@ -32,6 +44,10 @@ public class InputSorter implements ComManagerUser
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
+        this.deleteFriendController = deleteFriendController;
+        this.loginController = loginController;
+        this.logoutController = logoutController;
+        this.deleteController = deleteController;
 
         this.changeProfileController=  changeProfileController;
 
@@ -44,7 +60,7 @@ public class InputSorter implements ComManagerUser
      @param msg The received message.
      */
     @Override
-    public void onMsg(String msg, String peerIp)
+    public void onMsg(String msg, String peerIp, int peerPort)
     {
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
@@ -60,16 +76,24 @@ public class InputSorter implements ComManagerUser
             case Constants.GROUP_CHAT:
                 break;
             case Constants.LOGIN:
-//                loginController.login(content);
+                loginController.login(content);
                 break;
             case Constants.REGISTER:
-                registerController.register(content, peerIp);
+                registerController.register(content, peerIp, peerPort);
                 break;
             case Constants.REQUEST_FRIEND:
                 requestFriendController.requestFriend(content);
                 break;
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
+                break;
+            case Constants.DELETE_FRIEND:
+                deleteFriendController.deleteFriend(content);
+            case Constants.LOGOUT:
+                logoutController.logout(content);
+                break;
+            case Constants.DELETE_ACCOUNT:
+                deleteController.delete(content);
                 break;
             case Constants.SEND_RATING:
                 char SEP = 30;

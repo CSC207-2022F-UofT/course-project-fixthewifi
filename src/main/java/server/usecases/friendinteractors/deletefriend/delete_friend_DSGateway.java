@@ -1,12 +1,10 @@
 package server.usecases.friendinteractors.deletefriend;
 
-public interface delete_friend_DSGateway {
-    void deleteFriendbyID(int user1, int user2);
-    void deleteFriendbyName(String user1, String user2);
-    boolean findUserByUID(int uid);
-    boolean findUserByName(String name);
-    String getAddress(int userid);
-    int getPeerPort(int userid);
+import server.usecases.friendinteractors.friendCommonsDSGateway;
 
-    String getUserName(int uid);
+public interface delete_friend_DSGateway extends friendCommonsDSGateway {
+    void deleteFriendbyID(int User, int user2);
+    void deleteFriendbyName(String User, String user2);
+
+    void deleteChat(int chatUid);
 }

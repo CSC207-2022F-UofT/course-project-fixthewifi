@@ -8,5 +8,5 @@ public interface RegisterInputBoundary {
      */
     //public void register(String username, String password);
 
-    void register(String username, String password, String ipAddress);
+    void register(String username, String password, String ipAddress, int port);
 }

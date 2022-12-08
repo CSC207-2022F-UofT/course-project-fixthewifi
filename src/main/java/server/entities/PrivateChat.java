@@ -1,33 +1,24 @@
 package server.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PrivateChat implements Chat
+public class PrivateChat extends Chat
 {
-    private final int uid;
-    private final List<Message> messages;
-
-    public PrivateChat(int uid)
-    {
-        this.uid = uid;
-        this.messages = new ArrayList<Message>();
+    private User user1;
+    private User user2;
+    public PrivateChat(int chatUid, ChatProfile profile,User user1 ,User user2 , List<Message> messages){
+        super(chatUid, profile, messages);
+        this.user1 = user1;
+        this.user2 = user2;
     }
 
-    @Override
-    public void addMsg(Message msg)
+    public int[] getMemberUid()
     {
-        messages.add(msg);
+        return new int[]{user1.getUid(), user2.getUid()};
     }
-
     @Override
-    public void deleteMsg()
+    public String toString()
     {
-
-    }
-
-    @Override
-    public int getUid() {
-        return uid;
+        return "Name: " + getName() + "Description: " + getDescription() + "Members: " ;
     }
 }

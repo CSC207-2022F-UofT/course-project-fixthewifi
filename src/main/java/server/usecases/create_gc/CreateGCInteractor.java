@@ -1,9 +1,11 @@
 package server.usecases.create_gc;
 
+import server.entities.ChatFactory;
 import server.entities.GroupChat;
 import server.entities.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class is the interactor for the usecase responsible for where the users'
@@ -33,21 +35,21 @@ public class CreateGCInteractor implements CreateGCInputBoundary {
      */
     @Override
     public void create(CreateGCInputData input_data) {
-        //access database
+        // access database
         int chat_uid = this.database.getNewUID();
         User admin = database.getUserByUID(input_data.getAdmin_uid());
-        ArrayList<User> members = new ArrayList<>();
-        members.add(database.getUserByUID(input_data.getAdmin_uid()));
+        HashMap<Integer, User> members = new HashMap<>();
+        members.put(input_data.getAdmin_uid(), database.getUserByUID(input_data.getAdmin_uid()));
         for (int i: input_data.getMembers_uids()) {
-            if(database.getUserByUID(i) != null && !members.contains(database.getUserByUID(i))){
-                members.add(database.getUserByUID(i));
+            if(database.getUserByUID(i) != null && !members.containsKey(database.getUserByUID(i))){
+                members.put(i, database.getUserByUID(i));
             }
         }
         //create gc and add to database
-        GroupChat gc = new GroupChat(chat_uid, admin, members);
+        GroupChat gc = ChatFactory.getGroupChat(this.database.getNewUID(), "", "", admin, members);
         database.addGC(gc);
         //call output boundary for admin and members
-        for(User u : members){
+        for(User u : members.values()){
             int peerPort = database.getPeerPortFromUID(u.getUid());
             String peerID = database.getPeerIDFromUID(u.getUid());
             CreateGCOutputData output = new CreateGCOutputData(
