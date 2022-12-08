@@ -13,7 +13,7 @@ public class TestRegister {
         DummyDB db = new DummyDB();
         DummyOutputAdapter outbound = new DummyOutputAdapter();
         RegisterInteractor interactor = new RegisterInteractor(db, outbound);
-        interactor.register("Marcus", "123", "100");
+        interactor.register("Marcus", "123", "100", 123);
         Assertions.assertEquals(outbound.uid, 1);
     }
     @Test
@@ -21,7 +21,7 @@ public class TestRegister {
         DummyDB db = new DummyDB();
         DummyOutputAdapter outbound = new DummyOutputAdapter();
         RegisterInteractor interactor = new RegisterInteractor(db, outbound);
-        interactor.register("Marcus", "123", "100");
+        interactor.register("Marcus", "123", "100", 123);
         Assertions.assertEquals(outbound.peerPort, 4444);
     }
 }

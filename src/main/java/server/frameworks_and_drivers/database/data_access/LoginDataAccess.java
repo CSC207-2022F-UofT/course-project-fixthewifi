@@ -6,6 +6,11 @@ import server.usecases.delete_account.DeleteDBGateWay;
 import server.usecases.logout.LogoutDBGateWay;
 import server.usecases.register.RegisterDBGateWay;
 
+/*
+This class implements the database gateway classes of the login, logout, register, and delete account
+use cases and calls on database methods to implement the job they are supposed to do.
+ */
+
 public class LoginDataAccess implements RegisterDBGateWay, LogoutDBGateWay, DeleteDBGateWay
 {
     Database database;

@@ -4,6 +4,10 @@ import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.register.*;
 
 public class RegisterOutputAdapter implements RegisterOutputBoundary {
+    /*
+    This output adapter sends address, peerPort, and content (which includes
+    the uid) to the client, using the comManager
+     */
     final IfComManager comManager;
     char SPR = 30;
     public RegisterOutputAdapter(IfComManager com){

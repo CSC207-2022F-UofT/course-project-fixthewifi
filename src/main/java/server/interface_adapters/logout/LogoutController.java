@@ -3,6 +3,11 @@ import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.logout.*;
 
 public class LogoutController {
+    /*
+    Receives a string called message,
+    which contains the string of the uid of the user that would like to log out
+    which the class then calls the LogoutInputBoundary in use cases file to execute the task
+     */
     final LogoutInputBoundary inbound;
 
     public LogoutController(LogoutInputBoundary bound){
