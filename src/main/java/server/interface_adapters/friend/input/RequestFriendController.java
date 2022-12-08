@@ -24,8 +24,13 @@ public class RequestFriendController {
             int f =  Integer.parseInt(friend);
             int r = Integer.parseInt(requestor);
             requestFriendInputModel model = new requestFriendInputModel(f, r);
+
             usecase.RequestFriend(model);
-        }catch (Exception e){
+
+        }
+        catch (Exception e)
+        {
+
             requestFriendInputModel model = new requestFriendInputModel(friend, requestor);
             usecase.RequestFriend(model);
         }

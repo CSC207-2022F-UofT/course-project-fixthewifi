@@ -1,29 +1,28 @@
 package test_entities;
-import server.entities.GroupProfile;
-import server.entities.ProfilePicture;
+import server.entities.ChatProfile;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class TestGroupProfile {
 
-    @Test
-    public void testGetUID(){
-        int newId = 333146;
-        GroupProfile profile = new GroupProfile(newId, "name", "description");
-        Assertions.assertEquals(newId, profile.getUID(), "Incorrect UID returned");
-    }
+//    @Test
+//    public void testGetUID(){
+//        int newId = 333146;
+//        ChatProfile profile = new ChatProfile("name", "description");
+//        Assertions.assertEquals(newId, profile.getUID(), "Incorrect UID returned");
+//    }
 
     @Test
     public void testGetName(){
         String name = "name";
-        GroupProfile profile = new GroupProfile(333146, name, "description");
+        ChatProfile profile = new ChatProfile(name, "description");
         Assertions.assertEquals(name, profile.getName(), "Incorrect Name returned");
     }
 
     @Test
     public void testGetDescription(){
         String bio = "description";
-        GroupProfile profile = new GroupProfile(333146, "name", bio);
+        ChatProfile profile = new ChatProfile("name", bio);
         Assertions.assertEquals(bio, profile.getDescription(), "Incorrect Description Returned");
     }
 //todo change this test
@@ -38,14 +37,14 @@ public class TestGroupProfile {
     @Test
     public void testSetName(){
         String new_name = "another name";
-        GroupProfile profile = new GroupProfile(333146, "name", "bio");
+        ChatProfile profile = new ChatProfile( "name", "bio");
         profile.setName(new_name);
         Assertions.assertEquals(new_name, profile.getName(), "Name was not changed");
     }
     @Test
     public void testSetDescription() {
         String new_bio = "another name";
-        GroupProfile profile = new GroupProfile(333146, "name", "bio");
+        ChatProfile profile = new ChatProfile("name", "bio");
         profile.setDescription(new_bio);
         Assertions.assertEquals(new_bio, profile.getDescription(), "Description was not changed");
     }

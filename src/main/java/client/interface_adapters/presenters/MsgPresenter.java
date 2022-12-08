@@ -15,6 +15,6 @@ public class MsgPresenter implements MsgPresenterInputBoundary
     public void receiveMsg(String data)
     {
         String[] content = data.split(String.valueOf(Constants.SPR));
-        model.storeChatMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[3], content[4]);
+//        model.storeChatMsg(Integer.parseInt(content[2]), Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[3], content[4]);
     }
 }

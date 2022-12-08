@@ -3,46 +3,23 @@ package client.interface_adapters.model.model_entities;
 /**
  * Represents the profile of a user.
  */
-public class UserProfile
+public class UserProfile extends Profile
 {
-    private String name;
-    private String description;
     private Rating rating;
     private boolean online;
-    private ProfilePicture profilePic;
 
-    public UserProfile(String name, String description, Rating rating, boolean online, ProfilePicture profilePic)
+    public UserProfile(String name, String description, Rating rating, boolean online)
     {
-        this.name = name;
-        this.description = description;
+        super(name, description);
         this.rating = rating;
         this.online = online;
-        this.profilePic = profilePic;
     }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getRating() {
         return rating.getAvgRating();
     }
 
-    public void setRating(double submittedRating) {
-        rating.calculateAvgRating(submittedRating);
+    public void setRating(double rating) {
+        this.rating.setRating(rating);
     }
 
     public boolean isOnline() {
@@ -53,32 +30,20 @@ public class UserProfile
         this.online = online;
     }
 
-    @Override
-    public String toString() {
-        return "UserProfile{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", online=" + online +
-                ", profilePic=" + profilePic +
-                '}';
-    }
-
-    public void setProfilePic(ProfilePicture profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public ProfilePicture getProfilePic()
-    {
-        return profilePic;
-    }
-
-    public String getStatus()
+    public String getOnline()
     {
         if (online)
         {
-            return "Online";
+            return "T";
         }
-        return "Offline";
+        return "F";
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + getName() + "\n" +
+                "Description: " + getDescription() + "\n" +
+                "Rating: " + getRating() + "\n" +
+                "Online?: " + getOnline() + "\n";
     }
 }

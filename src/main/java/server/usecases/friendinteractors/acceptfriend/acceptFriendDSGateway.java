@@ -1,6 +1,8 @@
 package server.usecases.friendinteractors.acceptfriend;
 
-public interface acceptFriendDSGateway {
+import server.usecases.friendinteractors.friendCommonsDSGateway;
+
+public interface acceptFriendDSGateway extends friendCommonsDSGateway {
     /**
      * save this change to database
      * @param friendid
@@ -15,7 +17,8 @@ public interface acceptFriendDSGateway {
      */
     void refuseFriendbyID(int friendid, int requesterid);
 
-    String getuserName(int userid);
-    String getAddress(int userid);
-    int getPeerPort(int userid);
+    String[] readUser(int userUid);
+    int createPrivateChat(int requesterid, int friendid);
+
+    String[] getChatInfo(int chatUid);
 }
