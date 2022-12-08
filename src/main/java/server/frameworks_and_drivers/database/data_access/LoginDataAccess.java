@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/*
+This class implements the database gateway classes of the login, logout, register, and delete account
+use cases and calls on database methods to do their work
+ */
+
 public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay, LogoutDBGateWay, DeleteDBGateWay
 {
     Database database;
