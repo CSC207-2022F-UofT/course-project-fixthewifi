@@ -6,6 +6,7 @@ import client.interface_adapters.model.ChatNotFoundException;
 import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.UserNotFoundException;
+import client.interface_adapters.presenters.EditDeleteMsgPresenterInputBoundary;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class ConsoleView implements ModelObserver
     private static final String HELP = "$help";
     private static final String SEND_MSG = "$send";
     private static final String DELETE_CHAT = "$del";
-    private static final String EDIT_CHAT = "$edt";
+    private static final String EDIT_MSG = "$edt";
     private static final String LOGIN = "$lgn";
     private static final String REGISTER = "$reg";
     private static final String LOGOUT = "$logout";
@@ -45,12 +46,15 @@ public class ConsoleView implements ModelObserver
 
     private final ChPrControllerInputBoundary chPrController;
     private final SendMsgControllerInputBoundary sendMsgController;
+    private final DeleteEditMsgControllerInputBoundary editController;
+
     public ConsoleView(ModelInterface model,
                        LoginControllerInputBoundary loginController,
                        FriendControllerInputBoundary friendController,
                        ChPrControllerInputBoundary chPrController,
                        RatingControllerInputBoundary ratingController,
-                       SendMsgControllerInputBoundary sendMsgController)
+                       SendMsgControllerInputBoundary sendMsgController,
+                       DeleteEditMsgControllerInputBoundary editController)
 
     {
         this.model = model;
@@ -61,6 +65,7 @@ public class ConsoleView implements ModelObserver
 
         this.ratingController = ratingController;
         this.sendMsgController = sendMsgController;
+        this.editController = editController;
 
     }
 
@@ -173,6 +178,16 @@ public class ConsoleView implements ModelObserver
                     String[] content = operand.split(" ", 2);
                     ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
                 break;
+                case (EDIT_MSG):
+                    if (isInteger(model.getPageState()))
+                    {
+                        editController.editMsg(operand);
+                    }
+                    else
+                    {
+                        System.out.println("Please send message when you are viewing a chat.");
+                    }
+                    break;
                 case (HELP):
                     help();
                     break;

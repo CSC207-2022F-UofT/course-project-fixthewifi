@@ -36,11 +36,13 @@ public class InputSorter implements ComManagerUser
     private final RatingPresenterInputBoundary ratingPresenter;
 
     private final SendMsgPresenterInputBoundary msgPresenter;
+    private final EditDeleteMsgPresenterInputBoundary editPresenter;
     public InputSorter(FriendPresenterInputBoundary friendPresenter,
                        LoginPresenterInputBoundary loginPresenter,
                        ChPrPresenterInputBoundary chPrPresenter,
                        RatingPresenterInputBoundary ratingPresenter,
-                       SendMsgPresenterInputBoundary msgPresenter)
+                       SendMsgPresenterInputBoundary msgPresenter,
+                       EditDeleteMsgPresenterInputBoundary editPresenter)
 
     {
         this.friendPresenter = friendPresenter;
@@ -48,6 +50,7 @@ public class InputSorter implements ComManagerUser
         this.chPrPresenter= chPrPresenter;
         this.ratingPresenter = ratingPresenter;
         this.msgPresenter = msgPresenter;
+        this.editPresenter = editPresenter;
 
     }
 
@@ -66,6 +69,9 @@ public class InputSorter implements ComManagerUser
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case SEND_MSG:
                 msgPresenter.receiveMsg(content);
+                break;
+            case EDIT_MSG:
+                editPresenter.receiveMsg(content);
                 break;
             case CHANGE_PROFILE:
                 break;

@@ -1,4 +1,6 @@
 package server.frameworks_and_drivers;
+import client.interface_adapters.controllers.DeleteEditMsgController;
+import server.interface_adapters.edit_delete_msg.EditMsgController;
 import server.interface_adapters.send_message.SendMsgController;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
 import server.interface_adapters.delete_account.DeleteController;
@@ -20,12 +22,12 @@ public class InputSorter implements ComManagerUser
     private final RegisterController registerController;
     private final DeleteFriendController deleteFriendController;
     private final SendRatingController sendRatingController;
-
     private final LoginController loginController;
     private final LogoutController logoutController;
     private final DeleteController deleteController;
     private final ChangeProfileController changeProfileController;
     private final SendMsgController sendMsgController;
+    private final EditMsgController editMsgController;
 
     public InputSorter(RequestFriendController requestFriendController,
                        AcceptFriendController acceptFriendController,
@@ -36,7 +38,8 @@ public class InputSorter implements ComManagerUser
                        DeleteController deleteController,
                        ChangeProfileController changeProfileController,
                        SendRatingController sendRatingController,
-                       SendMsgController sendMsgController)
+                       SendMsgController sendMsgController,
+                       EditMsgController editMsgController)
 
 
     {
@@ -53,7 +56,7 @@ public class InputSorter implements ComManagerUser
         this.sendMsgController = sendMsgController;
         this.changeProfileController=  changeProfileController;
         this.sendRatingController = sendRatingController;
-
+        this.editMsgController = editMsgController;
     }
 
     /**
@@ -71,6 +74,9 @@ public class InputSorter implements ComManagerUser
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case Constants.SEND_MSG:
                 sendMsgController.sendMsg(content);
+                break;
+            case Constants.EDIT_MSG:
+                editMsgController.editMsg(content);
                 break;
             case Constants.CHANGE_PROFILE:
                 break;

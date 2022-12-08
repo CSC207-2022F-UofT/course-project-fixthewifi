@@ -66,6 +66,16 @@ public class Model implements ModelInterface
         return self.getFriend(userUid).getDescription();
     }
 
+    @Override
+    public Chat getChat(int chatUid) {
+        try {
+            return self.getChat(chatUid);
+        } catch (ChatNotFoundException e) {
+            System.out.println("Chat not found.");
+        }
+        return null;
+    }
+
     public String getFriendName(int uid)
     {
         return "";
@@ -96,6 +106,15 @@ public class Model implements ModelInterface
             self.getChat(chatUid).addMsg(MessageFactory.newMessage(msgUid, senderUid, content, time));
         } catch (ChatNotFoundException e) {
             System.out.println("Cannot add message because chat is not found.");
+        }
+    }
+
+    public void editMsg(int ChatUid, int MsgUid, String newContent)
+    {
+        try {
+            self.getChat(ChatUid).editMsg(MsgUid, newContent);
+        } catch (ChatNotFoundException e) {
+            System.out.println("The chat is not found.");
         }
     }
 

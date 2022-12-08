@@ -18,18 +18,20 @@ public class DeleteEditMsgController implements DeleteEditMsgControllerInputBoun
 
     }
 
-    public void deleteMsg(int msgUid, int chatUid){
-        String date = new java.util.Date().toString();
-        int senderUid = model.getSelfUid();
-        String toDeleteMsg = 0+"#"+String.join(String.valueOf(Constants.SPR), String.valueOf(msgUid), String.valueOf(senderUid), String.valueOf(chatUid), date);
+    public void deleteMsg(String updatedContent){
+        String chatUid = model.getPageState();
+        String toDeleteMsg = Constants.DELETE_MSG+"#"+String.join(String.valueOf(Constants.SPR), chatUid, updatedContent);
         comManager.send(serverIp, 4396, toDeleteMsg);
 
     }
 
-    public void editMsg(String updatedContent, int msgUid, int chatUid){
-        String date = new java.util.Date().toString();
-        int senderUid = model.getSelfUid();
-        String toEditMsg = 0+"#"+String.join(String.valueOf(Constants.SPR), String.valueOf(msgUid), String.valueOf(senderUid), String.valueOf(chatUid), updatedContent, date);
+    public void editMsg(String updatedContent){
+        String[] data = updatedContent.split(" ", 2);
+        int msgUid = Integer.parseInt(data[0]);
+        String chatUid = model.getPageState();
+        int senderUid = model.getChat(Integer.parseInt(chatUid)).getMessages().get(msgUid).getSenderUid();
+        String selfUid = String.valueOf(model.getSelfUid());
+        String toEditMsg = Constants.EDIT_MSG+"#"+String.join(String.valueOf(Constants.SPR), chatUid, String.valueOf(msgUid), String.valueOf(senderUid), selfUid, data[1]);
         comManager.send(serverIp, 4396, toEditMsg);
 
     }

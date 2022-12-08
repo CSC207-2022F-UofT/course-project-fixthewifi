@@ -7,6 +7,7 @@ public interface Constants {
     int LOGIN = 3;
     int SEND_RATING = 4;
     int EDIT_MSG = 5;
+    int DELETE_MSG = 55;
     int FRIEND = 6;
     int REGISTER = 7;
     int REQUEST_FRIEND = 8;

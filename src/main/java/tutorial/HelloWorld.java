@@ -13,6 +13,8 @@ import server.frameworks_and_drivers.database.Database;
 import server.interface_adapters.delete_account.DeleteController;
 import server.interface_adapters.change_profile.ChangeProfileController;
 import server.interface_adapters.change_profile.ChangeProfileOutputAdapter;
+import server.interface_adapters.edit_delete_msg.EditMessageOutputAdapter;
+import server.interface_adapters.edit_delete_msg.EditMsgController;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
 import server.interface_adapters.friend.DeleteFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
@@ -23,6 +25,7 @@ import server.interface_adapters.login.LoginOutputAdapter;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.register.RegisterOutputAdapter;
 import server.interface_adapters.send_message.SendMsgOutputAdapter;
+import server.usecases.edit_message.EditInteractor;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
@@ -48,7 +51,7 @@ public class HelloWorld {
     {
         int serverPort = 4396;
         int clientPort = 4444;
-        String serverIp = "127.0.0.1";
+        String serverIp = "100.70.7.134";
         newServer(serverPort, false);
         newClient(serverPort, serverIp, clientPort, false);
         System.out.println("123456432");
@@ -105,7 +108,11 @@ public class HelloWorld {
         SendMsgInteractor sendMsgInteractor = new SendMsgInteractor(sendMsgDsGateway, sendMsgOutputAdapter);
         SendMsgController sendMsgController = new SendMsgController(sendMsgInteractor);
 
-        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController, loginController, logoutController, deleteController, changeProfileController, sendRatingController, sendMsgController);
+        EditMessageOutputAdapter editMessageOutputAdapter = new EditMessageOutputAdapter(comManager);
+        EditInteractor editInteractor = new EditInteractor(sendMsgDsGateway, editMessageOutputAdapter);
+        EditMsgController editMsgController = new EditMsgController(editInteractor);
+
+        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController, loginController, logoutController, deleteController, changeProfileController, sendRatingController, sendMsgController, editMsgController);
 
         comManager.init(serverPort, inputSorter);
         System.out.println("Server initialized.");
@@ -122,8 +129,9 @@ public class HelloWorld {
         RatingController ratingController = new RatingController(comManager, model, serverIp, serverPort);
         ChPrController chPrController = new ChPrController(comManager,model, serverIp, serverPort);
         client.interface_adapters.controllers.SendMsgController sendMsgController = new client.interface_adapters.controllers.SendMsgController(comManager, model, serverIp, serverPort);
+        DeleteEditMsgController deleteEditMsgController = new DeleteEditMsgController(comManager, model, serverIp, serverPort);
 
-        ConsoleView view = new ConsoleView(model, loginController, friendController, chPrController, ratingController, sendMsgController);
+        ConsoleView view = new ConsoleView(model, loginController, friendController, chPrController, ratingController, sendMsgController, deleteEditMsgController);
         model.addObserver(view);
 
         FriendPresenter friendPresenter = new FriendPresenter(model);
@@ -131,10 +139,9 @@ public class HelloWorld {
         RatingPresenter ratingPresenter = new RatingPresenter(model);
         ChPrPresenter chPrPresenter=new ChPrPresenter(model);
         SendMsgPresenter sendMsgPresenter = new SendMsgPresenter(model);
+        EditDeleteMsgPresenter editDeleteMsgPresenter = new EditDeleteMsgPresenter(model);
 
-
-
-        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter, chPrPresenter, ratingPresenter, sendMsgPresenter);
+        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter, chPrPresenter, ratingPresenter, sendMsgPresenter, editDeleteMsgPresenter);
         comManager.init(clientPort, inputSorter);
         view.init();
         System.out.println("Client initialized.");
