@@ -53,6 +53,8 @@ public class InputSorter implements ComManagerUser
                 loginPresenter.receiveConfirmation(content);
                 break;
 
+<<<<<<<<< Temporary merge branch 1
+=========
             case Constants.UPDATE_NAME:
                 chPrPresenter.updateName(content);
 //                break;
@@ -72,6 +74,7 @@ public class InputSorter implements ComManagerUser
                 ratingPresenter.receiveConfirmation(content);
                 break;
 
+>>>>>>>>> Temporary merge branch 2
         }
     }
 

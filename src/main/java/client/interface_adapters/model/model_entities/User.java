@@ -2,8 +2,8 @@ package client.interface_adapters.model.model_entities;
 
 public abstract class User
 {
-    public int uid;
-    public final UserProfile profile;
+    private int uid;
+    private final UserProfile profile;
 
     public User(int uid, UserProfile profile)
     {
@@ -11,8 +11,9 @@ public abstract class User
         this.profile = profile;
     }
 
+<
     public double getRating()
     {
         return profile.getRating();
     }
-}
+

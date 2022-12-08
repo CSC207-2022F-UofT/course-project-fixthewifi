@@ -15,11 +15,7 @@ public class LoginInteractor implements LoginInputBoundary{
         String address = db.userAddress(uid);
         boolean success = db.check(uid, password);
         if (success){
-            String userProfile = db.getUserProfile(uid);
-            String chatList = db.getChats(uid);
-            String friendList = db.getFriends(uid);
-            String requesters = db.getRequesters(uid);
-            outputBoundary.ifSuccess(uid, userProfile, requesters, friendList, address, 4444);
+
         }
         else{
             outputBoundary.error("Username or Password do not match", address, 4444);
