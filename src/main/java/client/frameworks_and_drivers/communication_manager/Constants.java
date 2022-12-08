@@ -1,6 +1,6 @@
-package server.frameworks_and_drivers.communication_manager;
+package client.frameworks_and_drivers.communication_manager;
 
-public interface ServerComConstants
+public interface Constants
 {
     public int PACKET_LEN = 256;
 

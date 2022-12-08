@@ -57,7 +57,7 @@ public class ClientComManager implements IfComManager
         }
         int sliceLen = 0;
         byte[] data = msg.getBytes(StandardCharsets.UTF_8);
-        int totalSlices = (int) Math.ceil((double) data.length / ClientComConstants.PACKET_LEN);
+        int totalSlices = (int) Math.ceil((double) data.length / Constants.PACKET_LEN);
         String msgId = String.valueOf(Tools.generateID());
 
         for(int j=0; j<totalSlices; j++)
@@ -65,17 +65,17 @@ public class ClientComManager implements IfComManager
             if(j+1<totalSlices)
             {
                 //  setting slice length to 128
-                sliceLen = ClientComConstants.PACKET_LEN;
+                sliceLen = Constants.PACKET_LEN;
             }
             else
             {
                 //  packet data length for the remaining portion
-                sliceLen = data.length - (j)* ClientComConstants.PACKET_LEN;
+                sliceLen = data.length - (j)* Constants.PACKET_LEN;
             }
 
-            byte[] a = Tools.getBytes(data, j* ClientComConstants.PACKET_LEN, sliceLen);
+            byte[] a = Tools.getBytes(data, j* Constants.PACKET_LEN, sliceLen);
 
-            String toByte  = ClientComConstants.SEPARATOR + ClientComConstants.SLICE_PACKET + ClientComConstants.SEPARATOR + msgId + ClientComConstants.SEPARATOR + totalSlices + ClientComConstants.SEPARATOR+ j + ClientComConstants.SEPARATOR;
+            String toByte  = Constants.SEPARATOR + Constants.SLICE_PACKET + Constants.SEPARATOR + msgId + Constants.SEPARATOR + totalSlices + Constants.SEPARATOR+ j + Constants.SEPARATOR;
 
 //            System.out.println(new String(a, StandardCharsets.UTF_8));
 

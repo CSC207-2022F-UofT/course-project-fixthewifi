@@ -44,13 +44,13 @@ public class ChPrAccess implements ChangeProfileGateWayDB {
     @Override
     public void storeUpdateName(ChangeProfileDsInputModel dbModel) {
 
-        database.updateUser(dbModel.getUID(), 1,dbModel.getName());
+        database.updateUser(dbModel.getUID(), 2,dbModel.getName());
 
     }
 
     @Override
     public void storeUpdateDescr(ChangeProfileDsInputModel dbModel) {
-        database.updateUser(dbModel.getUID(), 2,dbModel.getDescription());
+        database.updateUser(dbModel.getUID(), 3,dbModel.getDescription());
 
     }
 }

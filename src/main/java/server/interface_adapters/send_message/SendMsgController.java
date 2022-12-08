@@ -13,7 +13,7 @@ public class SendMsgController
         this.useCase = useCase;
     }
 
-    public void sendMsg(String msg)
+    public void sendChat(String msg)
     {
         String[] content = msg.split(String.valueOf(CONTENT_SPR));
         SendMsgInputModel model = new SendMsgInputModel(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[2], content[3]);

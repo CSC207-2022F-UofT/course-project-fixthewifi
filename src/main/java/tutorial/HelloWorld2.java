@@ -4,11 +4,11 @@
 //import client.frameworks_and_drivers.view.console_view.ConsoleView;
 //import client.interface_adapters.controllers.FriendController;
 //import client.interface_adapters.controllers.LoginController;
-//import client.interface_adapters.controllers.ChPrController;
+//import client.interface_adapters.controllers.change_profile.ChPrController;
 //import client.interface_adapters.model.Model;
 //import client.interface_adapters.presenters.FriendPresenter;
 //import client.interface_adapters.presenters.LoginPresenter;
-//import client.interface_adapters.presenters.ChPrPresenter;
+//import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 //import com.opencsv.CSVReader;
 //import server.frameworks_and_drivers.InputSorter;
 //import server.frameworks_and_drivers.communication_manager.comManager;

@@ -1,8 +1,5 @@
 package client.interface_adapters.model.model_entities;
 
-import client.interface_adapters.model.ChatNotFoundException;
-import client.interface_adapters.model.UserNotFoundException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +17,7 @@ public class Self extends User
         this.friendList = friendList;
     }
 
-    public Friend getFriend(int uid) throws UserNotFoundException
+    public Friend getFriend(int uid)
     {
         return friendList.get(uid);
     }
@@ -30,12 +27,12 @@ public class Self extends User
         friendList.put(friend.getUid(), friend);
     }
 
-    public void deleteFriend(int friendUid) throws UserNotFoundException
+    public void deleteFriend(int friendUid)
     {
         friendList.remove(friendUid);
     }
 
-    public Chat getChat(int uid) throws ChatNotFoundException
+    public Chat getChat(int uid)
     {
         return chatList.get(uid);
     }

@@ -1,56 +1,36 @@
 package client.frameworks_and_drivers.view.console_view;
 
-import client.interface_adapters.controllers.*;
+import client.interface_adapters.controllers.FriendControllerInputBoundary;
+import client.interface_adapters.controllers.LoginControllerInputBoundary;
 
-import client.interface_adapters.model.ChatNotFoundException;
+import client.interface_adapters.controllers.change_profile.ChPrControllerInputBoundary;
+
+import client.interface_adapters.controllers.MsgControllerInputBoundary;
+import client.interface_adapters.controllers.RatingControllerInputBoundary;
+
 import client.interface_adapters.model.Model;
-import client.interface_adapters.model.ModelInterface;
-import client.interface_adapters.model.UserNotFoundException;
+import client.interface_adapters.model.userNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class ConsoleView implements ModelObserver
+public class ConsoleView
 {
-    private static final String HELP = "$help";
-    private static final String SEND_MSG = "$send";
-    private static final String DELETE_CHAT = "$del";
-    private static final String EDIT_CHAT = "$edt";
-    private static final String LOGIN = "$lgn";
-    private static final String REGISTER = "$reg";
-    private static final String LOGOUT = "$logout";
-    private static final String DELETE_ACCOUNT = "$del_account";
-    private static final String REQUEST_FRIEND = "$ref";
-    private static final String ACCEPT_FRIEND = "$acp";
-    private static final String REJECT_FRIEND = "$rej";
-    private static final String DELETE_FRIEND = "$dtf";
-    private static final String CHANGE_NAME = "$chn";
-    private static final String CHANGE_DESC = "$chd";
-    private static final String SET_PIC = "$stp";
-    private static final String DEL_PIC = "$dlp";
-    private static final String RATING = "$rate";
-    private static final String VIEW_PROFILE = "$vpr";
-    private static final String VIEW_FRIENDS = "$vwf";
-    private static final String VIEW_CHAT = "$chat";
-    private static final String VIEW_ALLCHAT = "$chats";
-
-
-
-    private final ModelInterface model;
+    private final Model model;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
     private final RatingControllerInputBoundary ratingController;
 
     private final ChPrControllerInputBoundary chPrController;
-    private final SendMsgControllerInputBoundary sendMsgController;
-    public ConsoleView(ModelInterface model,
+    public ConsoleView(Model model,
                        LoginControllerInputBoundary loginController,
                        FriendControllerInputBoundary friendController,
+
                        ChPrControllerInputBoundary chPrController,
-                       RatingControllerInputBoundary ratingController,
-                       SendMsgControllerInputBoundary sendMsgController)
+
+                       RatingControllerInputBoundary ratingController)
 
     {
         this.model = model;
@@ -60,13 +40,9 @@ public class ConsoleView implements ModelObserver
         this.chPrController = chPrController;
 
         this.ratingController = ratingController;
-        this.sendMsgController = sendMsgController;
 
     }
 
-    /**
-     * Make the view listen to inputs, loops as long as the program is running.
-     */
     public void init()
     {
         try
@@ -81,22 +57,26 @@ public class ConsoleView implements ModelObserver
                     // Reading data using readLine
                     String input = reader.readLine();
                     String[] content = input.split(" ", 2);
+
+                    System.out.println("spliting console view");
                     if (Objects.equals(model.getPageState(), "LOGIN_PAGE"))
                     {
                         sortLogin(content[0], content[1]);
                     } else if (Objects.equals(model.getPageState(), "MAIN_PAGE"))
                     {
 
+                        System.out.println("sort i console view");
                         sort(content[0], content[1]);
                     }
                     else{
                         //todo change all pages stuff work
+                        System.out.println("sort i jyst addd console view");
                         sort(content[0], content[1]);
                     }
                 }
                 catch(ArrayIndexOutOfBoundsException exception)
                 {
-                    System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
+                    System.out.println("Are you sure about that, son?");
                 }
             }
         }
@@ -106,159 +86,104 @@ public class ConsoleView implements ModelObserver
         }
     }
 
-    /**
-     * Sorts the instruction, passes the operand into controllers.
-     * @param operation The instruction to the program, starts with $
-     * @param operand The input, such as name or password or both etc.
-     */
-    public void sort(String operation, String operand)
-    {
-        try
+    public void sort(String operation, String operand)  {
+
+        System.out.println("sort start console view");
+        if (model.getPageState().startsWith("CHAT"))
+        {
+
+        }
+        else
         {
             switch (operation)
             {
-                case (SEND_MSG):
-                    if (isInteger(model.getPageState()))
-                    {
-                        sendMsgController.sendMsg(operand, Integer.parseInt(model.getPageState()));
-                    }
-                    else
-                    {
-                        System.out.println("Please send message when you are viewing a chat.");
-                    }
-                    break;
-
-                case (REQUEST_FRIEND):
-                    friendController.requestFriend(Integer.parseInt(operand));
-                    break;
-                case (ACCEPT_FRIEND):
-                    friendController.acceptFriend(Integer.parseInt(operand));
-                    break;
-                case (REJECT_FRIEND):
-                    friendController.refuseFriend(Integer.parseInt(operand));
-                    break;
-                case (DELETE_FRIEND):
-                    friendController.deleteFriend(Integer.parseInt(operand));
-                    break;
-                case (VIEW_FRIENDS):
-                    displayFriends();
-                    break;
-                case (VIEW_CHAT):
+                case(InstructionSet.VIEW_CHAT):
                     displayChat(Integer.parseInt(operand));
                     break;
-                case (VIEW_PROFILE):
-                    displayMyProfile();
+
+                case(InstructionSet.REQUEST_FRIEND):
+                    friendController.requestFriend(Integer.parseInt(operand));
                     break;
-                case (VIEW_ALLCHAT):
-                    displayChats();
+
+                case(InstructionSet.ACCEPT_FRIEND):
+                    friendController.acceptFriend(Integer.parseInt(operand));
                     break;
-                case (LOGOUT):
+
+                case(InstructionSet.REJECT_FRIEND):
+                    friendController.refuseFriend(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.DELETE_FRIEND):
+                    friendController.deleteFriend(Integer.parseInt(operand));
+                    break;
+
+                case(InstructionSet.VIEW_FRIEND):
+                    displayFriends();
+                    break;
+
+                case(InstructionSet.LOGOUT):
                     loginController.logout();
                     break;
-                case (DELETE_ACCOUNT):
+
+                case(InstructionSet.DELETE_ACCOUNT):
                     loginController.delete();
                     break;
-                case (CHANGE_NAME):
+
+                case(InstructionSet.VIEW_PROFILE):
+                    displayMyProfile();
+                    System.out.println("VIEW_PROFILE console view");
+                    break;
+
+                case(InstructionSet.CHANGE_NAME):
                     chPrController.updateName(operand);
+
+                    System.out.println("change name console view");
                     break;
-                case (CHANGE_DESC):
+                case(InstructionSet.CHANGE_DESC):
                     chPrController.updateDescr(operand);
+
+                    System.out.println("change desc console view");
                     break;
-                case (SET_PIC):
+                case(InstructionSet.SET_PIC):
                     chPrController.setPic(operand);
+
+                    System.out.println("set pic console view");
                     break;
-                case (DEL_PIC):
+                case(InstructionSet.DEL_PIC):
                     chPrController.delPic();
+
+                    System.out.println("del pic console view");
                     break;
-                case (RATING):
+
+
+                case(InstructionSet.RATING):
                     String[] content = operand.split(" ", 2);
                     ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
-                break;
-                case (HELP):
-                    help();
                     break;
+
             }
-        } catch (NumberFormatException e)
-        {
-            System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
         }
     }
 
-    private boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        } catch(NullPointerException e) {
-            return false;
-        }
-        // only got here if we didn't return false
-        return true;
+    private void displayFriends() 
+    {
     }
 
-    /**
-     * A separate sort login method so that the user can only login or register at the start of the program.
-     */
     public void sortLogin(String operation, String operand)
     {
-        try
+        if (operation.equals(InstructionSet.REGISTER))
         {
-            if (operation.equals(REGISTER))
-            {
-                String[] content = operand.split(" ");
-                loginController.register(content[0], content[1]);
-            } else if (operation.equals(LOGIN))
-            {
-                String[] content = operand.split(" ");
-                loginController.login(Integer.parseInt(content[0]), content[1]);
-            }
-        } catch (NumberFormatException e)
+            String[] content = operand.split(" ");
+            loginController.register(content[0], content[1]);
+        } else if (operation.equals(InstructionSet.LOGIN))
         {
-            System.out.println("Something isn't right.");
+            String[] content = operand.split(" ");
+            loginController.login(Integer.parseInt(content[0]), content[1]);
         }
-
     }
-
-    private void help()
-    {
-        System.out.println(
-                        "If an instruction has no operands, put a space bar after the instruction." + "\n" +
-                        "HELP = $help" + "\n\n" +
-                        
-                        "Message operations:" + "\n" +
-                        "SEND_CHAT = $send <content>" + "\n" +
-                        "DELETE_CHAT = $del" + "\n" +
-                        "EDIT_CHAT = $edt" + "\n" +
-
-                        "Sign in Sign out:" + "\n" +
-                        "LOGIN = $lgn <uid> <password>" + "\n" +
-                        "REGISTER = $reg <name> <password>" + "\n" +
-                        "LOGOUT = $logout" + "\n" +
-                        "DELETE_ACCOUNT = $del_account" + "\n\n" +
-                        
-                        "Friends:" + "\n" +
-                        "REQUEST_FRIEND = $ref <friendUid>" + "\n" +
-                        "ACCEPT_FRIEND = $acp <uid>" + "\n" +
-                        "REJECT_FRIEND = $rej <uid>" + "\n" +
-                        "DELETE_FRIEND = $dtf <uid>" + "\n" +
-                        
-                        "View info:" + "\n" +
-                        "VIEW_CHAT = $cht <chatUid>" + "\n" +
-                        "VIEW_FRIENDS = $vwf" + "\n" +
-                        "VIEW_PROFILE = $vpr" + "\n" +
-                        
-                        "Change Profile:" + "\n" +
-                        "CHANGE_NAME = $chn" + "\n" +
-                        "CHANGE_DESC = $chd" + "\n" +
-                        "SET_PIC = $stp" + "\n" +
-                        "DEL_PIC = $dlp" + "\n" +
-                        "RATING = $rate <uid> <rating>"
-                        );
-    }
-
     public void displayLoginPage()
     {
-        System.out.println("please enter $reg <name> <password> or $lgn <uid> <password> to register or login: ");
+        System.out.println("please enter $reg <name> <password>: ");
     }
 
     public void displayUserProfile(int userUid)
@@ -266,42 +191,91 @@ public class ConsoleView implements ModelObserver
         System.out.println("===========Profile===========");
         System.out.println("uid: " + userUid);
         System.out.println("name: " + userUid);
-        try {
-            System.out.println("description: " + model.getDescription(userUid));
-        } catch (UserNotFoundException e) {
-            System.out.println("User not found.");
-        }
+        System.out.println("description: " + model.getDescription(userUid));
     }
 
     public void displayChat(int chatUid)
     {
         model.setPageState(Integer.toString(chatUid));
-        try {
-            System.out.println(model.showChat(chatUid));
-            System.out.println(model.printChatHistory(chatUid));
-        } catch (ChatNotFoundException e) {
-            System.out.println("Chat not found.");
+    }
+
+    public void displayNewRequest(int parseInt, String s) {
+    }
+
+    public void displaySuccess_RequestFriend(){
+        System.out.println("Friend request has been sent successfully.");
+    }
+
+    public void displayFailure_RequestFriend(){
+        System.out.println("Friend request was failed.\n" +
+                "UID is not found or already in your friend list or you requested the same person twice.\n" +
+                "Please check it again.");
+    }
+
+    public void displayConfirmation_AcceptFriend(int parseInt, String s)
+    {
+        System.out.println("You have a new friend, uid: " + parseInt + ", name: " + s);
+    }
+
+    public void displayRejection_AcceptFriend(String s1, String s2){
+        System.out.println("Your friend request had been rejected by: " + s1 + s2);
+    }
+
+    public void displaySuccess_DeleteFriend(String s){
+        System.out.println("You have successfully deleted friend:" + s);
+    }
+
+    public void displayFailure_DeleteFriend(){
+        System.out.println("Fail to delete friend.\nYou may entered a wrong uid.\nPlease check it again.");
+    }
+
+    public void displayDeletion_DeleteFriend(String requesterName, String requesterid){
+        System.out.println("Your friend" + requesterid + "-" +  requesterName + "has delete you as friend.");
+    }
+
+    public void displayViewFriend(String s){
+        String[] content = s.split( " ");
+        System.out.println("Your friend are: <Name>-<UID>\n");
+        int content_length = content.length;
+        int i = 0;
+        while (i != content_length - 1) {
+            System.out.println(content[i] + "-" + content[i + 1]);
+            i += 2;
         }
     }
 
-    public void displayChats()
+    public void displayLoginSuccess()
     {
-        System.out.println(model.showChats());
+        System.out.println("Login successful.");
     }
 
-    public void displayFriends()
-    {
-        System.out.println(model.showFriends());
+    public void displayMyProfile() {
+        System.out.println("My Profile");
+        System.out.println(model);
     }
 
-    public void displayMyProfile()
+    public void displayLoginFail()
     {
-        System.out.println(model.showSelfProfile());
+        System.out.println("Login failed.");
     }
 
-    @Override
-    public void update(String content)
+    // Rating Stuff
+    public void displayRatingSuccess()
     {
-        System.out.println(content);
+        System.out.println("Rating successful.");
+    }
+
+    public void displayRatingFail()
+    {
+        System.out.println("Rating failed.");
+    }
+
+    public void displayRating(int userUid)
+    {
+        System.out.println("===========Rating===========");
+        System.out.println("uid: " + userUid);
+        System.out.println("name: " + userUid);
+//        System.out.println("description: " + model.getDescription(userUid));
+//        System.out.println("Rating: " + model.getRating(userUid));
     }
 }
