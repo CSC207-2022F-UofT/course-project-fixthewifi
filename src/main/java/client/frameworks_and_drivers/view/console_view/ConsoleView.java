@@ -172,15 +172,22 @@ public class ConsoleView implements ModelObserver
      */
     public void sortLogin(String operation, String operand)
     {
-        if (operation.equals(REGISTER))
+        try
         {
-            String[] content = operand.split(" ");
-            loginController.register(content[0], content[1]);
-        } else if (operation.equals(LOGIN))
+            if (operation.equals(REGISTER))
+            {
+                String[] content = operand.split(" ");
+                loginController.register(content[0], content[1]);
+            } else if (operation.equals(LOGIN))
+            {
+                String[] content = operand.split(" ");
+                loginController.login(Integer.parseInt(content[0]), content[1]);
+            }
+        } catch (NumberFormatException e)
         {
-            String[] content = operand.split(" ");
-            loginController.login(Integer.parseInt(content[0]), content[1]);
+            System.out.println("Something isn't right.");
         }
+
     }
 
     private void help()

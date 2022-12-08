@@ -189,9 +189,9 @@ public class Database {
     {
         String[] oldContent = chatDatabase.get(uid);
         String msg = senderUid + "-" + time + "-" + content;
-        String[] newContent = new String[oldContent.length + 1];
+        String[] newContent = new String[oldContent.length];
         System.arraycopy(oldContent, 0, newContent, 0, oldContent.length);
-        newContent[oldContent.length] = msg;
+        newContent[oldContent.length - 1] = msg;
         chatDatabase.remove(uid);
         chatDatabase.add(uid, newContent);
 

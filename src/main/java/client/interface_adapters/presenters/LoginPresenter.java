@@ -6,6 +6,7 @@ import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.model_entities.UserFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LoginPresenter implements LoginPresenterInputBoundary
@@ -93,6 +94,7 @@ public class LoginPresenter implements LoginPresenterInputBoundary
 
     private void addChatData(String[] data)
     {
+        System.out.println(Arrays.toString(data));
         if (Integer.parseInt(data[4]) == -1)
         {
             String[] members = data[5].split("-");
