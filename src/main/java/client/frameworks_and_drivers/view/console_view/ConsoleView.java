@@ -117,7 +117,7 @@ public class ConsoleView implements ModelObserver
         {
             switch (operation)
             {
-                case (SEND_MSG) ->
+                case (SEND_MSG):
                 {
                     if (isInteger(model.getPageState()))
                     {
@@ -130,28 +130,28 @@ public class ConsoleView implements ModelObserver
 
                 }
 
-                case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));
-                case (ACCEPT_FRIEND) -> friendController.acceptFriend(Integer.parseInt(operand));
-                case (REJECT_FRIEND) -> friendController.refuseFriend(Integer.parseInt(operand));
-                case (DELETE_FRIEND) -> friendController.deleteFriend(Integer.parseInt(operand));
+                case (REQUEST_FRIEND): friendController.requestFriend(Integer.parseInt(operand));
+                case (ACCEPT_FRIEND): friendController.acceptFriend(Integer.parseInt(operand));
+                case (REJECT_FRIEND): friendController.refuseFriend(Integer.parseInt(operand));
+                case (DELETE_FRIEND): friendController.deleteFriend(Integer.parseInt(operand));
 
-                case (VIEW_FRIENDS) -> displayFriends();
-                case (VIEW_CHAT) -> displayChat(Integer.parseInt(operand));
-                case (VIEW_PROFILE) -> displayMyProfile();
-                case (VIEW_ALLCHAT) -> displayChats();
+                case (VIEW_FRIENDS): displayFriends();
+                case (VIEW_CHAT): displayChat(Integer.parseInt(operand));
+                case (VIEW_PROFILE): displayMyProfile();
+                case (VIEW_ALLCHAT): displayChats();
 
-                case (LOGOUT) -> loginController.logout();
-                case (DELETE_ACCOUNT) -> loginController.delete();
-                case (CHANGE_NAME) -> chPrController.updateName(operand);
-                case (CHANGE_DESC) -> chPrController.updateDescr(operand);
+                case (LOGOUT): loginController.logout();
+                case (DELETE_ACCOUNT): loginController.delete();
+                case (CHANGE_NAME): chPrController.updateName(operand);
+                case (CHANGE_DESC): chPrController.updateDescr(operand);
 
-                case (SET_PIC) -> chPrController.setPic(operand);
-                case (DEL_PIC) -> chPrController.delPic();
-                case (RATING) -> {
+                case (SET_PIC): chPrController.setPic(operand);
+                case (DEL_PIC): chPrController.delPic();
+                case (RATING): {
                     String[] content = operand.split(" ", 2);
                     ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
                 }
-                case (HELP) -> help();
+                case (HELP): help();
             }
         } catch (NumberFormatException e)
         {
