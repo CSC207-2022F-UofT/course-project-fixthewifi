@@ -1,7 +1,6 @@
 package client.interface_adapters.controllers;
 
 import client.frameworks_and_drivers.communication_manager.IfComManager;
-import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
 import server.frameworks_and_drivers.Constants;
 
@@ -40,9 +39,12 @@ public class FriendController implements FriendControllerInputBoundary
     }
 
     public void deleteFriend(int peerUid){
-        String toSend = Constants.DELETE_FRIEND + "#" + peerUid + " " + model.getSelfUid() + " " +
+        try{String toSend = Constants.DELETE_FRIEND + "#" + peerUid + " " + model.getSelfUid() + " " +
                 model.findPrivateChat(peerUid);
-        comManager.send(serverIp, 4396, toSend);
+            comManager.send(serverIp, 4396, toSend);}
+        catch (Exception e){
+            System.out.println("Delete friend failed"); // requires check if use view
+        }
     }
 
     @Override
