@@ -37,7 +37,8 @@ public class ConsoleView implements ModelObserver
     private static final String RATING = "$rate";
     private static final String VIEW_PROFILE = "$vpr";
     private static final String VIEW_FRIENDS = "$vwf";
-    private static final String VIEW_CHAT = "$cht";
+    private static final String VIEW_CHAT = "$chat";
+    private static final String VIEW_ALLCHAT = "$chats";
 
 
 
@@ -96,7 +97,7 @@ public class ConsoleView implements ModelObserver
                 }
                 catch(ArrayIndexOutOfBoundsException exception)
                 {
-                    System.out.println("Are you sure about that, son?");
+                    System.out.println("Please format your instruction correctly.");
                 }
             }
         }
@@ -113,33 +114,41 @@ public class ConsoleView implements ModelObserver
      */
     public void sort(String operation, String operand)
     {
-        if (model.getPageState().startsWith("CHAT"))
+        try
         {
-
-        }
-        else
-        {
-            switch (operation)
+            if (model.getPageState().startsWith("CHAT"))
             {
-                case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));
-                case (ACCEPT_FRIEND) -> friendController.acceptFriend(Integer.parseInt(operand));
-                case (REJECT_FRIEND) -> friendController.refuseFriend(Integer.parseInt(operand));
-                case (DELETE_FRIEND) -> friendController.deleteFriend(Integer.parseInt(operand));
-                case (VIEW_FRIENDS) -> displayFriends();
-                case (VIEW_CHAT) -> displayChat(Integer.parseInt(operand));
-                case (VIEW_PROFILE) -> displayMyProfile();
-                case (LOGOUT) -> loginController.logout();
-                case (DELETE_ACCOUNT) -> loginController.delete();
-                case (CHANGE_NAME) -> chPrController.updateName(operand);
-                case (CHANGE_DESC) -> chPrController.updateDescr(operand);
-                case (SET_PIC) -> chPrController.setPic(operand);
-                case (DEL_PIC) -> chPrController.delPic();
-                case (RATING) -> {
-                    String[] content = operand.split(" ", 2);
-                    ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
-                }
-                case (HELP) -> help();
+
             }
+            else
+            {
+                switch (operation)
+                {
+                    case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));
+                    case (ACCEPT_FRIEND) -> friendController.acceptFriend(Integer.parseInt(operand));
+                    case (REJECT_FRIEND) -> friendController.refuseFriend(Integer.parseInt(operand));
+                    case (DELETE_FRIEND) -> friendController.deleteFriend(Integer.parseInt(operand));
+
+                    case (VIEW_FRIENDS) -> displayFriends();
+                    case (VIEW_CHAT) -> displayChat(Integer.parseInt(operand));
+                    case (VIEW_PROFILE) -> displayMyProfile();
+                    case (VIEW_ALLCHAT) -> displayChats();
+                    case (LOGOUT) -> loginController.logout();
+                    case (DELETE_ACCOUNT) -> loginController.delete();
+                    case (CHANGE_NAME) -> chPrController.updateName(operand);
+                    case (CHANGE_DESC) -> chPrController.updateDescr(operand);
+                    case (SET_PIC) -> chPrController.setPic(operand);
+                    case (DEL_PIC) -> chPrController.delPic();
+                    case (RATING) -> {
+                        String[] content = operand.split(" ", 2);
+                        ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
+                    }
+                    case (HELP) -> help();
+                }
+            }
+        } catch (NumberFormatException e)
+        {
+            System.out.println("Please format your instruction correctly.");
         }
     }
 
@@ -214,6 +223,11 @@ public class ConsoleView implements ModelObserver
     public void displayChat(int chatUid)
     {
         model.setPageState(Integer.toString(chatUid));
+        System.out.println(model.showChats());
+    }
+
+    public void displayChats()
+    {
         System.out.println(model.showChats());
     }
 
