@@ -1,8 +1,5 @@
 package client.interface_adapters.model;
 
-import client.interface_adapters.model.model_entities.Chat;
-import client.interface_adapters.model.model_entities.PrivateChat;
-
 import java.util.List;
 
 public interface ModelInterface {
@@ -49,5 +46,5 @@ public interface ModelInterface {
     void deleteFriend(int friendUid);
 
 
-
+    String printChatHistory(int chatUid);
 }

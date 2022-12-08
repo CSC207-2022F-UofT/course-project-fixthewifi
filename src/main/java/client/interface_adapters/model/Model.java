@@ -216,6 +216,27 @@ public class Model implements ModelInterface
         }
     }
 
+    @Override
+    public String printChatHistory(int chatUid)
+    {
+        try {
+            Chat chat = self.getChat(chatUid);
+            for (Message msg : chat.getMessages())
+            {
+                msg.setSenderName(chat.getMembers().get(msg.getSenderUid()).getName());
+            }
+            StringBuilder builder = new StringBuilder("+++++++++++Messages++++++++++++");
+            for (Message msg : chat.getMessages())
+            {
+                builder.append(msg.toString());
+            }
+            return  builder.toString();
+        } catch (ChatNotFoundException e) {
+            System.out.println("Chat not found.");
+        }
+        return "";
+    }
+
     public void setSelfStatus(boolean status)
     {
         self.setStatus(status);

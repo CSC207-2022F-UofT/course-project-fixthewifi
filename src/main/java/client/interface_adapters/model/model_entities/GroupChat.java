@@ -62,4 +62,9 @@ public class GroupChat extends Chat {
     {
         return new ArrayList<>(members.keySet());
     }
+
+    @Override
+    public HashMap<Integer, User> getMembers() {
+        return members;
+    }
 }

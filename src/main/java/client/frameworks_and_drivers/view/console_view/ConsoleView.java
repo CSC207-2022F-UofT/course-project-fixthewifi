@@ -254,6 +254,7 @@ public class ConsoleView implements ModelObserver
         model.setPageState(Integer.toString(chatUid));
         try {
             System.out.println(model.showChat(chatUid));
+            System.out.println(model.printChatHistory(chatUid));
         } catch (ChatNotFoundException e) {
             System.out.println("Chat not found.");
         }
