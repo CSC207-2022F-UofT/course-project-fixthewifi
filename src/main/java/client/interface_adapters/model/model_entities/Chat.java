@@ -55,8 +55,10 @@ public abstract class Chat
         messages.get(msgUid).setContent("DELETED");
     }
 
+    public abstract List<Integer> getMembersUid();
     public void updateMsgContent(int msgUid, String newContent)
     {
         messages.get(msgUid).setContent(newContent);
     }
+
 }

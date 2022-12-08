@@ -1,6 +1,6 @@
 package client.interface_adapters.model.model_entities;
 
-public abstract class User
+public class User
 {
     private int uid;
     final UserProfile profile;
@@ -41,7 +41,6 @@ public abstract class User
 
     public void setProfilePicture(ProfilePicture pic) {profile.setProfilePicture(pic); }
 
-
     public double getRating()
     {
         return profile.getRating();
@@ -63,5 +62,8 @@ public abstract class User
     }
 
     @Override
-    public abstract String toString();
+    public String toString()
+    {
+        return "uid: " + getUid() + "\n" + profile.toString();
+    }
 }

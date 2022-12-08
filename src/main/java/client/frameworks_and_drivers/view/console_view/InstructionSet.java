@@ -14,7 +14,9 @@ public interface InstructionSet
     String ACCEPT_FRIEND = "$acp";
     String REJECT_FRIEND = "$rej";
     String DELETE_FRIEND = "$dtf";
-     String ACCEPT_FRIEND = "$acp";
+    String LOGOUT = "$logout";
+    String DELETE_ACCOUNT = "$del_account";
+     String VIEW_FRIENDS = "$vwf";
      String VIEW_PROFILE = "$vpr";
      String CHANGE_NAME = "$chn";
      String CHANGE_DESC = "$chd";
@@ -23,4 +25,5 @@ public interface InstructionSet
 
 
     String RATING = "$rate";
+
 }

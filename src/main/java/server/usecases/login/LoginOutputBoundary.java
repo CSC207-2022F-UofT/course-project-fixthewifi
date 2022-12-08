@@ -1,9 +1,15 @@
 package server.usecases.login;
 import java.util.*;
 
-import server.entities.User;
-
 public interface LoginOutputBoundary {
-    void error(String message, String address, int userPort);
-    void ifSuccess(int uid, String[] userProfile, ArrayList<String[]> chatList, ArrayList<String[]> friendList, String address, int userPort);
+
+    void sendSelfProfile(String[] userProfile, String address, int userPort);
+
+    void sendFriend(String[] friend, String address, int userPort);
+
+    void sendChat(String[] chat, String address, int userPort);
+
+    void sendUser(int chatUid, int adminUid, String[] user, String address, int userPort);
+
+    void error(String s, String address, int userPort);
 }

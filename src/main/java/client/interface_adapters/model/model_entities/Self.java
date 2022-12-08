@@ -52,9 +52,20 @@ public class Self extends User
         for(Map.Entry<Integer, Friend> entry : friendList.entrySet())
         {
             Friend value = entry.getValue();
-            out.append(value.toString());
+            out.append(value.toString()).append("\n");
         }
         return out.toString();
+    }
+
+    public List<Integer> getChatUidList()
+    {
+        return new ArrayList<>(chatList.keySet());
+    }
+
+
+    public List<Integer> getFriendUidList()
+    {
+        return new ArrayList<>(friendList.keySet());
     }
 
     public String showChats()
@@ -68,18 +79,19 @@ public class Self extends User
         return out.toString();
     }
 
-    @Override
-    public String toString() {
+    public  String showEverything()
+    {
         return "===================My Profile===================" + "\n" +
                 "Uid: " + getUid() + "\n" +
                 super.profile.toString() + "\n" +
                 showFriends() + "\n" +
-                showChats();
+                showChats()+ "\n";
+    }
+    @Override
+    public String toString()
+    {
+        return "uid: " + getUid() + "\n" + profile.toString();
     }
 
-    public List<Integer> getChatUidList()
-    {
-        return new ArrayList<>(chatList.keySet());
-    }
 
 }

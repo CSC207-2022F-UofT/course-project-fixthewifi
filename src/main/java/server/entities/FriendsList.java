@@ -5,22 +5,22 @@ import java.util.List;
 
 public class FriendsList
 {
-    private List<CommonUser> friendlist;
-    public CommonUser getFriendByUid;
+    private List<User> friendlist;
+    public User getFriendByUid;
     
     public FriendsList(){
         friendlist = Collections.emptyList();
     }
 
-    public void addFriend(CommonUser user){
+    public void addFriend(User user){
         friendlist.add(user);
     }
 
-    public void deleteFriend(CommonUser user){
+    public void deleteFriend(User user){
         friendlist.remove(user);
     }
 
-    public List<CommonUser> viewFriends(){
+    public List<User> viewFriends(){
         return friendlist;
     }
     

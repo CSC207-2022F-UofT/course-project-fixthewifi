@@ -3,8 +3,9 @@ package client.interface_adapters.model;
 import client.interface_adapters.model.model_entities.*;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class Model implements ModelInterface
+public class Model
 {
     private final Self self;
     private String pageState;
@@ -51,25 +52,44 @@ public class Model implements ModelInterface
         self.addChat(chat);
     }
 
-    public String getPageState() {
-        return pageState;
-    }
-    public String getProfileInfo()
+    public void addMsg(int msgUid, int senderUid, String content, String time, int chatUid)
     {
-            return self.profile.toString();
-    }
-    public void setSelfName(String name)
-    {
-        self.profile.setName(name);
-    }
-    public void setSelfDesc(String name)
-    {
-        self.profile.setDescription(name);
+        self.getChat(chatUid).addMsg(MessageFactory.newMessage(msgUid, senderUid, content, time));
     }
 
-    public void setSelfSetPic(String name)
+    public void addGroupChat(int uid, String name, String description, int adminUid, List<Integer> membersUid)
     {
-     //   self.profile.setProfilePic(name);
+        User admin;
+        if (adminUid == getSelfUid())
+        {
+            admin = self;
+        }
+        else if (self.getFriendUidList().contains(adminUid))
+        {
+            admin = self.getFriend(adminUid);
+        }
+        else
+        {
+            admin = null;
+        }
+        HashMap<Integer, User> memberList = new HashMap<>();
+        for (Integer memberUid : membersUid)
+        {
+            if (memberUid == getSelfUid())
+            {
+                memberList.put(memberUid, self);
+            }
+            else if (self.getFriendUidList().contains(memberUid))
+            {
+                memberList.put(memberUid, self.getFriend(memberUid));
+            }
+        }
+        Chat chat = ChatFactory.getGroupChat(uid, name, description, admin, memberList);
+        self.addChat(chat);
+    }
+
+    public String getPageState() {
+        return pageState;
     }
 
     public void setPageState(String state)
@@ -77,31 +97,9 @@ public class Model implements ModelInterface
         pageState = state;
     }
 
-    public void setSelfStatus(boolean b)
-    {
-    }
-
     public int findPrivateChat(int friendUid)
     {
         for (int chatUid : self.getChatUidList())
-
-    public double getRating(int userUid)
-    {
-        if (userUid == getSelfUid())
-        {
-            return self.profile.getRating();
-        }
-        return self.friendList.get(userUid).userProfile.getRating();
-    }
-
-    public void setRating(String rating)
-    {
-        self.profile.setRating(Double.parseDouble(rating));
-    }
-
-
-    public int getRequester(int uid) throws userNotFoundException {
-        if (friendRequester.containsKey(uid))
         {
             Chat chat = self.getChat(chatUid);
             if (chat instanceof PrivateChat)
@@ -113,7 +111,9 @@ public class Model implements ModelInterface
         return -1;
     }
 
-    public void setSelfName(String s) {
+    public void setSelfName(String s)
+    {
+        self.setName(s);
     }
 
     public void setSelfDescription(String s) {
@@ -128,14 +128,61 @@ public class Model implements ModelInterface
     }
 
     @Override
-    public String toString() {
-        return self.toString();
+    public String toString()
+    {
+        return self.showEverything();
     }
 
     public void deleteFriend(int friendUid)
     {
         self.deleteFriend(friendUid);
     }
+
+    public void setSelfStatus(boolean status)
+    {
+        self.setStatus(status);
+    }
+
+    public void addUserToChat(int userUid, String name, String description, double avgRating, boolean online, int chatUid, int adminUid)
+    {
+        if (self.getChat(chatUid).getMembersUid().contains(userUid))
+        {
+            return;
+        }
+        User user = UserFactory.newUser(userUid, name, description, avgRating, online);
+        if (userUid == adminUid)
+        {
+            ((GroupChat) self.getChat(chatUid)).setAdmin(user);
+        }
+        ((GroupChat) self.getChat(chatUid)).addMember(user);
+    }
+
+    public double getRating(int userUid)
+    {
+        if (userUid == getSelfUid())
+        {
+            return self.getRating();
+        }
+        return self.getFriend(userUid).getRating();
+    }
+
+    public void setRating(String rating)
+    {
+        self.setRating(Double.parseDouble(rating));
+    }
+
+
+    public int getRequester(int uid) throws userNotFoundException {
+        if (friendRequests.containsKey(uid))
+        {
+            return uid;
+        }
+        else
+        {
+            throw new userNotFoundException("The uid entered is not found.");
+        }
+    }
+
 
     public void deletePrivateChat(int friendUid)
     {

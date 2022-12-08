@@ -13,6 +13,8 @@ public interface Constants {
     int REQUEST_FRIEND = 8;
     int ACCEPT_FRIEND = 9;
     int DELETE_FRIEND = 69;
+
+
     int UPDATE_DESC = 110;
     int UPDATE_NAME = 111;
     int SET_PIC = 112;

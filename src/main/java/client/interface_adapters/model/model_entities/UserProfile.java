@@ -14,29 +14,12 @@ public class UserProfile extends Profile
         this.rating = rating;
         this.online = online;
     }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getRating() {
         return rating.getAvgRating();
     }
 
-
-    public void setRating(double submittedRating) {
-        rating.calculateAvgRating(submittedRating);
+    public void setRating(double rating) {
+        this.rating.setRating(rating);
     }
 
     public boolean isOnline() {
@@ -48,27 +31,6 @@ public class UserProfile extends Profile
     }
 
     public String getOnline()
-    @Override
-    public String toString() {
-        return "UserProfile{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", online=" + online +
-                ", profilePic=" + profilePic +
-                '}';
-    }
-
-    public void setProfilePic(ProfilePicture profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public ProfilePicture getProfilePic()
-    {
-        return profilePic;
-    }
-
-    public String getStatus()
     {
         if (online)
         {

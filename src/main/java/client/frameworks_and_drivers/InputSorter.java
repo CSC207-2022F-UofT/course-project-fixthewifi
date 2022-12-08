@@ -4,9 +4,11 @@ import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
 import java.util.Arrays;
+
 import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 
 import client.interface_adapters.presenters.RatingPresenter;
+
 
 public class InputSorter implements ComManagerUser
 {
@@ -26,7 +28,7 @@ public class InputSorter implements ComManagerUser
         this.ratingPresenter = ratingPresenter;
 
     }
-    
+
     /**
      * When a message is received, onMsg will be triggered by comManager.
      @param msg The received message.
@@ -51,23 +53,30 @@ public class InputSorter implements ComManagerUser
                 friendPresenter.receiveRequest(content);
                 break;
             case Constants.REGISTER:
-                loginPresenter.receiveConfirmation(content);
+                loginPresenter.receiveRegisterConfirmation(content);
+                break;
+            case Constants.LOGIN:
+                loginPresenter.receiveLoginConfirmation(content);
                 break;
             case Constants.DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
+
             case Constants.UPDATE_NAME:
                 chPrPresenter.updateName(content);
-                break;
+//                break;
             case Constants.UPDATE_DESC:
                 chPrPresenter.updateDescr(content);
-                break;
+//                break;
             case Constants.SET_PIC:
                 chPrPresenter.setPic(content);
-                break;
+//                break;
             case Constants.DEL_PIC:
                 chPrPresenter.delPic();
-                break;
+//                break;
+
+
+
             case Constants.RATING:
                 ratingPresenter.receiveConfirmation(content);
                 break;

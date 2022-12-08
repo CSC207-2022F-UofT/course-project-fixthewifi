@@ -77,7 +77,7 @@ public class Database {
      */
     public void newUser(int userUid, String name, String description, String ip, String password, int port)
     {
-        String[] content = {Integer.toString(userUid), name, description, "0-0-0", "T", "", "", ip, password, "", String.valueOf(port)};
+        String[] content = {Integer.toString(userUid), name, description, "0-0-0", "T", "", "", ip, password, "", String.valueOf(port), ""};
         userDatabase.add(content);
         userWriter.writeNext(content);
         try
@@ -154,7 +154,6 @@ public class Database {
         String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
         String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
         chatDatabase.add(chatUid, content);
-
         chatWriter.writeNext(content);
         try {
             chatWriter.flush();
@@ -273,9 +272,4 @@ public class Database {
         msgUid.put(chatUid, oldValue + 1);
         return oldValue;
     }
-
-
-
-
-
 }
