@@ -126,7 +126,8 @@ public class TestRequestFriend {
     }
 
     /**
-     * Send a friend request to self and assert if data is recorded
+     * 1. test: Send a friend request to self and assert if data is recorded
+     * 2. test: Send a friend request with duplicate or wrong uid to see if request is added to database
      */
     @Test
     public void testExecuteRequest(){
@@ -163,6 +164,16 @@ public class TestRequestFriend {
         String item = database.readUser(1)[9];
 
         Assertions.assertEquals("-0", item);
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        friendController.requestFriend(0);
+        String item1 = database.readUser(1)[9];
+
+        Assertions.assertNotEquals("-0-0", item);
 //
 //        friendController.acceptFriend(0);
 //        String friend = database.readUser(1)[6];
@@ -170,4 +181,50 @@ public class TestRequestFriend {
 //        friendController.acceptFriend(0);
 //        System.out.println(database.readUser(1)[6]);
     }
+
+//    /**
+//     * Enter a duplicate or wrong uid and see if no change happens in database
+//     */
+//    @Test
+//    public void testExecuteRequest_failure(){
+//        ClientComManager comManager = new ClientComManager(false);
+//        ModelInterface dummyModel = new DummyModel();
+//        FriendController friendController = new FriendController(comManager, dummyModel, "127.0.0.1");
+//        comManager.init(4444, null);
+//
+//        ComManager comManager1 = new ComManager(false);
+//        Database database = new Database("testuser.csv", "testchat.csv");
+//        FriendDataAccess dataAccess = new FriendDataAccess(database);
+//        output requestFriendOutputBoundary = new output();
+//        requestFriendInteractor requestFriendInteractor =
+//                new requestFriendInteractor(requestFriendOutputBoundary, dataAccess);
+//        RequestFriendController requestFriendController = new RequestFriendController(requestFriendInteractor);
+//
+//        output acceptFriendOutputBoundary = new output();
+//        acceptFriendInteractor acceptFriendInteractor =
+//                new acceptFriendInteractor(dataAccess, acceptFriendOutputBoundary);
+//        AcceptFriendController acceptFriendController = new AcceptFriendController(acceptFriendInteractor);
+//
+//        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController,
+//                null, null);
+//        comManager1.init(4396, inputSorter);
+//
+//        database.newUser(0, "A", "", "000", "000", 000);
+//        //database.newUser(1, "B", "", "000", "000", 000);
+//        try {
+//            friendController.requestFriend(2);
+//            TimeUnit.SECONDS.sleep(1);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        String item = database.readUser(1)[9];
+//
+//        Assertions.assertNotEquals("-0-0", item);
+//
+//        friendController.acceptFriend(0);
+//        String friend = database.readUser(1)[6];
+//        System.out.println("friend:" + friend);
+//        friendController.acceptFriend(0);
+//        System.out.println(database.readUser(1)[6]);
+//    }
 }
