@@ -16,6 +16,7 @@ public class EditDeleteMsgPresenter implements EditDeleteMsgPresenterInputBounda
     {
         String[] content = data.split(String.valueOf(Constants.SPR));
         model.editMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[2]);
+        model.notifyView("A message has been updated in chat uid = " + Integer.parseInt(content[0]));
     }
 
 
