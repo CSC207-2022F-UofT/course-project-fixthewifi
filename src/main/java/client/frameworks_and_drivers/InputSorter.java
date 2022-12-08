@@ -4,6 +4,8 @@ import client.interface_adapters.presenters.*;
 
 import client.interface_adapters.presenters.ChPrPresenterInputBoundary;
 
+import java.util.Arrays;
+
 
 public class InputSorter implements ComManagerUser
 {
@@ -32,18 +34,20 @@ public class InputSorter implements ComManagerUser
 
     private final ChPrPresenterInputBoundary chPrPresenter;
     private final RatingPresenterInputBoundary ratingPresenter;
+
+    private final SendMsgPresenterInputBoundary msgPresenter;
     public InputSorter(FriendPresenterInputBoundary friendPresenter,
                        LoginPresenterInputBoundary loginPresenter,
                        ChPrPresenterInputBoundary chPrPresenter,
-                       RatingPresenterInputBoundary ratingPresenter)
+                       RatingPresenterInputBoundary ratingPresenter,
+                       SendMsgPresenterInputBoundary msgPresenter)
 
     {
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
-
         this.chPrPresenter= chPrPresenter;
-
         this.ratingPresenter = ratingPresenter;
+        this.msgPresenter = msgPresenter;
 
     }
 
@@ -61,6 +65,7 @@ public class InputSorter implements ComManagerUser
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case SEND_MSG:
+                msgPresenter.receiveMsg(content);
                 break;
             case CHANGE_PROFILE:
                 break;

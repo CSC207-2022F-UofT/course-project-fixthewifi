@@ -52,6 +52,10 @@ public class LoginPresenter implements LoginPresenterInputBoundary
             System.out.println(model);
             model.setPageState("MAIN_PAGE");
         }
+        else if (Integer.parseInt(content[0]) == 4)
+        {
+            model.notifyView("Login failed.");
+        }
     }
 
     public void receiveRegisterConfirmation(String data)

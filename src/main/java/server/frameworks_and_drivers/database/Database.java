@@ -185,16 +185,20 @@ public class Database {
         chatUpdateHelper(uid, content);
     }
 
-    /**
-     *
-     * @param chatUid the uid of the that you wish to update, the user must exist in the database
-     * @param content the new content
-     */
-    private void chatUpdateHelper(int chatUid, String[] content)
+    public void updateChatMsg(int uid, int senderUid, String content, String time)
     {
-        String[] toUpdate = chatDatabase.get(chatUid);
-        System.arraycopy(content, 0, toUpdate, 0, toUpdate.length);
+        String[] oldContent = chatDatabase.get(uid);
+        String msg = senderUid + "-" + time + "-" + content;
+        String[] newContent = new String[oldContent.length + 1];
+        System.arraycopy(oldContent, 0, newContent, 0, oldContent.length);
+        newContent[oldContent.length] = msg;
+        chatDatabase.remove(uid);
+        chatDatabase.add(uid, newContent);
 
+        writeToChatHelper();
+    }
+
+    private void writeToChatHelper() {
         chatUpdateCount += 1;
         if (chatUpdateCount == MAX_UPDATE)
         {
@@ -210,6 +214,19 @@ public class Database {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    /**
+     *
+     * @param chatUid the uid of the that you wish to update, the user must exist in the database
+     * @param content the new content
+     */
+    private void chatUpdateHelper(int chatUid, String[] content)
+    {
+        String[] toUpdate = chatDatabase.get(chatUid);
+        System.arraycopy(content, 0, toUpdate, 0, toUpdate.length);
+
+        writeToChatHelper();
     }
 
     /**

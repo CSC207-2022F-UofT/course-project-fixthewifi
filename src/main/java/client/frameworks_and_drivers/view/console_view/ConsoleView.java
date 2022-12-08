@@ -1,12 +1,8 @@
 package client.frameworks_and_drivers.view.console_view;
 
-import client.interface_adapters.controllers.FriendControllerInputBoundary;
-import client.interface_adapters.controllers.LoginControllerInputBoundary;
+import client.interface_adapters.controllers.*;
 
-import client.interface_adapters.controllers.ChPrControllerInputBoundary;
-
-import client.interface_adapters.controllers.RatingControllerInputBoundary;
-
+import client.interface_adapters.model.ChatNotFoundException;
 import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.UserNotFoundException;
@@ -19,7 +15,7 @@ import java.util.Objects;
 public class ConsoleView implements ModelObserver
 {
     private static final String HELP = "$help";
-    private static final String SEN_MSG = "";
+    private static final String SEND_MSG = "$send";
     private static final String DELETE_CHAT = "$del";
     private static final String EDIT_CHAT = "$edt";
     private static final String LOGIN = "$lgn";
@@ -48,11 +44,13 @@ public class ConsoleView implements ModelObserver
     private final RatingControllerInputBoundary ratingController;
 
     private final ChPrControllerInputBoundary chPrController;
+    private final SendMsgControllerInputBoundary sendMsgController;
     public ConsoleView(ModelInterface model,
                        LoginControllerInputBoundary loginController,
                        FriendControllerInputBoundary friendController,
                        ChPrControllerInputBoundary chPrController,
-                       RatingControllerInputBoundary ratingController)
+                       RatingControllerInputBoundary ratingController,
+                       SendMsgControllerInputBoundary sendMsgController)
 
     {
         this.model = model;
@@ -62,6 +60,7 @@ public class ConsoleView implements ModelObserver
         this.chPrController = chPrController;
 
         this.ratingController = ratingController;
+        this.sendMsgController = sendMsgController;
 
     }
 
@@ -116,40 +115,56 @@ public class ConsoleView implements ModelObserver
     {
         try
         {
-            if (model.getPageState().startsWith("CHAT"))
+            switch (operation)
             {
-
-            }
-            else
-            {
-                switch (operation)
+                case (SEND_MSG) ->
                 {
-                    case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));
-                    case (ACCEPT_FRIEND) -> friendController.acceptFriend(Integer.parseInt(operand));
-                    case (REJECT_FRIEND) -> friendController.refuseFriend(Integer.parseInt(operand));
-                    case (DELETE_FRIEND) -> friendController.deleteFriend(Integer.parseInt(operand));
-
-                    case (VIEW_FRIENDS) -> displayFriends();
-                    case (VIEW_CHAT) -> displayChat(Integer.parseInt(operand));
-                    case (VIEW_PROFILE) -> displayMyProfile();
-                    case (VIEW_ALLCHAT) -> displayChats();
-                    case (LOGOUT) -> loginController.logout();
-                    case (DELETE_ACCOUNT) -> loginController.delete();
-                    case (CHANGE_NAME) -> chPrController.updateName(operand);
-                    case (CHANGE_DESC) -> chPrController.updateDescr(operand);
-                    case (SET_PIC) -> chPrController.setPic(operand);
-                    case (DEL_PIC) -> chPrController.delPic();
-                    case (RATING) -> {
-                        String[] content = operand.split(" ", 2);
-                        ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
+                    if (isInteger(model.getPageState()))
+                    {
+                        sendMsgController.sendMsg(operand, Integer.parseInt(model.getPageState()));
                     }
-                    case (HELP) -> help();
+                    System.out.println("Send message when you are viewing a chat.");
                 }
+
+                case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));
+                case (ACCEPT_FRIEND) -> friendController.acceptFriend(Integer.parseInt(operand));
+                case (REJECT_FRIEND) -> friendController.refuseFriend(Integer.parseInt(operand));
+                case (DELETE_FRIEND) -> friendController.deleteFriend(Integer.parseInt(operand));
+
+                case (VIEW_FRIENDS) -> displayFriends();
+                case (VIEW_CHAT) -> displayChat(Integer.parseInt(operand));
+                case (VIEW_PROFILE) -> displayMyProfile();
+                case (VIEW_ALLCHAT) -> displayChats();
+
+                case (LOGOUT) -> loginController.logout();
+                case (DELETE_ACCOUNT) -> loginController.delete();
+                case (CHANGE_NAME) -> chPrController.updateName(operand);
+                case (CHANGE_DESC) -> chPrController.updateDescr(operand);
+
+                case (SET_PIC) -> chPrController.setPic(operand);
+                case (DEL_PIC) -> chPrController.delPic();
+                case (RATING) -> {
+                    String[] content = operand.split(" ", 2);
+                    ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
+                }
+                case (HELP) -> help();
             }
         } catch (NumberFormatException e)
         {
             System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
         }
+    }
+
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
     }
 
     /**
@@ -226,7 +241,11 @@ public class ConsoleView implements ModelObserver
     public void displayChat(int chatUid)
     {
         model.setPageState(Integer.toString(chatUid));
-        System.out.println(model.showChats());
+        try {
+            System.out.println(model.showChat(chatUid));
+        } catch (ChatNotFoundException e) {
+            System.out.println("Chat not found.");
+        }
     }
 
     public void displayChats()

@@ -31,7 +31,7 @@ public interface ModelInterface {
 
     void addUserToChat(int parseInt, String datum, String datum1, double parseDouble, boolean online, int parseInt1, int parseInt2);
 
-    void addMsg(int i, int parseInt, String s, String s1, int parseInt1);
+    void addMsg(int msgUid, int senderUid, String content, String time, int chatUid);
 
     void addGroupChat(int parseInt, String datum, String datum1, int parseInt1, List<Integer> membersUid);
 
@@ -41,8 +41,12 @@ public interface ModelInterface {
 
     public String showChats();
 
+    public String showChat(int chatUid) throws ChatNotFoundException;
+
     public String showFriends();
 
     void deleteFriend(int friendUid);
+
+
 
 }
