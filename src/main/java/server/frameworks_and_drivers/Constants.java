@@ -20,4 +20,6 @@ public interface Constants
     int UPDATE_NAME = 30;
     int VIEW_FRIEND = 64;
     int DELETE_FRIEND = 69;
+    int DELETE_ACCOUNT = 101;
+    int LOGOUT = 102;
 }

@@ -2,16 +2,14 @@ package server.usecases.delete_account;
 
 public class DeleteInteractor implements DeleteInputBoundary {
     final DeleteDBGateWay db;
-    final DeleteOutputBoundary outbound;
 
     /**
      * This class allows the user to delete their accounts by their uid
      * @author Marcus
      */
 
-    public DeleteInteractor(DeleteDBGateWay db, DeleteOutputBoundary outbound){
+    public DeleteInteractor(DeleteDBGateWay db){
         this.db = db;
-        this.outbound = outbound;
     }
 
     /**
@@ -22,6 +20,5 @@ public class DeleteInteractor implements DeleteInputBoundary {
     @Override
     public void delete(int uid){
         db.deleteByUID(uid);
-        outbound.success();
     }
 }
