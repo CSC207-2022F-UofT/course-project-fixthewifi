@@ -65,7 +65,7 @@ public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay
         {
             if (!friend.equals(""))
             {
-                toReturn.add(database.readChat(Integer.parseInt(friend)));
+                toReturn.add(database.readUser(Integer.parseInt(friend)));
             }
         }
         return toReturn;

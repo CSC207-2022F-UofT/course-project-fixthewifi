@@ -111,7 +111,9 @@ public class Model
         return -1;
     }
 
-    public void setSelfName(String s) {
+    public void setSelfName(String s)
+    {
+        self.setName(s);
     }
 
     public void setSelfDescription(String s) {
@@ -126,8 +128,9 @@ public class Model
     }
 
     @Override
-    public String toString() {
-        return self.toString();
+    public String toString()
+    {
+        return self.showEverything();
     }
 
     public void deleteFriend(int friendUid)

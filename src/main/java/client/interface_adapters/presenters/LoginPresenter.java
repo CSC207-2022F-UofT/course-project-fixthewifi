@@ -91,36 +91,39 @@ public class LoginPresenter
     private void addUserData(String[] data)
     {
         boolean online = data[4].equals("T");
-        model.addUserToChat(Integer.parseInt(data[0]), data[1], data[2], Double.parseDouble(data[3].split("-")[0]), online, Integer.parseInt(data[13]), Integer.parseInt(data[14]));
+        model.addUserToChat(Integer.parseInt(data[0]), data[1], data[2], Double.parseDouble(data[3].split("-")[0]), online, Integer.parseInt(data[12]), Integer.parseInt(data[13]));
     }
 
     public void receiveLoginConfirmation(String data1)
     {
-        String[] content = data1.split(" ");
+        String[] content = data1.split(" ", 2);
         if (Integer.parseInt(content[0]) == 0)
         {
             String[] data = content[1].split(String.valueOf(SPR));
             addSelfProfile(data);
             System.out.println(model);
+            model.setPageState("MAIN_PAGE");
         }
         else if (Integer.parseInt(content[0]) == 1)
         {
             String[] data = content[1].split(String.valueOf(SPR));
             addFriendProfile(data);
             System.out.println(model);
+            model.setPageState("MAIN_PAGE");
         }
         else if (Integer.parseInt(content[0]) == 2)
         {
             String[] data = content[1].split(String.valueOf(SPR));
             addChatData(data);
             System.out.println(model);
+            model.setPageState("MAIN_PAGE");
         }
         else if (Integer.parseInt(content[0]) == 3)
         {
             String[] data = content[1].split(String.valueOf(SPR));
             addUserData(data);
             System.out.println(model);
+            model.setPageState("MAIN_PAGE");
         }
-
     }
 }

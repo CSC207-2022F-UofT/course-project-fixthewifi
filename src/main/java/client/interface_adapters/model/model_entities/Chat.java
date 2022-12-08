@@ -60,4 +60,5 @@ public abstract class Chat
     {
         messages.get(msgUid).setContent(newContent);
     }
+
 }

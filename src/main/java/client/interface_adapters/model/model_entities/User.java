@@ -64,6 +64,6 @@ public class User
     @Override
     public String toString()
     {
-        return profile.toString();
+        return "uid: " + getUid() + "\n" + profile.toString();
     }
 }
