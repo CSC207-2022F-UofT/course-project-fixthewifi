@@ -17,6 +17,6 @@ public class EditMsgController
     public void editMsg(String msg)
     {
         String[] content = msg.split(String.valueOf(CONTENT_SPR));
-        useCase.editMessage(Integer.parseInt(content[0]), Integer.parseInt(content[1]), Integer.parseInt(content[2]), Integer.parseInt(content[3]), content[3]);
+        useCase.editMessage(Integer.parseInt(content[0]), Integer.parseInt(content[1]), Integer.parseInt(content[2]), Integer.parseInt(content[3]), content[4]);
     }
 }

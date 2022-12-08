@@ -16,8 +16,7 @@ public class EditMessageOutputAdapter implements EditOutputBoundary {
     public void EditMessage(int chatUid, int msgUid, String newContent, String address, int port) {
 
         char separator = 30;
-        String msgContent = Constants.EDIT_MSG + "#" + String.join(String.valueOf(separator), String.valueOf(chatUid), String.valueOf(msgUid),
-                newContent);
+        String msgContent = Constants.EDIT_MSG + "#" + String.join(String.valueOf(separator), String.valueOf(chatUid), String.valueOf(msgUid), newContent);
         comManager.send(address, port, msgContent);
     }
 }
