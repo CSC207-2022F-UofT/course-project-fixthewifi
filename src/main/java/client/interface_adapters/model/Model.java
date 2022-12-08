@@ -3,6 +3,7 @@ package client.interface_adapters.model;
 import client.interface_adapters.model.model_entities.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Model
 {
@@ -51,6 +52,42 @@ public class Model
         self.addChat(chat);
     }
 
+    public void addMsg(int msgUid, int senderUid, String content, String time, int chatUid)
+    {
+        self.getChat(chatUid).addMsg(MessageFactory.newMessage(msgUid, senderUid, content, time));
+    }
+
+    public void addGroupChat(int uid, String name, String description, int adminUid, List<Integer> membersUid)
+    {
+        User admin;
+        if (adminUid == getSelfUid())
+        {
+            admin = self;
+        }
+        else if (self.getFriendUidList().contains(adminUid))
+        {
+            admin = self.getFriend(adminUid);
+        }
+        else
+        {
+            admin = null;
+        }
+        HashMap<Integer, User> memberList = new HashMap<>();
+        for (Integer memberUid : membersUid)
+        {
+            if (memberUid == getSelfUid())
+            {
+                memberList.put(memberUid, self);
+            }
+            else if (self.getFriendUidList().contains(memberUid))
+            {
+                memberList.put(memberUid, self.getFriend(memberUid));
+            }
+        }
+        Chat chat = ChatFactory.getGroupChat(uid, name, description, admin, memberList);
+        self.addChat(chat);
+    }
+
     public String getPageState() {
         return pageState;
     }
@@ -58,10 +95,6 @@ public class Model
     public void setPageState(String state)
     {
         pageState = state;
-    }
-
-    public void setSelfStatus(boolean b)
-    {
     }
 
     public int findPrivateChat(int friendUid)
@@ -100,6 +133,25 @@ public class Model
     public void deleteFriend(int friendUid)
     {
         self.deleteFriend(friendUid);
+    }
+
+    public void setSelfStatus(boolean status)
+    {
+        self.setStatus(status);
+    }
+
+    public void addUserToChat(int userUid, String name, String description, double avgRating, boolean online, int chatUid, int adminUid)
+    {
+        if (self.getChat(chatUid).getMembersUid().contains(userUid))
+        {
+            return;
+        }
+        User user = UserFactory.newUser(userUid, name, description, avgRating, online);
+        if (userUid == adminUid)
+        {
+            ((GroupChat) self.getChat(chatUid)).setAdmin(user);
+        }
+        ((GroupChat) self.getChat(chatUid)).addMember(user);
     }
 
     public void deletePrivateChat(int friendUid)

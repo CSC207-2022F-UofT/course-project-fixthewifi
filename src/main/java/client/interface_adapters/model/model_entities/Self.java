@@ -57,6 +57,17 @@ public class Self extends User
         return out.toString();
     }
 
+    public List<Integer> getChatUidList()
+    {
+        return new ArrayList<>(chatList.keySet());
+    }
+
+
+    public List<Integer> getFriendUidList()
+    {
+        return new ArrayList<>(friendList.keySet());
+    }
+
     public String showChats()
     {
         StringBuilder out = new StringBuilder("===================Chats===================" + "\n");
@@ -77,9 +88,5 @@ public class Self extends User
                 showChats();
     }
 
-    public List<Integer> getChatUidList()
-    {
-        return new ArrayList<>(chatList.keySet());
-    }
 
 }

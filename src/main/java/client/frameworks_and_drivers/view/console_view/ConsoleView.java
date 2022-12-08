@@ -100,6 +100,10 @@ public class ConsoleView
         {
             String[] content = operand.split(" ");
             loginController.register(content[0], content[1]);
+        } else if (operation.equals(InstructionSet.LOGIN))
+        {
+            String[] content = operand.split(" ");
+            loginController.login(Integer.parseInt(content[0]), content[1]);
         }
     }
     public void displayLoginPage()

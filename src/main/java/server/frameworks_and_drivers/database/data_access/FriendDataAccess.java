@@ -86,25 +86,25 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     }
 
     @Override
-    public void deleteFriendbyID(int user1, int user2) {
-        //delete uid of user2 in user1`s friendlist
-        deleteFriendbyID_helper(user1, user2);
+    public void deleteFriendbyID(int User, int user2) {
+        //delete uid of user2 in User`s friendlist
+        deleteFriendbyID_helper(User, user2);
 
-        //delete uid of user1 in user2`s friendlist
-        deleteFriendbyID_helper(user2, user1);
+        //delete uid of User in user2`s friendlist
+        deleteFriendbyID_helper(user2, User);
     }
 
-    public void deleteFriendbyID_helper(int user1, int user2) {
-        String[] friend = database.readUser(user1);
+    public void deleteFriendbyID_helper(int User, int user2) {
+        String[] friend = database.readUser(User);
         List<String> friendList = new LinkedList<>(Arrays.asList(friend[6].split("-")));
         friendList.remove(String.valueOf(user2));
         friend[6] = String.join("-", friendList.toArray(new String[0]));
-        database.updateUser(user1, friend);
+        database.updateUser(User, friend);
     }
 
     @Override
-    public void deleteFriendbyName(String user1, String user2) {
-        int user1id = getUIDbyUserName(user1);
+    public void deleteFriendbyName(String User, String user2) {
+        int user1id = getUIDbyUserName(User);
         int user2id = getUIDbyUserName(user2);
         deleteFriendbyID(user1id, user2id);
     }

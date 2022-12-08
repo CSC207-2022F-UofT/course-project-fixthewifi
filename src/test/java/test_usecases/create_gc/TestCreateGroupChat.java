@@ -1,6 +1,6 @@
 package test_usecases.create_gc;
 
-import server.entities.CommonUser;
+import server.entities.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import server.usecases.create_gc.CreateGCInputData;
@@ -24,20 +24,20 @@ public class TestCreateGroupChat {
         CreateGCDummyOutputAdapter output_adapter = new CreateGCDummyOutputAdapter();
         CreateGCInteractor interactor = new CreateGCInteractor(db, output_adapter);
         //create input data
-        CommonUser user1 = new CommonUser(100000, "a", 1);
-        CommonUser user2 = new CommonUser(200000, "b", 2);
-        CommonUser user3 = new CommonUser(300000, "c", 3);
-        ArrayList<Integer> members = new ArrayList<>();
-        members.add(user1.getUid());
-        members.add(user2.getUid());
-        members.add(user3.getUid());
-        LocalDateTime time = LocalDateTime.now();
-        db.addUser(user1.getUid(), user1);
-        db.addUser(user2.getUid(), user2);
-        db.addUser(user3.getUid(), user3);
+//        User User = new User(100000, "a", 1);
+//        User user2 = new User(200000, "b", 2);
+//        User user3 = new User(300000, "c", 3);
+//        ArrayList<Integer> members = new ArrayList<>();
+//        members.add(User.getUid());
+//        members.add(user2.getUid());
+//        members.add(user3.getUid());
+//        LocalDateTime time = LocalDateTime.now();
+//        db.addUser(User.getUid(), User);
+//        db.addUser(user2.getUid(), user2);
+//        db.addUser(user3.getUid(), user3);
 
-        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
-        interactor.create(input);
+//        CreateGCInputData input = new CreateGCInputData(User.getUid(), members, time);
+//        interactor.create(input);
 
         Assertions.assertNotNull(db.getUploaded_chat());
     }
@@ -53,20 +53,20 @@ public class TestCreateGroupChat {
         CreateGCDummyOutputAdapter output_adapter = new CreateGCDummyOutputAdapter();
         CreateGCInteractor interactor = new CreateGCInteractor(db, output_adapter);
         //create input data
-        CommonUser user1 = new CommonUser(100000, "a", 1);
-        CommonUser user2 = new CommonUser(200000, "b", 2);
-        CommonUser user3 = new CommonUser(300000, "c", 3);
-        ArrayList<Integer> members = new ArrayList<>();
-        members.add(user1.getUid());
-        members.add(user2.getUid());
-        members.add(user3.getUid());
-        LocalDateTime time = LocalDateTime.now();
-        db.addUser(user1.getUid(), user1);
-        db.addUser(user2.getUid(), user2);
-        db.addUser(user3.getUid(), user3);
+//        User User = new User(100000, "a", 1);
+//        User user2 = new User(200000, "b", 2);
+//        User user3 = new User(300000, "c", 3);
+//        ArrayList<Integer> members = new ArrayList<>();
+//        members.add(User.getUid());
+//        members.add(user2.getUid());
+//        members.add(user3.getUid());
+//        LocalDateTime time = LocalDateTime.now();
+//        db.addUser(User.getUid(), User);
+//        db.addUser(user2.getUid(), user2);
+//        db.addUser(user3.getUid(), user3);
 
-        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
-        interactor.create(input);
+//        CreateGCInputData input = new CreateGCInputData(User.getUid(), members, time);
+//        interactor.create(input);
 
         Assertions.assertEquals(db.getNewUID(), db.getUploaded_chat().getUid(), "Incorrect UID added");
     }
@@ -83,19 +83,19 @@ public class TestCreateGroupChat {
 //        CreateGCDummyOutputAdapter output_adapter = new CreateGCDummyOutputAdapter();
 //        CreateGCInteractor interactor = new CreateGCInteractor(db, output_adapter);
 //        //create input data
-//        CommonUser user1 = new CommonUser(100000, "a", 1);
+//        CommonUser User = new CommonUser(100000, "a", 1);
 //        CommonUser user2 = new CommonUser(200000, "b", 2);
 //        CommonUser user3 = new CommonUser(300000, "c", 3);
 //        ArrayList<Integer> members = new ArrayList<>();
-//        members.add(user1.getUid());
+//        members.add(User.getUid());
 //        members.add(user2.getUid());
 //        members.add(user3.getUid());
 //        LocalDateTime time = LocalDateTime.now();
-//        db.addUser(user1.getUid(), user1);
+//        db.addUser(User.getUid(), User);
 //        db.addUser(user2.getUid(), user2);
 //        db.addUser(user3.getUid(), user3);
 //
-//        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members, time);
+//        CreateGCInputData input = new CreateGCInputData(User.getUid(), members, time);
 //        interactor.create(input);
 //
 //        Assertions.assertEquals(input.getAdmin(), output_adapter.getOutput().getAdmin(),

@@ -1,15 +1,39 @@
 package server.entities;
 
-public interface Profile {
+public abstract class Profile
+{
+    private String name;
+    private String description;
+    private ProfilePicture pic;
 
-    public int getUID();
+    public Profile(String name, String description)
+    {
+        //to create a GroupProfile without a ProfilePicture
+        this.name = name;
+        this.description = description;
+        this.pic = null;
+    }
 
-    public  String getName();
-    public void setName(String name);
+    public String getName() {
+        return this.name;
+    }
 
-    public String getDescription();
-    public void setDescription(String description);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public ProfilePicture getProfilePicture();
-    public void setProfilePicture(ProfilePicture pic);
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ProfilePicture getProfilePicture() {
+        return this.pic;
+    }
+
+    public void setProfilePicture(ProfilePicture pic) {this.pic = pic; }
+
 }

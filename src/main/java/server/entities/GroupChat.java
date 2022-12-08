@@ -1,68 +1,57 @@
 package server.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * A class representing a Groupchat.
  * @author Brenden McFarlane
  */
-public class GroupChat implements Chat {
+public class GroupChat extends Chat {
     /**
      * Representation invariants:
      * admin is always in members.
      */
-    private final int UID;
-    private ArrayList<Message> messages;
-    private final User admin;
-    private ArrayList<User> members;
+
+    private User admin;
+    private final HashMap<Integer, User> members;
 
 
-    public GroupChat(int UID, User admin, ArrayList<User> members){
-        this.UID = UID;
-        this.messages = new ArrayList<Message>();
+    public GroupChat(int chatUid, ChatProfile profile, User admin, HashMap<Integer, User> members, List<Message> messages){
+        super(chatUid, profile, messages);
         this.admin = admin;
         this.members = members;
-
-    }
-    @Override
-    public int getUid() {
-        return this.UID;
-    }
-
-    public ArrayList<Message> getMessages(){
-        return this.messages;
-    }
-
-    @Override
-    public void addMsg(Message msg) {
-
-    }
-
-    @Override
-    public void deleteMsg() {
-
     }
 
     public User getAdmin() {
         return this.admin;
     }
 
-
-    public ArrayList<User> getMembers(){
-        return this.members;
+    public int getAdminUid()
+    {
+        return admin.getUid();
     }
 
-    public void addUser(User friend){
-        this.members.add(friend);
+    public void setAdmin(User admin) {
+        this.admin = admin;
     }
 
-    public void removeUser(User member){
-        if(member != this.admin) {
-            this.members.remove(member);
-        }
-
+    public void addMember(User user){
+        members.put(user.getUid(), user);
     }
 
+    public User getMember(int userUid)
+    {
+        return members.get(userUid);
+    }
+    public void deleteMember(int userUid)
+    {
+        members.remove(userUid);
+    }
 
-
+    @Override
+    public String toString() {
+        return "lol what";
+    }
 }

@@ -21,4 +21,6 @@ public interface LoginDBGateWay {
 
     String userAddress(int uid);
     int userPort(int uid);
+
+    void setOnline(int uid);
 }

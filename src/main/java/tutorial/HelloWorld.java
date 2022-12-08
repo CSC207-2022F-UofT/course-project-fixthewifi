@@ -18,11 +18,13 @@ import server.interface_adapters.friend.RequestFriendOutputAdapter;
 import server.interface_adapters.friend.input.AcceptFriendController;
 import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
+import server.interface_adapters.login.LoginOutputAdapter;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.register.RegisterOutputAdapter;
 import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
+import server.usecases.login.LoginInteractor;
 import server.usecases.register.RegisterInteractor;
 
 public class HelloWorld {
@@ -59,9 +61,12 @@ public class HelloWorld {
         RegisterInteractor registerInteractor = new RegisterInteractor(loginAccess, registerOutputAdapter);
         RegisterController registerController = new RegisterController(registerInteractor);
 
+        LoginOutputAdapter loginOutputAdapter = new LoginOutputAdapter(comManager);
+        LoginInteractor loginInteractor = new LoginInteractor(loginAccess, loginOutputAdapter);
+        server.interface_adapters.login.LoginController loginController = new server.interface_adapters.login.LoginController(loginInteractor);
 
 
-        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController);
+        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController, loginController);
         comManager.init(4396, inputSorter);
         System.out.println("Server initialized.");
 

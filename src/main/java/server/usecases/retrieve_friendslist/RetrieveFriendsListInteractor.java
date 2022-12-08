@@ -1,6 +1,6 @@
 package server.usecases.retrieve_friendslist;
 
-import server.entities.CommonUser;
+import server.entities.User;
 
 import java.util.ArrayList;
 
@@ -19,8 +19,8 @@ public class RetrieveFriendsListInteractor implements RetrieveFriendsListInputBo
         int UID = input.getUID();
         ArrayList<Integer> UIDs = new ArrayList<>();
         ArrayList<String> usernames = new ArrayList<>();
-        ArrayList<CommonUser> friendslist = database.getFriendsListByUID(input.getUID());
-        for(CommonUser u : friendslist){
+        ArrayList<User> friendslist = database.getFriendsListByUID(input.getUID());
+        for(User u : friendslist){
             UIDs.add(u.getUid());
             //TODO: usernames.add(u.getUsername());
         }

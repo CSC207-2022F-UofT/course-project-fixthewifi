@@ -54,4 +54,10 @@ public class GroupChat extends Chat {
     public String toString() {
         return "lol what";
     }
+
+    @Override
+    public List<Integer> getMembersUid()
+    {
+        return new ArrayList<>(members.keySet());
+    }
 }

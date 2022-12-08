@@ -1,6 +1,6 @@
 package server.usecases.retrieve_friendslist;
 
-import server.entities.CommonUser;
+import server.entities.User;
 
 import java.util.ArrayList;
 
@@ -10,5 +10,5 @@ public interface RetrieveFriendsListDBGateway {
      * @param UID
      * @return
      */
-    ArrayList<CommonUser> getFriendsListByUID(int UID);
+    ArrayList<User> getFriendsListByUID(int UID);
 }

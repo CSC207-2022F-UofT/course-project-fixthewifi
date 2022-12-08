@@ -7,8 +7,10 @@ public class DummyDB implements RegisterDBGateWay{
     public int getNewUid(String username, String password){
         return 1;
     }
+
     @Override
-    public void registerUser(int uid, String username, String password, String ipAddress){
+    public void registerUser(int uid, String username, String password, String ipAddress, int port) {
 
     }
+
 }

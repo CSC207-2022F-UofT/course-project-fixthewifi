@@ -77,7 +77,7 @@ public class Database {
      */
     public void newUser(int userUid, String name, String description, String ip, String password, int port)
     {
-        String[] content = {Integer.toString(userUid), name, description, "0-0-0", "T", "", "", ip, password, "", String.valueOf(port)};
+        String[] content = {Integer.toString(userUid), name, description, "0-0-0", "T", "", "", ip, password, "", String.valueOf(port), ""};
         userDatabase.add(content);
         userWriter.writeNext(content);
         try

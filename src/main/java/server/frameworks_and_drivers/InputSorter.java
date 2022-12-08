@@ -16,18 +16,20 @@ public class InputSorter implements ComManagerUser
     private final RegisterController registerController;
     private final DeleteFriendController deleteFriendController;
 
+    private final LoginController loginController;
+
     public InputSorter(RequestFriendController requestFriendController,
                        AcceptFriendController acceptFriendController,
                        RegisterController registerController,
-                       DeleteFriendController deleteFriendController)
+                       DeleteFriendController deleteFriendController,
+                       LoginController loginController)
     {
         //TODO: pass all of the controllers into here
-//        this.sendMsgController = sendMsgController;
-//        this.loginController = loginController;
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
         this.deleteFriendController = deleteFriendController;
+        this.loginController = loginController;
     }
 
     /**
@@ -51,7 +53,7 @@ public class InputSorter implements ComManagerUser
             case Constants.GROUP_CHAT:
                 break;
             case Constants.LOGIN:
-//                loginController.login(content);
+                loginController.login(content);
                 break;
             case Constants.REGISTER:
                 registerController.register(content, peerIp, peerPort);
