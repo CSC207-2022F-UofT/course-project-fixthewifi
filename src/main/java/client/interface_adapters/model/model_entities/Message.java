@@ -51,7 +51,7 @@ public class Message
     @Override
     public String toString() {
         return "Message " + msgUid + " by " + senderName + " on " +  date + ": \n" +
-                content + "\n" +
+                "                 " + content + "\n" +
                 "\n";
     }
 }

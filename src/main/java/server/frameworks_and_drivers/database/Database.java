@@ -61,10 +61,9 @@ public class Database {
             this.userDatabase = userDatabase;
             for (String[] row : chatDatabase)
             {
-                msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH);
+                msgUid.put(newChatUid, row.length - CHAT_LIST_NON_MSG_CELLS_LENGTH - 1);
                 newChatUid = newChatUid + 1;
             }
-
         }
         catch (IOException | CsvException e)
         {
