@@ -1,6 +1,5 @@
 package server.usecases.create_gc;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -8,23 +7,17 @@ import java.util.ArrayList;
  * @author Brenden McFarlane
  */
 public class CreateGCInputData {
-    /**
-     * The UID of the user who will be the admin of the new GroupChat.
-     */
-    private final int admin;
-    /**
-     * A list of the UIDs of the users who will be a part of the new GroupChat
-     */
-    private final ArrayList<Integer> members;
+    private final int admin_uid;
+    private final ArrayList<Integer> members_uids;
 
 
-    public CreateGCInputData(int admin, ArrayList<Integer> members){
-        this.admin = admin;
-        this.members = members;
+    public CreateGCInputData(int admin_uid, ArrayList<Integer> members_uids){
+        this.admin_uid = admin_uid;
+        this.members_uids = members_uids;
     }
 
-    public int getAdmin(){return this.admin;}
+    public int getAdmin_uid(){return this.admin_uid;}
 
-    public ArrayList<Integer> getMembers(){return this.members;}
+    public ArrayList<Integer> getMembers_uids(){return this.members_uids;}
 
 }

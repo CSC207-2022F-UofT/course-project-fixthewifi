@@ -8,20 +8,21 @@ public class TestRegister {
     /*
     tests the server side of the registration
      */
-//    @Test
-//    public void testRegisterUID(){
-//        DummyDB db = new DummyDB();
-//        DummyOutputAdapter outbound = new DummyOutputAdapter();
-//        RegisterInteractor interactor = new RegisterInteractor(db, outbound);
-////        interactor.register("Marcus", "123", "100");
-//        Assertions.assertEquals(outbound.uid, 1);
-//    }
-//    @Test
-//    public void testRegisterPeerport(){
-//        DummyDB db = new DummyDB();
-//        DummyOutputAdapter outbound = new DummyOutputAdapter();
-//        RegisterInteractor interactor = new RegisterInteractor(db, outbound);
-////        interactor.register("Marcus", "123", "100");
-//        Assertions.assertEquals(outbound.peerPort, 4444);
-//    }
+    @Test
+    public void testRegisterUID(){
+        DummyDB db = new DummyDB();
+        DummyOutputAdapter outbound = new DummyOutputAdapter();
+        RegisterInteractor interactor = new RegisterInteractor(db, outbound);
+        interactor.register("Marcus", "123", "100", 4444);
+        Assertions.assertEquals(outbound.uid, 1);
+    }
+    @Test
+    public void testRegisterPeerport(){
+        DummyDB db = new DummyDB();
+        DummyOutputAdapter outbound = new DummyOutputAdapter();
+        RegisterInteractor interactor = new RegisterInteractor(db, outbound);
+        interactor.register("Marcus", "123", "100", 4444);
+        Assertions.assertEquals(outbound.peerPort, 4444);
+    }
+
 }

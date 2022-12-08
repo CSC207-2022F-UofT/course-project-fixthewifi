@@ -19,19 +19,11 @@ public interface CreateGCDBGateway {
      * @param group_chat is the groupchat that will be added
      */
     void addGC(GroupChat group_chat);
-    /**
-     * returns the User object with the given UID
-     * @param UID the UID of the user
-     */
+
     User getUserByUID(int UID);
 
-    /**
-     * returns the PeerID associated with the active user with UID
-     */
     String getPeerIDFromUID(int UID);
-    /**
-     * returns the PeerPort associated with the active user with UID
-     */
+
     int getPeerPortFromUID(int UID);
 
 

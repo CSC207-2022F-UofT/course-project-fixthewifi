@@ -13,7 +13,7 @@ public class TestCreateGCOutputAdapter {
     public void testPrepareViewUsesComManagerCorrectly(){
         CreateGCComManager com_manager = new CreateGCComManager();
         CreateGCOutputAdapter output_adapter = new CreateGCOutputAdapter(com_manager);
-
+        int chat_uid = 101010;
         int admin = 123456;
         ArrayList<Integer> members = new ArrayList<>();
         members.add(111111);
@@ -22,12 +22,12 @@ public class TestCreateGCOutputAdapter {
         members.add(444444);
         String peerID = "abc";
         int peerPort = 1;
-        CreateGCOutputData output_data = new CreateGCOutputData(admin, members, peerID, peerPort);
+        CreateGCOutputData output_data = new CreateGCOutputData(chat_uid, admin, peerID, peerPort, members);
 
         output_adapter.prepareSuccessView(output_data);
-        String msg = String.valueOf(Constants.GROUP_CHAT) + Constants.SPR + String.valueOf(admin) + Constants.SPR
-                + String.valueOf(111111) + Constants.SPR + String.valueOf(222222) + Constants.SPR
-                + String.valueOf(333333) + Constants.SPR + String.valueOf(444444);
+        String msg = Constants.GROUP_CHAT + "#";
+        msg = msg + chat_uid + Constants.SPR + admin + Constants.SPR + 111111 +
+                Constants.SPR + 222222 + Constants.SPR + 333333 + Constants.SPR + 444444;
         Assertions.assertEquals(peerPort, com_manager.peerPort, "Incorrect peerport.");
         Assertions.assertEquals(peerID, com_manager.peerID, "Incorreect peerID used.");
         Assertions.assertEquals(msg, com_manager.msg, "Incorrect message sent");
