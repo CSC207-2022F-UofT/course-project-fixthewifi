@@ -38,7 +38,6 @@ import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.login.LoginInteractor;
 import server.usecases.logout.LogoutInteractor;
 import server.usecases.profile_changes.ChangeProfileGateWayDB;
-import server.usecases.profile_changes.ChangeProfileInputBoundary;
 import server.usecases.profile_changes.ChangeProfileInteractor;
 import server.usecases.profile_changes.ChangeProfileOutputBoundary;
 import server.usecases.register.RegisterInteractor;
@@ -47,9 +46,7 @@ import server.usecases.delete_account.DeleteInteractor;
 import server.interface_adapters.change_rating.SendRatingOutputAdapter;
 import server.interface_adapters.change_rating.SendRatingController;
 import server.usecases.rating_changes.SendRatingInteractor;
-import server.interface_adapters.change_rating.SendRatingOutputAdapter;
-import server.interface_adapters.change_rating.SendRatingController;
-import client.interface_adapters.controllers.RatingController;
+
 import client.interface_adapters.presenters.RatingPresenter;
 
 
@@ -60,8 +57,6 @@ public class HelloWorld {
     {
         newServer();
         newClient();
-        System.out.println("123456432");
-
     }
 
     static void newServer()
