@@ -22,7 +22,7 @@ public class DeleteFriendController {
      */
     public void deleteFriend(String content){
         String[] arr = content.split(" ");
-        System.out.println("hahaha " + Arrays.toString(arr));
+        //System.out.println("hahaha " + Arrays.toString(arr));
         String friend = arr[0];
         String requestor = arr[1];
         String chatUid = arr[2];

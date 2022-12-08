@@ -45,7 +45,7 @@ public class Receiver extends Thread
                 DatagramPacket slicePacket  = new DatagramPacket(buffer,0,buffer.length);
 
                 //receive packet
-                comManager.socket.receive(slicePacket);
+                ComManager.socket.receive(slicePacket);
                 port = slicePacket.getPort();
                 ip = slicePacket.getAddress().getHostAddress();
                 dataStr = new String(slicePacket.getData(), StandardCharsets.UTF_8);

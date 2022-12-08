@@ -115,6 +115,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
         database.updateChat(chatUid, 5, "");
     }
 
+
     @Override
     public int getUIDbyUserName(String userName) {
         int uid = -1;
@@ -198,6 +199,7 @@ public class FriendDataAccess implements acceptFriendDSGateway, requestFriendDSG
     @Override
     public boolean notAlreadyRequested(int requester, int friend)
     {
+        System.out.println(requester + friend);
         String[] friendData = database.readUser(friend);
         List<String> requesterList = new LinkedList<>(Arrays.asList(friendData[9].split("-")));
         return !requesterList.contains(String.valueOf(requester));
