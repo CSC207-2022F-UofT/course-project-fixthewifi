@@ -3,7 +3,6 @@ import server.frameworks_and_drivers.Constants;
 import server.interface_adapters.create_gc.CreateGCOutputAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import server.frameworks_and_drivers.communication_manager.Constants.*;
 import server.usecases.create_gc.CreateGCOutputData;
 
 
