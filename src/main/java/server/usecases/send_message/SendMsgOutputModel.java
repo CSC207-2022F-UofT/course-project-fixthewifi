@@ -11,8 +11,9 @@ public class SendMsgOutputModel
     public String content;
     public String time;
     public int port;
+    public String name;
 
-    public SendMsgOutputModel(String address, int port, int msgUid, int senderUid, int chatUid, String content, String time)
+    public SendMsgOutputModel(String address, int port, int msgUid, int senderUid, int chatUid, String content, String time, String name)
     {
         this.address = address;
         this.msgUid = msgUid;
@@ -21,6 +22,7 @@ public class SendMsgOutputModel
         this.content = content;
         this.time = time;
         this.port = port;
+        this.name = name;
     }
 
 }

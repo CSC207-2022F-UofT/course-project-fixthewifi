@@ -25,4 +25,6 @@ public interface SendMsgDsGateway
     String getAddress(Integer memberUid);
 
     int getPort(Integer memberUid);
+
+    String getName(int senderUid);
 }

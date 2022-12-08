@@ -66,14 +66,9 @@ public class Model implements ModelInterface
         return self.getFriend(userUid).getDescription();
     }
 
-    public String getFriendName(int friendUid)
+    public String getFriendName(int uid)
     {
-        try {
-            return self.getFriend(friendUid).getName();
-        } catch (UserNotFoundException e) {
-            System.out.println("Friend not found.");
-        }
-        return "null";
+        return "";
     }
 
 

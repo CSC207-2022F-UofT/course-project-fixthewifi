@@ -44,4 +44,9 @@ public class SendMsgDataAccess implements SendMsgDsGateway
     public int getPort(Integer membersUid) {
         return Integer.parseInt(database.readUser(membersUid)[10]);
     }
+
+    @Override
+    public String getName(int senderUid) {
+        return database.readUser(senderUid)[1];
+    }
 }

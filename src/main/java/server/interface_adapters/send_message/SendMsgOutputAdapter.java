@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SendMsgOutputAdapter implements SendMsgOutputBoundary
 {
-    private IfComManager comManager;
+    private final IfComManager comManager;
     public SendMsgOutputAdapter(IfComManager comManager)
     {
         this.comManager = comManager;
@@ -18,7 +18,7 @@ public class SendMsgOutputAdapter implements SendMsgOutputBoundary
     public void sendChat(SendMsgOutputModel model)
     {
         char spr = 30;
-        String content = String.join(String.valueOf(spr), String.valueOf(model.msgUid), String.valueOf(model.senderUid), model.content, model.time, String.valueOf(model.chatUid));
+        String content = String.join(String.valueOf(spr), String.valueOf(model.msgUid), String.valueOf(model.senderUid), model.content, model.time, String.valueOf(model.chatUid), model.name);
         comManager.send(model.address, model.port, Constants.SEND_MSG+"#"+content);
     }
 }

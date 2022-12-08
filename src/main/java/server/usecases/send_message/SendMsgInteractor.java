@@ -30,12 +30,13 @@ public class SendMsgInteractor implements SendMsgInputBoundary
         List<Integer> membersUid = dataBase.getAllMemberUid(inputModel.chatUid);
         int msgUid = dataBase.generateMsgUid(inputModel.chatUid);
         dataBase.storeChatMsg(inputModel.chatUid, inputModel.senderUid, inputModel.content, inputModel.time);
+        String senderName = dataBase.getName(inputModel.senderUid);
 
         for (Integer memberUid : membersUid)
         {
             String address = dataBase.getAddress(memberUid);
             int port = dataBase.getPort(memberUid);
-            SendMsgOutputModel outputModel = new SendMsgOutputModel(address, port, msgUid, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time);
+            SendMsgOutputModel outputModel = new SendMsgOutputModel(address, port, msgUid, inputModel.senderUid, inputModel.chatUid, inputModel.content, inputModel.time, senderName);
             output.sendChat(outputModel);
         }
     }
