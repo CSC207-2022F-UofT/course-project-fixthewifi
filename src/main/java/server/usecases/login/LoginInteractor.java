@@ -10,6 +10,11 @@ public class LoginInteractor implements LoginInputBoundary{
         this.outputBoundary = outputBoundary;
     }
 
+    /**
+     * Computes user login information and sends it to the user
+     * @param uid User uid
+     * @param password User password
+     */
     @Override
     public void login(int uid, String password){
         String address = db.userAddress(uid);

@@ -22,6 +22,10 @@ public class LoginPresenter implements LoginPresenterInputBoundary
         this.model = model;
     }
 
+    /**
+     * Determines the type of login information and calls the corresponding helper method to construct all local data.
+     * @param data1 the data string from the server, the head of the string contains the case number
+     */
     public void receiveLoginConfirmation(String data1)
     {
         String[] content = data1.split(" ", 2);
@@ -59,6 +63,10 @@ public class LoginPresenter implements LoginPresenterInputBoundary
         }
     }
 
+    /**
+     * Takes in data from the server and displays confirmation.
+     * @param "success" or "fail"
+     */
     public void receiveRegisterConfirmation(String data)
     {
         String[] content = data.split(String.valueOf(SPR));
@@ -77,6 +85,10 @@ public class LoginPresenter implements LoginPresenterInputBoundary
         }
     }
 
+    /**
+     * Takes in data array sent from the server and creates self object, with empty chat list and empty friendlist.
+     * @param data content of a chat in string array format, arranged in the format the same as a database row.
+     */
     private void addSelfProfile(String[] data)
     {
         model.setSelfUid(Integer.parseInt(data[0]));
@@ -86,12 +98,20 @@ public class LoginPresenter implements LoginPresenterInputBoundary
         model.setRating(Double.parseDouble(data[3].split("-")[0]));
     }
 
+    /**
+     * Takes in data array sent from the server and creates friend object locally.
+     * @param data content of a chat in string array format, arranged in the format the same as a database row.
+     */
     private void addFriendProfile(String[] data)
     {
         boolean online = data[4].equals("T");
         model.addFriend(Integer.parseInt(data[0]), data[1], data[2], Double.parseDouble(data[3].split("-")[0]), online);
     }
 
+    /**
+     * Takes in data array sent from the server and creates chat object locally, the type of chat created dedpends on if the admin is -1.
+     * @param data content of a chat in string array format, arranged in the format the same as a database row.
+     */
     private void addChatData(String[] data)
     {
         System.out.println(Arrays.toString(data));

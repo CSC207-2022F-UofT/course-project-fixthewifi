@@ -99,6 +99,14 @@ public class Model implements ModelInterface
         }
     }
 
+    /**
+     * Adds a group chat with no message and searches the model if a user who is stored locally is also a member of the chat.
+     * @param uid group chat uid
+     * @param name name of chat
+     * @param description description of chat
+     * @param adminUid admin uid
+     * @param membersUid list of member uid
+     */
     public void addGroupChat(int uid, String name, String description, int adminUid, List<Integer> membersUid)
     {
         User admin = null;
