@@ -41,6 +41,7 @@ public abstract class User
 
     public void setProfilePicture(ProfilePicture pic) {profile.setProfilePicture(pic); }
 
+
     public double getRating()
     {
         return profile.getRating();

@@ -6,6 +6,7 @@ public class view_friend_interactor implements view_friend_input_boundary {
 
     public view_friend_interactor(view_friend_DSGateway dataBase,
                                   view_friend_output_boundary output){
+
         this.dataBase = dataBase;
         this.output = output;
     }

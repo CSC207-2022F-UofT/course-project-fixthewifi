@@ -54,6 +54,23 @@ public class Model implements ModelInterface
     public String getPageState() {
         return pageState;
     }
+    public String getProfileInfo()
+    {
+            return self.profile.toString();
+    }
+    public void setSelfName(String name)
+    {
+        self.profile.setName(name);
+    }
+    public void setSelfDesc(String name)
+    {
+        self.profile.setDescription(name);
+    }
+
+    public void setSelfSetPic(String name)
+    {
+     //   self.profile.setProfilePic(name);
+    }
 
     public void setPageState(String state)
     {
@@ -67,6 +84,24 @@ public class Model implements ModelInterface
     public int findPrivateChat(int friendUid)
     {
         for (int chatUid : self.getChatUidList())
+
+    public double getRating(int userUid)
+    {
+        if (userUid == getSelfUid())
+        {
+            return self.profile.getRating();
+        }
+        return self.friendList.get(userUid).userProfile.getRating();
+    }
+
+    public void setRating(String rating)
+    {
+        self.profile.setRating(Double.parseDouble(rating));
+    }
+
+
+    public int getRequester(int uid) throws userNotFoundException {
+        if (friendRequester.containsKey(uid))
         {
             Chat chat = self.getChat(chatUid);
             if (chat instanceof PrivateChat)

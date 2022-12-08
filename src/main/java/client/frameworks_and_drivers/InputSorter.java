@@ -4,18 +4,29 @@ import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 
 import java.util.Arrays;
+import client.interface_adapters.presenters.change_profile.ChPrPresenter;
+
+import client.interface_adapters.presenters.RatingPresenter;
 
 public class InputSorter implements ComManagerUser
 {
     private final FriendPresenter friendPresenter;
     private final LoginPresenter loginPresenter;
-    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter)
+
+    private final ChPrPresenter chPrPresenter;
+    private final RatingPresenter ratingPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter, RatingPresenter ratingPresenter)
+
     {
-        //TODO: pass all of the controllers into here
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
-    }
 
+        this.chPrPresenter= chPrPresenter;
+
+        this.ratingPresenter = ratingPresenter;
+
+    }
+    
     /**
      * When a message is received, onMsg will be triggered by comManager.
      @param msg The received message.
@@ -45,6 +56,22 @@ public class InputSorter implements ComManagerUser
             case Constants.DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
+            case Constants.UPDATE_NAME:
+                chPrPresenter.updateName(content);
+                break;
+            case Constants.UPDATE_DESC:
+                chPrPresenter.updateDescr(content);
+                break;
+            case Constants.SET_PIC:
+                chPrPresenter.setPic(content);
+                break;
+            case Constants.DEL_PIC:
+                chPrPresenter.delPic();
+                break;
+            case Constants.RATING:
+                ratingPresenter.receiveConfirmation(content);
+                break;
+
         }
     }
 
