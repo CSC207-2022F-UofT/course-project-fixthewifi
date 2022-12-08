@@ -13,12 +13,6 @@ public class DeleteFriendOutputAdapter implements delete_friend_output_boundary 
         this.comManager = comManager;
     }
 
-    /**
-     * To report a success to requester if delete delete a friend successfully
-     * @param friendid
-     * @param address
-     * @param peerPort
-     */
     @Override
     public void success(int friendid, String address, int peerPort)
     {
@@ -28,12 +22,8 @@ public class DeleteFriendOutputAdapter implements delete_friend_output_boundary 
         comManager.send(address, peerPort, content);
     }
 
-    /**
-     * To report a failure to requester if entered a uid does not exist
-     * @param requesterid
-     * @param address
-     * @param peerPort
-     */
+
+
     @Override
     public void fail(int requesterid, String address, int peerPort) {
         //comManager.send("fail requesterid")

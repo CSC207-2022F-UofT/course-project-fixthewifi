@@ -1,17 +1,22 @@
 package client.interface_adapters.presenters;
 
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
+import client.interface_adapters.Constants;
 import client.interface_adapters.model.Model;
-import client.interface_adapters.model.ModelInterface;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FriendPresenter implements FriendPresenterInputBoundary
 {
-    private final ModelInterface model;
+    private final Model model;
+    private final ConsoleView view;
 
 
-    public FriendPresenter(ModelInterface model)
+    public FriendPresenter(Model model, ConsoleView view)
     {
         this.model = model;
+        this.view = view;
     }
 
 
@@ -22,16 +27,15 @@ public class FriendPresenter implements FriendPresenterInputBoundary
 
         if (Integer.parseInt(content[0]) == 1)
         {
-            model.notifyView("Requested friend Successfully.");
+            view.displaySuccess_RequestFriend();
         }
         else if (Integer.parseInt(content[0]) == 0)
         {
-            model.notifyView("Request friend failed. You might be requesting someone who is already your friend, " + "\n" +
-                    "somneone who you have already requested. (Please have at least two clients open to use this feature.)");
+            view.displayFailure_RequestFriend();
         }
         else
         {
-            model.notifyView("New request from ui: " + Integer.parseInt(content[1]) + ", name: " + content[2]);
+            view.displayNewRequest(Integer.parseInt(content[1]), content[2]);
         }
     }
 
@@ -46,15 +50,16 @@ public class FriendPresenter implements FriendPresenterInputBoundary
             String[] friendData = content[1].split(String.valueOf(SPR));
             boolean online = friendData[4].equals("T");
             model.addFriend(Integer.parseInt(friendData[0]), friendData[1], friendData[2], Double.parseDouble(friendData[3]), online);
-            model.notifyView("You are now friend with " + friendData[1] + ", uid: " + Integer.parseInt(friendData[0]));
+            view.displayConfirmation_AcceptFriend(Integer.parseInt(friendData[0]), friendData[1]);
         }
         else if (Integer.parseInt(content[0]) == 0){
-            model.notifyView("Rejected by" + content[1] + content[2]);
+            view.displayRejection_AcceptFriend(content[1], content[2]);
         }
         else if (Integer.parseInt(content[0]) == 2)
         {
             String[] chatData = content[1].split(String.valueOf(SPR));
             model.addPrivateChat(Integer.parseInt(chatData[0]), chatData[1], chatData[2], Integer.parseInt(chatData[3]));
+            System.out.println(model);
         }
     }
 
@@ -62,17 +67,18 @@ public class FriendPresenter implements FriendPresenterInputBoundary
     public void receiveDelete(String data) {
         String[] content = data.split( " ");
         if (Integer.parseInt(content[0]) == 1){
-            model.notifyView("Received deletion from " + content[1]);
+            view.displaySuccess_DeleteFriend(content[1]);
             model.deleteFriend(Integer.parseInt(content[1]));
             model.deletePrivateChat(Integer.parseInt(content[1]));
+            System.out.println(model);
         }
         else if (Integer.parseInt(content[0]) == 3){
-            model.notifyView("Failed to delete friend.");
+            view.displayFailure_DeleteFriend();
         }
     }
 
     @Override
     public void receiveView(String data) {
-
+        view.displayViewFriend(data);
     }
 }

@@ -12,12 +12,6 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
     }
 
 
-    /**
-     * Report to requester if friend request is success
-     * @param requesterid
-     * @param address
-     * @param peerPort
-     */
     @Override
     public void success(int requesterid, String address, int peerPort)
     {
@@ -25,26 +19,12 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
         comManager.send(address, peerPort, content);
     }
 
-    /**
-     * Report to friend that a request tried to request a friend
-     * @param requesterid
-     * @param requesterName
-     * @param friendid
-     * @param address
-     * @param peerPort
-     */
     @Override
     public void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort) {
         String content = Constants.REQUEST_FRIEND + "#" + 2 + " " + requesterid + " " + requesterName;
         comManager.send(address, peerPort, content);
     }
 
-    /**
-     * Send to requester if requester entered a wrong friend id that is not found or duplicate
-     * @param requesterid
-     * @param address
-     * @param peerPort
-     */
     @Override
     public void fail(int requesterid, String address, int peerPort)
     {

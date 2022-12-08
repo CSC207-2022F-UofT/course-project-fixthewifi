@@ -51,10 +51,8 @@ public class LoginOutputAdapter implements LoginOutputBoundary
     }
 
     @Override
-    public void error(String message, String address, int userPort)
-    {
-        String content = 3 + "#" + 4 + " ";
-        comManager.send(address, userPort, content);
+    public void error(String message, String address, int userPort){
+        comManager.send(address, userPort, message);
     }
 
     }

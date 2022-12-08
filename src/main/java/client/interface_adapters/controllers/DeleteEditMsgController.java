@@ -1,21 +1,18 @@
 package client.interface_adapters.controllers;
-import client.frameworks_and_drivers.Constants;
 
 import client.frameworks_and_drivers.communication_manager.IfComManager;
+import client.interface_adapters.Constants;
 import client.interface_adapters.model.Model;
 
 public class DeleteEditMsgController implements DeleteEditMsgControllerInputBoundary{
-    int serverport;
     private final IfComManager comManager;
     private final Model model;
     private final String serverIp;
 
-    public DeleteEditMsgController(IfComManager comManager, Model model, String serverIp, int serverPort) {
+    public DeleteEditMsgController(IfComManager comManager, Model model, String serverIp) {
         this.comManager = comManager;
         this.model = model;
         this.serverIp = serverIp;
-        this.serverport = serverPort;
-
     }
 
     public void deleteMsg(int msgUid, int chatUid){

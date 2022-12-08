@@ -1,8 +1,9 @@
 package server.usecases.send_message;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface SendMsgDsGateway
+public interface sendMsgDsGateway
 {
     /**
      * Stores a chat message in the database.
@@ -18,13 +19,7 @@ public interface SendMsgDsGateway
      * @param chatUid The uid of the chat.
      * @return A list of tuple of the port number and ip address of all users in the chat.
      */
+    ArrayList<List<String>> fetchAllAddressByChatUid(int chatUid);
+
     int generateMsgUid(int chatUid);
-
-    List<Integer> getAllMemberUid(int chatUid);
-
-    String getAddress(Integer memberUid);
-
-    int getPort(Integer memberUid);
-
-    String getName(int senderUid);
 }

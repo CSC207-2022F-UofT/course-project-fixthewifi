@@ -1,6 +1,6 @@
 package client.interface_adapters.presenters;
 
-public interface SendMsgPresenterInputBoundary
+public interface MsgPresenterInputBoundary
 {
     void receiveMsg(String data);
 }

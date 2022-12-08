@@ -1,26 +1,22 @@
 package client.interface_adapters.controllers;
-import client.frameworks_and_drivers.Constants;
 
 import client.frameworks_and_drivers.communication_manager.IfComManager;
 import client.interface_adapters.model.Model;
+import server.frameworks_and_drivers.Constants;
 
 public class LoginController implements LoginControllerInputBoundary
 {
-    int serverport;
-
     private final IfComManager comManager;
     private final Model model;
     char CONTENT_SPR = 30;
     private final String serverIp;
 
 
-    public LoginController(IfComManager comManager, Model model, String serverIp, int serverPort)
+    public LoginController(IfComManager comManager, Model model, String serverIp)
     {
         this.comManager = comManager;
         this.model = model;
         this.serverIp = serverIp;
-        this.serverport = serverPort;
-
     }
 
     public void register(String userName, String password)
@@ -41,8 +37,6 @@ public class LoginController implements LoginControllerInputBoundary
         int uid = model.getSelfUid();
         String toSend = Constants.LOGOUT + "#" + uid;
         comManager.send(serverIp, 4396, toSend);
-        model.setPageState("LOGIN_PAGE");
-        System.out.println("Signed out.");
     }
 
     @Override
@@ -50,7 +44,5 @@ public class LoginController implements LoginControllerInputBoundary
         int uid = model.getSelfUid();
         String toSend = Constants.DELETE_ACCOUNT + "#" + uid;
         comManager.send(serverIp, 4396, toSend);
-        model.setPageState("LOGIN_PAGE");
-        System.out.println("Signed out.");
     }
 }

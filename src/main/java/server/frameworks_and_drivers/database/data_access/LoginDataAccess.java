@@ -75,26 +75,12 @@ public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay, Logou
 
     @Override
     public String userAddress(int uid) {
-        try
-        {
-            return database.readUser(uid)[7];
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            return "-1";
-        }
+        return database.readUser(uid)[7];
     }
 
     @Override
     public int userPort(int uid) {
-        try
-        {
-            return Integer.parseInt(database.readUser(uid)[10]);
-        }
-        catch (NumberFormatException e)
-        {
-            return -1;
-        }
+        return Integer.parseInt(database.readUser(uid)[10]);
     }
 
     @Override

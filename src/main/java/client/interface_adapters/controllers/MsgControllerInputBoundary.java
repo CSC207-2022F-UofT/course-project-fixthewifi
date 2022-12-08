@@ -1,6 +1,6 @@
 package client.interface_adapters.controllers;
 
-public interface SendMsgControllerInputBoundary
+public interface MsgControllerInputBoundary
 {
     public void sendMsg(String content, int chatUid);
 }

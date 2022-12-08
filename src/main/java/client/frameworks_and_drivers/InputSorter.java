@@ -1,53 +1,31 @@
 package client.frameworks_and_drivers;
 import client.frameworks_and_drivers.communication_manager.ComManagerUser;
-import client.interface_adapters.presenters.*;
-
-import client.interface_adapters.presenters.ChPrPresenterInputBoundary;
+import client.interface_adapters.presenters.FriendPresenter;
+import client.interface_adapters.presenters.LoginPresenter;
 
 import java.util.Arrays;
+
+import client.interface_adapters.presenters.change_profile.ChPrPresenter;
+
+import client.interface_adapters.presenters.RatingPresenter;
 
 
 public class InputSorter implements ComManagerUser
 {
-    private static final int SEND_MSG = 0;
-    private static final int CHANGE_PROFILE = 1;
-    private static final int GROUP_CHAT = 2;
-    private static final int LOGIN = 3;
-    private static final int RATING = 4;
-    private static final int EDIT_MSG = 5;
-    private static final int FRIEND = 6;
-    private static final int REGISTER = 7;
-    private static final int REQUEST_FRIEND = 8;
-    private static final int ACCEPT_FRIEND = 9;
-    private static final int DELETE_MSG = 55;
-    private static final int DELETE_FRIEND = 69;
+    private final FriendPresenter friendPresenter;
+    private final LoginPresenter loginPresenter;
 
-
-    private static final int UPDATE_DESC = 110;
-    private static final int UPDATE_NAME = 111;
-    private static final int SET_PIC = 112;
-    private static final int DEL_PIC = 113;
-    private static final int FAIL=114;
-
-    private final FriendPresenterInputBoundary friendPresenter;
-    private final LoginPresenterInputBoundary loginPresenter;
-
-    private final ChPrPresenterInputBoundary chPrPresenter;
-    private final RatingPresenterInputBoundary ratingPresenter;
-
-    private final SendMsgPresenterInputBoundary msgPresenter;
-    public InputSorter(FriendPresenterInputBoundary friendPresenter,
-                       LoginPresenterInputBoundary loginPresenter,
-                       ChPrPresenterInputBoundary chPrPresenter,
-                       RatingPresenterInputBoundary ratingPresenter,
-                       SendMsgPresenterInputBoundary msgPresenter)
+    private final ChPrPresenter chPrPresenter;
+    private final RatingPresenter ratingPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter, RatingPresenter ratingPresenter)
 
     {
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
+
         this.chPrPresenter= chPrPresenter;
+
         this.ratingPresenter = ratingPresenter;
-        this.msgPresenter = msgPresenter;
 
     }
 
@@ -64,39 +42,42 @@ public class InputSorter implements ComManagerUser
         switch (useCaseConstant)
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
-            case SEND_MSG:
-                msgPresenter.receiveMsg(content);
+            case Constants.SEND_MSG:
                 break;
-            case CHANGE_PROFILE:
+            case Constants.CHANGE_PROFILE:
                 break;
-            case ACCEPT_FRIEND:
+            case Constants.ACCEPT_FRIEND:
                 friendPresenter.receiveAccept(content);
                 break;
-            case REQUEST_FRIEND:
+            case Constants.REQUEST_FRIEND:
                 friendPresenter.receiveRequest(content);
                 break;
-            case REGISTER:
+            case Constants.REGISTER:
                 loginPresenter.receiveRegisterConfirmation(content);
                 break;
-            case LOGIN:
+            case Constants.LOGIN:
                 loginPresenter.receiveLoginConfirmation(content);
                 break;
-            case DELETE_FRIEND:
+            case Constants.DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
-            case UPDATE_NAME:
+
+            case Constants.UPDATE_NAME:
                 chPrPresenter.updateName(content);
-                break;
-            case UPDATE_DESC:
+//                break;
+            case Constants.UPDATE_DESC:
                 chPrPresenter.updateDescr(content);
-                break;
-            case SET_PIC:
+//                break;
+            case Constants.SET_PIC:
                 chPrPresenter.setPic(content);
-                break;
-            case DEL_PIC:
+//                break;
+            case Constants.DEL_PIC:
                 chPrPresenter.delPic();
-                break;
-            case RATING:
+//                break;
+
+
+
+            case Constants.RATING:
                 ratingPresenter.receiveConfirmation(content);
                 break;
 
