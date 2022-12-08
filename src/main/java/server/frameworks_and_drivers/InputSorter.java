@@ -1,4 +1,5 @@
 package server.frameworks_and_drivers;
+import server.interface_adapters.send_message.SendMsgController;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
 import server.interface_adapters.delete_account.DeleteController;
 import server.interface_adapters.change_profile.ChangeProfileController;
@@ -8,7 +9,6 @@ import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
 import server.interface_adapters.logout.LogoutController;
 import server.interface_adapters.register.RegisterController;
-import server.interface_adapters.send_message.SendMsgController;
 import server.interface_adapters.change_rating.SendRatingController;
 
 public class InputSorter implements ComManagerUser
@@ -25,6 +25,7 @@ public class InputSorter implements ComManagerUser
     private final LogoutController logoutController;
     private final DeleteController deleteController;
     private final ChangeProfileController changeProfileController;
+    private final SendMsgController sendMsgController;
 
     public InputSorter(RequestFriendController requestFriendController,
                        AcceptFriendController acceptFriendController,
@@ -33,8 +34,9 @@ public class InputSorter implements ComManagerUser
                        LoginController loginController,
                        LogoutController logoutController,
                        DeleteController deleteController,
-                        ChangeProfileController changeProfileController,
-                            SendRatingController sendRatingController)
+                       ChangeProfileController changeProfileController,
+                       SendRatingController sendRatingController,
+                       SendMsgController sendMsgController)
 
 
     {
@@ -48,9 +50,8 @@ public class InputSorter implements ComManagerUser
         this.loginController = loginController;
         this.logoutController = logoutController;
         this.deleteController = deleteController;
-
+        this.sendMsgController = sendMsgController;
         this.changeProfileController=  changeProfileController;
-
         this.sendRatingController = sendRatingController;
 
     }
@@ -69,7 +70,7 @@ public class InputSorter implements ComManagerUser
         {
             //TODO: each case will trigger the corresponding method in the corresponding controller for the corresponding usecase.
             case Constants.SEND_MSG:
-//                sendMsgController.sendChat(content);
+                sendMsgController.sendMsg(content);
                 break;
             case Constants.CHANGE_PROFILE:
                 break;
@@ -114,8 +115,6 @@ public class InputSorter implements ComManagerUser
             case Constants.DEL_PIC:
                 changeProfileController.delPic(content);
                 break;
-
-
         }
     }
 

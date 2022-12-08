@@ -1,52 +1,49 @@
-package client.interface_adapters.presenters.change_profile;
+package client.interface_adapters.presenters;
 
+import client.frameworks_and_drivers.Constants;
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
-import client.interface_adapters.Constants;
 import client.interface_adapters.model.Model;
-import client.interface_adapters.presenters.FriendPresenterInputBoundary;
 
 public class ChPrPresenter implements ChPrPresenterInputBoundary
 {
     private final Model model;
-    private final ConsoleView view;
 
-    public ChPrPresenter(Model model, ConsoleView view)
+    public ChPrPresenter(Model model)
     {
         this.model = model;
-        this.view = view;
     }
 
     @Override
-    public void setPic(String url) {
+    public void setPic(String url)
+    {
         model.setPageState("SET_PIC");
         String[] content = url.split(String.valueOf(Constants.SPR));
 //        model.set(content[1]);
-        view.displayMyProfile();
-
     }
 
     @Override
-    public void delPic() {
+    public void delPic()
+    {
         model.setPageState("DEL_PIC");
 //        model.setSelfSetPic("None");
-        view.displayMyProfile();
-
     }
 
     @Override
-    public void updateName(String newname) {
+    public void updateName(String newname)
+    {
         model.setPageState("UPDATE_NAME");
         String[] content = newname.split(String.valueOf(Constants.SPR));
         model.setSelfName(content[1]);
-        view.displayMyProfile();
+        model.notifyView("You change has been recorded.");
 
     }
 
     @Override
-    public void updateDescr(String newdesc) {
+    public void updateDescr(String newdesc)
+    {
         model.setPageState("UPDATE_DESC");
         String[] content = newdesc.split(String.valueOf(Constants.SPR));
         model.setSelfDescription(content[1]);
-        view.displayMyProfile();
+        model.notifyView("You change has been recorded.");
     }
 }

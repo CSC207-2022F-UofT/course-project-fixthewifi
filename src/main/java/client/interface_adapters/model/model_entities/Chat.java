@@ -1,5 +1,6 @@
 package client.interface_adapters.model.model_entities;
 
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Chat
@@ -61,4 +62,9 @@ public abstract class Chat
         messages.get(msgUid).setContent(newContent);
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public abstract HashMap<Integer, User> getMembers();
 }
