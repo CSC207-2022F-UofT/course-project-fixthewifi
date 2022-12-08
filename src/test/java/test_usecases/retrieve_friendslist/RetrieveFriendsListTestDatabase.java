@@ -33,4 +33,14 @@ public class RetrieveFriendsListTestDatabase implements RetrieveFriendsListDBGat
         this.used_UID = UID;
         return this.friendslist;
     }
+
+    @Override
+    public String getPeerIDFromUID(int UID) {
+        return null;
+    }
+
+    @Override
+    public int getPeerPortFromUID(int UID) {
+        return 0;
+    }
 }

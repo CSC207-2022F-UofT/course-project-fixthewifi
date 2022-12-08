@@ -154,6 +154,7 @@ public class Database {
         String strArr = String.join("-", Arrays.stream(memberUid).mapToObj(String::valueOf).toArray(String[]::new));
         String[] content = {Integer.toString(chatUid), name, description, "", String.valueOf(adminUid), strArr, ""};
         chatDatabase.add(chatUid, content);
+
         chatWriter.writeNext(content);
         try {
             chatWriter.flush();
@@ -272,4 +273,9 @@ public class Database {
         msgUid.put(chatUid, oldValue + 1);
         return oldValue;
     }
+
+
+
+
+
 }

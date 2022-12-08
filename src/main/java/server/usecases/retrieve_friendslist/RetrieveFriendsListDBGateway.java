@@ -11,4 +11,12 @@ public interface RetrieveFriendsListDBGateway {
      * @return
      */
     ArrayList<CommonUser> getFriendsListByUID(int UID);
+    /**
+     * returns the PeerID associated with the active user with UID
+     */
+    String getPeerIDFromUID(int UID);
+    /**
+     * returns the PeerPort associated with the active user with UID
+     */
+    int getPeerPortFromUID(int UID);
 }
