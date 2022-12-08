@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestGroupChat{
-    @Test
-    public void testGetUID(){
-        int UID = 336413;
-        User admin = UserFactory.newUser(UID, "", "", 0, true);
-        HashMap<Integer, User> list = new HashMap<>();
-        list.put(336413, admin);
-        GroupChat chat1 = ChatFactory.getGroupChat(123, "", "", admin, list);
-
-        Assertions.assertEquals(UID,chat1.getUid(), "did not return correct UID");
-    }
+//    @Test
+//    public void testGetUID(){
+//        int UID = 336413;
+//        User admin = UserFactory.newUser(UID, "", "", 0, true);
+//        HashMap<Integer, User> list = new HashMap<>();
+//        list.put(336413, admin);
+//        GroupChat chat1 = ChatFactory.getGroupChat(123, "", "", admin, list);
+//
+//        Assertions.assertEquals(UID,chat1.getUid(), "did not return correct UID");
+//    }
 
     @Test
     public void testGetMessages(){
