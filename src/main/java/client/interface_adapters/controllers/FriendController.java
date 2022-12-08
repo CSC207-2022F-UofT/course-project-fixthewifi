@@ -82,8 +82,10 @@ public class FriendController implements FriendControllerInputBoundary
     }
 
 
-
-
+    /**
+     * To return friend list
+     * @param requesterid
+     */
     @Override
     public void viewFriend(int requesterid) {
         String toSend = Constants.VIEW_FRIEND + "#" + model.getSelfUid();
