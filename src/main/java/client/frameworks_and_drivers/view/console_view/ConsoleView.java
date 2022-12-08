@@ -127,7 +127,6 @@ public class ConsoleView implements ModelObserver
                         System.out.println("Please send message when you are viewing a chat.");
                     }
                     break;
-
                 case (REQUEST_FRIEND):
                     friendController.requestFriend(Integer.parseInt(operand));
                     break;
@@ -180,7 +179,7 @@ public class ConsoleView implements ModelObserver
             }
         } catch (NumberFormatException e)
         {
-            System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
+            System.out.println("Please format your instruction correctly, such as adding a space after the instruction!");
         }
     }
 
