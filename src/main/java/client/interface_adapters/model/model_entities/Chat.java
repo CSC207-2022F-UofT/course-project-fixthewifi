@@ -51,6 +51,13 @@ public abstract class Chat
         messages.add(msg);
     }
 
+    public void editMsg(int MsgUid, String newContent)
+    {
+        Message oldMsg = messages.remove(MsgUid);
+        Message newMsg = MessageFactory.newMessage(MsgUid, oldMsg.getSenderUid(), newContent, oldMsg.getDate());
+        messages.add(newMsg);
+    }
+
     public void deleteMsgContent(int msgUid)
     {
         messages.get(msgUid).setContent("DELETED");

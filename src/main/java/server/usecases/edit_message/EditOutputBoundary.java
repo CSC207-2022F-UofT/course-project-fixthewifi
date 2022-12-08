@@ -4,7 +4,6 @@ public interface EditOutputBoundary
 {
     /**
      * Converts use case output to a String
-     * @param edit_model output model of edit message
      */
-    void EditMessage(EditOutputModel edit_model);
+    void EditMessage(int chatUid, int msgUid, String newContent, String address, int port);
 }

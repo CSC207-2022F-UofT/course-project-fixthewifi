@@ -8,14 +8,11 @@ public interface EditDSGateway {
      *
      * @param msgUid Uid of the message
      */
-    void editMsg(int msgUid);
+    void editMessage(int chatUid, int msgUid, String newContent);
 
-    EditOutputModel fetchMsgInfo(int msgUid);
+    List<Integer> getAllMemberUid(int chatUid);
 
-    /**
-     * Returns the port number and ip address of all uses in the chat
-     * @param chatUid uid of the message
-     * @return A list of tuple of the port number and ip address of all users in the chat
-     */
-    ArrayList<List<String>> fetchMembersAddress(int chatUid);
+    String getAddress(Integer memberUid);
+
+    int getPort(Integer memberUid);
 }

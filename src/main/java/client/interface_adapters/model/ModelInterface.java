@@ -1,8 +1,12 @@
 package client.interface_adapters.model;
 
+import client.interface_adapters.model.model_entities.Chat;
+
 import java.util.List;
 
 public interface ModelInterface {
+    public void editMsg(int ChatUid, int MsgUid, String newContent);
+    public Chat getChat(int chatUid);
     public String getFriendName(int friendUid);
     public int getSelfUid();
     public void setSelfUid(int uid);
