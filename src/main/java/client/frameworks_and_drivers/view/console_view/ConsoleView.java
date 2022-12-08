@@ -123,7 +123,11 @@ public class ConsoleView implements ModelObserver
                     {
                         sendMsgController.sendMsg(operand, Integer.parseInt(model.getPageState()));
                     }
-                    System.out.println("Send message when you are viewing a chat.");
+                    else
+                    {
+                        System.out.println("Please send message when you are viewing a chat.");
+                    }
+
                 }
 
                 case (REQUEST_FRIEND) -> friendController.requestFriend(Integer.parseInt(operand));

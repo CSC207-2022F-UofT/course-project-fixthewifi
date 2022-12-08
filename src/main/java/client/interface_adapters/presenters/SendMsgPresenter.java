@@ -17,6 +17,7 @@ public class SendMsgPresenter implements SendMsgPresenterInputBoundary
         String[] content = data.split(String.valueOf(Constants.SPR));
         model.addMsg(Integer.parseInt(content[0]), Integer.parseInt(content[1]), content[2], content[3], Integer.parseInt(content[4]));
         model.notifyView("Message " + Integer.parseInt(content[0]) + " by " + content[5] + " on " +  content[3] + ":");
-        model.notifyView(content[2]);
+        model.notifyView("                   " + content[2]);
+        model.notifyView("");
     }
 }
