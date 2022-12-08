@@ -225,7 +225,7 @@ public class Model implements ModelInterface
             {
                 msg.setSenderName(chat.getMembers().get(msg.getSenderUid()).getName());
             }
-            StringBuilder builder = new StringBuilder("+++++++++++Messages++++++++++++");
+            StringBuilder builder = new StringBuilder("+++++++++++Messages++++++++++++ \n");
             for (Message msg : chat.getMessages())
             {
                 builder.append(msg.toString());

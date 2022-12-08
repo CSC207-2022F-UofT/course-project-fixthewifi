@@ -22,7 +22,7 @@ public class SendMsgDataAccess implements SendMsgDsGateway
 
     @Override
     public int generateMsgUid(int chatUid) {
-        return 0;
+        return database.returnNewMsgUid(chatUid);
     }
 
     @Override
