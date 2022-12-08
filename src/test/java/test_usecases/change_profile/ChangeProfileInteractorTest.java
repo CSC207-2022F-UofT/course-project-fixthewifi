@@ -1,18 +1,5 @@
 package test_usecases.change_profile;
 
-import server.entities.CommonUserFactory;
-import server.entities.ProfilePicture;
-import server.entities.UserFactory;
-import server.frameworks_and_drivers.communication_manager.ComManagerUser;
-import server.frameworks_and_drivers.communication_manager.IfComManager;
-import server.interface_adapters.change_profile.ChangeProfileController;
-import server.interface_adapters.change_profile.ChangeProfileOutputAdapter;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 public class ChangeProfileInteractorTest {
 //    @Test
 //    void updateNametest() {

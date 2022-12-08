@@ -19,27 +19,40 @@ public class delete_friend_interactor implements delete_friend_input_boundary {
     @Override
     public void DeleteFriend(delete_friend_input_model model)
     {
-        boolean bool1 = dataBase.findUserByUID(model.getFriendid());
-        boolean bool2 = dataBase.findUserByName(model.getFriendName());
+        boolean bool1 = dataBase.ifexistsUID(model.getFriendid());
+        boolean bool2 = dataBase.ifexistsUserName(model.getFriendName());
         int requesterPeerPort = dataBase.getPeerPort(model.getRequesterid());
         String requesterAddress = dataBase.getAddress(model.getRequesterid());
-        int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
-        String friendAddress = dataBase.getAddress(model.getFriendid());
-        int friendid = model.getFriendid();
-        String friendName = dataBase.getUserName(friendid);
         int requesterid = model.getRequesterid();
-        String requesterName = dataBase.getUserName(requesterid);
+        String requesterName = dataBase.getUserNamebyUID(requesterid);
+        int chatUid = model.getChatUid();
 
         if (bool1){
+            int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
+            String friendAddress = dataBase.getAddress(model.getFriendid());
+            int friendid = model.getFriendid();
+//            String friendName = dataBase.getUserNamebyUID(friendid);
             dataBase.deleteFriendbyID(friendid, requesterid);
-            output.success(requesterid, requesterAddress, requesterPeerPort);
-            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
-        }
-        if (bool2){
+            dataBase.deleteChat(chatUid);
+            output.success(friendid, requesterAddress, requesterPeerPort);
+            output.success(requesterid, friendAddress, friendPeerPort);
+//            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
+            return;
+        } else if (bool2){
+            int friendid = dataBase.getUIDbyUserName(model.getFriendName());
+            int friendPeerPort = dataBase.getPeerPort(model.getFriendid());
+            String friendAddress = dataBase.getAddress(friendid);
+            String friendName = dataBase.getUserNamebyUID(friendid);
             dataBase.deleteFriendbyName(friendName, requesterName);
-            output.success(requesterid, requesterAddress, requesterPeerPort);
-            output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
+            output.success(friendid, requesterAddress, requesterPeerPort);
+            output.success(requesterid, friendAddress, friendPeerPort);
+            //output.reportSuccess(friendid, requesterid, requesterName, friendAddress,friendPeerPort);
+            return;
         }
-        output.fail(requesterid, requesterAddress, requesterPeerPort);
+        else
+        {
+            output.fail(requesterid, requesterAddress, requesterPeerPort);
+            return;
+        }
     }
 }

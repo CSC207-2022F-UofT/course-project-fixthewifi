@@ -15,12 +15,12 @@ public interface LoginDBGateWay {
     other methods are intuitive
     */
     boolean check(int UID, String password);
-    String getUserProfile(int uid);
-    String getChats(int uid);
-    String getFriends(int uid);
+    String[] getUserProfile(int uid);
+    ArrayList<String[]> getChats(int uid);
+    ArrayList<String[]> getFriends(int uid);
 
     String userAddress(int uid);
     int userPort(int uid);
 
-    String getRequesters(int uid);
+    void setOnline(int uid);
 }

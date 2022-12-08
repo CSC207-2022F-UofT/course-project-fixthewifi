@@ -1,6 +1,5 @@
 package server.interface_adapters.friend.input;
 
-import server.frameworks_and_drivers.communication_manager.IfComManager;
 import server.usecases.friendinteractors.requestfriend.requestFriendInputBoundary;
 import server.usecases.friendinteractors.requestfriend.requestFriendInputModel;
 
@@ -24,9 +23,13 @@ public class RequestFriendController {
             int f =  Integer.parseInt(friend);
             int r = Integer.parseInt(requestor);
             requestFriendInputModel model = new requestFriendInputModel(f, r);
+
             usecase.RequestFriend(model);
-        }catch (Exception e){
-            requestFriendInputModel model = new requestFriendInputModel(friend, requestor);
+
+        }
+        catch (Exception e)
+        {
+            requestFriendInputModel model = new requestFriendInputModel(friend, Integer.parseInt(requestor));
             usecase.RequestFriend(model);
         }
     }

@@ -1,9 +1,11 @@
 package server.usecases.create_gc;
 
+import server.entities.ChatFactory;
 import server.entities.GroupChat;
 import server.entities.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class is the interactor for the usecase responsible for where the users'
@@ -37,14 +39,14 @@ public class CreateGCInteractor implements CreateGCInputBoundary {
     @Override
     public void create(CreateGCInputData input_data) {
         User admin = database.getUserByUID(input_data.getAdmin());
-        ArrayList<User> members = new ArrayList<>();
-        members.add(database.getUserByUID(input_data.getAdmin()));
+        HashMap<Integer, User> members = new HashMap<>();
+        members.put(input_data.getAdmin(), database.getUserByUID(input_data.getAdmin()));
         for (int i: input_data.getMembers()) {
             if(database.getUserByUID(i) != null){
-                members.add(database.getUserByUID(i));
+                members.put(i, database.getUserByUID(i));
             }
         }
-        GroupChat gc = new GroupChat(this.database.getNewUID(), admin, members);
+        GroupChat gc = ChatFactory.getGroupChat(this.database.getNewUID(), "", "", admin, members);
         database.addGC(gc);
         int peerPort = database.getPeerPortFromUID(input_data.getAdmin());
         String peerID = database.getPeerIDFromUID(input_data.getAdmin());

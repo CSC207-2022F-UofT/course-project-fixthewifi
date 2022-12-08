@@ -1,70 +1,95 @@
 package client.interface_adapters.model;
 
-import client.interface_adapters.model.model_entities.Self;
-import client.interface_adapters.model.model_entities.UserFactory;
+import client.interface_adapters.model.model_entities.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Model
+public class Model implements ModelInterface
 {
     private final Self self;
     private String pageState;
-    private final HashMap<Integer, String> friendRequester;
+    private final HashMap<Integer, String> friendRequests;
 
     public Model()
     {
         this.self = UserFactory.newSelf();
         pageState = "LOGIN_PAGE";
-        friendRequester = new HashMap<Integer, String>();
-
+        friendRequests = new HashMap<>();
     }
 
-    public String getPageState()
+    //TODO: If you want to store/get data into the model, create the corresponding setter/getter method
+    // by using the provided methods inside <self>.
+
+    public int getSelfUid()
     {
-        return pageState;
+        return self.getUid();
     }
-
     public void setSelfUid(int uid)
     {
-        self.uid = uid;
+        self.setUid(uid);
     }
-
-    public int getSelfUid() 
-    {
-        return self.uid;
-    }
-
-    public void storeChatMsg(int parseInt, int parseInt1, String s, String s1)
-    {
-    }
-
 
     public String getDescription(int userUid)
     {
-        if (userUid == getSelfUid())
+        if (userUid == self.getUid())
         {
-            return self.profile.getDescription();
+            return self.getDescription();
         }
-        return self.friendList.get(userUid).userProfile.getDescription();
-    }
-    public String getProfileInfo()
-    {
-            return self.profile.toString();
-    }
-    public void setSelfName(String name)
-    {
-        self.profile.setName(name);
-    }
-    public void setSelfDesc(String name)
-    {
-        self.profile.setDescription(name);
+        return self.getFriend(userUid).getDescription();
     }
 
-    public void setSelfSetPic(String name)
+    public void addFriend(int uid, String name, String description, double rating, boolean online)
     {
-     //   self.profile.setProfilePic(name);
+        Friend friend = UserFactory.newFriend(uid, name, description, rating, online);
+        self.addFriend(friend);
+    }
+
+    public void addPrivateChat(int uid, String name, String description,int friendUid)
+    {
+        Friend friend = self.getFriend(friendUid);
+        Chat chat = ChatFactory.getPrivateChat(uid, name, description, self, friend);
+        self.addChat(chat);
+    }
+
+    public void addMsg(int msgUid, int senderUid, String content, String time, int chatUid)
+    {
+        self.getChat(chatUid).addMsg(MessageFactory.newMessage(msgUid, senderUid, content, time));
+    }
+
+    public void addGroupChat(int uid, String name, String description, int adminUid, List<Integer> membersUid)
+    {
+        User admin;
+        if (adminUid == getSelfUid())
+        {
+            admin = self;
+        }
+        else if (self.getFriendUidList().contains(adminUid))
+        {
+            admin = self.getFriend(adminUid);
+        }
+        else
+        {
+            admin = null;
+        }
+        HashMap<Integer, User> memberList = new HashMap<>();
+        for (Integer memberUid : membersUid)
+        {
+            if (memberUid == getSelfUid())
+            {
+                memberList.put(memberUid, self);
+            }
+            else if (self.getFriendUidList().contains(memberUid))
+            {
+                memberList.put(memberUid, self.getFriend(memberUid));
+            }
+        }
+        Chat chat = ChatFactory.getGroupChat(uid, name, description, admin, memberList);
+        self.addChat(chat);
+    }
+
+    public String getPageState() {
+        return pageState;
     }
 
     public void setPageState(String state)
@@ -72,28 +97,83 @@ public class Model
         pageState = state;
     }
 
-    public void setSelfStatus(boolean b)
+    public int findPrivateChat(int friendUid)
     {
-        self.profile.setOnline(b);
+        for (int chatUid : self.getChatUidList())
+        {
+            Chat chat = self.getChat(chatUid);
+            if (chat instanceof PrivateChat)
+                if (((PrivateChat) chat).getFriendUid() == friendUid)
+                {
+                    return chat.getUid();
+                }
+        }
+        return -1;
+    }
+
+    public void setSelfName(String s)
+    {
+        self.setName(s);
+    }
+
+    public void setSelfDescription(String s) {
+    }
+
+    public void setRating(double parseDouble) {
+    }
+
+    public void addRequester(int uid, String name)
+    {
+        friendRequests.put(uid, name);
+    }
+
+    @Override
+    public String toString()
+    {
+        return self.showEverything();
+    }
+
+    public void deleteFriend(int friendUid)
+    {
+        self.deleteFriend(friendUid);
+    }
+
+    public void setSelfStatus(boolean status)
+    {
+        self.setStatus(status);
+    }
+
+    public void addUserToChat(int userUid, String name, String description, double avgRating, boolean online, int chatUid, int adminUid)
+    {
+        if (self.getChat(chatUid).getMembersUid().contains(userUid))
+        {
+            return;
+        }
+        User user = UserFactory.newUser(userUid, name, description, avgRating, online);
+        if (userUid == adminUid)
+        {
+            ((GroupChat) self.getChat(chatUid)).setAdmin(user);
+        }
+        ((GroupChat) self.getChat(chatUid)).addMember(user);
     }
 
     public double getRating(int userUid)
     {
         if (userUid == getSelfUid())
         {
-            return self.profile.getRating();
+            return self.getRating();
         }
-        return self.friendList.get(userUid).userProfile.getRating();
+        return self.getFriend(userUid).getRating();
     }
 
     public void setRating(String rating)
     {
-        self.profile.setRating(Double.parseDouble(rating));
+        self.setRating(Double.parseDouble(rating));
     }
 
 
     public int getRequester(int uid) throws userNotFoundException {
-        if (friendRequester.containsKey(uid))
+        if (friendRequests.containsKey(uid))
         {
             return uid;
         }
@@ -102,4 +182,19 @@ public class Model
             throw new userNotFoundException("The uid entered is not found.");
         }
     }
+
+
+    public void deletePrivateChat(int friendUid)
+    {
+        for (int uid : self.getChatUidList())
+        {
+            Chat chat = self.getChat(uid);
+            if ( chat instanceof PrivateChat)
+                if (((PrivateChat) chat).getFriendUid() == friendUid)
+                {
+                    self.deleteChat(chat.getUid());
+                }
+        }
+    }
 }
+

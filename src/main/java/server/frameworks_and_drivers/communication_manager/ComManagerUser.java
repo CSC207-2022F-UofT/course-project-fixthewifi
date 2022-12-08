@@ -2,5 +2,5 @@ package server.frameworks_and_drivers.communication_manager;
 
 public interface ComManagerUser
 {
-    public void onMsg(String msg, String peerIP);
+    public void onMsg(String msg, String peerIP, int peerPort);
 }

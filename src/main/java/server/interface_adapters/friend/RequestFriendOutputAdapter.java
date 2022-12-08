@@ -11,24 +11,24 @@ public class RequestFriendOutputAdapter implements requestFriendOutputBoundary {
         this.comManager = comManager;
     }
 
+
     @Override
     public void success(int requesterid, String address, int peerPort)
     {
-        String content = requesterid + ": request friend successfully";
+        String content = Constants.REQUEST_FRIEND+ "#" + 1;
         comManager.send(address, peerPort, content);
     }
 
     @Override
     public void reportToFriend(int requesterid, String requesterName, int friendid, String address, int peerPort) {
-        char spr = 30;
-        String content = Constants.REQUEST_FRIEND+"#"+String.join(String.valueOf(spr), String.valueOf(requesterid), requesterName);
+        String content = Constants.REQUEST_FRIEND + "#" + 2 + " " + requesterid + " " + requesterName;
         comManager.send(address, peerPort, content);
     }
 
     @Override
     public void fail(int requesterid, String address, int peerPort)
     {
-        String content = requesterid + ": failed to request friend, uid or username not found";
+        String content = Constants.REQUEST_FRIEND+ "#" + 0;
         comManager.send(address, peerPort, content);
     }
 }
