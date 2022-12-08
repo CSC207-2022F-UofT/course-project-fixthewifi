@@ -86,6 +86,14 @@ public class ConsoleView
                 case(InstructionSet.VIEW_FRIEND):
                     displayFriends();
                     break;
+
+                case(InstructionSet.LOGOUT):
+                    loginController.logout();
+                    break;
+
+                case(InstructionSet.DELETE_ACCOUNT):
+                    loginController.delete();
+                    break;
             }
         }
     }

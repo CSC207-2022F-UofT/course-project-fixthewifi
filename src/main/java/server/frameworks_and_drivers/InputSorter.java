@@ -1,9 +1,11 @@
 package server.frameworks_and_drivers;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.interface_adapters.delete_account.DeleteController;
 import server.interface_adapters.friend.input.AcceptFriendController;
 import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
+import server.interface_adapters.logout.LogoutController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.send_message.SendMsgController;
 
@@ -17,12 +19,16 @@ public class InputSorter implements ComManagerUser
     private final DeleteFriendController deleteFriendController;
 
     private final LoginController loginController;
+    private final LogoutController logoutController;
+    private final DeleteController deleteController;
 
     public InputSorter(RequestFriendController requestFriendController,
                        AcceptFriendController acceptFriendController,
                        RegisterController registerController,
                        DeleteFriendController deleteFriendController,
-                       LoginController loginController)
+                       LoginController loginController,
+                       LogoutController logoutController,
+                       DeleteController deleteController)
     {
         //TODO: pass all of the controllers into here
         this.registerController = registerController;
@@ -30,6 +36,8 @@ public class InputSorter implements ComManagerUser
         this.acceptFriendController = acceptFriendController;
         this.deleteFriendController = deleteFriendController;
         this.loginController = loginController;
+        this.logoutController = logoutController;
+        this.deleteController = deleteController;
     }
 
     /**
@@ -66,6 +74,12 @@ public class InputSorter implements ComManagerUser
                 break;
             case Constants.DELETE_FRIEND:
                 deleteFriendController.deleteFriend(content);
+            case Constants.LOGOUT:
+                logoutController.logout(content);
+                break;
+            case Constants.DELETE_ACCOUNT:
+                deleteController.delete(content);
+                break;
         }
     }
 

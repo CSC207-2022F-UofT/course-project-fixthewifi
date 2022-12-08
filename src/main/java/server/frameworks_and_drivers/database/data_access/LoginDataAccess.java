@@ -1,14 +1,16 @@
 package server.frameworks_and_drivers.database.data_access;
 
 import server.frameworks_and_drivers.database.Database;
+import server.usecases.delete_account.DeleteDBGateWay;
 import server.usecases.login.LoginDBGateWay;
+import server.usecases.logout.LogoutDBGateWay;
 import server.usecases.register.RegisterDBGateWay;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay
+public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay, LogoutDBGateWay, DeleteDBGateWay
 {
     Database database;
 
@@ -84,5 +86,16 @@ public class LoginDataAccess implements RegisterDBGateWay, LoginDBGateWay
     @Override
     public void setOnline(int uid) {
         database.updateUser(uid, 4, "T");
+    }
+
+    @Override
+    public void logoutByUID(int uid) {
+        database.updateUser(uid, 4, "F");
+    }
+
+    @Override
+    public void deleteByUID(int uid) {
+        String[] deleted = {String.valueOf(uid), "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED", "DELTETED"};
+        database.updateUser(uid, deleted);
     }
 }

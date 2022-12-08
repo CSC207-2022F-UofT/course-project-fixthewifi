@@ -12,6 +12,7 @@ import server.frameworks_and_drivers.communication_manager.comManager;
 import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
 import server.frameworks_and_drivers.database.Database;
+import server.interface_adapters.delete_account.DeleteController;
 import server.interface_adapters.friend.AcceptFriendOutputAdapter;
 import server.interface_adapters.friend.DeleteFriendOutputAdapter;
 import server.interface_adapters.friend.RequestFriendOutputAdapter;
@@ -25,7 +26,10 @@ import server.usecases.friendinteractors.acceptfriend.acceptFriendInteractor;
 import server.usecases.friendinteractors.deletefriend.delete_friend_interactor;
 import server.usecases.friendinteractors.requestfriend.requestFriendInteractor;
 import server.usecases.login.LoginInteractor;
+import server.usecases.logout.LogoutInteractor;
 import server.usecases.register.RegisterInteractor;
+import server.interface_adapters.logout.LogoutController;
+import server.usecases.delete_account.DeleteInteractor;
 
 public class HelloWorld {
 
@@ -65,8 +69,13 @@ public class HelloWorld {
         LoginInteractor loginInteractor = new LoginInteractor(loginAccess, loginOutputAdapter);
         server.interface_adapters.login.LoginController loginController = new server.interface_adapters.login.LoginController(loginInteractor);
 
+        LogoutInteractor logoutInteractor = new LogoutInteractor(loginAccess);
+        LogoutController logoutController = new LogoutController(logoutInteractor);
 
-        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController, loginController);
+        DeleteInteractor deleteInteractor = new DeleteInteractor(loginAccess);
+        DeleteController deleteController = new DeleteController(deleteInteractor);
+
+        InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController, deleteFriendController, loginController, logoutController, deleteController );
         comManager.init(4396, inputSorter);
         System.out.println("Server initialized.");
 

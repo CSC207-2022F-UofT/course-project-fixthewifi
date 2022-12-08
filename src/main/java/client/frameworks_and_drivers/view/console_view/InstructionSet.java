@@ -12,4 +12,6 @@ public interface InstructionSet
     String ACCEPT_FRIEND = "$acp";
     String REJECT_FRIEND = "$rej";
     String DELETE_FRIEND = "$dtf";
+    String LOGOUT = "$logout";
+    String DELETE_ACCOUNT = "$del_account";
 }
