@@ -95,13 +95,38 @@ public class TestCreateGroupChat {
         CreateGCInputData input = new CreateGCInputData(user1.getUid(), members);
         interactor.create(input);
 
-        Assertions.assertEquals(input.getAdmin(), output_adapter.getOutput().getAdmin(),
+        Assertions.assertEquals(input.getAdmin_uid(), output_adapter.getOutput().getAdmin_uid(),
                 "Incorrect admin added");
-        for(int x : input.getMembers()){
+        for(int x : input.getMembers_uids()){
             Assertions.assertNotNull(db.getUserByUID(x), "Member "+ x + " not added");
         }
-        // the list of members of a GroupChat includes the admin, however the output
-        Assertions.assertEquals(db.getUploaded_chat().getMembers().size() - 1,
-                output_adapter.getOutput().getMembers().size(), "Incorrect number of members added");
+
+        Assertions.assertEquals(db.getUploaded_chat().getMembers().size(),
+                output_adapter.getOutput().getMembers_Uids().size(), "Incorrect number of members added");
+    }
+
+    @Test
+    public void testCreateCallsForEveryMember(){
+        //create interactor
+        CreateGCDummyDatabase db = new CreateGCDummyDatabase(123456);
+        CreateGCDummyOutputAdapter output_adapter = new CreateGCDummyOutputAdapter();
+        CreateGCInteractor interactor = new CreateGCInteractor(db, output_adapter);
+        //create input data
+        CommonUser user1 = new CommonUser(100000, "a", 1);
+        CommonUser user2 = new CommonUser(200000, "b", 2);
+        CommonUser user3 = new CommonUser(300000, "c", 3);
+        ArrayList<Integer> members = new ArrayList<>();
+        members.add(user1.getUid());
+        members.add(user2.getUid());
+        members.add(user3.getUid());
+        db.addUser(user1.getUid(), user1);
+        db.addUser(user2.getUid(), user2);
+        db.addUser(user3.getUid(), user3);
+
+        CreateGCInputData input = new CreateGCInputData(user1.getUid(), members);
+        interactor.create(input);
+
+        Assertions.assertEquals(db.getUploaded_chat().getMembers().size(), output_adapter.calls,
+                "Outputadapter was not called the correct number of times");
     }
 }
