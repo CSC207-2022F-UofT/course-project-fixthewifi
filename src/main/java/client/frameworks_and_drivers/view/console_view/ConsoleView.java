@@ -66,7 +66,7 @@ public class ConsoleView implements ModelObserver
     }
 
     /**
-     * Make the view listen to inputs
+     * Make the view listen to inputs, loops as long as the program is running.
      */
     public void init()
     {
@@ -97,7 +97,7 @@ public class ConsoleView implements ModelObserver
                 }
                 catch(ArrayIndexOutOfBoundsException exception)
                 {
-                    System.out.println("Please format your instruction correctly.");
+                    System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
                 }
             }
         }
@@ -108,7 +108,7 @@ public class ConsoleView implements ModelObserver
     }
 
     /**
-     *
+     * Sorts the instruction, passes the operand into controllers.
      * @param operation The instruction to the program, starts with $
      * @param operand The input, such as name or password or both etc.
      */
@@ -148,10 +148,13 @@ public class ConsoleView implements ModelObserver
             }
         } catch (NumberFormatException e)
         {
-            System.out.println("Please format your instruction correctly.");
+            System.out.println("Please format your instruction correctly, such as adding a space after the instruction.");
         }
     }
 
+    /**
+     * A separate sort login method so that the user can only login or register at the start of the program.
+     */
     public void sortLogin(String operation, String operand)
     {
         if (operation.equals(REGISTER))
