@@ -5,6 +5,8 @@ public interface InstructionSet
      String VIEW_CHAT = "$cht";
      String HELP = "$help";
      String SEND_CHAT = "";
+     String DELETE_CHAT = "$del";
+     String EDIT_CHAT = "$edt"
      String LOGIN = "$lgn";
      String REGISTER = "$reg";
      String REQUEST_FRIEND = "$ref";
