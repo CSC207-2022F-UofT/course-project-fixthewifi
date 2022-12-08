@@ -3,7 +3,7 @@ package client.interface_adapters.presenters;
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
 import client.interface_adapters.model.Model;
 
-public class RatingPresenter {
+public class RatingPresenter implements RatingPresenterInputBoundary{
     private final Model model;
     private final ConsoleView view;
     char SPR = 30;
