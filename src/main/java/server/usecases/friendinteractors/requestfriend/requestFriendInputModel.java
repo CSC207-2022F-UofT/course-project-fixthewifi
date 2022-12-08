@@ -21,13 +21,13 @@ public class requestFriendInputModel {
     /**
      * Delete friend input model based on name
      * @param friendName
-     * @param requesterName
+     * @param requesterid
      */
-    public requestFriendInputModel(String friendName, String requesterName){
+    public requestFriendInputModel(String friendName, int requesterid){
         this.friendid = -1;
-        this.requesterid = -1;
+        this.requesterid = requesterid;
         this.friendName = friendName;
-        this.requesterName = requesterName;
+        this.requesterName = "";
     }
 
     public int getRequesterid() {

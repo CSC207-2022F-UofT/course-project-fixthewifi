@@ -29,7 +29,7 @@ public class RequestFriendController {
         }
         catch (Exception e)
         {
-            requestFriendInputModel model = new requestFriendInputModel(friend, requestor);
+            requestFriendInputModel model = new requestFriendInputModel(friend, Integer.parseInt(requestor));
             usecase.RequestFriend(model);
         }
     }

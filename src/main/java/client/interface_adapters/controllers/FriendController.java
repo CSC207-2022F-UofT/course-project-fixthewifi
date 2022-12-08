@@ -27,6 +27,12 @@ public class FriendController implements FriendControllerInputBoundary
         comManager.send(serverIp, 4396, toSend);
     }
 
+    public void requestFriend(String friendName){
+        int selfUid = model.getSelfUid();
+        String toSend = Constants.REQUEST_FRIEND + "#" + friendName + " " + selfUid;
+        comManager.send(serverIp, 4396, toSend);
+    }
+
     public void acceptFriend(int peerUid)
     {
         String toSend = Constants.ACCEPT_FRIEND + "#" + model.getSelfUid() + " " + peerUid + " True";

@@ -29,7 +29,7 @@ public class HelloWorld {
 
     public static void main(String[] args)
     {
-        //newServer();
+        newServer();
         newClient();
 
     }
@@ -72,8 +72,8 @@ public class HelloWorld {
         ClientComManager comManager = new ClientComManager(true);
         Model model = new Model();
 
-        FriendController friendController = new FriendController(comManager, model, "100.70.2.51");
-        LoginController loginController = new LoginController(comManager, model, "100.70.2.51");
+        FriendController friendController = new FriendController(comManager, model, "127.0.0.1");
+        LoginController loginController = new LoginController(comManager, model, "127.0.0.1");
 
         ConsoleView view = new ConsoleView(model, loginController, friendController);
 
