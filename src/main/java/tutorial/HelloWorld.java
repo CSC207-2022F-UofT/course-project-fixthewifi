@@ -14,7 +14,7 @@ import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
 import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 import server.frameworks_and_drivers.InputSorter;
-import server.frameworks_and_drivers.communication_manager.comManager;
+import server.frameworks_and_drivers.communication_manager.ComManager;
 import server.frameworks_and_drivers.database.data_access.ChPrAccess;
 import server.frameworks_and_drivers.database.data_access.FriendDataAccess;
 import server.frameworks_and_drivers.database.data_access.LoginDataAccess;
@@ -68,7 +68,7 @@ public class HelloWorld {
     {
         Database database = new Database("User.csv", "Chat.csv");
 
-        comManager comManager = new comManager(true);
+        ComManager comManager = new ComManager(true);
 
         FriendDataAccess friendAccess = new FriendDataAccess(database);
         RequestFriendOutputAdapter requestFriendOutputAdapter = new RequestFriendOutputAdapter(comManager);

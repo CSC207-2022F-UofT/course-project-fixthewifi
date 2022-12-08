@@ -5,7 +5,7 @@ import client.interface_adapters.model.model_entities.*;
 import java.util.HashMap;
 import java.util.List;
 
-public class Model
+public class Model implements ModelInterface
 {
     private final Self self;
     private String pageState;
