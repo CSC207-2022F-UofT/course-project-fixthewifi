@@ -6,6 +6,7 @@ import client.interface_adapters.model.model_entities.PrivateChat;
 import java.util.List;
 
 public interface ModelInterface {
+    public String getFriendName(int friendUid);
     public int getSelfUid();
     public void setSelfUid(int uid);
     public String getDescription(int userUid) throws UserNotFoundException;

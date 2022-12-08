@@ -66,6 +66,17 @@ public class Model implements ModelInterface
         return self.getFriend(userUid).getDescription();
     }
 
+    public String getFriendName(int friendUid)
+    {
+        try {
+            return self.getFriend(friendUid).getName();
+        } catch (UserNotFoundException e) {
+            System.out.println("Friend not found.");
+        }
+        return "null";
+    }
+
+
     public void addFriend(int uid, String name, String description, double rating, boolean online)
     {
         Friend friend = UserFactory.newFriend(uid, name, description, rating, online);
@@ -147,6 +158,7 @@ public class Model implements ModelInterface
         }
         return -1;
     }
+
 
     public void setSelfName(String s)
     {

@@ -21,8 +21,8 @@ public class PrivateChat extends Chat
     public String toString()
     {
         return "--------" + getName() + "--------"+"\n" +
-                "Description: " + "\n" +
-                getDescription() + "\n" +
+                "uid: " + getUid() +"\n" +
+                "Description: " + getDescription() + "\n" +
                 "Members: " + "\n" +
                "[" + self.getName() + ", uid: " + self.getUid() + "] " +
                 "[" + friend.getName() + ", uid: " + friend.getUid() + "]" + "\n";
