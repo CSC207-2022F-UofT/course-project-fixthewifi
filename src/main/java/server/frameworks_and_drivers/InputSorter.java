@@ -1,11 +1,12 @@
 package server.frameworks_and_drivers;
 import server.frameworks_and_drivers.communication_manager.ComManagerUser;
+import server.interface_adapters.change_profile.ChangeProfileController;
 import server.interface_adapters.friend.input.AcceptFriendController;
-import server.interface_adapters.friend.input.DeleteFriendController;
 import server.interface_adapters.friend.input.RequestFriendController;
 import server.interface_adapters.login.LoginController;
 import server.interface_adapters.register.RegisterController;
 import server.interface_adapters.send_message.SendMsgController;
+import server.interface_adapters.change_rating.SendRatingController;
 
 public class InputSorter implements ComManagerUser
 {
@@ -14,20 +15,28 @@ public class InputSorter implements ComManagerUser
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
-    private final DeleteFriendController deleteFriendController;
+    private final SendRatingController sendRatingController;
 
-    public InputSorter(RequestFriendController requestFriendController,
-                       AcceptFriendController acceptFriendController,
-                       RegisterController registerController,
-                       DeleteFriendController deleteFriendController)
+    private final ChangeProfileController changeProfileController;
+  
+    public InputSorter(RequestFriendController requestFriendController, 
+                        AcceptFriendController acceptFriendController, 
+                        RegisterController registerController,
+                        ChangeProfileController changeProfileController,
+                        SendRatingController sendRatingController)
+
     {
         //TODO: pass all of the controllers into here
-//        this.sendMsgController = sendMsgController;
-//        this.loginController = loginController;
+        //this.sendMsgController = sendMsgController;
+        //this.loginController = loginController;
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;
-        this.deleteFriendController = deleteFriendController;
+
+        this.changeProfileController=  changeProfileController;
+
+        this.sendRatingController = sendRatingController;
+
     }
 
     /**
@@ -35,7 +44,7 @@ public class InputSorter implements ComManagerUser
      @param msg The received message.
      */
     @Override
-    public void onMsg(String msg, String peerIp, int peerPort)
+    public void onMsg(String msg, String peerIp)
     {
         String[] splitMsg = msg.split("#", 2);
         int useCaseConstant = Integer.parseInt(splitMsg[0]);
@@ -54,7 +63,7 @@ public class InputSorter implements ComManagerUser
 //                loginController.login(content);
                 break;
             case Constants.REGISTER:
-                registerController.register(content, peerIp, peerPort);
+                registerController.register(content, peerIp);
                 break;
             case Constants.REQUEST_FRIEND:
                 requestFriendController.requestFriend(content);
@@ -62,8 +71,27 @@ public class InputSorter implements ComManagerUser
             case Constants.ACCEPT_FRIEND:
                 acceptFriendController.acceptFriend(content);
                 break;
-            case Constants.DELETE_FRIEND:
-                deleteFriendController.deleteFriend(content);
+            case Constants.SEND_RATING:
+                char SEP = 30;
+                String[] splitContent = content.split(String.valueOf(SEP));
+                sendRatingController.sendRating(Integer.parseInt(splitContent[0]), Integer.parseInt(splitContent[1]),
+                        Integer.parseInt(splitContent[2]));
+                break;
+
+            case Constants.UPDATE_NAME:
+                changeProfileController.updateName(content);
+                break;
+            case Constants.UPDATE_DESC:
+                changeProfileController.updateDescr(content);
+                break;
+            case Constants.SET_PIC:
+                changeProfileController.setPic(content);
+                break;
+            case Constants.DEL_PIC:
+                changeProfileController.delPic(content);
+                break;
+
+
         }
     }
 

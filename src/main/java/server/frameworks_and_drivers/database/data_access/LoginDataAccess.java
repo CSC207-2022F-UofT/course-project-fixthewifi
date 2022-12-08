@@ -20,8 +20,8 @@ public class LoginDataAccess implements RegisterDBGateWay
     }
 
     @Override
-    public void registerUser(int uid, String username, String password, String ipAddress, int port)
+    public void registerUser(int uid, String username, String password, String ipAddress)
     {
-        database.newUser(uid, username, "", ipAddress, password, port);
+        database.newUser(uid, username, "", ipAddress, password, 4444);
     }
 }
