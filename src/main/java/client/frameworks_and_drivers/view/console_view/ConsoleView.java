@@ -118,7 +118,6 @@ public class ConsoleView implements ModelObserver
             switch (operation)
             {
                 case (SEND_MSG):
-                {
                     if (isInteger(model.getPageState()))
                     {
                         sendMsgController.sendMsg(operand, Integer.parseInt(model.getPageState()));
@@ -127,31 +126,57 @@ public class ConsoleView implements ModelObserver
                     {
                         System.out.println("Please send message when you are viewing a chat.");
                     }
+                    break;
 
-                }
-
-                case (REQUEST_FRIEND): friendController.requestFriend(Integer.parseInt(operand));
-                case (ACCEPT_FRIEND): friendController.acceptFriend(Integer.parseInt(operand));
-                case (REJECT_FRIEND): friendController.refuseFriend(Integer.parseInt(operand));
-                case (DELETE_FRIEND): friendController.deleteFriend(Integer.parseInt(operand));
-
-                case (VIEW_FRIENDS): displayFriends();
-                case (VIEW_CHAT): displayChat(Integer.parseInt(operand));
-                case (VIEW_PROFILE): displayMyProfile();
-                case (VIEW_ALLCHAT): displayChats();
-
-                case (LOGOUT): loginController.logout();
-                case (DELETE_ACCOUNT): loginController.delete();
-                case (CHANGE_NAME): chPrController.updateName(operand);
-                case (CHANGE_DESC): chPrController.updateDescr(operand);
-
-                case (SET_PIC): chPrController.setPic(operand);
-                case (DEL_PIC): chPrController.delPic();
-                case (RATING): {
+                case (REQUEST_FRIEND):
+                    friendController.requestFriend(Integer.parseInt(operand));
+                    break;
+                case (ACCEPT_FRIEND):
+                    friendController.acceptFriend(Integer.parseInt(operand));
+                    break;
+                case (REJECT_FRIEND):
+                    friendController.refuseFriend(Integer.parseInt(operand));
+                    break;
+                case (DELETE_FRIEND):
+                    friendController.deleteFriend(Integer.parseInt(operand));
+                    break;
+                case (VIEW_FRIENDS):
+                    displayFriends();
+                    break;
+                case (VIEW_CHAT):
+                    displayChat(Integer.parseInt(operand));
+                    break;
+                case (VIEW_PROFILE):
+                    displayMyProfile();
+                    break;
+                case (VIEW_ALLCHAT):
+                    displayChats();
+                    break;
+                case (LOGOUT):
+                    loginController.logout();
+                    break;
+                case (DELETE_ACCOUNT):
+                    loginController.delete();
+                    break;
+                case (CHANGE_NAME):
+                    chPrController.updateName(operand);
+                    break;
+                case (CHANGE_DESC):
+                    chPrController.updateDescr(operand);
+                    break;
+                case (SET_PIC):
+                    chPrController.setPic(operand);
+                    break;
+                case (DEL_PIC):
+                    chPrController.delPic();
+                    break;
+                case (RATING):
                     String[] content = operand.split(" ", 2);
                     ratingController.rate(Integer.parseInt(content[0]), Integer.parseInt(content[1]));
-                }
-                case (HELP): help();
+                break;
+                case (HELP):
+                    help();
+                    break;
             }
         } catch (NumberFormatException e)
         {
@@ -197,44 +222,43 @@ public class ConsoleView implements ModelObserver
     private void help()
     {
         System.out.println(
-                """
-                        If an instruction has no operands, put a space bar after the instruction.
-                        HELP = $help
+                        "If an instruction has no operands, put a space bar after the instruction." + "\n" +
+                        "HELP = $help" + "\n\n" +
                         
-                        Message operations:
-                        SEND_CHAT = $send <content>
-                        DELETE_CHAT = $del
-                        EDIT_CHAT = $edt
+                        "Message operations:" + "\n" +
+                        "SEND_CHAT = $send <content>" + "\n" +
+                        "DELETE_CHAT = $del" + "\n" +
+                        "EDIT_CHAT = $edt" + "\n" +
+
+                        "Sign in Sign out:" + "\n" +
+                        "LOGIN = $lgn <uid> <password>" + "\n" +
+                        "REGISTER = $reg <name> <password>" + "\n" +
+                        "LOGOUT = $logout" + "\n" +
+                        "DELETE_ACCOUNT = $del_account" + "\n\n" +
                         
-                        Sign in Sign out:
-                        LOGIN = $lgn <uid> <password>
-                        REGISTER = $reg <name> <password>
-                        LOGOUT = $logout
-                        DELETE_ACCOUNT = $del_account
+                        "Friends:" + "\n" +
+                        "REQUEST_FRIEND = $ref <friendUid>" + "\n" +
+                        "ACCEPT_FRIEND = $acp <uid>" + "\n" +
+                        "REJECT_FRIEND = $rej <uid>" + "\n" +
+                        "DELETE_FRIEND = $dtf <uid>" + "\n" +
                         
-                        Friends:
-                        REQUEST_FRIEND = $ref <friendUid>
-                        ACCEPT_FRIEND = $acp <uid>
-                        REJECT_FRIEND = $rej <uid>
-                        DELETE_FRIEND = $dtf <uid>
+                        "View info:" + "\n" +
+                        "VIEW_CHAT = $cht <chatUid>" + "\n" +
+                        "VIEW_FRIENDS = $vwf" + "\n" +
+                        "VIEW_PROFILE = $vpr" + "\n" +
                         
-                        View info:
-                        VIEW_CHAT = $cht <chatUid>
-                        VIEW_FRIENDS = $vwf
-                        VIEW_PROFILE = $vpr
-                        
-                        Change Profile:
-                        CHANGE_NAME = $chn
-                        CHANGE_DESC = $chd
-                        SET_PIC = $stp
-                        DEL_PIC = $dlp
-                        RATING = $rate <uid> <rating>
-                        """);
+                        "Change Profile:" + "\n" +
+                        "CHANGE_NAME = $chn" + "\n" +
+                        "CHANGE_DESC = $chd" + "\n" +
+                        "SET_PIC = $stp" + "\n" +
+                        "DEL_PIC = $dlp" + "\n" +
+                        "RATING = $rate <uid> <rating>"
+                        );
     }
 
     public void displayLoginPage()
     {
-        System.out.println("please enter $reg <name> <password>: ");
+        System.out.println("please enter $reg <name> <password> or $lgn <uid> <password> to register or login: ");
     }
 
     public void displayUserProfile(int userUid)
