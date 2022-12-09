@@ -1,6 +1,6 @@
 package server.entities;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +49,7 @@ public class GroupChat extends Chat {
     {
         members.remove(userUid);
     }
+    public Collection<User> getMembers(){return members.values();}
 
     @Override
     public String toString() {

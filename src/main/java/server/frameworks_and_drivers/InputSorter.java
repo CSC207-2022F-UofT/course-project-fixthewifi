@@ -40,6 +40,8 @@ public class InputSorter implements ComManagerUser
 
 
     {
+                        ChangeProfileController changeProfileController,
+                       SendRatingController sendRatingController) {
         //TODO: pass all of the controllers into here
         //this.sendMsgController = sendMsgController;
         //this.loginController = loginController;

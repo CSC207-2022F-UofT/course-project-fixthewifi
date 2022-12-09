@@ -3,8 +3,15 @@ import client.frameworks_and_drivers.communication_manager.ComManagerUser;
 import client.interface_adapters.presenters.*;
 
 import client.interface_adapters.presenters.ChPrPresenterInputBoundary;
+import client.interface_adapters.presenters.CreateGCPresenter;
+import client.interface_adapters.presenters.FriendPresenter;
+import client.interface_adapters.presenters.LoginPresenter;
 
 import java.util.Arrays;
+
+import client.interface_adapters.presenters.change_profile.ChPrPresenter;
+
+import client.interface_adapters.presenters.RatingPresenter;
 
 
 public class InputSorter implements ComManagerUser
@@ -41,10 +48,18 @@ public class InputSorter implements ComManagerUser
                        ChPrPresenterInputBoundary chPrPresenter,
                        RatingPresenterInputBoundary ratingPresenter,
                        SendMsgPresenterInputBoundary msgPresenter)
+    private final ChPrPresenter chPrPresenter;
+    private final RatingPresenter ratingPresenter;
 
+
+    private final CreateGCPresenter groupChatPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter,
+                       RatingPresenter ratingPresenter, CreateGCPresenter groupChatPresenter)
     {
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
+        this.groupChatPresenter = groupChatPresenter;
+
         this.chPrPresenter= chPrPresenter;
         this.ratingPresenter = ratingPresenter;
         this.msgPresenter = msgPresenter;
@@ -84,6 +99,7 @@ public class InputSorter implements ComManagerUser
             case DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
+            case Constants.UPDATE_NAME:
             case UPDATE_NAME:
                 chPrPresenter.updateName(content);
                 break;
@@ -97,9 +113,15 @@ public class InputSorter implements ComManagerUser
                 chPrPresenter.delPic();
                 break;
             case RATING:
+//                break;
+            case Constants.RATING:
                 ratingPresenter.receiveConfirmation(content);
                 break;
-
+            case Constants.RETRIEVE_FRIENDS_LIST:
+                groupChatPresenter.displayFriendsList(content);
+                break;
+            case Constants.GROUP_CHAT:
+                groupChatPresenter.createGC(content);
         }
     }
 

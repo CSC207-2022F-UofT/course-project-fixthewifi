@@ -3,6 +3,10 @@ package client.frameworks_and_drivers.view.console_view;
 import client.interface_adapters.controllers.*;
 
 import client.interface_adapters.model.ChatNotFoundException;
+import client.interface_adapters.controllers.RatingControllerInputBoundary;
+
+
+import client.interface_adapters.controllers.*;
 import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.UserNotFoundException;
@@ -10,6 +14,7 @@ import client.interface_adapters.model.UserNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ConsoleView implements ModelObserver
@@ -41,6 +46,7 @@ public class ConsoleView implements ModelObserver
     private final ModelInterface model;
     private final LoginControllerInputBoundary loginController;
     private final FriendControllerInputBoundary friendController;
+    private final CreateGCControllerInputBoundary create_gc_controller;
     private final RatingControllerInputBoundary ratingController;
 
     private final ChPrControllerInputBoundary chPrController;
@@ -48,6 +54,7 @@ public class ConsoleView implements ModelObserver
     public ConsoleView(ModelInterface model,
                        LoginControllerInputBoundary loginController,
                        FriendControllerInputBoundary friendController,
+                       CreateGCControllerInputBoundary create_gc_controller,
                        ChPrControllerInputBoundary chPrController,
                        RatingControllerInputBoundary ratingController,
                        SendMsgControllerInputBoundary sendMsgController)
@@ -62,6 +69,7 @@ public class ConsoleView implements ModelObserver
         this.ratingController = ratingController;
         this.sendMsgController = sendMsgController;
 
+        this.create_gc_controller = create_gc_controller;
     }
 
     /**
@@ -176,6 +184,13 @@ public class ConsoleView implements ModelObserver
                 case (HELP):
                     help();
                     break;
+                case(InstructionSet.CREATE_GROUP_CHAT):
+                    create_gc_controller.getList();
+                    break;
+
+                case(InstructionSet.SELECT_USERS):
+                    create_gc_controller.create(operand);
+
             }
         } catch (NumberFormatException e)
         {
@@ -223,7 +238,7 @@ public class ConsoleView implements ModelObserver
         System.out.println(
                         "If an instruction has no operands, put a space bar after the instruction." + "\n" +
                         "HELP = $help" + "\n\n" +
-                        
+
                         "Message operations:" + "\n" +
                         "SEND_CHAT = $send <content>" + "\n" +
                         "DELETE_CHAT = $del" + "\n" +
@@ -234,18 +249,18 @@ public class ConsoleView implements ModelObserver
                         "REGISTER = $reg <name> <password>" + "\n" +
                         "LOGOUT = $logout" + "\n" +
                         "DELETE_ACCOUNT = $del_account" + "\n\n" +
-                        
+
                         "Friends:" + "\n" +
                         "REQUEST_FRIEND = $ref <friendUid>" + "\n" +
                         "ACCEPT_FRIEND = $acp <uid>" + "\n" +
                         "REJECT_FRIEND = $rej <uid>" + "\n" +
                         "DELETE_FRIEND = $dtf <uid>" + "\n" +
-                        
+
                         "View info:" + "\n" +
                         "VIEW_CHAT = $cht <chatUid>" + "\n" +
                         "VIEW_FRIENDS = $vwf" + "\n" +
                         "VIEW_PROFILE = $vpr" + "\n" +
-                        
+
                         "Change Profile:" + "\n" +
                         "CHANGE_NAME = $chn" + "\n" +
                         "CHANGE_DESC = $chd" + "\n" +
@@ -302,5 +317,27 @@ public class ConsoleView implements ModelObserver
     public void update(String content)
     {
         System.out.println(content);
+    }
+
+    /**
+     * Lists the users friends in console for them to select from.
+     * @param users ArrayList where each String contains the users UID then
+     *              their username separated by Constants.SPR.
+     */
+    public void displayGCCreation(ArrayList<String> users) {
+        System.out.println("=====Select Users by UID to Add=====");
+        System.out.println("------------------------------------");
+        System.out.println("========username || UID=============");
+        for (String x : users){
+            String[] user = x.split(String.valueOf(Constants.SPR));
+            System.out.println(user[1] + "  ||  " + user[0]);
+        }
+    }
+
+    /**
+     * Prints a confirmation method to the admin of the GroupChat to confirm its confirmation.
+     */
+    public void displayGCConfirmation(){
+        System.out.println("Your GroupChat has been created.");
     }
 }
