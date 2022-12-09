@@ -17,7 +17,7 @@ Brief explanation of project and what the TA's can currently do
 * send message
 * create private and group chat
 
-* Make a GroupChat
+* Make a GroupChat (SEE NOTE)
   * Uses 2 usecases: retrieve_friendslist and create_gc
 
 ## Instructions to use the program
@@ -54,6 +54,8 @@ HELP = $help
  
 
 ## Notes
+Unfortunately, I am in robarts and I do not have a second computer to check if my branch currently works and I do not want to merge it to main and jeopardize the current functionality, please see branch Feature group chat to see all of my progress. The client side contains "CreateGCPresenter" and "CreateGCController", the server side contains two interface adapter folders and use case folders titled "CreateGC" and "RetrieveFriendsList". I also have tests for all of these classes, except CreateGCPresenter. My tests for the entities "GroupChat" and "GroupProfile" had been commented out when others had refactored my entities, I have reimplmented most of those as well.
+-Brenden McFarlane
 
 
 ## Entities
