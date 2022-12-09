@@ -2,10 +2,21 @@ package test_friend;
 
 import client.interface_adapters.model.ChatNotFoundException;
 import client.interface_adapters.model.ModelInterface;
+import client.interface_adapters.model.model_entities.Chat;
 
 import java.util.List;
 
 class DummyModel implements ModelInterface {
+
+    @Override
+    public void editMsg(int ChatUid, int MsgUid, String newContent) {
+
+    }
+
+    @Override
+    public Chat getChat(int chatUid) {
+        return null;
+    }
 
     @Override
     public String getFriendName(int friendUid) {

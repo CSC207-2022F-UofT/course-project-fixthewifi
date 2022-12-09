@@ -1,4 +1,4 @@
-package tutorial;
+package start;
 
 import client.frameworks_and_drivers.communication_manager.ClientComManager;
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
@@ -45,7 +45,7 @@ import server.usecases.send_message.SendMsgDsGateway;
 import server.usecases.send_message.SendMsgInteractor;
 
 
-public class HelloWorld {
+public class Main {
 
     public static void main(String[] args)
     {
@@ -55,7 +55,6 @@ public class HelloWorld {
         newServer(serverPort, false);
         newClient(serverPort, serverIp, clientPort, false);
         System.out.println("123456432");
-
     }
 
     static void newServer(int serverPort, boolean debug)
@@ -116,7 +115,6 @@ public class HelloWorld {
 
         comManager.init(serverPort, inputSorter);
         System.out.println("Server initialized.");
-
     }
 
     static void newClient(int serverPort, String serverIp, int clientPort, boolean debug)
@@ -145,18 +143,5 @@ public class HelloWorld {
         comManager.init(clientPort, inputSorter);
         view.init();
         System.out.println("Client initialized.");
-    }
-
-    public static String convert(int decide) {
-        if (decide % 15 == 0) {
-            return "tutorial.HelloWorld";
-        }
-        if (decide % 3 == 0) {
-            return "Hello";
-        }
-        if (decide % 5 == 0) {
-            return "World";
-        }
-        return String.valueOf(decide);
     }
 }

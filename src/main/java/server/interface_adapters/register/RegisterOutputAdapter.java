@@ -11,8 +11,8 @@ public class RegisterOutputAdapter implements RegisterOutputBoundary {
     }
 
     @Override
-    public void successRedirect(int uid, String address, int peerPort){
-        String content = Constants.REGISTER + "#"+ "success" + SPR + uid;
+    public void successRedirect(int uid, String address, int peerPort, String name){
+        String content = Constants.REGISTER + "#"+ "success" + SPR + uid + SPR + name;
         comManager.send(address, peerPort, content);
     }
 }

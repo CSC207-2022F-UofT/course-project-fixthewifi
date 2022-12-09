@@ -6,7 +6,7 @@ public class DummyOutputAdapter implements RegisterOutputBoundary{
     public int peerPort;
 
     @Override
-    public void successRedirect(int uid, String address, int peerPort) {
+    public void successRedirect(int uid, String address, int peerPort, String name) {
         this.uid = uid;
         this.peerPort = peerPort;
     }

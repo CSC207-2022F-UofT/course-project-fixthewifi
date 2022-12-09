@@ -73,6 +73,7 @@ public class LoginPresenter implements LoginPresenterInputBoundary
         if (content[0].equals("success"))
         {
 //            model.setSelfStatus(true);
+            model.setSelfName(content[2]);
             model.notifyView("Successfully registered.");
             model.setSelfUid(Integer.parseInt(content[1]));
             model.setPageState("MAIN_PAGE");

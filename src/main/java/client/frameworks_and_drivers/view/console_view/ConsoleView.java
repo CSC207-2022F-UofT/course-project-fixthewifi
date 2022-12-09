@@ -293,7 +293,7 @@ public class ConsoleView implements ModelObserver
         try {
             System.out.println(model.showChat(chatUid));
             System.out.println(model.printChatHistory(chatUid));
-        } catch (ChatNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("Chat not found.");
         }
     }
