@@ -1,14 +1,15 @@
 # Chat messenger
-
 Brief explanation of project and what the TA's can currently do
+* In order to run the program, navigate to start/Main, and run both the client and the server. Server port should be 4396, use "127.0.0.1" for ip (the loopback address). If you want to test the request friend feature, start a new project on intellij with the link to this project and have 2 window open at the same time. Use a different client port on the second window to avoid conflicts and comment out the newServer() method in main to only start the program. If you want to test the program on 2 or more different device, make sure all devices are connect to the same wifi, and uses the LAN ip address of the client computer as the server ip on all clients.
 
-## A User Can: (once we write the UI)
+## A User Can: 
 * create account
-  * requires username and password
-  * confirms account creation
-* log in
-  * requires username and password
-  * 
+* register
+* add delete friend
+* change profile
+* change rating
+* send message
+* create private and group chat
 
 * Make a GroupChat
   * Uses 2 usecases: retrieve_friendslist and create_gc
@@ -33,15 +34,17 @@ HELP = $help
 * ACCEPT_FRIEND = $acp <uid>
 * REJECT_FRIEND = $rej <uid>
 * DELETE_FRIEND = $dtf <uid>
+
+*View:
 * View info:
 * VIEW_CHAT = $cht <chatUid>
 * VIEW_FRIENDS = $vwf
 * VIEW_PROFILE = $vpr
+*Change self:
 * Change Profile:
 * CHANGE_NAME = $chn
 * CHANGE_DESC = $chd
-* SET_PIC = $stp
-* DEL_PIC = $dlp
+
 * RATING = $rate <uid> <rating>
  
 
@@ -49,20 +52,19 @@ HELP = $help
 
 
 ## Entities
-* Chat <I>
-* ChatList
-* CommonUser
-* CommonUserFactory
-* FriendsList
-* GroupChat
+* Chat (abstract)
+* Private Chat 
+* Group Chat 
+* User
+* UserFactory
+* Profile (abstract)
 * GroupProfile
-* Message <I>
-* PrivateChat
-* Profile <I>
-* Rating
-* User <I>
-* UserFactory <I>
 * UserProfile
+* Message <I>
+* Rating
+* On the client side, entities are used to store data, and there are additionally a few entities belonging only to the client:
+* Self extends User
+* Friend extends user
 
 
 ## Usecases
