@@ -6,6 +6,8 @@ Brief explanation of project and what the TA's can currently do
 # Clean architecture:
 * The program (both client and the server) completely follow the clean architecture design. The server side contains all four layers and the classes are packaged according to the layer they are in. The core logic is been handled on the server's interactors. All module dependencies are correctly inverted so that outer layers depend on the inner layers and not the other way aroud. On the client side, only the other 2 layers are required because the client does not handle the core logic, it rather adapts the user input data (as well as some stored data such as uid) into a String and receive the processed data and store it in the Model and the View. Once again, the majority of these classes use the functions of another class (such as the model calling the view's update method) through the interfaces the other class implement to avoid concrete dependencies across boundaries.
 
+* Note: the project contains a few classes that has the same name, but in the actual deployment of the code of the project, the server package can be refactored into a seperate project (same with the client) and all classes would have different names.
+
 ## A User Can: 
 * create account
 * register
