@@ -23,14 +23,13 @@ Brief explanation of project and what the TA's can currently do
 If an instruction has no operands, put a space bar after the instruction.
 HELP = $help
 
-* Message operations:
-* SEND_CHAT = $send <content>
-* DELETE_CHAT = $del
-* EDIT_CHAT = $edt
+* Message operations (put a space behind instructions that don't require inputs):
+* SEND_CHAT = $send <content> (view the chat that you want to send the message to first by calling the $chat <chatUid> instruction!)
+* EDIT_CHAT = $edt <msgUid>
 * Sign in Sign out:
 * LOGIN = $lgn <uid> <password>
 * REGISTER = $reg <name> <password>
-* LOGOUT = $logout
+* LOGOUT = $logout 
 * DELETE_ACCOUNT = $del_account
 
 * Friends:
