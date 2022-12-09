@@ -4,13 +4,16 @@ import client.frameworks_and_drivers.Constants;
 import client.frameworks_and_drivers.view.console_view.ConsoleView;
 import client.interface_adapters.model.Model;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CreateGCPresenter implements CreateGCPresenterInputBoundary{
     private final Model model;
     private final ConsoleView view;
+    private int counter;
 
     public CreateGCPresenter(Model model, ConsoleView view)
     {
+        this.counter = 1;
         this.model = model;
         this.view = view;
     }
@@ -45,8 +48,14 @@ public class CreateGCPresenter implements CreateGCPresenterInputBoundary{
     @Override
     public void createGC(String users) {
         String[] split = users.split(String.valueOf(Constants.SPR));
-        //this.model.createGC();
-        // if (this.model.getSelfUid() == Integer.parseInt(split[0])) {
-        //      this.view.displayGCConfirmation()
+        ArrayList<Integer> members = new ArrayList<>();
+        for(String s : Arrays.copyOfRange(split, 2, split.length)){
+            members.add(Integer.parseInt(s));
+        }
+        this.model.addGroupChat(Integer.parseInt(split[0]), "Super Cool Group Chat No. " + this.counter,
+                "GroupChat of " + (split.length-1) + " members", Integer.parseInt(split[1]), members);
+         if (this.model.getSelfUid() == Integer.parseInt(split[0])) {
+             this.view.displayGCConfirmation();
+         }
     }
 }

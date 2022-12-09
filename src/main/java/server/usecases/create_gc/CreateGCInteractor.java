@@ -41,7 +41,7 @@ public class CreateGCInteractor implements CreateGCInputBoundary {
         HashMap<Integer, User> members = new HashMap<>();
         members.put(input_data.getAdmin_uid(), database.getUserByUID(input_data.getAdmin_uid()));
         for (int i: input_data.getMembers_uids()) {
-            if(database.getUserByUID(i) != null && !members.containsKey(database.getUserByUID(i))){
+            if(database.getUserByUID(i) != null && !members.containsKey(i)){
                 members.put(i, database.getUserByUID(i));
             }
         }

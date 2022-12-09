@@ -6,8 +6,6 @@ import client.interface_adapters.controllers.*;
 import client.interface_adapters.controllers.CreateGCController;
 import client.interface_adapters.controllers.LoginController;
 
-import client.interface_adapters.controllers.change_profile.ChPrController;
-
 import client.interface_adapters.controllers.RatingController;
 
 import client.interface_adapters.model.Model;
@@ -16,7 +14,6 @@ import client.interface_adapters.controllers.FriendController;
 import client.interface_adapters.presenters.CreateGCPresenter;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
-import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 import server.frameworks_and_drivers.InputSorter;
 import server.frameworks_and_drivers.communication_manager.ComManager;
 import server.frameworks_and_drivers.database.data_access.*;
@@ -120,7 +117,7 @@ public class HelloWorld {
 
         InputSorter inputSorter = new InputSorter(requestFriendController, acceptFriendController, registerController,
                 deleteFriendController, loginController, logoutController, deleteController,
-                changeProfileController, sendRatingController);
+                changeProfileController, sendRatingController, sendMsgController);
 
         comManager.init(serverPort, inputSorter);
         System.out.println("Server initialized.");
@@ -139,27 +136,20 @@ public class HelloWorld {
         client.interface_adapters.controllers.SendMsgController sendMsgController = new client.interface_adapters.controllers.SendMsgController(comManager, model, serverIp, serverPort);
         CreateGCController createGCController = new CreateGCController(comManager, model, "127.0.0.1");
 
-        ConsoleView view = new ConsoleView(model, loginController, friendController, chPrController, ratingController, sendMsgController);
+        ConsoleView view = new ConsoleView(model, loginController, friendController, createGCController,
+                chPrController, ratingController, sendMsgController);
         model.addObserver(view);
-        ConsoleView view = new ConsoleView(model, loginController, friendController,
-                createGCController, chPrController, ratingController);
 
         FriendPresenter friendPresenter = new FriendPresenter(model);
         LoginPresenter loginPresenter = new LoginPresenter(model);
         RatingPresenter ratingPresenter = new RatingPresenter(model);
         ChPrPresenter chPrPresenter=new ChPrPresenter(model);
         SendMsgPresenter sendMsgPresenter = new SendMsgPresenter(model);
-
-
-        ChPrPresenter chPrPresenter=new ChPrPresenter(model,view);
         CreateGCPresenter groupChatPresenter = new CreateGCPresenter(model, view);
 
-        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter, chPrPresenter, ratingPresenter, sendMsgPresenter);
+        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(friendPresenter, loginPresenter, chPrPresenter, ratingPresenter, sendMsgPresenter, groupChatPresenter);
         comManager.init(clientPort, inputSorter);
-        client.frameworks_and_drivers.InputSorter inputSorter = new client.frameworks_and_drivers.InputSorter(
-                friendPresenter, loginPresenter, chPrPresenter, ratingPresenter, groupChatPresenter);
 
-        comManager.init(4444, inputSorter);
         view.init();
         System.out.println("Client initialized.");
     }

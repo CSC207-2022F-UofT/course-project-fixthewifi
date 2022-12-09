@@ -1,4 +1,4 @@
-package test_entities;
+package test_database.test_entities;
 
 import server.entities.FriendsList;
 import org.junit.jupiter.api.Test;

@@ -41,7 +41,7 @@ public class RetrieveFriendsListOutputData {
         return this.requester;
     }
 
-    public void setusers(ArrayList<String> users) {
+    public void setUsers(ArrayList<String> users) {
         this.users = users;
     }
 

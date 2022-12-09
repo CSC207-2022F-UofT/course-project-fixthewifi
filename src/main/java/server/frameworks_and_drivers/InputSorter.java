@@ -13,8 +13,7 @@ import server.interface_adapters.change_rating.SendRatingController;
 
 public class InputSorter implements ComManagerUser
 {
-//    private final SendMsgController sendMsgController;
-//    private final LoginController loginController;
+
     private final RequestFriendController requestFriendController;
     private final AcceptFriendController acceptFriendController;
     private final RegisterController registerController;
@@ -40,11 +39,6 @@ public class InputSorter implements ComManagerUser
 
 
     {
-                        ChangeProfileController changeProfileController,
-                       SendRatingController sendRatingController) {
-        //TODO: pass all of the controllers into here
-        //this.sendMsgController = sendMsgController;
-        //this.loginController = loginController;
         this.registerController = registerController;
         this.requestFriendController = requestFriendController;
         this.acceptFriendController = acceptFriendController;

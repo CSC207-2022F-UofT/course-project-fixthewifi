@@ -1,13 +1,12 @@
 package client.frameworks_and_drivers.view.console_view;
 
+import client.frameworks_and_drivers.Constants;
 import client.interface_adapters.controllers.*;
 
 import client.interface_adapters.model.ChatNotFoundException;
 import client.interface_adapters.controllers.RatingControllerInputBoundary;
 
 
-import client.interface_adapters.controllers.*;
-import client.interface_adapters.model.Model;
 import client.interface_adapters.model.ModelInterface;
 import client.interface_adapters.model.UserNotFoundException;
 
