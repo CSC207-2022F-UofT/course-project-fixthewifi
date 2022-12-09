@@ -1,6 +1,6 @@
 # Chat messenger
 Brief explanation of project and what the TA's can currently do
-* In order to run the program, navigate to start/Main, and run both the client and the server. Server port should be 4396, use "127.0.0.1" for ip (the loopback address). If you want to test the request friend feature, start a new project on intellij with the link to this project and have 2 window of this project open at the same time. Use a different client port on the second window to avoid conflicts and comment out the newServer() method in main to only start the program. If you want to test the program on 2 or more different device, make sure all devices are connect to the same wifi, and uses the LAN ip address of the client computer as the server ip on all clients.
+* In order to run the program, navigate to start/Main, and run both the client and the server. Server port should be 4396, use "127.0.0.1" for ip (the loopback address). If you want to test the request friend feature, start a new project on intellij with the link to this project and have 2 window of this project open at the same time. Use a different client port on the second window to avoid conflicts and comment out the newServer() method in main to only start the client. If you want to test the program on 2 or more different device, make sure all devices are connect to the same wifi, and uses the LAN ip address of the computer running the server as the server ip on all clients.
 
 ## Designs: 
 # Clean architecture:
