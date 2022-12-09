@@ -6,7 +6,7 @@ import client.interface_adapters.controllers.*;
 
 import client.interface_adapters.model.Model;
 import client.interface_adapters.presenters.*;
-import server.frameworks_and_drivers.InputSorter;
+import server.interface_adapters.InputSorter;
 import server.frameworks_and_drivers.communication_manager.ComManager;
 import server.frameworks_and_drivers.database.data_access.*;
 import server.frameworks_and_drivers.database.Database;
@@ -41,7 +41,6 @@ import server.usecases.delete_account.DeleteInteractor;
 import server.interface_adapters.change_rating.SendRatingOutputAdapter;
 import server.interface_adapters.change_rating.SendRatingController;
 import server.usecases.rating_changes.SendRatingInteractor;
-import server.usecases.send_message.SendMsgDsGateway;
 import server.usecases.send_message.SendMsgInteractor;
 
 
