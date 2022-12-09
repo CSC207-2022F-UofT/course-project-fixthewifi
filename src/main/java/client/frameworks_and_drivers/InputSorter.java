@@ -1,9 +1,8 @@
 package client.frameworks_and_drivers;
 import client.frameworks_and_drivers.communication_manager.ComManagerUser;
+import client.interface_adapters.presenters.CreateGCPresenter;
 import client.interface_adapters.presenters.FriendPresenter;
 import client.interface_adapters.presenters.LoginPresenter;
-
-import java.util.Arrays;
 
 import client.interface_adapters.presenters.change_profile.ChPrPresenter;
 
@@ -17,11 +16,15 @@ public class InputSorter implements ComManagerUser
 
     private final ChPrPresenter chPrPresenter;
     private final RatingPresenter ratingPresenter;
-    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter, RatingPresenter ratingPresenter)
 
+
+    private final CreateGCPresenter groupChatPresenter;
+    public InputSorter(FriendPresenter friendPresenter, LoginPresenter loginPresenter, ChPrPresenter chPrPresenter,
+                       RatingPresenter ratingPresenter, CreateGCPresenter groupChatPresenter)
     {
         this.friendPresenter = friendPresenter;
         this.loginPresenter = loginPresenter;
+        this.groupChatPresenter = groupChatPresenter;
 
         this.chPrPresenter= chPrPresenter;
 
@@ -61,7 +64,6 @@ public class InputSorter implements ComManagerUser
             case Constants.DELETE_FRIEND:
                 friendPresenter.receiveDelete(content);
                 break;
-
             case Constants.UPDATE_NAME:
                 chPrPresenter.updateName(content);
 //                break;
@@ -74,13 +76,14 @@ public class InputSorter implements ComManagerUser
             case Constants.DEL_PIC:
                 chPrPresenter.delPic();
 //                break;
-
-
-
             case Constants.RATING:
                 ratingPresenter.receiveConfirmation(content);
                 break;
-
+            case Constants.RETRIEVE_FRIENDS_LIST:
+                groupChatPresenter.displayFriendsList(content);
+                break;
+            case Constants.GROUP_CHAT:
+                groupChatPresenter.createGC(content);
         }
     }
 

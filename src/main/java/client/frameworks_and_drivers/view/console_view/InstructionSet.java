@@ -26,4 +26,6 @@ public interface InstructionSet
 
     String RATING = "$rate";
 
+    String CREATE_GROUP_CHAT = "$cgc";
+    String SELECT_USERS = "$slu";
 }

@@ -20,5 +20,7 @@ public interface Constants {
     int SET_PIC = 112;
     int DEL_PIC = 113;
     int FAIL=114;
+    int RETRIEVE_FRIENDS_LIST = 11;
+    char SPR = 30;
 }
 

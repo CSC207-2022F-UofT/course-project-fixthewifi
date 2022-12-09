@@ -34,10 +34,7 @@ public class InputSorter implements ComManagerUser
                        LogoutController logoutController,
                        DeleteController deleteController,
                         ChangeProfileController changeProfileController,
-                            SendRatingController sendRatingController)
-
-
-    {
+                       SendRatingController sendRatingController) {
         //TODO: pass all of the controllers into here
         //this.sendMsgController = sendMsgController;
         //this.loginController = loginController;
