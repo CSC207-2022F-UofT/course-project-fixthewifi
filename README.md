@@ -67,7 +67,7 @@ HELP = $help
 * UserProfile
 * Message <I>
 * Rating
-* On the client side, entities are used to store data, and there are additionally a few entities belonging only to the client:
+* On the client side, there are model_entities - subsidary classes to the Model class that are used to store incomin data, but look very much the same as the server entities, which includes the above and:
 * Self extends User
 * Friend extends user
 
